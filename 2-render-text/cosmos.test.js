@@ -5,7 +5,6 @@ const { mount, getWrapper } = createContext({ fixture });
 
 beforeEach(mount);
 
-it('should call "onClick" prop on button click', () => {
-  getWrapper('button').simulate('click');
-  expect(getWrapper().prop('onClick')).toHaveBeenCalled();
+it('should render "Hello {name}"', () => {
+  expect(getWrapper().text()).toContain('Hello Satoshi');
 });

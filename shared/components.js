@@ -5,3 +5,5 @@ export const CompWithBtn = ({ onClick }) => (
     <button onClick={onClick} />
   </div>
 );
+
+export const HelloMessage = ({ name }) => <span>Hello {name}</span>;
