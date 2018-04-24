@@ -8,6 +8,6 @@ beforeEach(() => {
   wrapper = mount(<HelloMessage name="Satoshi" />);
 });
 
-it('should render "Hello {name}"', () => {
+it('renders "Hello {name}"', () => {
   expect(wrapper.text()).toContain('Hello Satoshi');
 });

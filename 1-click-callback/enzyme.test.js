@@ -8,7 +8,7 @@ beforeEach(() => {
   wrapper = mount(<CompWithBtn onClick={jest.fn()} />);
 });
 
-it('should call "onClick" prop on button click', () => {
+it('calls "onClick" prop on button click', () => {
   wrapper.find('button').simulate('click');
   expect(wrapper.prop('onClick')).toHaveBeenCalled();
 });

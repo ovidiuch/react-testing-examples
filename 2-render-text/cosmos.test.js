@@ -5,6 +5,6 @@ const { mount, getWrapper } = createContext({ fixture });
 
 beforeEach(mount);
 
-it('should render "Hello {name}"', () => {
+it('renders "Hello {name}"', () => {
   expect(getWrapper().text()).toContain('Hello Satoshi');
 });
