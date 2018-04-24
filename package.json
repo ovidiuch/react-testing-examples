@@ -11,9 +11,12 @@
     "react": "^16.3.2",
     "react-cosmos": "^4.0.0-rc.1",
     "react-cosmos-redux-proxy": "^3.6.1",
+    "react-cosmos-router-proxy": "^3.6.1",
     "react-cosmos-test": "^4.0.0-rc.1",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "redux": "^4.0.0"
   }
 }

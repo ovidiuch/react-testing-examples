@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export const CompWithBtn = ({ onClick }) => (
   <div>
@@ -28,17 +30,13 @@ export class StatefulCounter extends Component {
   }
 }
 
-class PureCounter extends Component {
-  render() {
-    const { count, increment } = this.props;
-
-    return (
-      <div>
-        Clicked {count} times <button onClick={increment}>+1</button>
-      </div>
-    );
-  }
-}
+const PureCounter = ({ count, increment }) => {
+  return (
+    <div>
+      Clicked {count} times <button onClick={increment}>+1</button>
+    </div>
+  );
+};
 
 export const ReduxCounter = connect(state => state, {
   increment: () => ({ type: 'INCREMENT' })
@@ -52,3 +50,13 @@ export const counterReducer = (state = { count: 0 }, { type }) => {
       return state;
   }
 };
+
+const UserPage = ({ match: { params } }) => {
+  return (
+    <div>
+      User #{params.userId} <Link to="/users/6">Next user</Link>
+    </div>
+  );
+};
+
+export const UserWithRouter = withRouter(UserPage);
