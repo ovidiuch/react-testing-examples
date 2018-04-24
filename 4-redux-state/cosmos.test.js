@@ -1,7 +1,7 @@
 import createContext from 'react-cosmos-test/enzyme';
 import fixture from './fixture';
 
-let { count } = fixture.state;
+let { count } = fixture.reduxState;
 let { mount, getWrapper } = createContext({ fixture });
 
 beforeEach(mount);

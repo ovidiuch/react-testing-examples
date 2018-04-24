@@ -10,7 +10,10 @@
     "jest": "^22.4.3",
     "react": "^16.3.2",
     "react-cosmos": "^4.0.0-rc.1",
+    "react-cosmos-redux-proxy": "^3.6.1",
     "react-cosmos-test": "^4.0.0-rc.1",
-    "react-dom": "^16.3.2"
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0"
   }
 }

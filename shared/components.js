@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 export const CompWithBtn = ({ onClick }) => (
   <div>
@@ -13,7 +14,7 @@ export class StatefulCounter extends Component {
     count: 0
   };
 
-  incrementCounter = () => {
+  increment = () => {
     this.setState({ count: this.state.count + 1 });
   };
 
@@ -21,8 +22,33 @@ export class StatefulCounter extends Component {
     return (
       <div>
         Clicked {this.state.count} times{' '}
-        <button onClick={this.incrementCounter}>+1</button>
+        <button onClick={this.increment}>+1</button>
       </div>
     );
   }
 }
+
+class PureCounter extends Component {
+  render() {
+    const { count, increment } = this.props;
+
+    return (
+      <div>
+        Clicked {count} times <button onClick={increment}>+1</button>
+      </div>
+    );
+  }
+}
+
+export const ReduxCounter = connect(state => state, {
+  increment: () => ({ type: 'INCREMENT' })
+})(PureCounter);
+
+export const counterReducer = (state = { count: 0 }, { type }) => {
+  switch (type) {
+    case 'INCREMENT':
+      return { ...state, count: state.count + 1 };
+    default:
+      return state;
+  }
+};
