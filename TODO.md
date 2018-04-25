@@ -7,7 +7,7 @@
 * [ ] Add "Fetch" tests
 * [ ] Add "LocalStorage" tests
 * [x] Colocate components with tests
-* [ ] Add ESLint
+* [x] Add ESLint
 * [ ] Explain opinionated test style (integration / abstract libs)
 * [ ] Explain Cosmos vs non-Cosmos
 * [ ] Create page design

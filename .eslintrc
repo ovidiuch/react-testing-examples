@@ -1,0 +1,37 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "plugins": ["react"],
+  "env": {
+    "es6": true,
+    "shared-node-browser": true
+  },
+  "globals": {},
+  "rules": {
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error"
+  },
+  "overrides": [
+    {
+      "files": [
+        "jest.config.js",
+        "jest.setup.js",
+        "jest.framework-setup.js",
+        "cosmos.config.js"
+      ],
+      "env": {
+        "node": true
+      }
+    },
+    {
+      "files": ["**/*.test.js", "jest.framework-setup.js"],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
+}

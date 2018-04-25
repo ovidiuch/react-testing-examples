@@ -16,14 +16,9 @@ export class ServerCounter extends Component {
   increment = () => {
     this.setState({ isSyncing: true });
 
-    axios
-      .post('/count')
-      .then(({ data: count }) => {
-        this.setState({ isSyncing: false, count });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    axios.post('/count').then(({ data: count }) => {
+      this.setState({ isSyncing: false, count });
+    });
   };
 
   render() {
