@@ -12,7 +12,7 @@
 * [x] Add ESLint
 * [x] Config CircleCI
 * [x] Colocate Cosmos proxies with tests
-* [ ] Add TypeScript
+* [ ] Add Flow
 * [ ] Create page design
 * [ ] Create build script
 * [ ] Explain opinionated test style (integration / abstract libs)
