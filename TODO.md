@@ -8,9 +8,9 @@
 * [ ] Add "LocalStorage" tests
 * [x] Colocate components with tests
 * [x] Add ESLint
+* [x] Config CircleCI
 * [ ] Colocate Cosmos proxies with tests
 * [ ] Create page design
 * [ ] Create build script
 * [ ] Explain opinionated test style (integration / abstract libs)
 * [ ] Explain Cosmos vs non-Cosmos
-* [ ] Integrate with CircleCI
