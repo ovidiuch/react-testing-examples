@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import until from 'async-until';
-import xhrMock from 'xhr-mock';
+import fetchMock from 'fetch-mock';
 import { ServerCounter } from './components';
 
 let count = 5;
@@ -18,17 +18,22 @@ let simulateIncrement = async () => {
 };
 
 beforeEach(() => {
-  xhrMock.setup();
-  xhrMock.get('/count', (req, res) => res.status(200).body({ count }));
-  xhrMock.post('/count', (req, res) =>
-    res.status(200).body({ count: ++count })
-  );
+  fetchMock.mock({
+    matcher: '/count',
+    method: 'GET',
+    response: { count }
+  });
+  fetchMock.mock({
+    matcher: '/count',
+    method: 'POST',
+    response: () => ({ count: ++count })
+  });
 
   wrapper = mount(<ServerCounter />);
 });
 
 afterEach(() => {
-  xhrMock.teardown();
+  fetchMock.restore();
 });
 
 it('renders initial count', async () => {

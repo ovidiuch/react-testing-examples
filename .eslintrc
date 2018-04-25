@@ -10,7 +10,9 @@
     "es6": true,
     "shared-node-browser": true
   },
-  "globals": {},
+  "globals": {
+    "fetch": true
+  },
   "rules": {
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error"

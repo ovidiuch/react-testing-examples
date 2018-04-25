@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 export class ServerCounter extends Component {
   state = {
@@ -8,17 +7,21 @@ export class ServerCounter extends Component {
   };
 
   componentDidMount() {
-    axios('/count').then(({ data: { count } }) => {
-      this.setState({ isSyncing: false, count });
-    });
+    fetch('/count')
+      .then(res => res.json())
+      .then(({ count }) => {
+        this.setState({ isSyncing: false, count });
+      });
   }
 
   increment = () => {
     this.setState({ isSyncing: true });
 
-    axios.post('/count').then(({ data: { count } }) => {
-      this.setState({ isSyncing: false, count });
-    });
+    fetch('/count', { method: 'POST' })
+      .then(res => res.json())
+      .then(({ count }) => {
+        this.setState({ isSyncing: false, count });
+      });
   };
 
   render() {

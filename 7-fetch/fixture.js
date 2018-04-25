@@ -3,18 +3,18 @@ import { ServerCounter } from './components';
 let count = 5;
 
 let mockGet = {
-  url: '/count',
+  matcher: '/count',
   method: 'GET',
-  response: (req, res) => res.status(200).body({ count })
+  response: { count }
 };
 
 let mockPost = {
-  url: '/count',
+  matcher: '/count',
   method: 'POST',
-  response: (req, res) => res.status(200).body({ count: ++count })
+  response: () => ({ count: ++count })
 };
 
 export default {
   component: ServerCounter,
-  xhr: [mockGet, mockPost]
+  fetch: [mockGet, mockPost]
 };

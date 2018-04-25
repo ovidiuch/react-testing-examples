@@ -4,12 +4,13 @@
 * [x] Add "Redux" tests
 * [x] Add "React Router" tests
 * [x] Add "XHR" tests
-* [ ] Add "Fetch" tests
+* [x] Add "Fetch" tests
 * [ ] Add "LocalStorage" tests
 * [x] Colocate components with tests
 * [x] Add ESLint
-* [ ] Explain opinionated test style (integration / abstract libs)
-* [ ] Explain Cosmos vs non-Cosmos
+* [ ] Colocate Cosmos proxies with tests
 * [ ] Create page design
 * [ ] Create build script
+* [ ] Explain opinionated test style (integration / abstract libs)
+* [ ] Explain Cosmos vs non-Cosmos
 * [ ] Integrate with CircleCI
