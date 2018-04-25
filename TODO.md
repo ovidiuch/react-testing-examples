@@ -5,7 +5,7 @@
 * [x] Add "React Router" tests
 * [x] Add "XHR" tests
 * [x] Add "Fetch" tests
-* [ ] Add "LocalStorage" tests
+* [x] Add "LocalStorage" tests
 * [x] Colocate components with tests
 * [x] Add ESLint
 * [x] Config CircleCI

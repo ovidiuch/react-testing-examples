@@ -11,7 +11,9 @@
     "shared-node-browser": true
   },
   "globals": {
-    "fetch": true
+    "fetch": true,
+    "localStorage": true,
+    "global": true
   },
   "rules": {
     "react/jsx-uses-react": "error",

@@ -4199,6 +4199,12 @@ react-cosmos-loader@^4.0.0-rc.2:
     react-cosmos-shared "^4.0.0-rc.2"
     react-cosmos-state-proxy "^4.0.0-rc.2"
 
+react-cosmos-localstorage-proxy@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/react-cosmos-localstorage-proxy/-/react-cosmos-localstorage-proxy-3.6.1.tgz#f71e89759cf9c3420e267d304e225924e4f8e468"
+  dependencies:
+    react-cosmos-shared "^3.6.1"
+
 react-cosmos-playground@^4.0.0-rc.2:
   version "4.0.0-rc.2"
   resolved "https://registry.yarnpkg.com/react-cosmos-playground/-/react-cosmos-playground-4.0.0-rc.2.tgz#064808900d1c31494fc236a5ed768d4caa404154"
