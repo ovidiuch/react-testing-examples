@@ -1,8 +1,9 @@
 import until from 'async-until';
 import createContext from 'react-cosmos-test/enzyme';
+import proxies from './cosmos.proxies';
 import fixture from './fixture';
 
-let { mount, getWrapper } = createContext({ fixture });
+let { mount, getWrapper } = createContext({ proxies, fixture });
 
 let notSyncing = () =>
   !getWrapper()

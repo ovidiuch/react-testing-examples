@@ -1,8 +1,9 @@
 import createContext from 'react-cosmos-test/enzyme';
+import proxies from './cosmos.proxies';
 import fixture from './fixture';
 
 let { count } = fixture.reduxState;
-let { mount, getWrapper } = createContext({ fixture });
+let { mount, getWrapper } = createContext({ proxies, fixture });
 
 beforeEach(mount);
 

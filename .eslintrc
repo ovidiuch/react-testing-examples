@@ -36,12 +36,6 @@
       "env": {
         "jest": true
       }
-    },
-    {
-      "files": ["**/fixture.js"],
-      "rules": {
-        "no-console": false
-      }
     }
   ]
 }
