@@ -6,10 +6,13 @@
 * [x] Add "XHR" tests
 * [x] Add "Fetch" tests
 * [x] Add "LocalStorage" tests
+* [ ] Add "styled-components" tests
+* [ ] Add "Context" tests
 * [x] Colocate components with tests
 * [x] Add ESLint
 * [x] Config CircleCI
 * [x] Colocate Cosmos proxies with tests
+* [x] Add Flow
 * [ ] Create page design
 * [ ] Create build script
 * [ ] Explain opinionated test style (integration / abstract libs)

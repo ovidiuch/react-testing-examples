@@ -22,6 +22,7 @@
   "overrides": [
     {
       "files": [
+        "babel.config.js",
         "jest.config.js",
         "jest.setup.js",
         "jest.framework-setup.js",
