@@ -2,7 +2,7 @@ import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
-import { ReduxCounter, counterReducer } from '../shared/components';
+import { ReduxCounter, counterReducer } from './components';
 
 let count = 5;
 let store = createStore(counterReducer, { count });

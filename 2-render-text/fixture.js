@@ -1,4 +1,4 @@
-import { HelloMessage } from '../shared/components';
+import { HelloMessage } from './components';
 
 export default {
   component: HelloMessage,

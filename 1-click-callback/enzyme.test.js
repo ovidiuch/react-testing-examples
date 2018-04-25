@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { CompWithBtn } from '../shared/components';
+import { CompWithBtn } from './components';
 
 let wrapper;
 

@@ -1,4 +1,4 @@
-import { CompWithBtn } from '../shared/components';
+import { CompWithBtn } from './components';
 
 export default {
   component: CompWithBtn,

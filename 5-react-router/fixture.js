@@ -1,4 +1,4 @@
-import { UserWithRouter } from '../shared/components';
+import { UserWithRouter } from './components';
 
 export default {
   component: UserWithRouter,

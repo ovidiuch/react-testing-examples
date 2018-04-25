@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { HelloMessage } from '../shared/components';
+import { HelloMessage } from './components';
 
 let wrapper;
 

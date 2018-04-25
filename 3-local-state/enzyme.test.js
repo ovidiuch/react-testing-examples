@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { StatefulCounter } from '../shared/components';
+import { StatefulCounter } from './components';
 
 let count = 5;
 let wrapper;

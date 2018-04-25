@@ -6,7 +6,7 @@
 * [x] Add "XHR" tests
 * [ ] Add "Fetch" tests
 * [ ] Add "LocalStorage" tests
-* [ ] Colocate components with tests
+* [x] Colocate components with tests
 * [ ] Add ESLint
 * [ ] Explain opinionated test style (integration / abstract libs)
 * [ ] Explain Cosmos vs non-Cosmos

@@ -1,4 +1,4 @@
-import { StatefulCounter } from '../shared/components';
+import { StatefulCounter } from './components';
 
 export default {
   component: StatefulCounter,
