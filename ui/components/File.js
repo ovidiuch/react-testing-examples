@@ -2,6 +2,8 @@
 
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
+import Prism from 'prismjs';
+import rangeParser from 'parse-numeric-range';
 import { FileOptions } from '../contexts/FileOptions';
 
 import type { Node } from 'react';
@@ -46,7 +48,11 @@ export class File extends Component<Props, State> {
                 </Toggle>
               </div>
               {isOpen && (
-                <Code>{stripCode(code, showComments, showImports)}</Code>
+                <CodeBlock
+                  code={code}
+                  showComments={showComments}
+                  showImports={showImports}
+                />
               )}
             </Fragment>
           )}
@@ -56,20 +62,99 @@ export class File extends Component<Props, State> {
   }
 }
 
-function stripCode(code: string, showComments: boolean, showImports: boolean) {
-  let cleanCode = code;
+type CodeBlockProps = {
+  code: string,
+  showComments: boolean,
+  showImports: boolean
+};
 
-  if (!showComments) {
-    // TODO: Support code blocks
-    cleanCode = cleanCode.replace(/ *\/\/.+?\n/g, '');
+function CodeBlock({ code, showComments, showImports }: CodeBlockProps) {
+  let _code = code;
+  let highlightLines = [];
+
+  const highlightRes = _code.match(/highlight\{(.+?)\}/);
+  if (highlightRes) {
+    // XXX: highlight{...} must always be the first line
+    _code = _code
+      .split('\n')
+      .slice(1)
+      .join('\n');
+    highlightLines = rangeParser.parse(highlightRes[1]);
   }
+
+  // highlight[(.+?)]
+  _code = Prism.highlight(_code, Prism.languages.jsx);
+
+  let codeSplits = _code.split(`\n`).map((split, lineIndex) => {
+    // TODO: Explain why +2
+    if (highlightLines.indexOf(lineIndex + 2) !== -1) {
+      return {
+        highlighted: true,
+        code: `<span class="gatsby-highlight-code-line">${split}\n</span>`
+      };
+    } else {
+      return { code: split };
+    }
+  });
 
   if (!showImports) {
-    cleanCode = cleanCode.replace(/^.*import([^\n]+);\n\n?/s, '');
+    codeSplits = codeSplits.filter(
+      split => !split.code.match(/^<span class="token keyword">import<\/span>/)
+    );
+
+    // Remove first line if it's empty
+    if (codeSplits[0].code === '') {
+      codeSplits = codeSplits.slice(1);
+    }
   }
 
-  return cleanCode;
+  if (!showComments) {
+    // XXX: Code blocks are not supported
+    codeSplits = codeSplits.filter(
+      split =>
+        !split.code.match(
+          /^(<span class="gatsby-highlight-code-line">\s*)?<span class="token comment">\/\//
+        )
+    );
+  }
+
+  let highlightedCode = ``;
+  const lastIdx = codeSplits.length - 1;
+  // Don't add back the new line character after highlighted lines
+  // as they need to be display: block and full-width.
+  codeSplits.forEach((split, idx) => {
+    split.highlighted
+      ? (highlightedCode += split.code)
+      : (highlightedCode += `${split.code}${idx == lastIdx ? `` : `\n`}`);
+  });
+
+  return (
+    <div className="gatsby-highlight">
+      <pre className="gatsby-code-jsx">
+        <code
+          dangerouslySetInnerHTML={{
+            __html: highlightedCode
+          }}
+        />
+      </pre>
+    </div>
+  );
 }
+
+// function stripCode(code: string, showComments: boolean, showImports: boolean) {
+//   let cleanCode = code;
+//
+//   if (!showComments) {
+//     // TODO: Support code blocks
+//     cleanCode = cleanCode.replace(/ *\/\/.+?\n/g, '');
+//   }
+//
+//   if (!showImports) {
+//     cleanCode = cleanCode.replace(/^.*import([^\n]+);\n\n?/s, '');
+//   }
+//
+//   return cleanCode;
+// }
 
 type ToggleProps = {
   children: Node,
@@ -87,10 +172,5 @@ function Toggle({ children, isOpen, onToggle }: ToggleProps) {
 
 const FileRoot = styled.div`
   margin: 10px;
-`;
-
-const Code = styled.pre`
-  background: #f1f1f1;
-  border-radius: 3px;
-  margin: 10px 0;
+  font-size: 14px;
 `;
