@@ -78,7 +78,7 @@ function Checkbox({ name, checked, onToggle }: CheckboxProps) {
   return (
     <Fragment>
       <label>
-        <input type="checkbox" checked={checked} onClick={onToggle} /> {name}
+        <input type="checkbox" checked={checked} onChange={onToggle} /> {name}
       </label>
     </Fragment>
   );
