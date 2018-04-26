@@ -18,7 +18,7 @@ type State = {
 
 export class Test extends Component<Props, State> {
   state = {
-    showComments: false,
+    showComments: true,
     showImports: false
   };
 
