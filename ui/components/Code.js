@@ -141,7 +141,7 @@ function joinMarkupLines(lines) {
   return markup;
 }
 
-// Styled copied from
+// Styles copied from
 // https://github.com/reactjs/reactjs.org/blob/942e83ef396199f499830792b1c61a9c6c990f29/src/prism-styles.js
 const CodeHighlight = styled.div`
   background: #282c34;
