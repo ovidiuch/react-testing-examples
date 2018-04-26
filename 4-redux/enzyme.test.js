@@ -1,9 +1,10 @@
-// highlight{14-20}
+// highlight{15-21}
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
-import { ReduxCounter, counterReducer } from './components';
+import { ReduxCounter } from './components';
+import { counterReducer } from './reducer';
 
 // Hoist vars to make them accessible in all test blocks
 let count = 5;
