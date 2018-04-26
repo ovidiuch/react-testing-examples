@@ -9,9 +9,11 @@ function PureCounter({ count, increment }) {
   );
 }
 
-export const ReduxCounter = connect(state => state, {
-  increment: () => ({ type: 'INCREMENT' })
-})(PureCounter);
+function increment() {
+  return { type: 'INCREMENT' };
+}
+
+export const ReduxCounter = connect(state => state, { increment })(PureCounter);
 
 export function counterReducer(state = { count: 0 }, { type }) {
   switch (type) {

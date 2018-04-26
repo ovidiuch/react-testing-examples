@@ -1,7 +1,10 @@
 // @flow
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
+import { FileOptions } from '../contexts/FileOptions';
+
+import type { Node } from 'react';
 
 type Props = {
   name: string,
@@ -18,14 +21,10 @@ export class File extends Component<Props, State> {
     closed: false
   };
 
-  static getDerivedStateFromProps({ closed }: Props) {
-    return {
-      isOpen: !closed
-    };
-  }
-
   state = {
-    isOpen: true
+    // Whe only what to derive state from prop initially and preserve local
+    // state afterwards
+    isOpen: !this.props.closed
   };
 
   handleToggle = () => {
@@ -38,22 +37,52 @@ export class File extends Component<Props, State> {
 
     return (
       <FileRoot>
-        <div>
-          {name} <Toggle isOpen={isOpen} onToggle={this.handleToggle} />
-        </div>
-        {isOpen && <Code>{code}</Code>}
+        <FileOptions.Consumer>
+          {({ showComments, showImports }) => (
+            <Fragment>
+              <div>
+                <Toggle isOpen={isOpen} onToggle={this.handleToggle}>
+                  {name}
+                </Toggle>
+              </div>
+              {isOpen && (
+                <Code>{stripCode(code, showComments, showImports)}</Code>
+              )}
+            </Fragment>
+          )}
+        </FileOptions.Consumer>
       </FileRoot>
     );
   }
 }
 
+function stripCode(code: string, showComments: boolean, showImports: boolean) {
+  let cleanCode = code;
+
+  if (!showComments) {
+    // TODO: Support code blocks
+    cleanCode = cleanCode.replace(/ *\/\/.+?\n/g, '');
+  }
+
+  if (!showImports) {
+    cleanCode = cleanCode.replace(/^.*import([^\n]+);\n\n?/s, '');
+  }
+
+  return cleanCode;
+}
+
 type ToggleProps = {
+  children: Node,
   isOpen: boolean,
   onToggle: () => mixed
 };
 
-function Toggle({ isOpen, onToggle }: ToggleProps) {
-  return <button onClick={onToggle}>{isOpen ? '↑' : '↓'}</button>;
+function Toggle({ children, isOpen, onToggle }: ToggleProps) {
+  return (
+    <button onClick={onToggle}>
+      {children} {isOpen ? '↑' : '↓'}
+    </button>
+  );
 }
 
 const FileRoot = styled.div`
