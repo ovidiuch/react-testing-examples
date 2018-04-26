@@ -8,5 +8,6 @@ flow-typed
 [lints]
 
 [options]
+module.name_mapper='^!raw-loader!.+$' -> '<PROJECT_ROOT>/raw-stub.js'
 
 [strict]

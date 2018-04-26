@@ -26,7 +26,8 @@
         "jest.config.js",
         "jest.setup.js",
         "jest.framework-setup.js",
-        "cosmos.config.js"
+        "cosmos.config.js",
+        "raw-stub.js"
       ],
       "env": {
         "node": true
@@ -36,6 +37,12 @@
       "files": ["**/*.test.js", "jest.framework-setup.js"],
       "env": {
         "jest": true
+      }
+    },
+    {
+      "files": ["**/*.fixture.js"],
+      "globals": {
+        "require": true
       }
     }
   ]

@@ -32,6 +32,7 @@
     "flow-typed": "^2.4.0",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^22.4.3",
+    "raw-loader": "^0.5.1",
     "react-cosmos": "^4.0.0-rc.1",
     "react-cosmos-fetch-proxy": "^3.6.1",
     "react-cosmos-flow": "^4.0.0-rc.2",
