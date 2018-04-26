@@ -77,5 +77,4 @@ function Toggle({ children, isOpen, onToggle }: ToggleProps) {
 
 const FileRoot = styled.div`
   margin: 10px;
-  font-size: 14px;
 `;
