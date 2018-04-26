@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import { FileOptions } from '../contexts/FileOptions';
+import { Code } from './Code';
 
 import type { Node } from 'react';
 
@@ -46,7 +47,11 @@ export class File extends Component<Props, State> {
                 </Toggle>
               </div>
               {isOpen && (
-                <Code>{stripCode(code, showComments, showImports)}</Code>
+                <Code
+                  code={code}
+                  showComments={showComments}
+                  showImports={showImports}
+                />
               )}
             </Fragment>
           )}
@@ -54,21 +59,6 @@ export class File extends Component<Props, State> {
       </FileRoot>
     );
   }
-}
-
-function stripCode(code: string, showComments: boolean, showImports: boolean) {
-  let cleanCode = code;
-
-  if (!showComments) {
-    // TODO: Support code blocks
-    cleanCode = cleanCode.replace(/ *\/\/.+?\n/g, '');
-  }
-
-  if (!showImports) {
-    cleanCode = cleanCode.replace(/^.*import([^\n]+);\n\n?/s, '');
-  }
-
-  return cleanCode;
 }
 
 type ToggleProps = {
@@ -87,10 +77,4 @@ function Toggle({ children, isOpen, onToggle }: ToggleProps) {
 
 const FileRoot = styled.div`
   margin: 10px;
-`;
-
-const Code = styled.pre`
-  background: #f1f1f1;
-  border-radius: 3px;
-  margin: 10px 0;
 `;

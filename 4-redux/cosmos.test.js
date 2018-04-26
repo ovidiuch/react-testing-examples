@@ -1,3 +1,4 @@
+// highlight{7,9-10}
 import createContext from 'react-cosmos-test/enzyme';
 import proxies from './cosmos.proxies';
 import fixture from './fixture';
