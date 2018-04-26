@@ -76,5 +76,5 @@ function Toggle({ children, isOpen, onToggle }: ToggleProps) {
 }
 
 const FileRoot = styled.div`
-  margin: 10px;
+  margin: 8px;
 `;

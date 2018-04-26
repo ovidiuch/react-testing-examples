@@ -51,7 +51,7 @@ export default createFixture({
       },
       {
         name: '4-redux',
-        title: 'Redux state and actions',
+        title: 'Redux state and action',
         files: {
           components: require('!raw-loader!../../4-redux/components'),
           enzyme: {

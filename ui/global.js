@@ -6,6 +6,8 @@ import { injectGlobal } from 'styled-components';
 
 injectGlobal`
   html, body {
+    margin: 0;
+    padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, Ubuntu, 'Helvetica Neue', Helvetica, sans-serif;
     font-smooth: always;
     -webkit-font-smoothing: antialiased;

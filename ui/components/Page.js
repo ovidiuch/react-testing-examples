@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component, Fragment } from 'react';
+import styled from 'styled-components';
 import { FileOptions } from '../contexts/FileOptions';
 import { Test } from './Test';
 
@@ -35,20 +36,22 @@ export class Page extends Component<Props, State> {
 
     return (
       <FileOptions.Provider value={{ showComments, showImports }}>
-        <h1>React Testing Examples</h1>
-        <div>
-          <Checkbox
-            name="comments"
-            checked={showComments}
-            onToggle={this.handleToggleComments}
-          />
-          <Checkbox
-            name="imports"
-            checked={showImports}
-            onToggle={this.handleToggleImports}
-          />
-        </div>
-        {tests.map(test => <Test test={test} />)}
+        <Header>
+          <h1>React Testing Examples</h1>
+          <div>
+            <Checkbox
+              name="comments"
+              checked={showComments}
+              onToggle={this.handleToggleComments}
+            />
+            <Checkbox
+              name="imports"
+              checked={showImports}
+              onToggle={this.handleToggleImports}
+            />
+          </div>
+        </Header>
+        <Content>{tests.map(test => <Test test={test} />)}</Content>
       </FileOptions.Provider>
     );
   }
@@ -69,3 +72,25 @@ function Checkbox({ name, checked, onToggle }: CheckboxProps) {
     </Fragment>
   );
 }
+
+const Header = styled.div`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  background: #fff;
+  box-shadow: 0 2px 0px 0px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+
+  h1 {
+    margin: 0;
+  }
+`;
+
+const Content = styled.div`
+  margin-top: 80px;
+  padding: 8px 12px;
+  background: #f7f7f7;
+`;
