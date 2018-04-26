@@ -26,7 +26,7 @@ export function Code({ code, showComments, showImports }: Props) {
     showImports
   );
 
-  // Apply syntax highlighting using Prism
+  // Generate syntax highlighting using Prism
   let codeMarkup = Prism.highlight(
     lines.map(l => l.code).join('\n'),
     Prism.languages.jsx
@@ -125,6 +125,8 @@ function getLinesWithMarkup(codeMarkup, lines) {
 }
 
 function joinMarkupLines(lines) {
+  // Code inspired from Gatsby codebase
+  // https://github.com/gatsbyjs/gatsby/blob/3b647d707cb6e35be6e963c309ef12f9b8e11fc3/packages/gatsby-remark-prismjs/src/highlight-code.js#L23-L48
   let markup = '';
   let lastIdx = lines.length - 1;
 
