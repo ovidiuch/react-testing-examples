@@ -1,7 +1,8 @@
 // @flow
 
 import React, { Component } from 'react';
-import { FileOptions } from '../contexts/FileOptions';
+import styled from 'styled-components';
+import { FileOptions } from '../contexts';
 import { Code } from './Code';
 import { ToggleShow } from './ToggleShow';
 
@@ -20,7 +21,7 @@ export class File extends Component<Props> {
     const { name, code, closed } = this.props;
 
     return (
-      <div>
+      <FileContainer>
         <FileOptions.Consumer>
           {({ showComments, showImports }) => (
             <ToggleShow
@@ -36,7 +37,11 @@ export class File extends Component<Props> {
             />
           )}
         </FileOptions.Consumer>
-      </div>
+      </FileContainer>
     );
   }
 }
+
+const FileContainer = styled.div`
+  margin: 12px 0;
+`;

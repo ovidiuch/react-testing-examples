@@ -2,8 +2,9 @@
 
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
-import { FileOptions } from '../contexts/FileOptions';
+import { FileOptions } from '../contexts';
 import { ToggleShow } from './ToggleShow';
+import { LeftRight } from './LeftRight';
 import { Setup } from './Setup';
 import { Test } from './Test';
 
@@ -55,23 +56,27 @@ export class Page extends Component<Props, State> {
           </div>
         </Header>
         <Content>
-          <ToggleShow
-            title="Jump to"
-            content={
-              <ul>
-                <li key="setup">
-                  <a href={`#setup`}>Setup</a>
-                </li>
-                {tests.map((test, idx) => (
-                  <li key={test.name}>
-                    <a href={`#${test.name}`}>
-                      {idx + 1}. {test.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+          <LeftRight
+            left={
+              <ToggleShow
+                title="Jump to"
+                content={
+                  <ul>
+                    <li key="setup">
+                      <a href={`#setup`}>Setup</a>
+                    </li>
+                    {tests.map((test, idx) => (
+                      <li key={test.name}>
+                        <a href={`#${test.name}`}>
+                          {idx + 1}. {test.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                }
+                closed
+              />
             }
-            closed
           />
           <Section id="setup">
             <Setup setup={setup} />
@@ -113,6 +118,7 @@ const Header = styled.div`
   background: #fff;
   box-shadow: 0 2px 0px 0px rgba(0, 0, 0, 0.08);
   overflow: hidden;
+  z-index: 1;
 
   h1 {
     margin: 0;
@@ -121,7 +127,7 @@ const Header = styled.div`
 
 const Content = styled.div`
   margin-top: 80px;
-  padding: 8px 12px;
+  padding: 10px 12px 8px 12px;
   background: #f7f7f7;
 `;
 

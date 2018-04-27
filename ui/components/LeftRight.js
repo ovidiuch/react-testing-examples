@@ -6,18 +6,20 @@ import styled from 'styled-components';
 import type { Node } from 'react';
 
 type Props = {
-  left: Node,
-  right: Node
+  left?: Node,
+  right?: Node
 };
 
+// TODO: Create Center component
+// TODO: Handle small screens
 export class LeftRight extends Component<Props> {
   render() {
     const { left, right } = this.props;
 
     return (
       <Clear>
-        <Left>{left}</Left>
-        <Right>{right}</Right>
+        {left && <Left>{left}</Left>}
+        {right && <Right>{right}</Right>}
       </Clear>
     );
   }

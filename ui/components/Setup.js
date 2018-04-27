@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+import { Title } from '../styles';
 import { File } from './File';
 import { LeftRight } from './LeftRight';
 
@@ -17,7 +18,7 @@ export class Setup extends Component<Props> {
 
     return (
       <div>
-        <h2>{title}</h2>
+        <Title>{title}</Title>
         <div>
           <LeftRight
             left={<File name="jest.config.js" code={jest} closed />}
