@@ -49,7 +49,7 @@ export class Test extends Component<Props> {
 }
 
 const TitleTestType = styled.h3`
-  margin: 12px 24px 0 24px;
+  padding: 12px 0 0 0;
   font-size: 16px;
   font-weight: 700;
   line-height: 1em;

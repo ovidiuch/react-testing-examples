@@ -3,8 +3,6 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import { FileOptions } from '../contexts';
-import { ToggleShow } from './ToggleShow';
-import { LeftRight } from './LeftRight';
 import { Setup } from './Setup';
 import { Test } from './Test';
 
@@ -56,28 +54,19 @@ export class Page extends Component<Props, State> {
           </div>
         </Header>
         <Content>
-          <LeftRight
-            left={
-              <ToggleShow
-                title="Jump to"
-                content={
-                  <ul>
-                    <li key="setup">
-                      <a href={`#setup`}>Setup</a>
-                    </li>
-                    {tests.map((test, idx) => (
-                      <li key={test.name}>
-                        <a href={`#${test.name}`}>
-                          {idx + 1}. {test.title}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                }
-                closed
-              />
-            }
-          />
+          <p>Jump to</p>
+          <ul>
+            <li key="setup">
+              <a href={`#setup`}>Setup</a>
+            </li>
+            {tests.map((test, idx) => (
+              <li key={test.name}>
+                <a href={`#${test.name}`}>
+                  {idx + 1}. {test.title}
+                </a>
+              </li>
+            ))}
+          </ul>
           <Section id="setup">
             <Setup setup={setup} />
           </Section>
@@ -118,7 +107,7 @@ const Header = styled.div`
   background: #fff;
   box-shadow: 0 2px 0px 0px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  z-index: 1;
+  z-index: 2;
 
   h1 {
     margin: 0;
