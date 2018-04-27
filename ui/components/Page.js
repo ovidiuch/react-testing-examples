@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import { FileOptions } from '../contexts/FileOptions';
+import { ToggleShow } from './ToggleShow';
 import { Setup } from './Setup';
 import { Test } from './Test';
 
@@ -54,26 +55,31 @@ export class Page extends Component<Props, State> {
           </div>
         </Header>
         <Content>
-          <p>Jump to</p>
-          <ul>
-            <li key="setup">
-              <a href={`#setup`}>Setup</a>
-            </li>
-            {tests.map((test, idx) => (
-              <li key={test.name}>
-                <a href={`#${test.name}`}>
-                  {idx + 1}. {test.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <div id="setup">
+          <ToggleShow
+            title="Jump to"
+            content={
+              <ul>
+                <li key="setup">
+                  <a href={`#setup`}>Setup</a>
+                </li>
+                {tests.map((test, idx) => (
+                  <li key={test.name}>
+                    <a href={`#${test.name}`}>
+                      {idx + 1}. {test.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            }
+            closed
+          />
+          <Section id="setup">
             <Setup setup={setup} />
-          </div>
+          </Section>
           {tests.map(test => (
-            <div id={test.name} key={test.name}>
+            <Section id={test.name} key={test.name}>
               <Test test={test} />
-            </div>
+            </Section>
           ))}
         </Content>
       </FileOptions.Provider>
@@ -117,4 +123,10 @@ const Content = styled.div`
   margin-top: 80px;
   padding: 8px 12px;
   background: #f7f7f7;
+`;
+
+// XXX: Hack for #links to jump to content under sticky header
+const Section = styled.div`
+  margin-top: -80px;
+  padding-top: 80px;
 `;

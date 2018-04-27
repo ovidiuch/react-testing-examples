@@ -1,11 +1,9 @@
 // @flow
 
-import React, { Component, Fragment } from 'react';
-import styled from 'styled-components';
+import React, { Component } from 'react';
 import { FileOptions } from '../contexts/FileOptions';
 import { Code } from './Code';
-
-import type { Node } from 'react';
+import { ToggleShow } from './ToggleShow';
 
 type Props = {
   name: string,
@@ -13,66 +11,32 @@ type Props = {
   closed: boolean
 };
 
-type State = {
-  isOpen: boolean
-};
-
-export class File extends Component<Props, State> {
+export class File extends Component<Props> {
   static defaultProps = {
     closed: false
   };
 
-  state = {
-    // Whe only what to derive state from prop initially and preserve local
-    // state afterwards
-    isOpen: !this.props.closed
-  };
-
-  handleToggle = () => {
-    this.setState({ isOpen: !this.state.isOpen });
-  };
-
   render() {
-    const { name, code } = this.props;
-    const { isOpen } = this.state;
+    const { name, code, closed } = this.props;
 
     return (
-      <FileRoot>
+      <div>
         <FileOptions.Consumer>
           {({ showComments, showImports }) => (
-            <Fragment>
-              <div>
-                <Toggle isOpen={isOpen} onToggle={this.handleToggle}>
-                  {name}
-                </Toggle>
-              </div>
-              {isOpen && (
+            <ToggleShow
+              title={name}
+              content={
                 <Code
                   code={code}
                   showComments={showComments}
                   showImports={showImports}
                 />
-              )}
-            </Fragment>
+              }
+              closed={closed}
+            />
           )}
         </FileOptions.Consumer>
-      </FileRoot>
+      </div>
     );
   }
 }
-
-type ToggleProps = {
-  children: Node,
-  isOpen: boolean,
-  onToggle: () => mixed
-};
-
-function Toggle({ children, isOpen, onToggle }: ToggleProps) {
-  return (
-    <button onClick={onToggle}>
-      {children} {isOpen ? '↑' : '↓'}
-    </button>
-  );
-}
-
-const FileRoot = styled.div``;

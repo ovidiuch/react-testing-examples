@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { File } from './File';
 import { LeftRight } from './LeftRight';
 
@@ -20,16 +20,8 @@ export class Setup extends Component<Props> {
         <h2>{title}</h2>
         <div>
           <LeftRight
-            left={
-              <Fragment>
-                <File name="jest.config.js" code={jest} closed />
-              </Fragment>
-            }
-            right={
-              <Fragment>
-                <File name="enzyme.config.js" code={enzyme} closed />
-              </Fragment>
-            }
+            left={<File name="jest.config.js" code={jest} closed />}
+            right={<File name="enzyme.config.js" code={enzyme} closed />}
           />
         </div>
       </div>
