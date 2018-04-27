@@ -14,7 +14,15 @@
 * [x] Colocate Cosmos proxies with tests
 * [x] Add Flow
 * [ ] Create page design
-* [ ] Create build script
-* [ ] Explain opinionated test style (integration / abstract libs)
-* [ ] Explain Cosmos vs non-Cosmos
+  * [x] Syntax highlight (with line highlight)
+  * [x] Sticky header
+  * [ ] Add search
+  * [ ] Add toggle between Enzyme, Cosmos and both
+  * [ ] Links to tests and on test titles
+  * [ ] Info overlay (?)
+  * [ ] Footer
+* [ ] Add help page
+  * [ ] Explain opinionated test style (integration / abstract libs)
+  * [ ] Explain Cosmos vs non-Cosmos
 * [ ] Add descriptions to tests
+* [ ] Create build script
