@@ -42,10 +42,12 @@ export class Test extends Component<Props> {
 
 const Left = styled.div`
   float: left;
+  width: calc(50% - 6px);
 `;
 
 const Right = styled.div`
-  float: left;
+  float: right;
+  width: calc(50% - 6px);
 `;
 
 const Clear = styled.div`

@@ -51,7 +51,9 @@ export class Page extends Component<Props, State> {
             />
           </div>
         </Header>
-        <Content>{tests.map(test => <Test test={test} />)}</Content>
+        <Content>
+          {tests.map(test => <Test key={test.name} test={test} />)}
+        </Content>
       </FileOptions.Provider>
     );
   }

@@ -147,6 +147,7 @@ const CodeHighlight = styled.div`
   background: #282c34;
   color: #ffffff;
   border-radius: 10px;
+  padding: 16px 24px;
   overflow: auto;
 
   pre,
@@ -159,7 +160,7 @@ const CodeHighlight = styled.div`
   pre[class*='code-'],
   pre.prism-code {
     height: auto !important;
-    margin: 1rem;
+    margin: 0;
     font-size: 14px;
     line-height: 20px;
     white-space: pre-wrap;
@@ -169,8 +170,8 @@ const CodeHighlight = styled.div`
   .highlight-code-line {
     background-color: #14161a;
     display: block;
-    margin: -0.125rem calc(-1rem - 15px);
-    padding: 0.125rem calc(1rem + 15px);
+    margin: -0.125rem calc(-24px);
+    padding: 0.125rem calc(24px);
   }
 
   .token.attr-name {

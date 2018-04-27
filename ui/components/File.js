@@ -75,6 +75,4 @@ function Toggle({ children, isOpen, onToggle }: ToggleProps) {
   );
 }
 
-const FileRoot = styled.div`
-  margin: 8px;
-`;
+const FileRoot = styled.div``;
