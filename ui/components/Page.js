@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
+import { Center } from '../styles';
 import { FileOptions } from '../contexts';
 import { Setup } from './Setup';
 import { Test } from './Test';
@@ -39,42 +40,46 @@ export class Page extends Component<Props, State> {
     return (
       <FileOptions.Provider value={{ showComments, showImports }}>
         <Header>
-          <h1>React Testing Examples</h1>
-          <div>
-            <Checkbox
-              name="comments"
-              checked={showComments}
-              onToggle={this.handleToggleComments}
-            />
-            <Checkbox
-              name="imports"
-              checked={showImports}
-              onToggle={this.handleToggleImports}
-            />
-          </div>
+          <Center>
+            <h1>React Testing Examples</h1>
+            <div>
+              <Checkbox
+                name="comments"
+                checked={showComments}
+                onToggle={this.handleToggleComments}
+              />
+              <Checkbox
+                name="imports"
+                checked={showImports}
+                onToggle={this.handleToggleImports}
+              />
+            </div>
+          </Center>
         </Header>
         <Content>
-          <p>Jump to</p>
-          <ul>
-            <li key="setup">
-              <a href={`#setup`}>Setup</a>
-            </li>
-            {tests.map((test, idx) => (
-              <li key={test.name}>
-                <a href={`#${test.name}`}>
-                  {idx + 1}. {test.title}
-                </a>
+          <Center>
+            <p>Jump to</p>
+            <ul>
+              <li key="setup">
+                <a href={`#setup`}>Setup</a>
               </li>
-            ))}
-          </ul>
-          <Section id="setup">
-            <Setup setup={setup} />
-          </Section>
-          {tests.map(test => (
-            <Section id={test.name} key={test.name}>
-              <Test test={test} />
+              {tests.map((test, idx) => (
+                <li key={test.name}>
+                  <a href={`#${test.name}`}>
+                    {idx + 1}. {test.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <Section id="setup">
+              <Setup setup={setup} />
             </Section>
-          ))}
+            {tests.map(test => (
+              <Section id={test.name} key={test.name}>
+                <Test test={test} />
+              </Section>
+            ))}
+          </Center>
         </Content>
       </FileOptions.Provider>
     );
@@ -117,7 +122,6 @@ const Header = styled.div`
 const Content = styled.div`
   margin-top: 80px;
   padding: 10px 12px 8px 12px;
-  background: #f7f7f7;
 `;
 
 // XXX: Hack for #links to jump to content under sticky header

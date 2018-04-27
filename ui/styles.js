@@ -8,3 +8,8 @@ export const Title = styled.h2`
   line-height: 32px;
   font-weight: 300;
 `;
+
+export const Center = styled.div`
+  margin: 0 auto;
+  max-width: 1720px;
+`;
