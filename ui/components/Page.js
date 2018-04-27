@@ -3,11 +3,13 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import { FileOptions } from '../contexts/FileOptions';
+import { Setup } from './Setup';
 import { Test } from './Test';
 
-import type { Test as TypeTest } from '../types';
+import type { Setup as TypeSetup, Test as TypeTest } from '../types';
 
 type Props = {
+  setup: TypeSetup,
   tests: Array<TypeTest>
 };
 
@@ -31,7 +33,7 @@ export class Page extends Component<Props, State> {
   };
 
   render() {
-    const { tests } = this.props;
+    const { setup, tests } = this.props;
     const { showComments, showImports } = this.state;
 
     return (
@@ -52,7 +54,27 @@ export class Page extends Component<Props, State> {
           </div>
         </Header>
         <Content>
-          {tests.map(test => <Test key={test.name} test={test} />)}
+          <p>Jump to</p>
+          <ul>
+            <li key="setup">
+              <a href={`#setup`}>Setup</a>
+            </li>
+            {tests.map((test, idx) => (
+              <li key={test.name}>
+                <a href={`#${test.name}`}>
+                  {idx + 1}. {test.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div id="setup">
+            <Setup setup={setup} />
+          </div>
+          {tests.map(test => (
+            <div id={test.name} key={test.name}>
+              <Test test={test} />
+            </div>
+          ))}
         </Content>
       </FileOptions.Provider>
     );

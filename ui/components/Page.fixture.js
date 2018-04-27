@@ -6,6 +6,13 @@ import { Page } from './Page';
 export default createFixture({
   component: Page,
   props: {
+    setup: {
+      title: 'Setup',
+      files: {
+        jest: require('!raw-loader!../../jest.setup'),
+        enzyme: require('!raw-loader!../../enzyme.setup')
+      }
+    },
     tests: [
       {
         name: 'click callback',

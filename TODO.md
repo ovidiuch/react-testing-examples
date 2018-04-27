@@ -17,3 +17,4 @@
 * [ ] Create build script
 * [ ] Explain opinionated test style (integration / abstract libs)
 * [ ] Explain Cosmos vs non-Cosmos
+* [ ] Add descriptions to tests

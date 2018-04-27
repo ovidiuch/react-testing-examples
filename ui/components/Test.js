@@ -1,8 +1,8 @@
 // @flow
 
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import React, { Component, Fragment } from 'react';
 import { File } from './File';
+import { LeftRight } from './LeftRight';
 
 import type { Test as TypeTest } from '../types';
 
@@ -20,36 +20,26 @@ export class Test extends Component<Props> {
         <h2>{title}</h2>
         <div>
           <File name="components.js" code={components} closed />
-          <Clear>
-            <Left>
-              <h3>Just Enzyme</h3>
-              <File name="enzyme.test.js" code={enzyme.test} />
-            </Left>
-            <Right>
-              <h3>Enzyme with Cosmos</h3>
-              {cosmos.proxies && (
-                <File name="cosmos.proxies.js" code={cosmos.proxies} closed />
-              )}
-              <File name="fixture.js" code={cosmos.fixture} />
-              <File name="cosmos.test.js" code={cosmos.test} />
-            </Right>
-          </Clear>
+          <LeftRight
+            left={
+              <Fragment>
+                <h3>Just Enzyme</h3>
+                <File name="enzyme.test.js" code={enzyme.test} />
+              </Fragment>
+            }
+            right={
+              <Fragment>
+                <h3>Enzyme with Cosmos</h3>
+                {cosmos.proxies && (
+                  <File name="cosmos.proxies.js" code={cosmos.proxies} closed />
+                )}
+                <File name="fixture.js" code={cosmos.fixture} />
+                <File name="cosmos.test.js" code={cosmos.test} />
+              </Fragment>
+            }
+          />
         </div>
       </div>
     );
   }
 }
-
-const Left = styled.div`
-  float: left;
-  width: calc(50% - 6px);
-`;
-
-const Right = styled.div`
-  float: right;
-  width: calc(50% - 6px);
-`;
-
-const Clear = styled.div`
-  overflow: hidden;
-`;
