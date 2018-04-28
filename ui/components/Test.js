@@ -51,7 +51,7 @@ export class Test extends Component<Props> {
 const TitleTestType = styled.h3`
   padding: 12px 0 0 0;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1em;
   text-align: center;
   text-transform: uppercase;

@@ -44,11 +44,7 @@ export class ToggleShow extends Component<Props, State> {
   }
 }
 
-// ToggleButtons are positioned with z-index to ensure they are above the
-// following section, which has negative offset at the top
 const ToggleButton = styled.div`
-  position: relative;
-  z-index: 1;
   padding: 0 24px;
   height: 36px;
   line-height: 36px;

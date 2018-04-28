@@ -7,6 +7,7 @@ import { FileOptions } from '../contexts';
 import { Setup } from './Setup';
 import { Test } from './Test';
 
+import type { Node } from 'react';
 import type { Setup as TypeSetup, Test as TypeTest } from '../types';
 
 type Props = {
@@ -75,7 +76,7 @@ export class Page extends Component<Props, State> {
               <Setup setup={setup} />
             </Section>
             {tests.map(test => (
-              <Section id={test.name} key={test.name}>
+              <Section key={test.name} id={test.name}>
                 <Test test={test} />
               </Section>
             ))}
@@ -102,6 +103,20 @@ function Checkbox({ name, checked, onToggle }: CheckboxProps) {
   );
 }
 
+type SectionProps = {
+  id: string,
+  children: Node
+};
+
+function Section({ id, children }: SectionProps) {
+  return (
+    <Fragment>
+      <SectionLocation id={id} />
+      {children}
+    </Fragment>
+  );
+}
+
 const Header = styled.div`
   position: fixed;
   top: 0;
@@ -112,7 +127,7 @@ const Header = styled.div`
   background: #fff;
   box-shadow: 0 2px 0px 0px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  z-index: 2;
+  z-index: 1;
 
   h1 {
     margin: 0;
@@ -125,7 +140,7 @@ const Content = styled.div`
 `;
 
 // XXX: Hack for #links to jump to content under sticky header
-const Section = styled.div`
+const SectionLocation = styled.div`
+  position: absolute;
   margin-top: -80px;
-  padding-top: 80px;
 `;
