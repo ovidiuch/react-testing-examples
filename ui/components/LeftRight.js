@@ -7,7 +7,7 @@ import type { Node } from 'react';
 
 type Props = {
   left: Node,
-  right: Node
+  right?: Node
 };
 
 export class LeftRight extends Component<Props> {
@@ -17,22 +17,28 @@ export class LeftRight extends Component<Props> {
     return (
       <Clear>
         <Left>{left}</Left>
-        <Right>{right}</Right>
+        {right && <Right>{right}</Right>}
       </Clear>
     );
   }
 }
 
 const Left = styled.div`
-  float: left;
-  width: calc(50% - 6px);
+  @media (min-width: 1120px) {
+    float: left;
+    width: calc(50% - 6px);
+  }
 `;
 
 const Right = styled.div`
-  float: right;
-  width: calc(50% - 6px);
+  @media (min-width: 1120px) {
+    float: right;
+    width: calc(50% - 6px);
+  }
 `;
 
 const Clear = styled.div`
-  overflow: hidden;
+  @media (min-width: 1120px) {
+    overflow: hidden;
+  }
 `;

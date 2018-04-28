@@ -2,11 +2,12 @@
 
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
-import { FileOptions } from '../contexts/FileOptions';
-import { ToggleShow } from './ToggleShow';
+import { Center } from '../styles';
+import { FileOptions } from '../contexts';
 import { Setup } from './Setup';
 import { Test } from './Test';
 
+import type { Node } from 'react';
 import type { Setup as TypeSetup, Test as TypeTest } from '../types';
 
 type Props = {
@@ -40,47 +41,46 @@ export class Page extends Component<Props, State> {
     return (
       <FileOptions.Provider value={{ showComments, showImports }}>
         <Header>
-          <h1>React Testing Examples</h1>
-          <div>
-            <Checkbox
-              name="comments"
-              checked={showComments}
-              onToggle={this.handleToggleComments}
-            />
-            <Checkbox
-              name="imports"
-              checked={showImports}
-              onToggle={this.handleToggleImports}
-            />
-          </div>
+          <Center>
+            <h1>React Testing Examples</h1>
+            <div>
+              <Checkbox
+                name="comments"
+                checked={showComments}
+                onToggle={this.handleToggleComments}
+              />
+              <Checkbox
+                name="imports"
+                checked={showImports}
+                onToggle={this.handleToggleImports}
+              />
+            </div>
+          </Center>
         </Header>
         <Content>
-          <ToggleShow
-            title="Jump to"
-            content={
-              <ul>
-                <li key="setup">
-                  <a href={`#setup`}>Setup</a>
+          <Center>
+            <p>Jump to</p>
+            <ul>
+              <li key="setup">
+                <a href={`#setup`}>Setup</a>
+              </li>
+              {tests.map((test, idx) => (
+                <li key={test.name}>
+                  <a href={`#${test.name}`}>
+                    {idx + 1}. {test.title}
+                  </a>
                 </li>
-                {tests.map((test, idx) => (
-                  <li key={test.name}>
-                    <a href={`#${test.name}`}>
-                      {idx + 1}. {test.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            }
-            closed
-          />
-          <Section id="setup">
-            <Setup setup={setup} />
-          </Section>
-          {tests.map(test => (
-            <Section id={test.name} key={test.name}>
-              <Test test={test} />
+              ))}
+            </ul>
+            <Section id="setup">
+              <Setup setup={setup} />
             </Section>
-          ))}
+            {tests.map(test => (
+              <Section key={test.name} id={test.name}>
+                <Test test={test} />
+              </Section>
+            ))}
+          </Center>
         </Content>
       </FileOptions.Provider>
     );
@@ -103,6 +103,20 @@ function Checkbox({ name, checked, onToggle }: CheckboxProps) {
   );
 }
 
+type SectionProps = {
+  id: string,
+  children: Node
+};
+
+function Section({ id, children }: SectionProps) {
+  return (
+    <Fragment>
+      <SectionLocation id={id} />
+      {children}
+    </Fragment>
+  );
+}
+
 const Header = styled.div`
   position: fixed;
   top: 0;
@@ -113,6 +127,7 @@ const Header = styled.div`
   background: #fff;
   box-shadow: 0 2px 0px 0px rgba(0, 0, 0, 0.08);
   overflow: hidden;
+  z-index: 1;
 
   h1 {
     margin: 0;
@@ -121,12 +136,11 @@ const Header = styled.div`
 
 const Content = styled.div`
   margin-top: 80px;
-  padding: 8px 12px;
-  background: #f7f7f7;
+  padding: 10px 12px 8px 12px;
 `;
 
 // XXX: Hack for #links to jump to content under sticky header
-const Section = styled.div`
+const SectionLocation = styled.div`
+  position: absolute;
   margin-top: -80px;
-  padding-top: 80px;
 `;

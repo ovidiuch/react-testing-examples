@@ -1,6 +1,8 @@
 // @flow
 
 import React, { Component, Fragment } from 'react';
+import styled from 'styled-components';
+import { Title } from '../styles';
 import { File } from './File';
 import { LeftRight } from './LeftRight';
 
@@ -17,19 +19,21 @@ export class Test extends Component<Props> {
 
     return (
       <div>
-        <h2>{title}</h2>
+        <Title>{title}</Title>
         <div>
-          <File name="components.js" code={components} closed />
+          <LeftRight
+            left={<File name="components.js" code={components} closed />}
+          />
           <LeftRight
             left={
               <Fragment>
-                <h3>Just Enzyme</h3>
+                <TitleTestType>Enzyme</TitleTestType>
                 <File name="enzyme.test.js" code={enzyme.test} />
               </Fragment>
             }
             right={
               <Fragment>
-                <h3>Enzyme with Cosmos</h3>
+                <TitleTestType>Enzyme & Cosmos</TitleTestType>
                 {cosmos.proxies && (
                   <File name="cosmos.proxies.js" code={cosmos.proxies} closed />
                 )}
@@ -43,3 +47,13 @@ export class Test extends Component<Props> {
     );
   }
 }
+
+const TitleTestType = styled.h3`
+  padding: 12px 0 0 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1em;
+  text-align: center;
+  text-transform: uppercase;
+  opacity: 0.4;
+`;

@@ -12,6 +12,7 @@ injectGlobal`
     font-smooth: always;
     -webkit-font-smoothing: antialiased;
     font-size: 16px;
+    background: #f7f7f7;
   }
 
   ul, li, p, h1, h2, h3 {
