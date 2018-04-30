@@ -3,7 +3,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { PersistentForm } from './components';
 
-export class LocalStorageMock {
+class LocalStorageMock {
   constructor(store = {}) {
     this.store = { ...store };
   }
