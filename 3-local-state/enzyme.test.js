@@ -8,7 +8,7 @@ let count = 5;
 let wrapper;
 
 beforeEach(() => {
-  // Create fresh instances for each test to prevent leaking state
+  // Flush instances between tests to prevent leaking state
   wrapper = mount(<StatefulCounter />);
   wrapper.setState({ count });
 });

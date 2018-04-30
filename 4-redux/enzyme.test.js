@@ -12,7 +12,7 @@ let store;
 let wrapper;
 
 beforeEach(() => {
-  // Create fresh instances for each test to prevent leaking state
+  // Flush instances between tests to prevent leaking state
   store = createStore(counterReducer, { count });
   wrapper = mount(
     <Provider store={store}>

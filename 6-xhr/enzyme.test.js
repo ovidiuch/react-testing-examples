@@ -29,7 +29,7 @@ beforeEach(() => {
     res.status(200).body({ count: ++count })
   );
 
-  // Create fresh instances for each test to prevent leaking state
+  // Flush instances between tests to prevent leaking state
   wrapper = mount(<ServerCounter />);
 });
 

@@ -4,7 +4,7 @@ import fixture from './fixture';
 
 let { mount, getWrapper } = createContext({ fixture });
 
-// Create fresh instances for each test to prevent leaking state
+// Flush instances between tests to prevent leaking state
 beforeEach(mount);
 
 it('calls "onClick" prop on button click', () => {
