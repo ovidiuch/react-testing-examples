@@ -1,8 +1,8 @@
 // highlight{6-8}
-import { CompWithBtn } from './components';
+import { CustomButton } from './components';
 
 export default {
-  component: CompWithBtn,
+  component: CustomButton,
   props: {
     onClick: () => {}
   }
