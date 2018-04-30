@@ -1,16 +1,19 @@
 // @flow
 
-export type Setup = {
-  title: string, // "Setup"
+export type Section = {
+  name: string,
+  title: string,
+  description: string
+};
+
+export type Setup = Section & {
   files: {
     jest: string, // "global.requestAnimationFrame = cb => setTimeout(cb, 0)..."
     enzyme: string // "import { configure } from 'enzyme'..."
   }
 };
 
-export type Test = {
-  name: string, // "click-callback"
-  title: string, // "Function prop is called on click"
+export type Test = Section & {
   files: {
     components: string, // "import React, { Component } from 'react'..."
     enzyme: {

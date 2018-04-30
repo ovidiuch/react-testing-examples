@@ -2,13 +2,20 @@
 
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
+import { match } from 'fuzzaldrin-plus';
 import { Center } from '../styles';
-import { FileOptions } from '../contexts';
+import { FileOptions, Search } from '../contexts';
+import { Header } from './Header';
+import { JumpTo } from './JumpTo';
 import { Setup } from './Setup';
 import { Test } from './Test';
 
 import type { Node } from 'react';
-import type { Setup as TypeSetup, Test as TypeTest } from '../types';
+import type {
+  Section as TypeSection,
+  Setup as TypeSetup,
+  Test as TypeTest
+} from '../types';
 
 type Props = {
   setup: TypeSetup,
@@ -17,13 +24,15 @@ type Props = {
 
 type State = {
   showComments: boolean,
-  showImports: boolean
+  showImports: boolean,
+  searchText: string
 };
 
 export class Page extends Component<Props, State> {
   state = {
     showComments: true,
-    showImports: false
+    showImports: false,
+    searchText: ''
   };
 
   handleToggleComments = () => {
@@ -34,73 +43,64 @@ export class Page extends Component<Props, State> {
     this.setState({ showImports: !this.state.showImports });
   };
 
+  handleSearchChange = (searchText: string) => {
+    this.setState({ searchText });
+  };
+
   render() {
-    const { setup, tests } = this.props;
-    const { showComments, showImports } = this.state;
+    let { setup, tests } = this.props;
+    let { showComments, showImports, searchText } = this.state;
+
+    let isSearching = searchText.length > 2;
+    let showSetup = isSearching ? matchSection(setup, searchText) : true;
+    let matchingTests = isSearching
+      ? tests.filter(t => matchSection(t, searchText))
+      : tests;
+
+    // Convert setup & matching tests to unified list of sections
+    let testSections = matchingTests.map(extractSection);
+    let sections = showSetup
+      ? [extractSection(setup), ...testSections]
+      : testSections;
 
     return (
       <FileOptions.Provider value={{ showComments, showImports }}>
-        <Header>
-          <Center>
-            <h1>React Testing Examples</h1>
-            <div>
-              <Checkbox
-                name="comments"
-                checked={showComments}
-                onToggle={this.handleToggleComments}
-              />
-              <Checkbox
-                name="imports"
-                checked={showImports}
-                onToggle={this.handleToggleImports}
-              />
-            </div>
-          </Center>
-        </Header>
-        <Content>
-          <Center>
-            <p>Jump to</p>
-            <ul>
-              <li key="setup">
-                <a href={`#setup`}>Setup</a>
-              </li>
-              {tests.map((test, idx) => (
-                <li key={test.name}>
-                  <a href={`#${test.name}`}>
-                    {idx + 1}. {test.title}
-                  </a>
-                </li>
+        <Search.Provider value={searchText}>
+          <Header
+            toggleComments={this.handleToggleComments}
+            toggleImports={this.handleToggleImports}
+            changeSearch={this.handleSearchChange}
+          />
+          <Content>
+            <Center>
+              <JumpTo sections={sections} />
+              {showSetup && (
+                <Section id="setup">
+                  <Setup setup={setup} />
+                </Section>
+              )}
+              {matchingTests.map(test => (
+                <Section key={test.name} id={test.name}>
+                  <Test test={test} />
+                </Section>
               ))}
-            </ul>
-            <Section id="setup">
-              <Setup setup={setup} />
-            </Section>
-            {tests.map(test => (
-              <Section key={test.name} id={test.name}>
-                <Test test={test} />
-              </Section>
-            ))}
-          </Center>
-        </Content>
+            </Center>
+          </Content>
+        </Search.Provider>
       </FileOptions.Provider>
     );
   }
 }
 
-type CheckboxProps = {
-  name: string,
-  checked: boolean,
-  onToggle: () => mixed
-};
+function matchSection({ title, description }: TypeSection, searchText: string) {
+  let titleMatch = match(title, searchText);
+  let descMatch = match(description, searchText);
 
-function Checkbox({ name, checked, onToggle }: CheckboxProps) {
-  return (
-    <Fragment>
-      <label>
-        <input type="checkbox" checked={checked} onChange={onToggle} /> {name}
-      </label>
-    </Fragment>
-  );
+  return titleMatch.length > 0 || descMatch.length > 0;
+}
+
+function extractSection({ name, title, description }): TypeSection {
+  return { name, title, description };
 }
 
 type SectionProps = {
@@ -116,23 +116,6 @@ function Section({ id, children }: SectionProps) {
     </Fragment>
   );
 }
-
-const Header = styled.div`
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 80px;
-  padding: 8px 12px;
-  box-sizing: border-box;
-  background: #fff;
-  box-shadow: 0 2px 0px 0px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-  z-index: 1;
-
-  h1 {
-    margin: 0;
-  }
-`;
 
 const Content = styled.div`
   margin-top: 80px;

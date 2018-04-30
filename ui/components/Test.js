@@ -2,9 +2,11 @@
 
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
+import { Search } from '../contexts';
 import { Title } from '../styles';
 import { File } from './File';
 import { LeftRight } from './LeftRight';
+import { FuzzyHighlighter } from './FuzzyHighlighter';
 
 import type { Test as TypeTest } from '../types';
 
@@ -18,32 +20,40 @@ export class Test extends Component<Props> {
     const { components, enzyme, cosmos } = files;
 
     return (
-      <div>
-        <Title>{title}</Title>
-        <div>
-          <LeftRight
-            left={<File name="components.js" code={components} closed />}
-          />
-          <LeftRight
-            left={
-              <Fragment>
-                <TitleTestType>Enzyme</TitleTestType>
-                <File name="enzyme.test.js" code={enzyme.test} />
-              </Fragment>
-            }
-            right={
-              <Fragment>
-                <TitleTestType>Enzyme & Cosmos</TitleTestType>
-                {cosmos.proxies && (
-                  <File name="cosmos.proxies.js" code={cosmos.proxies} closed />
-                )}
-                <File name="fixture.js" code={cosmos.fixture} />
-                <File name="cosmos.test.js" code={cosmos.test} />
-              </Fragment>
-            }
-          />
-        </div>
-      </div>
+      <Search.Consumer>
+        {searchText => (
+          <Fragment>
+            <Title>
+              <FuzzyHighlighter searchText={searchText} targetText={title} />
+            </Title>
+            <LeftRight
+              left={<File name="components.js" code={components} closed />}
+            />
+            <LeftRight
+              left={
+                <Fragment>
+                  <TitleTestType>Enzyme</TitleTestType>
+                  <File name="enzyme.test.js" code={enzyme.test} />
+                </Fragment>
+              }
+              right={
+                <Fragment>
+                  <TitleTestType>Enzyme & Cosmos</TitleTestType>
+                  {cosmos.proxies && (
+                    <File
+                      name="cosmos.proxies.js"
+                      code={cosmos.proxies}
+                      closed
+                    />
+                  )}
+                  <File name="fixture.js" code={cosmos.fixture} />
+                  <File name="cosmos.test.js" code={cosmos.test} />
+                </Fragment>
+              }
+            />
+          </Fragment>
+        )}
+      </Search.Consumer>
     );
   }
 }

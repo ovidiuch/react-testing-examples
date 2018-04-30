@@ -51,6 +51,7 @@
     "xhr-mock": "^2.3.1"
   },
   "dependencies": {
+    "fuzzaldrin-plus": "^0.6.0",
     "parse-numeric-range": "^0.0.2",
     "prismjs": "^1.14.0",
     "react": "^16.3.2",

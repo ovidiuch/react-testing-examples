@@ -1,9 +1,11 @@
 // @flow
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { Search } from '../contexts';
 import { Title } from '../styles';
 import { File } from './File';
 import { LeftRight } from './LeftRight';
+import { FuzzyHighlighter } from './FuzzyHighlighter';
 
 import type { Setup as SetupTest } from '../types';
 
@@ -17,15 +19,19 @@ export class Setup extends Component<Props> {
     const { jest, enzyme } = files;
 
     return (
-      <div>
-        <Title>{title}</Title>
-        <div>
-          <LeftRight
-            left={<File name="jest.config.js" code={jest} closed />}
-            right={<File name="enzyme.config.js" code={enzyme} closed />}
-          />
-        </div>
-      </div>
+      <Search.Consumer>
+        {searchText => (
+          <Fragment>
+            <Title>
+              <FuzzyHighlighter searchText={searchText} targetText={title} />
+            </Title>
+            <LeftRight
+              left={<File name="jest.config.js" code={jest} closed />}
+              right={<File name="enzyme.config.js" code={enzyme} closed />}
+            />
+          </Fragment>
+        )}
+      </Search.Consumer>
     );
   }
 }

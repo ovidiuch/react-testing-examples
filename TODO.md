@@ -17,7 +17,7 @@
   * [x] Syntax highlight (with line highlight)
   * [x] Sticky header
   * [x] Highlight and create fixtures for all tests
-  * [ ] Add search
+  * [ ] Implement search
   * [ ] Add toggle between Enzyme, Cosmos and both
   * [ ] Links to tests and on test titles
   * [ ] Info overlay (?)
