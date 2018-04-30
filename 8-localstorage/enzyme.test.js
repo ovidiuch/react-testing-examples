@@ -20,7 +20,7 @@ class LocalStorageMock {
 let wrapper;
 
 beforeEach(() => {
-  // Set fresh mocks for each test
+  // Create fresh mocks for each test
   global.localStorage = new LocalStorageMock({ name: 'Trent' });
 
   // Flush instances between tests to prevent leaking state

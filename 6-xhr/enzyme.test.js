@@ -21,7 +21,7 @@ let simulateIncrement = async () => {
 };
 
 beforeEach(() => {
-  // Set fresh mocks for each test
+  // Create fresh mocks for each test
   xhrMock.teardown();
   xhrMock.setup();
   xhrMock.get('/count', (req, res) => res.status(200).body({ count }));

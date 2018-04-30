@@ -19,7 +19,7 @@ let simulateIncrement = async () => {
 };
 
 beforeEach(() => {
-  // Set fresh mocks for each test
+  // Create fresh mocks for each test
   fetchMock.restore();
   fetchMock.mock({
     matcher: '/count',
