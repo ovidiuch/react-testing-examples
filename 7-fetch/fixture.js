@@ -1,3 +1,4 @@
+// highlight{4,6-15,19}
 import { ServerCounter } from './components';
 
 let count = 5;
@@ -7,7 +8,6 @@ let mockGet = {
   method: 'GET',
   response: { count }
 };
-
 let mockPost = {
   matcher: '/count',
   method: 'POST',

@@ -1,3 +1,4 @@
+// highlight{6-18,20,23-27}
 import React from 'react';
 import { mount } from 'enzyme';
 import { PersistentForm } from './components';
@@ -14,22 +15,16 @@ export class LocalStorageMock {
   setItem(key, value) {
     this.store[key] = value.toString();
   }
-
-  removeItem(key) {
-    delete this.store[key];
-  }
 }
 
-let nativeLocalStorage = global.localStorage;
 let wrapper;
 
 beforeEach(() => {
+  // Set fresh mocks for each test
   global.localStorage = new LocalStorageMock({ name: 'Trent' });
-  wrapper = mount(<PersistentForm />);
-});
 
-afterEach(() => {
-  global.localStorage = nativeLocalStorage;
+  // Create fresh instances for each test to prevent leaking state
+  wrapper = mount(<PersistentForm />);
 });
 
 it('renders cached name', async () => {

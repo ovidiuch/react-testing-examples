@@ -1,3 +1,4 @@
+// highlight{8-9,22-36}
 import React from 'react';
 import { mount } from 'enzyme';
 import until from 'async-until';
@@ -18,6 +19,8 @@ let simulateIncrement = async () => {
 };
 
 beforeEach(() => {
+  // Set fresh mocks for each test
+  fetchMock.restore();
   fetchMock.mock({
     matcher: '/count',
     method: 'GET',
@@ -29,11 +32,8 @@ beforeEach(() => {
     response: () => ({ count: ++count })
   });
 
+  // Create fresh instances for each test to prevent leaking state
   wrapper = mount(<ServerCounter />);
-});
-
-afterEach(() => {
-  fetchMock.restore();
 });
 
 it('renders initial count', async () => {

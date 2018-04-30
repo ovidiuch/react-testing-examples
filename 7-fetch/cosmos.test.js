@@ -1,3 +1,4 @@
+// highlight{7,19-20}
 import until from 'async-until';
 import createContext from 'react-cosmos-test/enzyme';
 import proxies from './cosmos.proxies';
@@ -15,6 +16,7 @@ let simulateIncrement = async () => {
   await until(notSyncing);
 };
 
+// Create fresh instances for each test to prevent leaking state
 beforeEach(mount);
 
 it('renders initial count', async () => {

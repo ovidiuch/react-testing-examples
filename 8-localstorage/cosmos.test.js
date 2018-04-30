@@ -1,9 +1,11 @@
+// highlight{6,8-9}
 import createContext from 'react-cosmos-test/enzyme';
 import proxies from './cosmos.proxies';
 import fixture from './fixture';
 
 let { mount, getWrapper } = createContext({ proxies, fixture });
 
+// Create fresh instances for each test to prevent leaking state
 beforeEach(mount);
 
 it('renders cached name', async () => {

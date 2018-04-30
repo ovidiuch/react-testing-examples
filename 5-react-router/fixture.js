@@ -1,3 +1,4 @@
+// highlight{6-7}
 import { UserWithRouter } from './components';
 
 export default {

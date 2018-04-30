@@ -1,3 +1,4 @@
+// highlight{8-9,24-33}
 import React from 'react';
 import { mount } from 'enzyme';
 import until from 'async-until';
@@ -8,6 +9,8 @@ let count = 5;
 let wrapper;
 
 let notSyncing = () => {
+  // Enzyme wrapper is not updated automatically since v3
+  // https://github.com/airbnb/enzyme/issues/1163
   wrapper.update();
   return !wrapper.text().match('Syncing...');
 };
@@ -18,17 +21,16 @@ let simulateIncrement = async () => {
 };
 
 beforeEach(() => {
+  // Set fresh mocks for each test
+  xhrMock.teardown();
   xhrMock.setup();
   xhrMock.get('/count', (req, res) => res.status(200).body({ count }));
   xhrMock.post('/count', (req, res) =>
     res.status(200).body({ count: ++count })
   );
 
+  // Create fresh instances for each test to prevent leaking state
   wrapper = mount(<ServerCounter />);
-});
-
-afterEach(() => {
-  xhrMock.teardown();
 });
 
 it('renders initial count', async () => {

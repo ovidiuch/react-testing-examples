@@ -16,10 +16,12 @@
 * [ ] Create page design
   * [x] Syntax highlight (with line highlight)
   * [x] Sticky header
+  * [x] Highlight and create fixtures for all tests
   * [ ] Add search
   * [ ] Add toggle between Enzyme, Cosmos and both
   * [ ] Links to tests and on test titles
   * [ ] Info overlay (?)
+  * [ ] Links to copy or open code in GH
   * [ ] Footer
 * [ ] Add help page
   * [ ] Explain opinionated test style (integration / abstract libs)
