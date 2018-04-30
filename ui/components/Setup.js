@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Search } from '../contexts';
 import { Title } from '../styles';
 import { File } from './File';
@@ -21,7 +21,7 @@ export class Setup extends Component<Props> {
     return (
       <Search.Consumer>
         {searchText => (
-          <Fragment>
+          <>
             <Title>
               <FuzzyHighlighter searchText={searchText} targetText={title} />
             </Title>
@@ -29,7 +29,7 @@ export class Setup extends Component<Props> {
               left={<File name="jest.config.js" code={jest} closed />}
               right={<File name="enzyme.config.js" code={enzyme} closed />}
             />
-          </Fragment>
+          </>
         )}
       </Search.Consumer>
     );

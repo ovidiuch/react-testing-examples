@@ -19,7 +19,7 @@ export class JumpTo extends Component<Props> {
     return (
       <Search.Consumer>
         {searchText => (
-          <Fragment>
+          <>
             <p>Jump to</p>
             <ul>
               {sections.map(({ name, title }) => (
@@ -33,7 +33,7 @@ export class JumpTo extends Component<Props> {
                 </li>
               ))}
             </ul>
-          </Fragment>
+          </>
         )}
       </Search.Consumer>
     );
