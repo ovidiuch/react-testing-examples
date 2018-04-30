@@ -7,6 +7,6 @@ let { mount, getWrapper } = createContext({ fixture });
 // Flush instances between tests to prevent leaking state
 beforeEach(mount);
 
-it('renders "Hello {name}"', () => {
+it('renders personalized greeting', () => {
   expect(getWrapper().text()).toContain('Hello Satoshi');
 });

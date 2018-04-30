@@ -11,6 +11,6 @@ beforeEach(() => {
   wrapper = mount(<HelloMessage name="Satoshi" />);
 });
 
-it('renders "Hello {name}"', () => {
+it('renders personalized greeting', () => {
   expect(wrapper.text()).toContain('Hello Satoshi');
 });
