@@ -14,7 +14,6 @@ export class JumpTo extends Component<Props> {
   render() {
     let { sections } = this.props;
 
-    // TODO: Found {results.length} matches for "{searchText}"
     // TODO: No matches found for "{searchText}". [Clear search] or contact Ovidiu if you have trouble testing a React component.
     return (
       <Search.Consumer>

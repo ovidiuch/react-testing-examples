@@ -17,8 +17,11 @@
   * [x] Syntax highlight (with line highlight)
   * [x] Sticky header
   * [x] Highlight and create fixtures for all tests
-  * [ ] Implement search
+  * [x] Implement search
   * [x] Add toggle between 'Plain Enzyme' and 'Cosmos & Enzyme'
+  * [ ] Improve search
+    * [ ] Keyboard shortcuts
+    * [ ] No results screen
   * [ ] Links to tests and on test titles
   * [ ] Info overlay (?)
   * [ ] Links to copy or open code in GH
