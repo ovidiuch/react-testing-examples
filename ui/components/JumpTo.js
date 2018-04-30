@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Search } from '../contexts';
 import { FuzzyHighlighter } from './FuzzyHighlighter';
 
