@@ -2,15 +2,14 @@
 
 import React, { Component } from 'react';
 import { Search } from '../contexts';
-import { Title } from '../styles';
+import { Title, Description } from '../styles';
 import { File } from './File';
-import { LeftRight } from './LeftRight';
 import { FuzzyHighlighter } from './FuzzyHighlighter';
 
-import type { Setup as SetupTest } from '../types';
+import type { TSetup } from '../types';
 
 type Props = {
-  setup: SetupTest
+  setup: TSetup
 };
 
 export class Setup extends Component<Props> {
@@ -25,10 +24,14 @@ export class Setup extends Component<Props> {
             <Title>
               <FuzzyHighlighter searchText={searchText} targetText={title} />
             </Title>
-            <LeftRight
-              left={<File name="jest.config.js" code={jest} closed />}
-              right={<File name="enzyme.config.js" code={enzyme} closed />}
-            />
+            <Description>
+              A fixture is a JS object used to mock component input and external
+              dependencies. The input can be props, children, state and context.
+              With the help of proxies, fixtures can mock anything else a
+              component depends on, from API responses to localStorage.
+            </Description>
+            <File name="jest.config.js" code={jest} />
+            <File name="enzyme.config.js" code={enzyme} />
           </>
         )}
       </Search.Consumer>

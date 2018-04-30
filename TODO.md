@@ -18,7 +18,7 @@
   * [x] Sticky header
   * [x] Highlight and create fixtures for all tests
   * [ ] Implement search
-  * [ ] Add toggle between Enzyme, Cosmos and both
+  * [x] Add toggle between 'Plain Enzyme' and 'Cosmos & Enzyme'
   * [ ] Links to tests and on test titles
   * [ ] Info overlay (?)
   * [ ] Links to copy or open code in GH

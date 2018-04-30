@@ -7,7 +7,7 @@ import type { Node } from 'react';
 
 type Props = {
   left: Node,
-  right?: Node
+  right: Node
 };
 
 export class LeftRight extends Component<Props> {
@@ -17,7 +17,7 @@ export class LeftRight extends Component<Props> {
     return (
       <Clear>
         <Left>{left}</Left>
-        {right && <Right>{right}</Right>}
+        <Right>{right}</Right>
       </Clear>
     );
   }

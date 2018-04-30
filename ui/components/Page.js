@@ -1,28 +1,25 @@
 // @flow
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { match } from 'fuzzaldrin-plus';
 import { Center } from '../styles';
-import { FileOptions, Search } from '../contexts';
+import { TestFilter, FileOptions, Search } from '../contexts';
 import { Header } from './Header';
 import { JumpTo } from './JumpTo';
 import { Setup } from './Setup';
 import { Test } from './Test';
 
 import type { Node } from 'react';
-import type {
-  Section as TypeSection,
-  Setup as TypeSetup,
-  Test as TypeTest
-} from '../types';
+import type { TTestFilter, TSection, TSetup, TTest } from '../types';
 
 type Props = {
-  setup: TypeSetup,
-  tests: Array<TypeTest>
+  setup: TSetup,
+  tests: Array<TTest>
 };
 
 type State = {
+  testFilter: TTestFilter,
   showComments: boolean,
   showImports: boolean,
   searchText: string
@@ -30,9 +27,14 @@ type State = {
 
 export class Page extends Component<Props, State> {
   state = {
+    testFilter: 'cosmos',
     showComments: true,
     showImports: false,
     searchText: ''
+  };
+
+  handleSetTestFilter = (testFilter: TTestFilter) => {
+    this.setState({ testFilter });
   };
 
   handleToggleComments = () => {
@@ -49,7 +51,7 @@ export class Page extends Component<Props, State> {
 
   render() {
     let { setup, tests } = this.props;
-    let { showComments, showImports, searchText } = this.state;
+    let { testFilter, showComments, showImports, searchText } = this.state;
 
     let isSearching = searchText.length > 2;
     let showSetup = isSearching ? matchSection(setup, searchText) : true;
@@ -64,16 +66,19 @@ export class Page extends Component<Props, State> {
       : testSections;
 
     return (
-      <FileOptions.Provider value={{ showComments, showImports }}>
-        <Search.Provider value={searchText}>
-          <Header
-            toggleComments={this.handleToggleComments}
-            toggleImports={this.handleToggleImports}
-            changeSearch={this.handleSearchChange}
-          />
-          <Content>
-            <Center>
-              <JumpTo sections={sections} />
+      <TestFilter.Provider value={testFilter}>
+        <FileOptions.Provider value={{ showComments, showImports }}>
+          <Search.Provider value={searchText}>
+            <Header
+              setTestFilter={this.handleSetTestFilter}
+              toggleComments={this.handleToggleComments}
+              toggleImports={this.handleToggleImports}
+              changeSearch={this.handleSearchChange}
+            />
+            <Content>
+              <Center>
+                <JumpTo sections={sections} />
+              </Center>
               {showSetup && (
                 <Section id="setup">
                   <Setup setup={setup} />
@@ -84,22 +89,22 @@ export class Page extends Component<Props, State> {
                   <Test test={test} />
                 </Section>
               ))}
-            </Center>
-          </Content>
-        </Search.Provider>
-      </FileOptions.Provider>
+            </Content>
+          </Search.Provider>
+        </FileOptions.Provider>
+      </TestFilter.Provider>
     );
   }
 }
 
-function matchSection({ title, description }: TypeSection, searchText: string) {
+function matchSection({ title, description }: TSection, searchText: string) {
   let titleMatch = match(title, searchText);
   let descMatch = match(description, searchText);
 
   return titleMatch.length > 0 || descMatch.length > 0;
 }
 
-function extractSection({ name, title, description }): TypeSection {
+function extractSection({ name, title, description }): TSection {
   return { name, title, description };
 }
 
@@ -110,16 +115,17 @@ type SectionProps = {
 
 function Section({ id, children }: SectionProps) {
   return (
-    <Fragment>
+    <>
       <SectionLocation id={id} />
       {children}
-    </Fragment>
+    </>
   );
 }
 
 const Content = styled.div`
-  margin-top: 80px;
+  margin: 80px auto 0 auto;
   padding: 10px 12px 8px 12px;
+  max-width: 1452px;
 `;
 
 // XXX: Hack for #links to jump to content under sticky header

@@ -1,19 +1,21 @@
 // @flow
 
-export type Section = {
+export type TTestFilter = 'enzyme' | 'cosmos';
+
+export type TSection = {
   name: string,
   title: string,
   description: string
 };
 
-export type Setup = Section & {
+export type TSetup = TSection & {
   files: {
     jest: string, // "global.requestAnimationFrame = cb => setTimeout(cb, 0)..."
     enzyme: string // "import { configure } from 'enzyme'..."
   }
 };
 
-export type Test = Section & {
+export type TTest = TSection & {
   files: {
     components: string, // "import React, { Component } from 'react'..."
     enzyme: {

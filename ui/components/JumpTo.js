@@ -4,10 +4,10 @@ import React, { Component } from 'react';
 import { Search } from '../contexts';
 import { FuzzyHighlighter } from './FuzzyHighlighter';
 
-import type { Section as TypeSection } from '../types';
+import type { TSection } from '../types';
 
 type Props = {
-  sections: Array<TypeSection>
+  sections: Array<TSection>
 };
 
 export class JumpTo extends Component<Props> {

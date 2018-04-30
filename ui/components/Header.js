@@ -1,24 +1,33 @@
 // @flow
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Center } from '../styles';
-import { FileOptions, Search } from '../contexts';
+import { TestFilter, FileOptions, Search } from '../contexts';
+
+import type { TTestFilter } from '../types';
 
 type Props = {
+  setTestFilter: (testFilter: TTestFilter) => mixed,
   toggleComments: () => mixed,
   toggleImports: () => mixed,
   changeSearch: (searchText: string) => mixed
 };
 
 // TODO: Design
-export function Header({ toggleComments, toggleImports, changeSearch }: Props) {
+export function Header({
+  setTestFilter,
+  toggleComments,
+  toggleImports,
+  changeSearch
+}: Props) {
   return (
     <Container>
       <Center>
         <div style={{ float: 'left' }}>
           <h1>React Testing Examples</h1>
           <div>
+            <TestFilterSelect onChange={setTestFilter} />
             <CommentsCheckbox onToggle={toggleComments} />
             <ImportsCheckbox onToggle={toggleImports} />
           </div>
@@ -29,6 +38,33 @@ export function Header({ toggleComments, toggleImports, changeSearch }: Props) {
       </Center>
     </Container>
   );
+}
+
+type TestFilterSelectProps = {
+  onChange: (testFilter: TTestFilter) => mixed
+};
+
+class TestFilterSelect extends Component<TestFilterSelectProps> {
+  handleChange = (e: SyntheticInputEvent<HTMLSelectElement>) => {
+    let { value } = e.currentTarget;
+
+    if (value === 'enzyme' || value === 'cosmos') {
+      this.props.onChange(value);
+    }
+  };
+
+  render() {
+    return (
+      <TestFilter.Consumer>
+        {testFilter => (
+          <select value={testFilter} onChange={this.handleChange}>
+            <option value="enzyme">Plain Enzyme</option>
+            <option value="cosmos">Enzyme & Cosmos</option>
+          </select>
+        )}
+      </TestFilter.Consumer>
+    );
+  }
 }
 
 function CommentsCheckbox({ onToggle }) {
@@ -58,7 +94,7 @@ type SearchInputProps = {
 // TODO: Focus on `s` key
 // TODO: Clear on `ESC` key (while focused)
 class SearchInput extends Component<SearchInputProps> {
-  handleSearchChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
+  handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.props.onChange(e.currentTarget.value);
   };
 
@@ -70,7 +106,7 @@ class SearchInput extends Component<SearchInputProps> {
             type="text"
             placeholder="Press 's' key to search"
             value={searchText}
-            onChange={this.handleSearchChange}
+            onChange={this.handleChange}
           />
         )}
       </Search.Consumer>
@@ -86,11 +122,9 @@ type CheckboxProps = {
 
 function Checkbox({ name, checked, onToggle }: CheckboxProps) {
   return (
-    <Fragment>
-      <label>
-        <input type="checkbox" checked={checked} onChange={onToggle} /> {name}
-      </label>
-    </Fragment>
+    <label>
+      <input type="checkbox" checked={checked} onChange={onToggle} /> {name}
+    </label>
   );
 }
 
