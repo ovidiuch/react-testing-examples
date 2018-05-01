@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Center } from '../styles';
 import { TestFilter, FileOptions, Search } from '../contexts';
 
+import type { Node } from 'react';
 import type { TTestFilter } from '../types';
 
 type Props = {
@@ -24,17 +25,34 @@ export function Header({
   return (
     <Container>
       <Center>
-        <div style={{ float: 'left' }}>
-          <h1>React Testing Examples</h1>
-          <div>
+        <Clear>
+          <Left>
+            <h1>React Testing Examples</h1>
+          </Left>
+          <Right>
+            <SearchInput onChange={changeSearch} />
+          </Right>
+        </Clear>
+        <Clear>
+          <Left>
+            <img
+              src="https://img.shields.io/circleci/project/github/RedSparr0w/node-csgo-parser.svg?style=square"
+              alt="CircleCI"
+            />{' '}
+            <iframe
+              src="https://ghbtns.com/github-btn.html?user=twbs&repo=bootstrap&type=star&count=true"
+              frameBorder="0"
+              scrolling="0"
+              width="170px"
+              height="20px"
+            />
+          </Left>
+          <Right>
+            <CommentsCheckbox onToggle={toggleComments} />{' '}
+            <ImportsCheckbox onToggle={toggleImports} />{' '}
             <TestFilterSelect onChange={setTestFilter} />
-            <CommentsCheckbox onToggle={toggleComments} />
-            <ImportsCheckbox onToggle={toggleImports} />
-          </div>
-        </div>
-        <div style={{ float: 'right' }}>
-          <SearchInput onChange={changeSearch} />
-        </div>
+          </Right>
+        </Clear>
       </Center>
     </Container>
   );
@@ -91,25 +109,50 @@ type SearchInputProps = {
   onChange: (searchText: string) => mixed
 };
 
-// TODO: Focus on `s` key
-// TODO: Clear on `ESC` key (while focused)
+const KEY_S = 83;
+const KEY_ESC = 27;
+
 class SearchInput extends Component<SearchInputProps> {
+  searchInput: ?HTMLInputElement;
+
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.props.onChange(e.currentTarget.value);
   };
 
+  handleKeyDown = (e: SyntheticKeyboardEvent<HTMLElement>) => {
+    let { searchInput } = this;
+    if (!searchInput) {
+      return;
+    }
+
+    const isFocused = searchInput === global.document.activeElement;
+    if (e.keyCode === KEY_S && !isFocused) {
+      // Prevent entering `s` in the search field along with focusing
+      e.preventDefault();
+      searchInput.focus();
+    } else if (e.keyCode === KEY_ESC && isFocused) {
+      this.props.onChange('');
+      searchInput.blur();
+    }
+  };
+
   render() {
     return (
-      <Search.Consumer>
-        {searchText => (
-          <input
-            type="text"
-            placeholder="Press 's' key to search"
-            value={searchText}
-            onChange={this.handleChange}
-          />
-        )}
-      </Search.Consumer>
+      <WindowKeyListener onKeyDown={this.handleKeyDown}>
+        <Search.Consumer>
+          {searchText => (
+            <input
+              ref={node => {
+                this.searchInput = node;
+              }}
+              type="text"
+              placeholder="Press 's' key to search"
+              value={searchText}
+              onChange={this.handleChange}
+            />
+          )}
+        </Search.Consumer>
+      </WindowKeyListener>
     );
   }
 }
@@ -123,9 +166,33 @@ type CheckboxProps = {
 function Checkbox({ name, checked, onToggle }: CheckboxProps) {
   return (
     <label>
-      <input type="checkbox" checked={checked} onChange={onToggle} /> {name}
+      <input type="checkbox" checked={checked} onChange={onToggle} />
+      {name}
     </label>
   );
+}
+
+type WindowKeyListenerProps = {
+  children: Node,
+  onKeyDown: (e: SyntheticKeyboardEvent<HTMLElement>) => mixed
+};
+
+class WindowKeyListener extends Component<WindowKeyListenerProps> {
+  componentDidMount() {
+    global.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentWillUnmount() {
+    global.removeEventListener('keydown', this.handleKeyDown);
+  }
+
+  handleKeyDown = (e: SyntheticKeyboardEvent<HTMLElement>) => {
+    this.props.onKeyDown(e);
+  };
+
+  render() {
+    return this.props.children;
+  }
 }
 
 const Container = styled.div`
@@ -143,4 +210,16 @@ const Container = styled.div`
   h1 {
     margin: 0;
   }
+`;
+
+const Left = styled.div`
+  float: left;
+`;
+
+const Right = styled.div`
+  float: right;
+`;
+
+const Clear = styled.div`
+  overflow: hidden;
 `;

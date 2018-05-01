@@ -20,7 +20,7 @@
   * [x] Implement search
   * [x] Add toggle between 'Plain Enzyme' and 'Cosmos & Enzyme'
   * [ ] Improve search
-    * [ ] Keyboard shortcuts
+    * [x] Keyboard shortcuts
     * [ ] No results screen
   * [ ] Links to tests and on test titles
   * [ ] Info overlay (?)
