@@ -10,4 +10,12 @@ function Counter({ count, increment }) {
   );
 }
 
-export const ReduxCounter = connect(state => state, { increment })(Counter);
+function mapStateToProps({ count }) {
+  return { count };
+}
+
+const mapDispatchToProps = { increment };
+
+export const ReduxCounter = connect(mapStateToProps, mapDispatchToProps)(
+  Counter
+);
