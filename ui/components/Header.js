@@ -25,16 +25,18 @@ export function Header({
   return (
     <Container>
       <Center>
-        <Clear>
+        <TopRow>
           <Left>
-            <h1>React Testing Examples</h1>
+            <h1>
+              <a href="#top">React Testing Examples</a>
+            </h1>
           </Left>
           <Right>
-            <SearchInput onChange={changeSearch} />
+            <SearchBox onChange={changeSearch} />
           </Right>
-        </Clear>
-        <Clear>
-          <Left>
+        </TopRow>
+        <BottomRow>
+          <Left style={{ marginTop: 2 }}>
             <img
               src="https://img.shields.io/circleci/project/github/RedSparr0w/node-csgo-parser.svg?style=square"
               alt="CircleCI"
@@ -52,7 +54,7 @@ export function Header({
             <ImportsCheckbox onToggle={toggleImports} />{' '}
             <TestFilterSelect onChange={setTestFilter} />
           </Right>
-        </Clear>
+        </BottomRow>
       </Center>
     </Container>
   );
@@ -105,14 +107,14 @@ function ImportsCheckbox({ onToggle }) {
   );
 }
 
-type SearchInputProps = {
+type SearchBoxProps = {
   onChange: (searchText: string) => mixed
 };
 
 const KEY_S = 83;
 const KEY_ESC = 27;
 
-class SearchInput extends Component<SearchInputProps> {
+class SearchBox extends Component<SearchBoxProps> {
   searchInput: ?HTMLInputElement;
 
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
@@ -141,8 +143,8 @@ class SearchInput extends Component<SearchInputProps> {
       <WindowKeyListener onKeyDown={this.handleKeyDown}>
         <Search.Consumer>
           {searchText => (
-            <input
-              ref={node => {
+            <SearchInput
+              innerRef={node => {
                 this.searchInput = node;
               }}
               type="text"
@@ -200,7 +202,6 @@ const Container = styled.div`
   top: 0;
   width: 100%;
   height: 80px;
-  padding: 8px 12px;
   box-sizing: border-box;
   background: #fff;
   box-shadow: 0 2px 0px 0px rgba(0, 0, 0, 0.08);
@@ -212,6 +213,29 @@ const Container = styled.div`
   }
 `;
 
+const TopRow = styled.div`
+  overflow: hidden;
+  height: 48px;
+  padding: 0 12px;
+
+  h1 {
+    line-height: 48px;
+    font-size: 32px;
+
+    a {
+      color: #222;
+      text-decoration: none;
+    }
+  }
+`;
+
+const BottomRow = styled.div`
+  overflow: hidden;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 12px;
+`;
+
 const Left = styled.div`
   float: left;
 `;
@@ -220,6 +244,15 @@ const Right = styled.div`
   float: right;
 `;
 
-const Clear = styled.div`
-  overflow: hidden;
+const SearchInput = styled.input`
+  box-sizing: border-box;
+  width: 200px;
+  height: 32px;
+  margin-top: 8px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 5px;
+  background: #e1e1e1;
+  line-height: 32px;
+  outline: none;
 `;

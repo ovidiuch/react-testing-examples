@@ -19,4 +19,9 @@ injectGlobal`
     margin: 0;
     padding: 0;
   }
+
+  input, select {
+    font-family: -apple-system, BlinkMacSystemFont, Ubuntu, 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 16px;
+  }
 `;

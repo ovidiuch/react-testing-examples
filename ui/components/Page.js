@@ -69,6 +69,7 @@ export class Page extends Component<Props, State> {
       <TestFilter.Provider value={testFilter}>
         <FileOptions.Provider value={{ showComments, showImports }}>
           <Search.Provider value={searchText}>
+            <TopSpace id="top" />
             <Header
               setTestFilter={this.handleSetTestFilter}
               toggleComments={this.handleToggleComments}
@@ -122,10 +123,16 @@ function Section({ id, children }: SectionProps) {
   );
 }
 
+const TopSpace = styled.div`
+  height: 80px;
+`;
+
 const Content = styled.div`
-  margin: 80px auto 0 auto;
-  padding: 10px 12px 8px 12px;
-  max-width: 1452px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 14px 12px 12px 12px;
+  min-width: 320px;
+  max-width: 1476px;
 `;
 
 // XXX: Hack for #links to jump to content under sticky header
