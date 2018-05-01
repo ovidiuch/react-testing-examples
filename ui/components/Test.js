@@ -2,10 +2,11 @@
 
 import React, { Component } from 'react';
 import { TestFilter, Search } from '../contexts';
-import { Title, Description } from '../styles';
+import { Description } from '../styles';
 import { File } from './File';
 import { LeftRight } from './LeftRight';
 import { FuzzyHighlighter } from './FuzzyHighlighter';
+import { TitleLink } from './TitleLink';
 
 import type { TTestFilter, TTest } from '../types';
 
@@ -16,7 +17,7 @@ type Props = {
 export class Test extends Component<Props> {
   render() {
     const { test } = this.props;
-    const { title, files: { components } } = test;
+    const { name, title, files: { components } } = test;
 
     return (
       <TestFilter.Consumer>
@@ -24,12 +25,12 @@ export class Test extends Component<Props> {
           <Search.Consumer>
             {searchText => (
               <>
-                <Title>
+                <TitleLink link={name}>
                   <FuzzyHighlighter
                     searchText={searchText}
                     targetText={title}
                   />
-                </Title>
+                </TitleLink>
                 <Description>
                   A fixture is a JS object used to mock component input and
                   external dependencies. The input can be props, children, state

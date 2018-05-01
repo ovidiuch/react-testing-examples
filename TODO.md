@@ -22,7 +22,7 @@
   * [ ] Improve search
     * [x] Keyboard shortcuts
     * [ ] No results screen
-  * [ ] Links to tests and on test titles
+  * [x] Add links next to section titles
   * [ ] Info overlay (?)
   * [ ] Links to copy or open code in GH
   * [ ] Footer
