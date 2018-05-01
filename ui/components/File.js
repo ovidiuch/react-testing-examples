@@ -1,8 +1,8 @@
 // @flow
 
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import { FileOptions } from '../contexts';
+import { Center } from '../styles';
 import { Code } from './Code';
 import { ToggleShow } from './ToggleShow';
 
@@ -42,6 +42,6 @@ export class File extends Component<Props> {
   }
 }
 
-const FileContainer = styled.div`
-  margin: 12px 0;
+const FileContainer = Center.extend`
+  margin-top: 12px;
 `;

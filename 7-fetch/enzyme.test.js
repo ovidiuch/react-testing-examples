@@ -19,7 +19,7 @@ let simulateIncrement = async () => {
 };
 
 beforeEach(() => {
-  // Set fresh mocks for each test
+  // Create fresh mocks for each test
   fetchMock.restore();
   fetchMock.mock({
     matcher: '/count',
@@ -32,7 +32,7 @@ beforeEach(() => {
     response: () => ({ count: ++count })
   });
 
-  // Create fresh instances for each test to prevent leaking state
+  // Flush instances between tests to prevent leaking state
   wrapper = mount(<ServerCounter />);
 });
 

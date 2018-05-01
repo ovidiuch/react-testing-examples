@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-function PureCounter({ count, increment }) {
+function Counter({ count, increment }) {
   return (
     <div>
       Clicked {count} times <button onClick={increment}>+1</button>
@@ -9,8 +9,14 @@ function PureCounter({ count, increment }) {
   );
 }
 
-function increment() {
-  return { type: 'INCREMENT' };
+function mapStateToProps({ count }) {
+  return { count };
 }
 
-export const ReduxCounter = connect(state => state, { increment })(PureCounter);
+const mapDispatchToProps = {
+  increment: () => ({ type: 'INCREMENT' })
+};
+
+export const ReduxCounter = connect(mapStateToProps, mapDispatchToProps)(
+  Counter
+);

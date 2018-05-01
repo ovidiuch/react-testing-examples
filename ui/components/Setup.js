@@ -1,14 +1,15 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Title } from '../styles';
+import { Search } from '../contexts';
+import { Title, Description } from '../styles';
 import { File } from './File';
-import { LeftRight } from './LeftRight';
+import { FuzzyHighlighter } from './FuzzyHighlighter';
 
-import type { Setup as SetupTest } from '../types';
+import type { TSetup } from '../types';
 
 type Props = {
-  setup: SetupTest
+  setup: TSetup
 };
 
 export class Setup extends Component<Props> {
@@ -17,15 +18,23 @@ export class Setup extends Component<Props> {
     const { jest, enzyme } = files;
 
     return (
-      <div>
-        <Title>{title}</Title>
-        <div>
-          <LeftRight
-            left={<File name="jest.config.js" code={jest} closed />}
-            right={<File name="enzyme.config.js" code={enzyme} closed />}
-          />
-        </div>
-      </div>
+      <Search.Consumer>
+        {searchText => (
+          <>
+            <Title>
+              <FuzzyHighlighter searchText={searchText} targetText={title} />
+            </Title>
+            <Description>
+              A fixture is a JS object used to mock component input and external
+              dependencies. The input can be props, children, state and context.
+              With the help of proxies, fixtures can mock anything else a
+              component depends on, from API responses to localStorage.
+            </Description>
+            <File name="jest.config.js" code={jest} />
+            <File name="enzyme.config.js" code={enzyme} />
+          </>
+        )}
+      </Search.Consumer>
     );
   }
 }

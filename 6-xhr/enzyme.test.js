@@ -21,7 +21,7 @@ let simulateIncrement = async () => {
 };
 
 beforeEach(() => {
-  // Set fresh mocks for each test
+  // Create fresh mocks for each test
   xhrMock.teardown();
   xhrMock.setup();
   xhrMock.get('/count', (req, res) => res.status(200).body({ count }));
@@ -29,7 +29,7 @@ beforeEach(() => {
     res.status(200).body({ count: ++count })
   );
 
-  // Create fresh instances for each test to prevent leaking state
+  // Flush instances between tests to prevent leaking state
   wrapper = mount(<ServerCounter />);
 });
 

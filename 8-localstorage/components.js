@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 
 export class PersistentForm extends Component {
   state = {
@@ -23,13 +23,13 @@ export class PersistentForm extends Component {
     const { name } = this.state;
 
     return (
-      <Fragment>
+      <>
         <p>Welcome, {name}!</p>
         <form onSubmit={this.changeName}>
           <input type="text" ref="nameField" />
           <button type="submit">Change name</button>
         </form>
-      </Fragment>
+      </>
     );
   }
 }

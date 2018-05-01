@@ -7,7 +7,9 @@ export default createFixture({
   component: Page,
   props: {
     setup: {
+      name: 'setup',
       title: 'Setup',
+      description: '',
       files: {
         jest: require('!raw-loader!../../jest.setup'),
         enzyme: require('!raw-loader!../../enzyme.setup')
@@ -17,6 +19,7 @@ export default createFixture({
       {
         name: 'click callback',
         title: 'Callback fires on button click',
+        description: '',
         files: {
           components: require('!raw-loader!../../1-click-callback/components'),
           enzyme: {
@@ -31,6 +34,7 @@ export default createFixture({
       {
         name: '2-render-text',
         title: 'Text with prop value is rendered',
+        description: '',
         files: {
           components: require('!raw-loader!../../2-render-text/components'),
           enzyme: {
@@ -45,6 +49,7 @@ export default createFixture({
       {
         name: '3-local-state',
         title: 'Local component state',
+        description: '',
         files: {
           components: require('!raw-loader!../../3-local-state/components'),
           enzyme: {
@@ -59,6 +64,7 @@ export default createFixture({
       {
         name: '4-redux',
         title: 'Redux state and action',
+        description: '',
         files: {
           components: require('!raw-loader!../../4-redux/components'),
           enzyme: {
@@ -74,6 +80,7 @@ export default createFixture({
       {
         name: '5-react-router',
         title: 'React Router load and change URL',
+        description: '',
         files: {
           components: require('!raw-loader!../../5-react-router/components'),
           enzyme: {
@@ -89,6 +96,7 @@ export default createFixture({
       {
         name: '6-xhr',
         title: 'XHR requests',
+        description: 'XMLHttpRequest (aka Ajax)',
         files: {
           components: require('!raw-loader!../../6-xhr/components'),
           enzyme: {
@@ -104,6 +112,7 @@ export default createFixture({
       {
         name: '7-fetch',
         title: 'Fetch requests',
+        description: 'Fetch API',
         files: {
           components: require('!raw-loader!../../7-fetch/components'),
           enzyme: {
@@ -119,6 +128,7 @@ export default createFixture({
       {
         name: '8-localstorage',
         title: 'LocalStorage read and write',
+        description: '',
         files: {
           components: require('!raw-loader!../../8-localstorage/components'),
           enzyme: {

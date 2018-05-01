@@ -7,7 +7,7 @@ import { UserWithRouter } from './components';
 let wrapper;
 
 beforeEach(() => {
-  // Create fresh instances for each test to prevent leaking state
+  // Flush instances between tests to prevent leaking state
   wrapper = mount(
     <MemoryRouter initialEntries={['/users/5']}>
       <Route path="/users/:userId">

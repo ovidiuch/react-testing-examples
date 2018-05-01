@@ -3,7 +3,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { PersistentForm } from './components';
 
-export class LocalStorageMock {
+class LocalStorageMock {
   constructor(store = {}) {
     this.store = { ...store };
   }
@@ -20,10 +20,10 @@ export class LocalStorageMock {
 let wrapper;
 
 beforeEach(() => {
-  // Set fresh mocks for each test
+  // Create fresh mocks for each test
   global.localStorage = new LocalStorageMock({ name: 'Trent' });
 
-  // Create fresh instances for each test to prevent leaking state
+  // Flush instances between tests to prevent leaking state
   wrapper = mount(<PersistentForm />);
 });
 

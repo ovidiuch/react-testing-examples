@@ -6,7 +6,7 @@ import fixture from './fixture';
 let { count } = fixture.reduxState;
 let { mount, getWrapper } = createContext({ proxies, fixture });
 
-// Create fresh instances for each test to prevent leaking state
+// Flush instances between tests to prevent leaking state
 beforeEach(mount);
 
 it('renders initial count', () => {

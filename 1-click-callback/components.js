@@ -1,9 +1,5 @@
 import React from 'react';
 
-export function CompWithBtn({ onClick }) {
-  return (
-    <div>
-      <button onClick={onClick} />
-    </div>
-  );
+export function CustomButton({ onClick }) {
+  return <button onClick={onClick}>Click me nao</button>;
 }

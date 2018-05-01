@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import ReactShow from 'react-show';
 
@@ -32,14 +32,14 @@ export class ToggleShow extends Component<Props, State> {
     const { isOpen } = this.state;
 
     return (
-      <Fragment>
+      <>
         <div>
           <ToggleButton isOpen={isOpen} onClick={this.handleToggle}>
             <span className="title">{title}</span> {isOpen ? '↑' : '↓'}
           </ToggleButton>
         </div>
         <ReactShow show={isOpen}>{content}</ReactShow>
-      </Fragment>
+      </>
     );
   }
 }

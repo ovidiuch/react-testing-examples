@@ -4,9 +4,9 @@ import fixture from './fixture';
 
 let { mount, getWrapper } = createContext({ fixture });
 
-// Create fresh instances for each test to prevent leaking state
+// Flush instances between tests to prevent leaking state
 beforeEach(mount);
 
-it('renders "Hello {name}"', () => {
+it('renders personalized greeting', () => {
   expect(getWrapper().text()).toContain('Hello Satoshi');
 });
