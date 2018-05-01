@@ -49,6 +49,13 @@ export class Page extends Component<Props, State> {
     this.setState({ searchText });
   };
 
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    const { searchText } = this.state;
+    if (searchText && searchText !== prevState.searchText) {
+      global.window.scrollTo(0, 0);
+    }
+  }
+
   render() {
     let { setup, tests } = this.props;
     let { testFilter, showComments, showImports, searchText } = this.state;
