@@ -20,6 +20,8 @@ export default createFixture({
           proxies: require('!raw-loader!../../4-redux/cosmos.proxies')
         }
       }
-    }
+    },
+    testFilter: 'cosmos',
+    searchText: 'Redux'
   }
 });

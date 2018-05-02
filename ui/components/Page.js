@@ -4,14 +4,15 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { match } from 'fuzzaldrin-plus';
 import { Center } from '../styles';
-import { TestFilter, FileOptions, Search } from '../contexts';
+import { FileOptions } from '../contexts';
+import { sortSections } from '../sorting';
 import { Header } from './Header';
 import { JumpTo } from './JumpTo';
 import { Setup } from './Setup';
 import { Test } from './Test';
 
 import type { Node } from 'react';
-import type { TTestFilter, TInfo, TSection, TSetup, TTest } from '../types';
+import type { TTestFilter, TInfo, TSetup, TTest } from '../types';
 
 type Props = {
   setup: TSetup,
@@ -67,40 +68,62 @@ export class Page extends Component<Props, State> {
       : tests;
 
     // Convert setup & matching tests to unified list of sections
-    let testSections = matchingTests.map(t => extractSection(t.name, t.info));
+    let testSections = matchingTests.map(test => ({ type: 'test', test }));
     let sections = showSetup
-      ? [extractSection(setup.name, setup.info), ...testSections]
+      ? [{ type: 'setup', setup }, ...testSections]
       : testSections;
 
+    if (isSearching) {
+      sections = sortSections(sections, searchText);
+    }
+
     return (
-      <TestFilter.Provider value={testFilter}>
-        <FileOptions.Provider value={{ showComments, showImports }}>
-          <Search.Provider value={searchText}>
-            <TopSpace id="top" />
-            <Header
-              setTestFilter={this.handleSetTestFilter}
-              toggleComments={this.handleToggleComments}
-              toggleImports={this.handleToggleImports}
+      <FileOptions.Provider value={{ showComments, showImports }}>
+        <TopSpace id="top" />
+        <Header
+          testFilter={testFilter}
+          setTestFilter={this.handleSetTestFilter}
+          toggleComments={this.handleToggleComments}
+          toggleImports={this.handleToggleImports}
+          searchText={searchText}
+          changeSearch={this.handleSearchChange}
+        />
+        <Content>
+          <Center>
+            <JumpTo
+              sections={sections}
+              searchText={searchText}
               changeSearch={this.handleSearchChange}
             />
-            <Content>
-              <Center>
-                <JumpTo sections={sections} />
-              </Center>
-              {showSetup && (
-                <Section id="setup">
-                  <Setup setup={setup} />
-                </Section>
-              )}
-              {matchingTests.map(test => (
-                <Section key={test.name} id={test.name}>
-                  <Test test={test} />
-                </Section>
-              ))}
-            </Content>
-          </Search.Provider>
-        </FileOptions.Provider>
-      </TestFilter.Provider>
+          </Center>
+          {sections.map(
+            section =>
+              section.type === 'setup'
+                ? this.renderSetup(section.setup, testFilter, searchText)
+                : this.renderTest(section.test, testFilter, searchText)
+          )}
+        </Content>
+      </FileOptions.Provider>
+    );
+  }
+
+  renderSetup(setup: TSetup, testFilter: TTestFilter, searchText: string) {
+    const { name } = setup;
+
+    return (
+      <Section key={name} id={name}>
+        <Setup setup={setup} testFilter={testFilter} searchText={searchText} />
+      </Section>
+    );
+  }
+
+  renderTest(test: TTest, testFilter: TTestFilter, searchText: string) {
+    const { name } = test;
+
+    return (
+      <Section key={name} id={name}>
+        <Test test={test} testFilter={testFilter} searchText={searchText} />
+      </Section>
     );
   }
 }
@@ -110,10 +133,6 @@ function matchInfo({ title, description }: TInfo, searchText: string) {
     match(title, searchText).length > 0 ||
     description.some(p => match(p, searchText).length > 0)
   );
-}
-
-function extractSection(name: string, { title, description }: TInfo): TSection {
-  return { name, title, description };
 }
 
 type SectionProps = {

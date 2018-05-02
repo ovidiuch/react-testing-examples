@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import { TestFilter, Search } from '../contexts';
 import { Description } from '../styles';
 import { File } from './File';
 import { LeftRight } from './LeftRight';
@@ -11,38 +10,29 @@ import { TitleLink } from './TitleLink';
 import type { TTestFilter, TTest } from '../types';
 
 type Props = {
-  test: TTest
+  test: TTest,
+  testFilter: TTestFilter,
+  searchText: string
 };
 
 export class Test extends Component<Props> {
   render() {
-    const { test } = this.props;
+    const { test, testFilter, searchText } = this.props;
     const { name, info: { title, description }, files: { components } } = test;
 
     return (
-      <TestFilter.Consumer>
-        {testFilter => (
-          <Search.Consumer>
-            {searchText => (
-              <>
-                <TitleLink link={name}>
-                  <FuzzyHighlighter
-                    searchText={searchText}
-                    targetText={title}
-                  />
-                </TitleLink>
-                {description.map((p, idx) => (
-                  <Description key={idx}>
-                    <FuzzyHighlighter searchText={searchText} targetText={p} />
-                  </Description>
-                ))}
-                <File name="components.js" code={components} closed />
-                {this.renderTestFiles(test, testFilter)}
-              </>
-            )}
-          </Search.Consumer>
-        )}
-      </TestFilter.Consumer>
+      <>
+        <TitleLink link={name}>
+          <FuzzyHighlighter searchText={searchText} targetText={title} />
+        </TitleLink>
+        {description.map((p, idx) => (
+          <Description key={idx}>
+            <FuzzyHighlighter searchText={searchText} targetText={p} />
+          </Description>
+        ))}
+        <File name="components.js" code={components} closed />
+        {this.renderTestFiles(test, testFilter)}
+      </>
     );
   }
 

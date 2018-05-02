@@ -3,23 +3,28 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Center } from '../styles';
-import { TestFilter, FileOptions, Search } from '../contexts';
+import { FileOptions } from '../contexts';
 
 import type { Node } from 'react';
 import type { TTestFilter } from '../types';
 
 type Props = {
+  testFilter: TTestFilter,
   setTestFilter: (testFilter: TTestFilter) => mixed,
   toggleComments: () => mixed,
   toggleImports: () => mixed,
+  searchText: string,
   changeSearch: (searchText: string) => mixed
 };
 
 // TODO: Design
+// TODO: Clear search on title click
 export function Header({
+  testFilter,
   setTestFilter,
   toggleComments,
   toggleImports,
+  searchText,
   changeSearch
 }: Props) {
   return (
@@ -32,27 +37,26 @@ export function Header({
             </h1>
           </Left>
           <Right>
-            <SearchBox onChange={changeSearch} />
+            <SearchBox searchText={searchText} onChange={changeSearch} />
           </Right>
         </TopRow>
         <BottomRow>
           <Left style={{ marginTop: 2 }}>
-            <img
-              src="https://img.shields.io/circleci/project/github/RedSparr0w/node-csgo-parser.svg?style=square"
-              alt="CircleCI"
-            />{' '}
             <iframe
               src="https://ghbtns.com/github-btn.html?user=twbs&repo=bootstrap&type=star&count=true"
               frameBorder="0"
               scrolling="0"
-              width="170px"
+              width="160px"
               height="20px"
             />
           </Left>
           <Right>
             <CommentsCheckbox onToggle={toggleComments} />{' '}
             <ImportsCheckbox onToggle={toggleImports} />{' '}
-            <TestFilterSelect onChange={setTestFilter} />
+            <TestFilterSelect
+              testFilter={testFilter}
+              onChange={setTestFilter}
+            />
           </Right>
         </BottomRow>
       </Center>
@@ -61,6 +65,7 @@ export function Header({
 }
 
 type TestFilterSelectProps = {
+  testFilter: TTestFilter,
   onChange: (testFilter: TTestFilter) => mixed
 };
 
@@ -75,14 +80,10 @@ class TestFilterSelect extends Component<TestFilterSelectProps> {
 
   render() {
     return (
-      <TestFilter.Consumer>
-        {testFilter => (
-          <select value={testFilter} onChange={this.handleChange}>
-            <option value="enzyme">Plain Enzyme</option>
-            <option value="cosmos">Enzyme & Cosmos</option>
-          </select>
-        )}
-      </TestFilter.Consumer>
+      <select value={this.props.testFilter} onChange={this.handleChange}>
+        <option value="enzyme">Plain Enzyme</option>
+        <option value="cosmos">Enzyme & Cosmos</option>
+      </select>
     );
   }
 }
@@ -108,6 +109,7 @@ function ImportsCheckbox({ onToggle }) {
 }
 
 type SearchBoxProps = {
+  searchText: string,
   onChange: (searchText: string) => mixed
 };
 
@@ -141,19 +143,15 @@ class SearchBox extends Component<SearchBoxProps> {
   render() {
     return (
       <WindowKeyListener onKeyDown={this.handleKeyDown}>
-        <Search.Consumer>
-          {searchText => (
-            <SearchInput
-              innerRef={node => {
-                this.searchInput = node;
-              }}
-              type="text"
-              placeholder="Press 's' key to search"
-              value={searchText}
-              onChange={this.handleChange}
-            />
-          )}
-        </Search.Consumer>
+        <SearchInput
+          innerRef={node => {
+            this.searchInput = node;
+          }}
+          type="text"
+          placeholder="Press 's' key to search"
+          value={this.props.searchText}
+          onChange={this.handleChange}
+        />
       </WindowKeyListener>
     );
   }
@@ -220,7 +218,8 @@ const TopRow = styled.div`
 
   h1 {
     line-height: 48px;
-    font-size: 32px;
+    font-size: 28px;
+    font-weight: 600;
 
     a {
       color: #222;

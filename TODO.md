@@ -19,16 +19,16 @@
   * [x] Highlight and create fixtures for all tests
   * [x] Implement search
   * [x] Add toggle between 'Plain Enzyme' and 'Cosmos & Enzyme'
-  * [ ] Improve search
+  * [x] Improve search
     * [x] Keyboard shortcuts
-    * [ ] No results screen
-    * [ ] Show best matches first
+    * [x] No results screen
+    * [x] Show best matches first
   * [x] Add links next to section titles
-  * [ ] Info overlay (?)
   * [ ] Links to copy or open code in GH
   * [ ] Footer
 * [x] Load test title & description from README pages
-* [ ] Add help page
+* [ ] Add info overlay (?)
   * [ ] Explain opinionated test style (integration / abstract libs)
   * [ ] Explain Cosmos vs non-Cosmos
+* [ ] Compose descriptions for each test
 * [ ] Create build script
