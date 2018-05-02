@@ -10,7 +10,7 @@ type Props = {
 };
 
 export function FuzzyHighlighter({ searchText, targetText }: Props) {
-  if (!searchText) {
+  if (searchText.length < 3) {
     return targetText;
   }
 
@@ -44,4 +44,5 @@ export function FuzzyHighlighter({ searchText, targetText }: Props) {
 
 const Mark = styled.mark`
   background-color: rgba(255, 229, 100, 0.5);
+  color: inherit;
 `;

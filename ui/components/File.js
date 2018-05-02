@@ -43,5 +43,5 @@ export class File extends Component<Props> {
 }
 
 const FileContainer = Center.extend`
-  margin-top: 12px;
+  margin: 12px auto;
 `;

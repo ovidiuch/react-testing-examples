@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Description } from '../styles';
+import { Description, Paragraph } from '../styles';
 import { File } from './File';
 import { FuzzyHighlighter } from './FuzzyHighlighter';
 import { TitleLink } from './TitleLink';
@@ -23,11 +23,9 @@ export class Setup extends Component<Props> {
         <TitleLink link="setup">
           <FuzzyHighlighter searchText={searchText} targetText={title} />
         </TitleLink>
-        {description.map((p, idx) => (
-          <Description key={idx}>
-            <FuzzyHighlighter searchText={searchText} targetText={p} />
-          </Description>
-        ))}
+        <Description>
+          {description.map((p, idx) => <Paragraph key={idx}>{p}</Paragraph>)}
+        </Description>
         <File name="jest.setup.js" code={jest} />
         <File name="enzyme.setup.js" code={enzyme} />
       </>

@@ -2,17 +2,15 @@
 
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { match } from 'fuzzaldrin-plus';
-import { Center } from '../styles';
 import { FileOptions } from '../contexts';
-import { sortSections } from '../sorting';
+import { matchInfo, sortSections } from '../search';
 import { Header } from './Header';
 import { JumpTo } from './JumpTo';
 import { Setup } from './Setup';
 import { Test } from './Test';
 
 import type { Node } from 'react';
-import type { TTestFilter, TInfo, TSetup, TTest } from '../types';
+import type { TTestFilter, TSetup, TTest } from '../types';
 
 type Props = {
   setup: TSetup,
@@ -89,13 +87,11 @@ export class Page extends Component<Props, State> {
           changeSearch={this.handleSearchChange}
         />
         <Content>
-          <Center>
-            <JumpTo
-              sections={sections}
-              searchText={searchText}
-              changeSearch={this.handleSearchChange}
-            />
-          </Center>
+          <JumpTo
+            sections={sections}
+            searchText={searchText}
+            changeSearch={this.handleSearchChange}
+          />
           {sections.map(
             section =>
               section.type === 'setup'
@@ -128,13 +124,6 @@ export class Page extends Component<Props, State> {
   }
 }
 
-function matchInfo({ title, description }: TInfo, searchText: string) {
-  return (
-    match(title, searchText).length > 0 ||
-    description.some(p => match(p, searchText).length > 0)
-  );
-}
-
 type SectionProps = {
   id: string,
   children: Node
@@ -156,7 +145,7 @@ const TopSpace = styled.div`
 const Content = styled.div`
   margin: 0 auto;
   box-sizing: border-box;
-  padding: 14px 12px 12px 12px;
+  padding: 2px 12px 0 12px;
   min-width: 320px;
   max-width: 1476px;
 `;

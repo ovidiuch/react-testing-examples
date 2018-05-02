@@ -1,8 +1,17 @@
 // @flow
 
-import { score } from 'fuzzaldrin-plus';
+import { match, score } from 'fuzzaldrin-plus';
 
 import type { TInfo, TSection } from './types';
+
+export function matchInfo({ title, description }: TInfo, searchText: string) {
+  let searchTextNorm = normalizeTxt(searchText);
+
+  return (
+    match(title, searchText).length > 0 ||
+    description.some(p => normalizeTxt(p).indexOf(searchTextNorm) !== -1)
+  );
+}
 
 export function sortSections(sections: Array<TSection>, searchText: string) {
   let sorted: Array<TSection> = [...sections]
@@ -10,6 +19,10 @@ export function sortSections(sections: Array<TSection>, searchText: string) {
     .sort((a, b) => sortByTitle(b, searchText) - sortByTitle(a, searchText));
 
   return sorted;
+}
+
+function normalizeTxt(txt: string) {
+  return txt.toLowerCase().replace(/\s/g, '');
 }
 
 function sortByTitle(section: TSection, searchText: string) {

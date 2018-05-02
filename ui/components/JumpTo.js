@@ -1,6 +1,8 @@
 // @flow
 
 import React, { Component } from 'react';
+import styled from 'styled-components';
+import { CenterText, Paragraph, List, ListItem, Link } from '../styles';
 import { FuzzyHighlighter } from './FuzzyHighlighter';
 
 import type { TSection } from '../types';
@@ -21,65 +23,65 @@ export class JumpTo extends Component<Props> {
     let { sections, searchText } = this.props;
 
     return (
-      <>
+      <CenterText>
         {this.renderTitle(sections, searchText)}
-        <ul>
+        <List>
           {sections.map(section => {
             const { name, info: { title } } =
               section.type === 'setup' ? section.setup : section.test;
 
             return (
-              <li key={name}>
-                <a href={`#${name}`}>
+              <ListItem key={name}>
+                <Link href={`#${name}`}>
                   <FuzzyHighlighter
                     searchText={searchText}
                     targetText={title}
                   />
-                </a>
-              </li>
+                </Link>
+              </ListItem>
             );
           })}
-        </ul>
-      </>
+        </List>
+      </CenterText>
     );
   }
 
   renderTitle(sections: Array<TSection>, searchText: string) {
     if (searchText.length < 3) {
-      return <p>Jump to</p>;
+      return <Title>Jump to</Title>;
     }
 
     if (!sections.length) {
       return (
         <>
-          <p>
+          <Title>
             No results found for "{searchText}" {this.renderClearSearchBtn()}
-          </p>
-          <p>
+          </Title>
+          <Paragraph>
             Start a{' '}
-            <a
+            <Link
               target="_blank"
               href="https://github.com/skidding/react-testing-examples/issues/new"
             >
               conversation
-            </a>{' '}
+            </Link>{' '}
             if you have an idea for a new example.
-          </p>
-          <p>
+          </Paragraph>
+          <ContactParagraph>
             Contact{' '}
-            <a target="_blank" href="https://ovidiu.ch/">
+            <Link target="_blank" href="https://ovidiu.ch/">
               Ovidiu
-            </a>{' '}
+            </Link>{' '}
             if you need help testing React components.
-          </p>
+          </ContactParagraph>
         </>
       );
     }
 
     return (
-      <p>
+      <Title>
         Results for "{searchText}" {this.renderClearSearchBtn()}
-      </p>
+      </Title>
     );
   }
 
@@ -93,3 +95,19 @@ export class JumpTo extends Component<Props> {
     );
   }
 }
+
+const Title = Paragraph.extend`
+  opacity: 0.6;
+
+  a {
+    color: #000;
+  }
+`;
+
+const ContactParagraph = Paragraph.extend`
+  padding: 0 24px;
+  height: 36px;
+  line-height: 36px;
+  background: #ddd;
+  border-radius: 10px;
+`;

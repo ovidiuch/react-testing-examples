@@ -8,14 +8,14 @@ injectGlobal`
   html, body {
     margin: 0;
     padding: 0;
+    background: #f7f7f7;
     font-family: -apple-system, BlinkMacSystemFont, Ubuntu, 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 16px;
     font-smooth: always;
     -webkit-font-smoothing: antialiased;
-    font-size: 16px;
-    background: #f7f7f7;
   }
 
-  ul, li, p, h1, h2, h3 {
+  ul, li, p, h1, h2 {
     margin: 0;
     padding: 0;
   }
