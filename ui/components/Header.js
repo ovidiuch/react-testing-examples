@@ -18,7 +18,6 @@ type Props = {
 };
 
 // TODO: Design
-// TODO: Clear search on title click
 export function Header({
   testFilter,
   setTestFilter,
@@ -33,7 +32,9 @@ export function Header({
         <TopRow>
           <Left>
             <h1>
-              <a href="#top">React Testing Examples</a>
+              <a href="#top" onClick={() => changeSearch('')}>
+                React Testing Examples
+              </a>
             </h1>
           </Left>
           <Right>
