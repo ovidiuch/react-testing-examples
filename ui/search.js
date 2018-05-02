@@ -4,6 +4,10 @@ import { match, score } from 'fuzzaldrin-plus';
 
 import type { TInfo, TSection } from './types';
 
+export function shouldSearch(searchText: string) {
+  return searchText.length > 2;
+}
+
 export function matchInfo({ title, description }: TInfo, searchText: string) {
   let searchTextNorm = normalizeTxt(searchText);
 

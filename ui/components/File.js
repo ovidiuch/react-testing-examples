@@ -12,13 +12,28 @@ type Props = {
   closed: boolean
 };
 
-export class File extends Component<Props> {
+type State = {
+  isOpen: boolean
+};
+
+export class File extends Component<Props, State> {
   static defaultProps = {
     closed: false
   };
 
+  state = {
+    // Whe only what to derive state from prop initially and preserve local
+    // state afterwards
+    isOpen: !this.props.closed
+  };
+
+  handleToggle = () => {
+    this.setState({ isOpen: !this.state.isOpen });
+  };
+
   render() {
-    const { name, code, closed } = this.props;
+    const { name, code } = this.props;
+    const { isOpen } = this.state;
 
     return (
       <FileContainer>
@@ -33,7 +48,8 @@ export class File extends Component<Props> {
                   showImports={showImports}
                 />
               }
-              closed={closed}
+              show={isOpen}
+              onToggle={this.handleToggle}
             />
           )}
         </FileOptions.Consumer>

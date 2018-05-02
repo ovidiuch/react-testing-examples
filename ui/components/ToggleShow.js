@@ -9,36 +9,22 @@ import type { Node } from 'react';
 type Props = {
   title: Node,
   content: Node,
-  closed: boolean
+  show: boolean,
+  onToggle: () => mixed
 };
 
-type State = {
-  isOpen: boolean
-};
-
-export class ToggleShow extends Component<Props, State> {
-  state = {
-    // Whe only what to derive state from prop initially and preserve local
-    // state afterwards
-    isOpen: !this.props.closed
-  };
-
-  handleToggle = () => {
-    this.setState({ isOpen: !this.state.isOpen });
-  };
-
+export class ToggleShow extends Component<Props> {
   render() {
-    const { title, content } = this.props;
-    const { isOpen } = this.state;
+    const { title, content, show, onToggle } = this.props;
 
     return (
       <>
         <div>
-          <ToggleButton isOpen={isOpen} onClick={this.handleToggle}>
-            <span className="title">{title}</span> {isOpen ? '↑' : '↓'}
+          <ToggleButton isOpen={show} onClick={onToggle}>
+            <span className="title">{title}</span> {show ? '↑' : '↓'}
           </ToggleButton>
         </div>
-        <ReactShow show={isOpen}>{content}</ReactShow>
+        <ReactShow show={show}>{content}</ReactShow>
       </>
     );
   }

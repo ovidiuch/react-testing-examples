@@ -35,10 +35,11 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
   line-height: 24px;
+  margin: 4px 0;
 `;
 
 export const Link = styled.a`
   color: #0366d6;
   text-decoration: none;
-  font-weight: 400;
+  font-weight: 500;
 `;

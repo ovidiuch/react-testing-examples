@@ -3,7 +3,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { CenterText, Paragraph, List, ListItem, Link } from '../styles';
+import { shouldSearch } from '../search';
 import { FuzzyHighlighter } from './FuzzyHighlighter';
+import { ToggleShow } from './ToggleShow';
 
 import type { TSection } from '../types';
 
@@ -13,7 +15,19 @@ type Props = {
   changeSearch: (searchText: string) => mixed
 };
 
-export class JumpTo extends Component<Props> {
+type State = {
+  isOpen: boolean
+};
+
+export class JumpTo extends Component<Props, State> {
+  state = {
+    isOpen: false
+  };
+
+  handleToggleList = () => {
+    this.setState({ isOpen: !this.state.isOpen });
+  };
+
   handleClearSearch = (e: SyntheticEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     this.props.changeSearch('');
@@ -21,42 +35,49 @@ export class JumpTo extends Component<Props> {
 
   render() {
     let { sections, searchText } = this.props;
+    let { isOpen } = this.state;
+
+    if (shouldSearch(searchText)) {
+      return (
+        <Container>
+          {this.renderSearchTitle(sections, searchText)}
+          {this.renderContent(sections, searchText)}
+        </Container>
+      );
+    }
 
     return (
-      <CenterText>
-        {this.renderTitle(sections, searchText)}
-        <List>
-          {sections.map(section => {
-            const { name, info: { title } } =
-              section.type === 'setup' ? section.setup : section.test;
-
-            return (
-              <ListItem key={name}>
-                <Link href={`#${name}`}>
-                  <FuzzyHighlighter
-                    searchText={searchText}
-                    targetText={title}
-                  />
-                </Link>
-              </ListItem>
-            );
-          })}
-        </List>
-      </CenterText>
+      <Container>
+        <ToggleShow
+          title="Jump to"
+          content={this.renderContent(sections, searchText)}
+          show={isOpen}
+          onToggle={this.handleToggleList}
+        />
+      </Container>
     );
   }
 
-  renderTitle(sections: Array<TSection>, searchText: string) {
-    if (searchText.length < 3) {
-      return <Title>Jump to</Title>;
+  renderSearchTitle(sections: Array<TSection>, searchText: string) {
+    if (!sections.length) {
+      return (
+        <SearchHeader>
+          No results found for "{searchText}" {this.renderClearSearchBtn()}
+        </SearchHeader>
+      );
     }
 
+    return (
+      <SearchHeader>
+        Results for "{searchText}" {this.renderClearSearchBtn()}
+      </SearchHeader>
+    );
+  }
+
+  renderContent(sections: Array<TSection>, searchText: string) {
     if (!sections.length) {
       return (
         <>
-          <Title>
-            No results found for "{searchText}" {this.renderClearSearchBtn()}
-          </Title>
           <Paragraph>
             Start a{' '}
             <Link
@@ -79,24 +100,45 @@ export class JumpTo extends Component<Props> {
     }
 
     return (
-      <Title>
-        Results for "{searchText}" {this.renderClearSearchBtn()}
-      </Title>
+      <List>
+        {sections.map(section => {
+          const { name, info: { title } } =
+            section.type === 'setup' ? section.setup : section.test;
+
+          return (
+            <ListItem key={name}>
+              <Link href={`#${name}`}>
+                <FuzzyHighlighter searchText={searchText} targetText={title} />
+              </Link>
+            </ListItem>
+          );
+        })}
+      </List>
     );
   }
 
   renderClearSearchBtn() {
     return (
-      <>
+      <ClearSearchBtn>
         (<a href="/" onClick={this.handleClearSearch}>
           clear search
         </a>)
-      </>
+      </ClearSearchBtn>
     );
   }
 }
 
-const Title = Paragraph.extend`
+const Container = CenterText.extend`
+  margin: 16px auto;
+`;
+
+const SearchHeader = styled.div`
+  padding: 0 24px;
+  height: 36px;
+  line-height: 36px;
+`;
+
+const ClearSearchBtn = styled.span`
   opacity: 0.6;
 
   a {

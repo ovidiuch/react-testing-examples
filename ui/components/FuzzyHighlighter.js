@@ -3,6 +3,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { match } from 'fuzzaldrin-plus';
+import { shouldSearch } from '../search';
 
 type Props = {
   searchText: string,
@@ -10,7 +11,7 @@ type Props = {
 };
 
 export function FuzzyHighlighter({ searchText, targetText }: Props) {
-  if (searchText.length < 3) {
+  if (!shouldSearch(searchText)) {
     return targetText;
   }
 

@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { FileOptions } from '../contexts';
-import { matchInfo, sortSections } from '../search';
+import { shouldSearch, matchInfo, sortSections } from '../search';
 import { Header } from './Header';
 import { JumpTo } from './JumpTo';
 import { Setup } from './Setup';
@@ -59,7 +59,7 @@ export class Page extends Component<Props, State> {
     let { setup, tests } = this.props;
     let { testFilter, showComments, showImports, searchText } = this.state;
 
-    let isSearching = searchText.length > 2;
+    let isSearching = shouldSearch(searchText);
     let showSetup = isSearching ? matchInfo(setup.info, searchText) : true;
     let matchingTests = isSearching
       ? tests.filter(t => matchInfo(t.info, searchText))
