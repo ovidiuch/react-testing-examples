@@ -46,7 +46,9 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "redux": "^4.0.0",
+    "remark-parse": "^5.0.0",
     "style-loader": "^0.21.0",
+    "unified": "^6.1.6",
     "webpack": "^4.6.0",
     "xhr-mock": "^2.3.1"
   },

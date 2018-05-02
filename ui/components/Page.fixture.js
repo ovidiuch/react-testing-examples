@@ -8,8 +8,12 @@ export default createFixture({
   props: {
     setup: {
       name: 'setup',
-      title: 'Setup',
-      description: '',
+      info: {
+        title: 'Setup',
+        description: [
+          'A fixture is a JS object used to mock component input and external dependencies. The input can be props, children, state and context. With the help of proxies, fixtures can mock anything else a component depends on, from API responses to localStorage.'
+        ]
+      },
       files: {
         jest: require('!raw-loader!../../jest.setup'),
         enzyme: require('!raw-loader!../../enzyme.setup')
@@ -18,8 +22,7 @@ export default createFixture({
     tests: [
       {
         name: 'click callback',
-        title: 'Callback fires on button click',
-        description: '',
+        info: require('../../1-click-callback/README.md'),
         files: {
           components: require('!raw-loader!../../1-click-callback/components'),
           enzyme: {
@@ -33,8 +36,7 @@ export default createFixture({
       },
       {
         name: '2-render-text',
-        title: 'Text with prop value is rendered',
-        description: '',
+        info: require('../../2-render-text/README.md'),
         files: {
           components: require('!raw-loader!../../2-render-text/components'),
           enzyme: {
@@ -48,8 +50,7 @@ export default createFixture({
       },
       {
         name: '3-local-state',
-        title: 'Local component state',
-        description: '',
+        info: require('../../3-local-state/README.md'),
         files: {
           components: require('!raw-loader!../../3-local-state/components'),
           enzyme: {
@@ -63,8 +64,7 @@ export default createFixture({
       },
       {
         name: '4-redux',
-        title: 'Redux state and action',
-        description: '',
+        info: require('../../4-redux/README.md'),
         files: {
           components: require('!raw-loader!../../4-redux/components'),
           enzyme: {
@@ -79,8 +79,7 @@ export default createFixture({
       },
       {
         name: '5-react-router',
-        title: 'React Router load and change URL',
-        description: '',
+        info: require('../../5-react-router/README.md'),
         files: {
           components: require('!raw-loader!../../5-react-router/components'),
           enzyme: {
@@ -95,8 +94,7 @@ export default createFixture({
       },
       {
         name: '6-xhr',
-        title: 'XHR requests',
-        description: 'XMLHttpRequest (aka Ajax)',
+        info: require('../../6-xhr/README.md'),
         files: {
           components: require('!raw-loader!../../6-xhr/components'),
           enzyme: {
@@ -111,8 +109,7 @@ export default createFixture({
       },
       {
         name: '7-fetch',
-        title: 'Fetch requests',
-        description: 'Fetch API',
+        info: require('../../7-fetch/README.md'),
         files: {
           components: require('!raw-loader!../../7-fetch/components'),
           enzyme: {
@@ -127,8 +124,7 @@ export default createFixture({
       },
       {
         name: '8-localstorage',
-        title: 'LocalStorage read and write',
-        description: '',
+        info: require('../../8-localstorage/README.md'),
         files: {
           components: require('!raw-loader!../../8-localstorage/components'),
           enzyme: {

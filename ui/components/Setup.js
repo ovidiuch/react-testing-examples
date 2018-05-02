@@ -15,8 +15,8 @@ type Props = {
 
 export class Setup extends Component<Props> {
   render() {
-    const { title, files } = this.props.setup;
-    const { jest, enzyme } = files;
+    const { setup } = this.props;
+    const { info: { title, description }, files: { jest, enzyme } } = setup;
 
     return (
       <Search.Consumer>
@@ -25,12 +25,11 @@ export class Setup extends Component<Props> {
             <TitleLink link="setup">
               <FuzzyHighlighter searchText={searchText} targetText={title} />
             </TitleLink>
-            <Description>
-              A fixture is a JS object used to mock component input and external
-              dependencies. The input can be props, children, state and context.
-              With the help of proxies, fixtures can mock anything else a
-              component depends on, from API responses to localStorage.
-            </Description>
+            {description.map((p, idx) => (
+              <Description key={idx}>
+                <FuzzyHighlighter searchText={searchText} targetText={p} />
+              </Description>
+            ))}
             <File name="jest.config.js" code={jest} />
             <File name="enzyme.config.js" code={enzyme} />
           </>

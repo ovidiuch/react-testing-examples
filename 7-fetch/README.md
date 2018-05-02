@@ -1,1 +1,3 @@
-## Fetch
+## Fetch requests
+
+Fetch API

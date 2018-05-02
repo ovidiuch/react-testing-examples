@@ -22,12 +22,13 @@
   * [ ] Improve search
     * [x] Keyboard shortcuts
     * [ ] No results screen
+    * [ ] Show best matches first
   * [x] Add links next to section titles
   * [ ] Info overlay (?)
   * [ ] Links to copy or open code in GH
   * [ ] Footer
+* [x] Load test title & description from README pages
 * [ ] Add help page
   * [ ] Explain opinionated test style (integration / abstract libs)
   * [ ] Explain Cosmos vs non-Cosmos
-* [ ] Add descriptions to tests
 * [ ] Create build script

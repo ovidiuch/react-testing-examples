@@ -28,7 +28,8 @@
         "jest.setup.js",
         "jest.framework-setup.js",
         "cosmos.config.js",
-        "raw-stub.js"
+        "stub/*.js",
+        "ui/server/**/*.js"
       ],
       "env": {
         "node": true

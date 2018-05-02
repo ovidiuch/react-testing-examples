@@ -11,7 +11,7 @@ import { Setup } from './Setup';
 import { Test } from './Test';
 
 import type { Node } from 'react';
-import type { TTestFilter, TSection, TSetup, TTest } from '../types';
+import type { TTestFilter, TInfo, TSection, TSetup, TTest } from '../types';
 
 type Props = {
   setup: TSetup,
@@ -61,15 +61,15 @@ export class Page extends Component<Props, State> {
     let { testFilter, showComments, showImports, searchText } = this.state;
 
     let isSearching = searchText.length > 2;
-    let showSetup = isSearching ? matchSection(setup, searchText) : true;
+    let showSetup = isSearching ? matchInfo(setup.info, searchText) : true;
     let matchingTests = isSearching
-      ? tests.filter(t => matchSection(t, searchText))
+      ? tests.filter(t => matchInfo(t.info, searchText))
       : tests;
 
     // Convert setup & matching tests to unified list of sections
-    let testSections = matchingTests.map(extractSection);
+    let testSections = matchingTests.map(t => extractSection(t.name, t.info));
     let sections = showSetup
-      ? [extractSection(setup), ...testSections]
+      ? [extractSection(setup.name, setup.info), ...testSections]
       : testSections;
 
     return (
@@ -105,14 +105,14 @@ export class Page extends Component<Props, State> {
   }
 }
 
-function matchSection({ title, description }: TSection, searchText: string) {
-  let titleMatch = match(title, searchText);
-  let descMatch = match(description, searchText);
-
-  return titleMatch.length > 0 || descMatch.length > 0;
+function matchInfo({ title, description }: TInfo, searchText: string) {
+  return (
+    match(title, searchText).length > 0 ||
+    description.some(p => match(p, searchText).length > 0)
+  );
 }
 
-function extractSection({ name, title, description }): TSection {
+function extractSection(name: string, { title, description }: TInfo): TSection {
   return { name, title, description };
 }
 
