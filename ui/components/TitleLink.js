@@ -1,8 +1,8 @@
 // @flow
 
 import React from 'react';
-import { Title } from '../styles';
-import { SvgLink } from '../svg';
+import { SectionTitle } from '../styles';
+import svgLink from '../svg/link.svg';
 
 import type { Node } from 'react';
 
@@ -14,31 +14,29 @@ type Props = {
 export function TitleLink({ link, children }: Props) {
   return (
     <Container>
-      <a href={`#${link}`} aria-hidden="true">
-        <SvgLink />
-      </a>
+      <a href={`#${link}`} aria-hidden="true" />
       {children}
     </Container>
   );
 }
 
-const Container = Title.extend`
+const Container = SectionTitle.extend`
   a {
     position: absolute;
     width: 24px;
     height: 24px;
-    margin-left: -32px;
     padding: 4px;
+    margin-left: -32px;
+
+    :focus {
+      outline: none;
+    }
   }
 
-  svg {
-    display: block;
-    width: 24px;
-    height: 24px;
-    visibility: hidden;
-  }
-
-  :hover svg {
-    visibility: visible;
+  :hover a {
+    background: url(${svgLink});
+    background-size: 24px;
+    background-position: calc(100% - 4px) 4px;
+    background-repeat: no-repeat;
   }
 `;

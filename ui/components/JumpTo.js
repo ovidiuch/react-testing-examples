@@ -86,7 +86,7 @@ export class JumpTo extends Component<Props, State> {
             >
               conversation
             </Link>{' '}
-            if you have an idea for a new example.
+            if you have an idea for a new testing example.
           </Paragraph>
           <ContactParagraph>
             Contact{' '}

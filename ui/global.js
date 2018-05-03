@@ -13,9 +13,10 @@ injectGlobal`
     font-size: 16px;
     font-smooth: always;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  ul, li, p, h1, h2 {
+  ul, li, p, h1, h2, input, select {
     margin: 0;
     padding: 0;
   }

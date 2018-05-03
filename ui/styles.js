@@ -12,7 +12,7 @@ export const CenterText = Center.extend`
   padding: 0 24px;
 `;
 
-export const Title = CenterText.withComponent('h2').extend`
+export const SectionTitle = CenterText.withComponent('h2').extend`
   margin: 48px auto 24px auto;
   font-size: 28px;
   line-height: 32px;
