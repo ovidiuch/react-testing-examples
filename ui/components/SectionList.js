@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { CenterText, Paragraph, List, ListItem, Link } from '../styles';
+import { CenterText, Paragraph, Link } from '../styles';
 import { shouldSearch } from '../search';
 import { FuzzyHighlighter } from './shared/FuzzyHighlighter';
 import { ToggleShow } from './shared/ToggleShow';
@@ -133,6 +133,16 @@ export class SectionList extends Component<Props, State> {
 
 const Container = CenterText.extend`
   margin: 16px auto;
+`;
+
+export const List = styled.ul`
+  padding-left: 52px;
+`;
+
+export const ListItem = styled.li`
+  line-height: 24px;
+  margin: 4px 0;
+  color: #666;
 `;
 
 const SearchHeader = styled.div`

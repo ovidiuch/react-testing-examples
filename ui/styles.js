@@ -29,15 +29,6 @@ export const Paragraph = styled.p`
   line-height: 24px;
 `;
 
-export const List = styled.ul`
-  padding-left: 32px;
-`;
-
-export const ListItem = styled.li`
-  line-height: 24px;
-  margin: 4px 0;
-`;
-
 export const Link = styled.a`
   color: #0366d6;
   text-decoration: none;
