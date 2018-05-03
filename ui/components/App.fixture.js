@@ -6,6 +6,7 @@ import { App } from './App';
 export default createFixture({
   component: App,
   props: {
+    commitSha: '24c2bd39be7cb2a5e17a671e5535525e364f8aaa',
     setup: {
       name: 'setup',
       info: {
@@ -21,7 +22,7 @@ export default createFixture({
     },
     tests: [
       {
-        name: 'click callback',
+        name: '1-click-callback',
         info: require('../../1-click-callback/README.md'),
         files: {
           components: require('!raw-loader!../../1-click-callback/components'),

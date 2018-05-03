@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import svgMarkGithug from '../../svg/mark-github.svg';
+import svgMarkGithub from '../../svg/mark-github.svg';
 
 export function GithubLink() {
   return (
@@ -21,8 +21,7 @@ const Link = styled.a`
   font-weight: 500;
   color: #000;
   text-decoration: none;
-  background: url(${svgMarkGithug});
-    no-repeat;
+  background: url(${svgMarkGithub});
   background-size: 20px;
   background-position: 0 2px;
   background-repeat: no-repeat;

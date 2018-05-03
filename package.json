@@ -54,6 +54,7 @@
     "xhr-mock": "^2.3.2"
   },
   "dependencies": {
+    "clipboard": "^2.0.1",
     "fuzzaldrin-plus": "^0.6.0",
     "parse-numeric-range": "^0.0.2",
     "prismjs": "^1.14.0",

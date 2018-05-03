@@ -26,8 +26,8 @@ export class Setup extends Component<Props> {
         <Description>
           {description.map((p, idx) => <Paragraph key={idx}>{p}</Paragraph>)}
         </Description>
-        <File name="jest.setup.js" code={jest} />
-        <File name="enzyme.setup.js" code={enzyme} />
+        <File name="jest.setup.js" filePath="jest.setup.js" code={jest} />
+        <File name="enzyme.setup.js" filePath="enzyme.setup.js" code={enzyme} />
       </>
     );
   }

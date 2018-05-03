@@ -4,10 +4,13 @@ import React, { Component } from 'react';
 import { FileOptions } from '../../contexts';
 import { Center } from '../../styles';
 import { ToggleShow } from '../shared/ToggleShow';
+import { ToggleButton } from '../shared/ToggleButton';
 import { Code } from './Code';
+import { FileActions } from './FileActions';
 
 type Props = {
   name: string,
+  filePath: string,
   code: string,
   closed: boolean
 };
@@ -32,15 +35,22 @@ export class File extends Component<Props, State> {
   };
 
   render() {
-    const { name, code } = this.props;
+    const { name, filePath, code } = this.props;
     const { isOpen } = this.state;
 
     return (
-      <FileContainer>
+      <Container>
         <FileOptions.Consumer>
           {({ showComments, showImports }) => (
             <ToggleShow
-              title={name}
+              header={({ show, onToggle }) => (
+                <ToggleButton
+                  label={name}
+                  actions={<FileActions filePath={filePath} code={code} />}
+                  isOpen={show}
+                  onClick={onToggle}
+                />
+              )}
               content={
                 <Code
                   code={code}
@@ -53,11 +63,11 @@ export class File extends Component<Props, State> {
             />
           )}
         </FileOptions.Consumer>
-      </FileContainer>
+      </Container>
     );
   }
 }
 
-const FileContainer = Center.extend`
+const Container = Center.extend`
   margin: 12px auto;
 `;

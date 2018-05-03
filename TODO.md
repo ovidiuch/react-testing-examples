@@ -24,11 +24,13 @@
     * [x] No results screen
     * [x] Show best matches first
   * [x] Add links next to section titles
-  * [ ] Links to copy or open code in GH
+  * [x] Add file actions to copy and open code in GH
   * [ ] Footer
 * [x] Load test title & description from README pages
 * [ ] Add info overlay (?)
   * [ ] Explain opinionated test style (integration / abstract libs)
   * [ ] Explain Cosmos vs non-Cosmos
 * [ ] Compose descriptions for each test
+* [ ] Design no results page
 * [ ] Create build script
+* [ ] Tweak colors

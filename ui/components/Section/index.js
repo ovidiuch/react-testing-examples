@@ -28,7 +28,7 @@ function renderSetup(
   const { name } = setup;
 
   return (
-    <LinkableSection key={name} id={name}>
+    <LinkableSection id={name}>
       <Setup setup={setup} testFilter={testFilter} searchText={searchText} />
     </LinkableSection>
   );
@@ -38,7 +38,7 @@ function renderTest(test: TTest, testFilter: TTestFilter, searchText: string) {
   const { name } = test;
 
   return (
-    <LinkableSection key={name} id={name}>
+    <LinkableSection id={name}>
       <Test test={test} testFilter={testFilter} searchText={searchText} />
     </LinkableSection>
   );

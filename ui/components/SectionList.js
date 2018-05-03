@@ -6,6 +6,7 @@ import { CenterText, Paragraph, List, ListItem, Link } from '../styles';
 import { shouldSearch } from '../search';
 import { FuzzyHighlighter } from './shared/FuzzyHighlighter';
 import { ToggleShow } from './shared/ToggleShow';
+import { ToggleButton } from './shared/ToggleButton';
 
 import type { TSection } from '../types';
 
@@ -49,7 +50,9 @@ export class SectionList extends Component<Props, State> {
     return (
       <Container>
         <ToggleShow
-          title="Jump to"
+          header={({ show, onToggle }) => (
+            <ToggleButton label="Jump to" isOpen={show} onClick={onToggle} />
+          )}
           content={this.renderContent(sections, searchText)}
           show={isOpen}
           onToggle={this.handleToggleList}

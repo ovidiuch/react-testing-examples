@@ -28,30 +28,57 @@ export class Test extends Component<Props> {
         <Description>
           {description.map((p, idx) => <Paragraph key={idx}>{p}</Paragraph>)}
         </Description>
-        <File name="components.js" code={components} closed />
+        <File
+          name="components.js"
+          filePath={`${name}/components.js`}
+          code={components}
+          closed
+        />
         {this.renderTestFiles(test, testFilter)}
       </>
     );
   }
 
   renderTestFiles(test: TTest, testFilter: TTestFilter) {
-    let { enzyme, cosmos } = test.files;
+    let { name, files } = test;
+    let { enzyme, cosmos } = files;
 
     switch (testFilter) {
       case 'enzyme':
-        return <File name="test.js" code={enzyme.test} />;
+        return (
+          <File
+            name="test.js"
+            filePath={`${name}/enzyme.test.js`}
+            code={enzyme.test}
+          />
+        );
       case 'cosmos':
         return (
           <LeftRight
             left={
               <>
-                <File name="fixture.js" code={cosmos.fixture} />
+                <File
+                  name="fixture.js"
+                  filePath={`${name}/fixture.js`}
+                  code={cosmos.fixture}
+                />
                 {cosmos.proxies && (
-                  <File name="proxies.js" code={cosmos.proxies} closed />
+                  <File
+                    name="proxies.js"
+                    filePath={`${name}/cosmos.proxies.js`}
+                    code={cosmos.proxies}
+                    closed
+                  />
                 )}
               </>
             }
-            right={<File name="test.js" code={cosmos.test} />}
+            right={
+              <File
+                name="test.js"
+                filePath={`${name}/cosmos.test.js`}
+                code={cosmos.test}
+              />
+            }
           />
         );
       default:

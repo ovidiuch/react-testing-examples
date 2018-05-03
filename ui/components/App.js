@@ -2,15 +2,16 @@
 
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { FileOptions } from '../contexts';
+import { FileOptions, GitCommit } from '../contexts';
 import { shouldSearch, matchInfo, sortSections } from '../search';
 import { Header } from './Header';
 import { SectionList } from './SectionList';
 import { Section } from './Section';
 
-import type { TTestFilter, TSetup, TTest } from '../types';
+import type { TTestFilter, TSetup, TTest, TSection } from '../types';
 
 type Props = {
+  commitSha: string,
   setup: TSetup,
   tests: Array<TTest>
 };
@@ -54,7 +55,7 @@ export class App extends Component<Props, State> {
   }
 
   render() {
-    let { setup, tests } = this.props;
+    let { commitSha, setup, tests } = this.props;
     let { testFilter, showComments, showImports, searchText } = this.state;
 
     let isSearching = shouldSearch(searchText);
@@ -74,33 +75,40 @@ export class App extends Component<Props, State> {
     }
 
     return (
-      <FileOptions.Provider value={{ showComments, showImports }}>
-        <TopSpace id="top" />
-        <Header
-          testFilter={testFilter}
-          setTestFilter={this.handleSetTestFilter}
-          toggleComments={this.handleToggleComments}
-          toggleImports={this.handleToggleImports}
-          searchText={searchText}
-          changeSearch={this.handleSearchChange}
-        />
-        <Content>
-          <SectionList
-            sections={sections}
+      <GitCommit.Provider value={commitSha}>
+        <FileOptions.Provider value={{ showComments, showImports }}>
+          <TopSpace id="top" />
+          <Header
+            testFilter={testFilter}
+            setTestFilter={this.handleSetTestFilter}
+            toggleComments={this.handleToggleComments}
+            toggleImports={this.handleToggleImports}
             searchText={searchText}
             changeSearch={this.handleSearchChange}
           />
-          {sections.map(section => (
-            <Section
-              section={section}
-              testFilter={testFilter}
+          <Content>
+            <SectionList
+              sections={sections}
               searchText={searchText}
+              changeSearch={this.handleSearchChange}
             />
-          ))}
-        </Content>
-      </FileOptions.Provider>
+            {sections.map(section => (
+              <Section
+                key={getSectionKey(section)}
+                section={section}
+                testFilter={testFilter}
+                searchText={searchText}
+              />
+            ))}
+          </Content>
+        </FileOptions.Provider>
+      </GitCommit.Provider>
     );
   }
+}
+
+function getSectionKey(section: TSection): string {
+  return section.type === 'setup' ? section.setup.name : section.test.name;
 }
 
 const TopSpace = styled.div`
