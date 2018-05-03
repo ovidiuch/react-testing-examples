@@ -70,9 +70,9 @@ export class FileActions extends Component<Props, State> {
         {commitSha => (
           <Container>
             <CopyLink
-              key={copyTime}
               title="Copy code"
               status={copyStatus}
+              time={copyTime}
               innerRef={this.handleCopyBtnRef}
               data-clipboard-text={code}
             />
@@ -120,9 +120,9 @@ const Action = styled.button`
 
 const CopyLink = Action.extend`
   background-image: url(${svgClippy});
-  animation: flash 3s;
+  animation: flash${props => props.time} 3s;
 
-  @keyframes flash {
+  @keyframes flash${props => props.time} {
     from {
       background-color: ${props => getCopyBgColorByStatus(props.status)};
     }
