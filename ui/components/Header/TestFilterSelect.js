@@ -50,6 +50,10 @@ const SelectContainer = styled.div`
   background-repeat: no-repeat;
   line-height: 24px;
   font-weight: 500;
+
+  :hover {
+    text-decoration: underline;
+  }
 `;
 
 const Select = styled.select`
@@ -66,13 +70,4 @@ const Select = styled.select`
   cursor: pointer;
   appearance: none;
   opacity: 0;
-
-  :hover {
-    text-decoration: underline;
-  }
-
-  :focus {
-    outline: none;
-    text-decoration: underline;
-  }
 `;
