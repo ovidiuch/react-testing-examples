@@ -1,10 +1,10 @@
 // @flow
 
 import React, { Component } from 'react';
-import { FileOptions } from '../contexts';
-import { Center } from '../styles';
+import { FileOptions } from '../../contexts';
+import { Center } from '../../styles';
+import { ToggleShow } from '../shared/ToggleShow';
 import { Code } from './Code';
-import { ToggleShow } from './ToggleShow';
 
 type Props = {
   name: string,

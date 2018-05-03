@@ -1,10 +1,10 @@
 // @flow
 
 import { createFixture } from 'react-cosmos-flow/fixture';
-import { Page } from './Page';
+import { App } from './App';
 
 export default createFixture({
-  component: Page,
+  component: App,
   props: {
     setup: {
       name: 'setup',

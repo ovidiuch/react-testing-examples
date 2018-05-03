@@ -5,11 +5,9 @@ import styled from 'styled-components';
 import { FileOptions } from '../contexts';
 import { shouldSearch, matchInfo, sortSections } from '../search';
 import { Header } from './Header';
-import { JumpTo } from './JumpTo';
-import { Setup } from './Setup';
-import { Test } from './Test';
+import { SectionList } from './SectionList';
+import { Section } from './Section';
 
-import type { Node } from 'react';
 import type { TTestFilter, TSetup, TTest } from '../types';
 
 type Props = {
@@ -24,7 +22,7 @@ type State = {
   searchText: string
 };
 
-export class Page extends Component<Props, State> {
+export class App extends Component<Props, State> {
   state = {
     testFilter: 'cosmos',
     showComments: true,
@@ -87,55 +85,22 @@ export class Page extends Component<Props, State> {
           changeSearch={this.handleSearchChange}
         />
         <Content>
-          <JumpTo
+          <SectionList
             sections={sections}
             searchText={searchText}
             changeSearch={this.handleSearchChange}
           />
-          {sections.map(
-            section =>
-              section.type === 'setup'
-                ? this.renderSetup(section.setup, testFilter, searchText)
-                : this.renderTest(section.test, testFilter, searchText)
-          )}
+          {sections.map(section => (
+            <Section
+              section={section}
+              testFilter={testFilter}
+              searchText={searchText}
+            />
+          ))}
         </Content>
       </FileOptions.Provider>
     );
   }
-
-  renderSetup(setup: TSetup, testFilter: TTestFilter, searchText: string) {
-    const { name } = setup;
-
-    return (
-      <Section key={name} id={name}>
-        <Setup setup={setup} testFilter={testFilter} searchText={searchText} />
-      </Section>
-    );
-  }
-
-  renderTest(test: TTest, testFilter: TTestFilter, searchText: string) {
-    const { name } = test;
-
-    return (
-      <Section key={name} id={name}>
-        <Test test={test} testFilter={testFilter} searchText={searchText} />
-      </Section>
-    );
-  }
-}
-
-type SectionProps = {
-  id: string,
-  children: Node
-};
-
-function Section({ id, children }: SectionProps) {
-  return (
-    <>
-      <SectionLocation id={id} />
-      {children}
-    </>
-  );
 }
 
 const TopSpace = styled.div`
@@ -148,10 +113,4 @@ const Content = styled.div`
   padding: 2px 12px 0 12px;
   min-width: 320px;
   max-width: 1476px;
-`;
-
-// XXX: Hack for #links to jump to content under sticky header
-const SectionLocation = styled.div`
-  position: absolute;
-  margin-top: -80px;
 `;

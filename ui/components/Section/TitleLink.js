@@ -1,8 +1,8 @@
 // @flow
 
 import React from 'react';
-import { SectionTitle } from '../styles';
-import svgLink from '../svg/link.svg';
+import { SectionTitle } from '../../styles';
+import svgLink from '../../svg/link.svg';
 
 import type { Node } from 'react';
 

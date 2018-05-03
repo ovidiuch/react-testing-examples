@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { CenterText, Paragraph, List, ListItem, Link } from '../styles';
 import { shouldSearch } from '../search';
-import { FuzzyHighlighter } from './FuzzyHighlighter';
-import { ToggleShow } from './ToggleShow';
+import { FuzzyHighlighter } from './shared/FuzzyHighlighter';
+import { ToggleShow } from './shared/ToggleShow';
 
 import type { TSection } from '../types';
 
@@ -19,7 +19,7 @@ type State = {
   isOpen: boolean
 };
 
-export class JumpTo extends Component<Props, State> {
+export class SectionList extends Component<Props, State> {
   state = {
     isOpen: false
   };

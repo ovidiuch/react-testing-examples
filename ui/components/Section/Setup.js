@@ -1,12 +1,12 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Description, Paragraph } from '../styles';
-import { File } from './File';
-import { FuzzyHighlighter } from './FuzzyHighlighter';
+import { Description, Paragraph } from '../../styles';
+import { FuzzyHighlighter } from '../shared/FuzzyHighlighter';
+import { File } from '../File';
 import { TitleLink } from './TitleLink';
 
-import type { TSetup } from '../types';
+import type { TSetup } from '../../types';
 
 type Props = {
   setup: TSetup,

@@ -1,13 +1,13 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Description, Paragraph } from '../styles';
-import { File } from './File';
-import { LeftRight } from './LeftRight';
-import { FuzzyHighlighter } from './FuzzyHighlighter';
+import { Description, Paragraph } from '../../styles';
+import { FuzzyHighlighter } from '../shared/FuzzyHighlighter';
+import { File } from '../File';
 import { TitleLink } from './TitleLink';
+import { LeftRight } from './LeftRight';
 
-import type { TTestFilter, TTest } from '../types';
+import type { TTestFilter, TTest } from '../../types';
 
 type Props = {
   test: TTest,
