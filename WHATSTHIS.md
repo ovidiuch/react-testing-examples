@@ -2,9 +2,11 @@
 
 Writing and presenting these tests took a lot of work. I hope it will make your life easier!
 
-**The examples are working tests.** They run in [CircleCI](https://circleci.com/gh/skidding/react-testing-examples) and this searchable library is generated from independent tests files. This is convenient and cool!
+### The examples are working tests
 
-**The test set is opinionated:**
+They run in [CircleCI](https://circleci.com/gh/skidding/react-testing-examples) and this searchable library is generated from independent tests files. This is convenient and cool!
+
+### The examples are opinionated tests
 
 1.  Philosophy: The tests lean towards _integration_ tests. Personally, I believe any decorated component is a _unit_, because we intend to reuse it as a whole. Read [Testing React Components](https://medium.com/@skidding/testing-react-components-30516bc6a1b3) for more on this.
 
