@@ -32,8 +32,10 @@
   * [ ] Tweak colors
 * [x] Load test title & description from README pages
 * [ ] Write copy
-  * [ ] Info overlay
-    * [ ] Opinionated test style (integration / abstract libs)
-    * [ ] Cosmos vs non-Cosmos
+  * [x] Info overlay
+    * [x] Opinionated test style (integration / abstract libs)
+    * [x] Cosmos vs non-Cosmos
   * [ ] Test READMEs
 * [ ] Create build script
+* [ ] Create fixtures for UI components
+* [ ] Config Playground for tests
