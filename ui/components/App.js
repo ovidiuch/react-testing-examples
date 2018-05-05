@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { FileOptions, GitCommit } from '../contexts';
 import { shouldSearch, matchInfo, sortSections } from '../search';
 import { Header } from './Header';
+import { AboutModal } from './AboutModal';
 import { SectionList } from './SectionList';
 import { Section } from './Section';
 
@@ -18,6 +19,7 @@ type Props = {
 
 type State = {
   testFilter: TTestFilter,
+  showAboutModal: boolean,
   showComments: boolean,
   showImports: boolean,
   searchText: string
@@ -26,6 +28,7 @@ type State = {
 export class App extends Component<Props, State> {
   state = {
     testFilter: 'cosmos',
+    showAboutModal: false,
     showComments: true,
     showImports: false,
     searchText: ''
@@ -33,6 +36,14 @@ export class App extends Component<Props, State> {
 
   handleSetTestFilter = (testFilter: TTestFilter) => {
     this.setState({ testFilter });
+  };
+
+  handleOpenAboutModal = () => {
+    this.setState({ showAboutModal: true });
+  };
+
+  handleCloseAboutModal = () => {
+    this.setState({ showAboutModal: false });
   };
 
   handleToggleComments = () => {
@@ -48,15 +59,27 @@ export class App extends Component<Props, State> {
   };
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    const { searchText } = this.state;
+    const { showAboutModal, searchText } = this.state;
+
+    // Jump to top when changing search query, because results will change
+    // anyway so previous scroll position will be irrelevant
     if (searchText && searchText !== prevState.searchText) {
       global.window.scrollTo(0, 0);
     }
+
+    // Prevent double scroll when modal is open
+    global.document.body.className = showAboutModal ? 'with-modal' : '';
   }
 
   render() {
     let { commitSha, setup, tests } = this.props;
-    let { testFilter, showComments, showImports, searchText } = this.state;
+    let {
+      testFilter,
+      showAboutModal,
+      showComments,
+      showImports,
+      searchText
+    } = this.state;
 
     let isSearching = shouldSearch(searchText);
     let showSetup = isSearching ? matchInfo(setup.info, searchText) : true;
@@ -81,12 +104,16 @@ export class App extends Component<Props, State> {
           <Header
             testFilter={testFilter}
             setTestFilter={this.handleSetTestFilter}
+            openAboutModal={this.handleOpenAboutModal}
             toggleComments={this.handleToggleComments}
             toggleImports={this.handleToggleImports}
             searchText={searchText}
             changeSearch={this.handleSearchChange}
           />
           <Content>
+            {showAboutModal && (
+              <AboutModal onClose={this.handleCloseAboutModal} />
+            )}
             <SectionList
               sections={sections}
               searchText={searchText}

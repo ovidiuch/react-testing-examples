@@ -10,5 +10,6 @@ flow-typed
 [options]
 module.name_mapper='^!raw-loader!.+$' -> '<PROJECT_ROOT>/stub/raw.js'
 module.name_mapper='^.+\/README\.md$' -> '<PROJECT_ROOT>/stub/readme.js'
+module.name_mapper='^.+\/WHATSTHIS\.md$' -> '<PROJECT_ROOT>/stub/component.js'
 
 [strict]

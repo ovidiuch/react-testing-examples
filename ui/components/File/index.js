@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { FileOptions } from '../../contexts';
-import { Center } from '../../styles';
+import { Center } from '../shared/styles';
 import { ToggleShow } from '../shared/ToggleShow';
 import { ToggleButton } from '../shared/ToggleButton';
 import { Code } from './Code';

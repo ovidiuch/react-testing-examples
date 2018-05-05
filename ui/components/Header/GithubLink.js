@@ -1,33 +1,22 @@
 // @flow
 
 import React from 'react';
-import styled from 'styled-components';
 import svgMarkGithub from '../../svg/mark-github.svg';
+import { IconButton } from './styles';
 
 export function GithubLink() {
   return (
-    <Link
+    <GithubIconLink
+      icon={svgMarkGithub}
       target="_blank"
       href="https://github.com/skidding/react-testing-examples"
     >
-      Open Source
-    </Link>
+      <span className="icon" />
+      <span className="label">Open Source</span>
+    </GithubIconLink>
   );
 }
 
-const Link = styled.a`
-  margin-left: 16px;
-  padding-left: 24px;
-  font-weight: 500;
-  color: #000;
-  text-decoration: none;
-  background: url(${svgMarkGithub});
-  background-size: 20px;
-  background-position: 0 2px;
-  background-repeat: no-repeat;
-  opacity: 0.7;
-
-  :hover {
-    text-decoration: underline;
-  }
+const GithubIconLink = IconButton.withComponent('a').extend`
+  margin-left: 12px;
 `;

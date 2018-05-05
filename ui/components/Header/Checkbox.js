@@ -55,6 +55,7 @@ const CheckboxLabel = styled.label`
   }
 
   input {
+    margin-left: 2px;
     margin-right: 6px;
   }
 `;

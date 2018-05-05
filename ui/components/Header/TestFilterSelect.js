@@ -50,6 +50,7 @@ const SelectContainer = styled.div`
   background-repeat: no-repeat;
   line-height: 24px;
   font-weight: 500;
+  white-space: nowrap;
 
   :hover {
     text-decoration: underline;
@@ -67,6 +68,7 @@ const Select = styled.select`
   background: transparent;
   line-height: 24px;
   font-weight: 500;
+  white-space: nowrap;
   cursor: pointer;
   appearance: none;
   opacity: 0;
