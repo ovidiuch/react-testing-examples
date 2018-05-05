@@ -101,17 +101,17 @@ export class App extends Component<Props, State> {
     return (
       <GitCommit.Provider value={commitSha}>
         <FileOptions.Provider value={{ showComments, showImports }}>
-          <TopSpace id="top" />
-          <Header
-            testFilter={testFilter}
-            setTestFilter={this.handleSetTestFilter}
-            openAboutModal={this.handleOpenAboutModal}
-            toggleComments={this.handleToggleComments}
-            toggleImports={this.handleToggleImports}
-            searchText={searchText}
-            changeSearch={this.handleSearchChange}
-          />
           <Content>
+            <TopSpace id="top" />
+            <Header
+              testFilter={testFilter}
+              setTestFilter={this.handleSetTestFilter}
+              openAboutModal={this.handleOpenAboutModal}
+              toggleComments={this.handleToggleComments}
+              toggleImports={this.handleToggleImports}
+              searchText={searchText}
+              changeSearch={this.handleSearchChange}
+            />
             <ContentCenter>
               <SectionList
                 sections={sections}
@@ -127,11 +127,11 @@ export class App extends Component<Props, State> {
                 />
               ))}
             </ContentCenter>
+            <Footer />
+            {showAboutModal && (
+              <AboutModal onClose={this.handleCloseAboutModal} />
+            )}
           </Content>
-          <Footer />
-          {showAboutModal && (
-            <AboutModal onClose={this.handleCloseAboutModal} />
-          )}
         </FileOptions.Provider>
       </GitCommit.Provider>
     );
