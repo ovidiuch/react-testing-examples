@@ -9,6 +9,7 @@ type Props = {
   onClose: () => mixed
 };
 
+// TODO: Close on ESC
 export class AboutModal extends Component<Props> {
   handleContentClick = (e: SyntheticEvent<HTMLElement>) => {
     e.stopPropagation();
@@ -25,12 +26,12 @@ export class AboutModal extends Component<Props> {
               h2: H2,
               h3: H3,
               p: Paragraph,
-              a: props => <SublimeLink target="_blank" {...props} />,
+              a: props => <SubtleLink target="_blank" {...props} />,
               ol: OpinionsList
             }}
           />
           <ButtonContainer>
-            <GoButton onClick={onClose}>Show me the tests</GoButton>
+            <GoButton onClick={onClose}>Show me some tests</GoButton>
           </ButtonContainer>
         </Content>
       </Overlay>
@@ -46,7 +47,7 @@ const Overlay = styled.div`
   right: 0;
   z-index: 2;
   padding: 32px 12px;
-  background: rgba(247, 247, 247, 0.9);
+  background: rgb(221, 224, 232, 0.9);
   overflow-x: hidden;
   overflow-y: auto;
 `;
@@ -67,15 +68,16 @@ const OpinionsList = styled.ol`
   padding-left: 36px;
 `;
 
-const SublimeLink = Link.extend`
-  color: #222;
+const SubtleLink = Link.extend`
+  color: #20232a;
+  font-weight: 500;
 `;
 
 const GoButton = Button.extend`
   display: inline-block;
   padding: 12px 16px;
   border-radius: 5px;
-  background: #0366d6;
-  color: #fff;
+  background: #2b51ad;
+  color: #f5f7fa;
   line-height: 24px;
 `;

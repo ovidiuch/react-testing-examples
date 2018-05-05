@@ -69,5 +69,5 @@ export class File extends Component<Props, State> {
 }
 
 const Container = Center.extend`
-  margin: 12px auto;
+  margin-bottom: 16px;
 `;

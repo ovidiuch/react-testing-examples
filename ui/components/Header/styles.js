@@ -15,13 +15,12 @@ export const IconButton = Button.extend`
     background-size: 20px;
     background-position: center center;
     background-repeat: no-repeat;
-    opacity: 0.6;
+    opacity: 0.7;
   }
 
   .label {
     padding-left: 2px;
     white-space: nowrap;
-    opacity: 0.8;
   }
 
   :hover {

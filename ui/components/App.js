@@ -8,6 +8,7 @@ import { Header } from './Header';
 import { AboutModal } from './AboutModal';
 import { SectionList } from './SectionList';
 import { Section } from './Section';
+import { Footer } from './Footer';
 
 import type { TTestFilter, TSetup, TTest, TSection } from '../types';
 
@@ -111,23 +112,26 @@ export class App extends Component<Props, State> {
             changeSearch={this.handleSearchChange}
           />
           <Content>
-            {showAboutModal && (
-              <AboutModal onClose={this.handleCloseAboutModal} />
-            )}
-            <SectionList
-              sections={sections}
-              searchText={searchText}
-              changeSearch={this.handleSearchChange}
-            />
-            {sections.map(section => (
-              <Section
-                key={getSectionKey(section)}
-                section={section}
-                testFilter={testFilter}
+            <ContentCenter>
+              <SectionList
+                sections={sections}
                 searchText={searchText}
+                changeSearch={this.handleSearchChange}
               />
-            ))}
+              {sections.map(section => (
+                <Section
+                  key={getSectionKey(section)}
+                  section={section}
+                  testFilter={testFilter}
+                  searchText={searchText}
+                />
+              ))}
+            </ContentCenter>
           </Content>
+          <Footer />
+          {showAboutModal && (
+            <AboutModal onClose={this.handleCloseAboutModal} />
+          )}
         </FileOptions.Provider>
       </GitCommit.Provider>
     );
@@ -143,9 +147,15 @@ const TopSpace = styled.div`
 `;
 
 const Content = styled.div`
+  background: #f5f7fa;
+  color: #20232a;
+`;
+
+const ContentCenter = styled.div`
   margin: 0 auto;
   box-sizing: border-box;
   padding: 2px 12px 0 12px;
   min-width: 320px;
   max-width: 1476px;
+  overflow: hidden;
 `;

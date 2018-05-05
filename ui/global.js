@@ -8,7 +8,8 @@ injectGlobal`
   html, body {
     margin: 0;
     padding: 0;
-    background: #f7f7f7;
+    background: #20232a;
+    color: #888e9c;
     font-family: -apple-system, BlinkMacSystemFont, Ubuntu, 'Helvetica Neue', Helvetica, sans-serif;
     font-size: 16px;
     font-smooth: always;

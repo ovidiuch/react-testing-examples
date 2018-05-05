@@ -26,10 +26,10 @@
   * [x] Add links next to section titles
   * [x] Add file actions to copy and open code in GH
   * [x] Create About modal
-  * [ ] Footer
+  * [x] Footer
   * [ ] Design no results screen
   * [ ] Mobile header
-  * [ ] Tweak colors
+  * [x] Tweak colors
 * [x] Load test title & description from README pages
 * [ ] Write copy
   * [x] Info overlay

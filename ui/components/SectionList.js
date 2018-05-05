@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { shouldSearch } from '../search';
 import { FuzzyHighlighter } from './shared/FuzzyHighlighter';
-import { CenterText, Paragraph, Link } from './shared/styles';
+import { CenterText, Paragraph, Link, List, ListItem } from './shared/styles';
 import { ToggleShow } from './shared/ToggleShow';
 import { ToggleButton } from './shared/ToggleButton';
 
@@ -81,18 +81,8 @@ export class SectionList extends Component<Props, State> {
     if (!sections.length) {
       return (
         <>
-          <Paragraph>
-            Start a{' '}
-            <Link
-              target="_blank"
-              href="https://github.com/skidding/react-testing-examples/issues/new"
-            >
-              conversation
-            </Link>{' '}
-            if you have an idea for a new testing example.
-          </Paragraph>
           <ContactParagraph>
-            Contact{' '}
+            WIP Contact{' '}
             <Link target="_blank" href="https://ovidiu.ch/">
               Ovidiu
             </Link>{' '}
@@ -103,20 +93,20 @@ export class SectionList extends Component<Props, State> {
     }
 
     return (
-      <List>
+      <CustomList>
         {sections.map(section => {
           const { name, info: { title } } =
             section.type === 'setup' ? section.setup : section.test;
 
           return (
-            <ListItem key={name}>
+            <CustomListItem key={name}>
               <Link href={`#${name}`}>
                 <FuzzyHighlighter searchText={searchText} targetText={title} />
               </Link>
-            </ListItem>
+            </CustomListItem>
           );
         })}
-      </List>
+      </CustomList>
     );
   }
 
@@ -132,37 +122,33 @@ export class SectionList extends Component<Props, State> {
 }
 
 const Container = CenterText.extend`
-  margin: 16px auto;
+  margin-top: 16px;
 `;
 
-export const List = styled.ul`
-  padding-left: 52px;
+const CustomList = List.extend`
+  margin: 0;
+  padding-top: 8px;
 `;
 
-export const ListItem = styled.li`
-  line-height: 24px;
-  margin: 4px 0;
-  color: #666;
+const CustomListItem = ListItem.extend`
+  color: #888e9c;
 `;
 
-const SearchHeader = styled.div`
+const SearchHeader = styled.p`
+  margin: 0;
   padding: 0 24px;
-  height: 36px;
   line-height: 36px;
+  white-space: nowrap;
 `;
 
 const ClearSearchBtn = styled.span`
-  opacity: 0.6;
+  opacity: 0.7;
 
   a {
-    color: #000;
+    color: #20232a;
   }
 `;
 
 const ContactParagraph = Paragraph.extend`
-  padding: 0 24px;
-  height: 36px;
-  line-height: 36px;
-  background: #ddd;
-  border-radius: 10px;
+  color: #888e9c;
 `;

@@ -28,7 +28,7 @@ const Container = styled.div`
   padding: 0 24px;
   height: 36px;
   line-height: 36px;
-  background: ${props => (props.isOpen ? 'transparent' : '#ddd')};
+  background: ${props => (props.isOpen ? 'transparent' : '#dde0e8')};
   border-radius: 10px;
   user-select: none;
   transition: background 0.3s;

@@ -12,7 +12,7 @@ export function AboutButton({ onClick }: Props) {
   return (
     <AboutIconButton icon={svgQuestion} onClick={onClick}>
       <span className="icon" />
-      <span className="label">What's this?</span>
+      <span className="label">About</span>
     </AboutIconButton>
   );
 }

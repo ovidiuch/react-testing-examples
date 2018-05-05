@@ -65,7 +65,8 @@ const Container = styled.div`
   padding: 0 12px;
   box-sizing: border-box;
   background: #fff;
-  box-shadow: 0 2px 0px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 0px 0px rgba(0, 0, 0, 0.1);
+  color: #20232a;
   overflow: hidden;
   z-index: 1;
 `;
@@ -87,9 +88,10 @@ const Title = styled.div`
     line-height: 48px;
     font-size: 28px;
     font-weight: 600;
+    opacity: 0.9;
 
     a {
-      color: #222;
+      color: #20232a;
       text-decoration: none;
     }
   }

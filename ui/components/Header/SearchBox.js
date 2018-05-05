@@ -60,7 +60,12 @@ const SearchInput = styled.input`
   padding: 4px 16px;
   border: 0;
   border-radius: 5px;
-  background: #e1e1e1;
+  background: #dde0e8;
+  color: #20232a;
   line-height: 24px;
   outline: none;
+
+  ::-webkit-input-placeholder {
+    color: rgb(32, 35, 42, 0.5);
+  }
 `;

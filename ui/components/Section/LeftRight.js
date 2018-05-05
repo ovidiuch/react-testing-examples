@@ -15,13 +15,19 @@ export class LeftRight extends Component<Props> {
     const { left, right } = this.props;
 
     return (
-      <Clear>
+      <Container>
         <Left>{left}</Left>
         <Right>{right}</Right>
-      </Clear>
+      </Container>
     );
   }
 }
+
+const Container = styled.div`
+  @media (min-width: 1120px) {
+    overflow: hidden;
+  }
+`;
 
 const Left = styled.div`
   @media (min-width: 1120px) {
@@ -34,11 +40,5 @@ const Right = styled.div`
   @media (min-width: 1120px) {
     float: right;
     width: calc(50% - 6px);
-  }
-`;
-
-const Clear = styled.div`
-  @media (min-width: 1120px) {
-    overflow: hidden;
   }
 `;
