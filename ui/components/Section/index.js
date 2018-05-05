@@ -15,9 +15,13 @@ type Props = {
 };
 
 export function Section({ section, testFilter, searchText }: Props) {
-  return section.type === 'setup'
-    ? renderSetup(section.setup, testFilter, searchText)
-    : renderTest(section.test, testFilter, searchText);
+  return (
+    <SectionContainer>
+      {section.type === 'setup'
+        ? renderSetup(section.setup, testFilter, searchText)
+        : renderTest(section.test, testFilter, searchText)}
+    </SectionContainer>
+  );
 }
 
 function renderSetup(
@@ -58,8 +62,12 @@ function LinkableSection({ id, children }: LinkableSectionProps) {
   );
 }
 
+const SectionContainer = styled.div`
+  margin-top: 48px;
+`;
+
 // XXX: Hack for #links to jump to content under sticky header
 const SectionLocation = styled.div`
   position: absolute;
-  margin-top: -80px;
+  margin-top: -128px;
 `;

@@ -1,9 +1,10 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Description, Paragraph } from '../../styles';
+import { CenterText, Paragraph } from '../shared/styles';
 import { FuzzyHighlighter } from '../shared/FuzzyHighlighter';
 import { File } from '../File';
+import { SectionDescription } from './styles';
 import { TitleLink } from './TitleLink';
 import { LeftRight } from './LeftRight';
 
@@ -22,12 +23,14 @@ export class Test extends Component<Props> {
 
     return (
       <>
-        <TitleLink link={name}>
-          <FuzzyHighlighter searchText={searchText} targetText={title} />
-        </TitleLink>
-        <Description>
-          {description.map((p, idx) => <Paragraph key={idx}>{p}</Paragraph>)}
-        </Description>
+        <CenterText>
+          <TitleLink link={name}>
+            <FuzzyHighlighter searchText={searchText} targetText={title} />
+          </TitleLink>
+          <SectionDescription>
+            {description.map((p, idx) => <Paragraph key={idx}>{p}</Paragraph>)}
+          </SectionDescription>
+        </CenterText>
         <File
           name="components.js"
           filePath={`${name}/components.js`}

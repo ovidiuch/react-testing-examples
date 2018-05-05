@@ -25,7 +25,7 @@
     * [x] Show best matches first
   * [x] Add links next to section titles
   * [x] Add file actions to copy and open code in GH
-  * [ ] Info overlay (?)
+  * [x] Create About modal
   * [ ] Footer
   * [ ] Design no results screen
   * [ ] Mobile header

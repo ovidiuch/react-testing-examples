@@ -2,9 +2,9 @@
 
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { CenterText, Paragraph, Link } from '../styles';
 import { shouldSearch } from '../search';
 import { FuzzyHighlighter } from './shared/FuzzyHighlighter';
+import { CenterText, Paragraph, Link } from './shared/styles';
 import { ToggleShow } from './shared/ToggleShow';
 import { ToggleButton } from './shared/ToggleButton';
 

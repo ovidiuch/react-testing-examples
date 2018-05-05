@@ -16,12 +16,16 @@ injectGlobal`
     -moz-osx-font-smoothing: grayscale;
   }
 
-  ul, li, p, h1, h2, input, select {
+  body.with-modal {
+    overflow: hidden;
+  }
+
+  ul, ol, li, p, h1, h2, input, button, select {
     margin: 0;
     padding: 0;
   }
 
-  input, select {
+  input, button, select {
     font-family: -apple-system, BlinkMacSystemFont, Ubuntu, 'Helvetica Neue', Helvetica, sans-serif;
     font-size: 16px;
   }

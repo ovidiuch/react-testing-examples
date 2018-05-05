@@ -6,6 +6,7 @@ import Clipboard from 'clipboard';
 import { GitCommit } from '../../contexts';
 import svgClippy from '../../svg/clippy.svg';
 import svgLinkExternal from '../../svg/link-external.svg';
+import { Button } from '../shared/styles';
 
 const { now } = Date;
 
@@ -99,19 +100,15 @@ const Container = styled.div`
   padding-top: 2px;
 `;
 
-const Action = styled.button`
-  border: 0;
+const Action = Button.extend`
   width: 32px;
   height: 32px;
-  background-color: transparent;
   background-size: 16px;
   background-position: 8px 6px;
   background-repeat: no-repeat;
   border-radius: 2px;
-  cursor: pointer;
   opacity: 0.5;
   transition: opacity 0.3s;
-  outline: none;
 
   :hover {
     opacity: 0.8;

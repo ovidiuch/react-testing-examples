@@ -12,16 +12,19 @@ export const CenterText = Center.extend`
   padding: 0 24px;
 `;
 
-export const SectionTitle = CenterText.withComponent('h2').extend`
-  margin: 48px auto 24px auto;
+export const H2 = styled.h2`
+  margin: 32px 0 24px 0;
   font-size: 28px;
-  line-height: 32px;
+  line-height: 36px;
   font-weight: 300;
   opacity: 0.75;
 `;
 
-export const Description = CenterText.extend`
-  margin: 24px auto;
+export const H3 = styled.h3`
+  margin: 24px auto 16px 0;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
 `;
 
 export const Paragraph = styled.p`
@@ -31,6 +34,20 @@ export const Paragraph = styled.p`
 
 export const Link = styled.a`
   color: #0366d6;
-  text-decoration: none;
   font-weight: 500;
+  text-decoration: none;
+
+  :hover,
+  :active {
+    text-decoration: underline;
+  }
+`;
+
+export const Button = styled.button`
+  border: 0;
+  background: none;
+  color: #000;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
 `;

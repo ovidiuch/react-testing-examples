@@ -1,8 +1,8 @@
 // @flow
 
 import React from 'react';
-import { SectionTitle } from '../../styles';
 import svgLink from '../../svg/link.svg';
+import { H2 } from '../shared/styles';
 
 import type { Node } from 'react';
 
@@ -20,7 +20,7 @@ export function TitleLink({ link, children }: Props) {
   );
 }
 
-const Container = SectionTitle.extend`
+const Container = H2.extend`
   a {
     position: absolute;
     width: 24px;
