@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import WhatsThis from '../../WHATSTHIS.md';
-import { Center, H2, H3, Button, Paragraph, Link } from './shared/styles';
+import { CenterText, H2, H3, Button, Paragraph, Link } from './shared/styles';
 
 type Props = {
   onClose: () => mixed
@@ -51,8 +51,7 @@ const Overlay = styled.div`
   overflow-y: auto;
 `;
 
-const Content = Center.extend`
-  padding: 0 32px;
+const Content = CenterText.extend`
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.2);
