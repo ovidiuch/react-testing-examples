@@ -15,7 +15,7 @@ type Props = {
 export class Setup extends Component<Props> {
   render() {
     const { setup, searchText } = this.props;
-    const { name, readme, files: { jest, enzyme } } = setup;
+    const { name, readme, code: { jest, enzyme } } = setup;
 
     return (
       <>

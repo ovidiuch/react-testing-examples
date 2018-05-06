@@ -2,8 +2,6 @@
 
 import type { ComponentType } from 'react';
 
-type RawFile = string;
-
 export type TTestFilter = 'enzyme' | 'cosmos';
 
 export type TReadmeText = {
@@ -19,25 +17,24 @@ export type TReadme = {
 export type TSetup = {
   name: string,
   readme: TReadme,
-  files: {
-    jest: RawFile,
-    enzyme: RawFile
+  code: {
+    jest: string,
+    enzyme: string
   }
 };
 
-// TODO: Rename files to code
 export type TTest = {
   name: string,
   readme: TReadme,
-  files: {
-    components: RawFile,
+  code: {
+    components: string,
     enzyme: {
-      test: RawFile
+      test: string
     },
     cosmos: {
-      test: RawFile,
-      fixture: RawFile,
-      proxies?: RawFile
+      test: string,
+      fixture: string,
+      proxies?: string
     }
   }
 };

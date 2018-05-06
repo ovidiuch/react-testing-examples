@@ -17,7 +17,7 @@ type Props = {
 export class Test extends Component<Props> {
   render() {
     const { test, testFilter, searchText } = this.props;
-    const { name, readme, files: { components } } = test;
+    const { name, readme, code: { components } } = test;
 
     return (
       <>
@@ -36,8 +36,8 @@ export class Test extends Component<Props> {
   }
 
   renderTestFiles(test: TTest, testFilter: TTestFilter) {
-    let { name, files } = test;
-    let { enzyme, cosmos } = files;
+    let { name, code } = test;
+    let { enzyme, cosmos } = code;
 
     switch (testFilter) {
       case 'enzyme':

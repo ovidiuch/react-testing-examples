@@ -13,7 +13,7 @@ export default createFixture({
         text: require('!../../server/readme-text-loader!../../../4-redux/README.md'),
         markup: require('../../../4-redux/README.md').default
       },
-      files: {
+      code: {
         components: require('!raw-loader!../../../4-redux/components'),
         enzyme: {
           test: require('!raw-loader!../../../4-redux/enzyme.test')

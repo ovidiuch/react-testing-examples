@@ -13,7 +13,7 @@ export default createFixture({
         text: require('!../server/readme-text-loader!../../SETUP.md'),
         markup: require('../../SETUP.md').default
       },
-      files: {
+      code: {
         jest: require('!raw-loader!../../jest.setup'),
         enzyme: require('!raw-loader!../../enzyme.setup')
       }
@@ -25,7 +25,7 @@ export default createFixture({
           text: require('!../server/readme-text-loader!../../1-click-callback/README.md'),
           markup: require('../../1-click-callback/README.md').default
         },
-        files: {
+        code: {
           components: require('!raw-loader!../../1-click-callback/components'),
           enzyme: {
             test: require('!raw-loader!../../1-click-callback/enzyme.test')
@@ -42,7 +42,7 @@ export default createFixture({
           text: require('!../server/readme-text-loader!../../2-render-text/README.md'),
           markup: require('../../2-render-text/README.md').default
         },
-        files: {
+        code: {
           components: require('!raw-loader!../../2-render-text/components'),
           enzyme: {
             test: require('!raw-loader!../../2-render-text/enzyme.test')
@@ -59,7 +59,7 @@ export default createFixture({
           text: require('!../server/readme-text-loader!../../3-local-state/README.md'),
           markup: require('../../3-local-state/README.md').default
         },
-        files: {
+        code: {
           components: require('!raw-loader!../../3-local-state/components'),
           enzyme: {
             test: require('!raw-loader!../../3-local-state/enzyme.test')
@@ -76,7 +76,7 @@ export default createFixture({
           text: require('!../server/readme-text-loader!../../4-redux/README.md'),
           markup: require('../../4-redux/README.md').default
         },
-        files: {
+        code: {
           components: require('!raw-loader!../../4-redux/components'),
           enzyme: {
             test: require('!raw-loader!../../4-redux/enzyme.test')
@@ -94,7 +94,7 @@ export default createFixture({
           text: require('!../server/readme-text-loader!../../5-react-router/README.md'),
           markup: require('../../5-react-router/README.md').default
         },
-        files: {
+        code: {
           components: require('!raw-loader!../../5-react-router/components'),
           enzyme: {
             test: require('!raw-loader!../../5-react-router/enzyme.test')
@@ -112,7 +112,7 @@ export default createFixture({
           text: require('!../server/readme-text-loader!../../6-xhr/README.md'),
           markup: require('../../6-xhr/README.md').default
         },
-        files: {
+        code: {
           components: require('!raw-loader!../../6-xhr/components'),
           enzyme: {
             test: require('!raw-loader!../../6-xhr/enzyme.test')
@@ -130,7 +130,7 @@ export default createFixture({
           text: require('!../server/readme-text-loader!../../7-fetch/README.md'),
           markup: require('../../7-fetch/README.md').default
         },
-        files: {
+        code: {
           components: require('!raw-loader!../../7-fetch/components'),
           enzyme: {
             test: require('!raw-loader!../../7-fetch/enzyme.test')
@@ -148,7 +148,7 @@ export default createFixture({
           text: require('!../server/readme-text-loader!../../8-localstorage/README.md'),
           markup: require('../../8-localstorage/README.md').default
         },
-        files: {
+        code: {
           components: require('!raw-loader!../../8-localstorage/components'),
           enzyme: {
             test: require('!raw-loader!../../8-localstorage/enzyme.test')
