@@ -1,3 +1,5 @@
 ## Local component state
 
-A fixture is a JS object used to mock component input and external dependencies. The input can be props, children, state and context. With the help of proxies, fixtures can mock anything else a component depends on, from API responses to localStorage.
+The component reads and updates a counter from its local state.
+
+We test that the component renders the `count` state value. Then we click on the increment button, which updates the local state, and test that the component now renders the incremented value.

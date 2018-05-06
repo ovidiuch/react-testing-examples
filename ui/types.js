@@ -18,7 +18,10 @@ export type TSetup = {
   name: string,
   readme: TReadme,
   code: {
-    jest: string,
+    jest: {
+      config: string,
+      setup: string
+    },
     enzyme: string
   }
 };

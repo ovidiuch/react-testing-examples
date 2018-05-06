@@ -22,7 +22,12 @@ export class Setup extends Component<Props> {
         <CenterText>
           <Readme name={name} readme={readme} searchText={searchText} />
         </CenterText>
-        <File name="jest.setup.js" filePath="jest.setup.js" code={jest} />
+        <File
+          name="jest.config.js"
+          filePath="jest.config.js"
+          code={jest.config}
+        />
+        <File name="jest.setup.js" filePath="jest.setup.js" code={jest.setup} />
         <File name="enzyme.setup.js" filePath="enzyme.setup.js" code={enzyme} />
       </>
     );

@@ -31,11 +31,12 @@
   * [ ] Mobile header
   * [x] Tweak colors
 * [x] Load test title & description from README pages
-* [ ] Write copy
+* [x] Write copy
   * [x] Info overlay
     * [x] Opinionated test style (integration / abstract libs)
     * [x] Cosmos vs non-Cosmos
-  * [ ] Test READMEs
+  * [x] Test READMEs
 * [ ] Create build script
+* [ ] PUBLISH
 * [ ] Create fixtures for UI components
 * [ ] Config Playground for tests

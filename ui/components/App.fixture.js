@@ -14,7 +14,10 @@ export default createFixture({
         markup: require('../../SETUP.md').default
       },
       code: {
-        jest: require('!raw-loader!../../jest.setup'),
+        jest: {
+          config: require('!raw-loader!../../jest.config'),
+          setup: require('!raw-loader!../../jest.setup')
+        },
         enzyme: require('!raw-loader!../../enzyme.setup')
       }
     },

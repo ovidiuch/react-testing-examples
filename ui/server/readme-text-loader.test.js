@@ -11,8 +11,8 @@ it('extracts title', () => {
 
 it('extracts body', () => {
   expect(json.body).toEqual([
-    'The component is connected to React Router. It renders a variable text containing a URL parameter, as well as a Link to go to another location.',
-    "First we check that the component's render output contains a param from the initial URL. Then we check that by clicking on the Link, the URL param from the new location is rendered, which proves that the page has successfully changed.",
-    'A different strategy would be to simply check the to prop of the rendered Link element. That\'s also fine, but this test is closer to how a user thinks: "Click on a link, the page behind that link is rendered". This sort of thinking makes tests more resilient against implementation changes, like changing the router library.'
+    'The component is connected to React Router. It renders a variable text containing a URL parameter, as well as a Link to another location.',
+    'First we make sure the component renders a param from the initial URL. Then we check that upon clicking on the Link element, the URL param from the new location is rendered, which proves that the page has successfully routed.',
+    `Alternatively, we could just test the to prop of the Link element. That's also fine, but this test is closer to how a user thinks. Eg. "Click on a link, the page behind that link is rendered." This type of thinking makes tests more resilient against implementation changes, like upgrading the router library to a new API.`
   ]);
 });

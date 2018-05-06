@@ -1,3 +1,3 @@
 ## Text with prop value is rendered
 
-A fixture is a JS object used to mock component input and external dependencies. The input can be props, children, state and context. With the help of proxies, fixtures can mock anything else a component depends on, from API responses to localStorage.
+The component renders variable text based on a string prop. We test that the component renders the value of the passed prop.
