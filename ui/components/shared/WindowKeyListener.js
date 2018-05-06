@@ -26,3 +26,6 @@ export class WindowKeyListener extends Component<Props> {
     return this.props.children;
   }
 }
+
+export const KEY_S = 83;
+export const KEY_ESC = 27;

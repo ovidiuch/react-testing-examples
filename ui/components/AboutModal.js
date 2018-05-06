@@ -4,37 +4,45 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import WhatsThis from '../../WHATSTHIS.md';
 import { CenterText, H2, H3, Button, Paragraph, Link } from './shared/styles';
+import { WindowKeyListener, KEY_ESC } from './shared/WindowKeyListener';
 
 type Props = {
   onClose: () => mixed
 };
 
-// TODO: Close on ESC
 export class AboutModal extends Component<Props> {
   handleContentClick = (e: SyntheticEvent<HTMLElement>) => {
     e.stopPropagation();
+  };
+
+  handleKeyDown = (e: SyntheticKeyboardEvent<HTMLElement>) => {
+    if (e.keyCode === KEY_ESC) {
+      this.props.onClose();
+    }
   };
 
   render() {
     let { onClose } = this.props;
 
     return (
-      <Overlay onClick={onClose}>
-        <Content onClick={this.handleContentClick}>
-          <WhatsThis
-            components={{
-              h2: H2,
-              h3: H3,
-              p: Paragraph,
-              a: props => <SubtleLink target="_blank" {...props} />,
-              ol: OpinionsList
-            }}
-          />
-          <ButtonContainer>
-            <GoButton onClick={onClose}>Show me some tests</GoButton>
-          </ButtonContainer>
-        </Content>
-      </Overlay>
+      <WindowKeyListener onKeyDown={this.handleKeyDown}>
+        <Overlay onClick={onClose}>
+          <Content onClick={this.handleContentClick}>
+            <WhatsThis
+              components={{
+                h2: H2,
+                h3: H3,
+                p: Paragraph,
+                a: props => <SubtleLink target="_blank" {...props} />,
+                ol: OpinionsList
+              }}
+            />
+            <ButtonContainer>
+              <GoButton onClick={onClose}>Show me some tests</GoButton>
+            </ButtonContainer>
+          </Content>
+        </Overlay>
+      </WindowKeyListener>
     );
   }
 }

@@ -2,15 +2,12 @@
 
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { WindowKeyListener } from './WindowKeyListener';
+import { WindowKeyListener, KEY_S, KEY_ESC } from '../shared/WindowKeyListener';
 
 type Props = {
   searchText: string,
   onChange: (searchText: string) => mixed
 };
-
-const KEY_S = 83;
-const KEY_ESC = 27;
 
 export class SearchBox extends Component<Props> {
   searchInput: ?HTMLInputElement;
