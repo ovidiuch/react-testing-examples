@@ -42,7 +42,7 @@
       }
     },
     {
-      "files": ["**/*.fixture.js"],
+      "files": ["ui/**/*.fixture.js", "ui/import-files.js"],
       "globals": {
         "require": true
       }
