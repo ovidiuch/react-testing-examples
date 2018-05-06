@@ -63,12 +63,16 @@ const Overlay = styled.div`
 const Content = CenterText.extend`
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 15px 0 rgba(32, 35, 42, 0.2);
   overflow: hidden;
+  padding: 8px 24px 16px 24px;
+
+  @media (min-width: 480px) {
+    padding: 8px 36px 16px 36px;
+  }
 `;
 
 const ButtonContainer = styled.div`
-  margin: 16px 0;
   text-align: right;
 `;
 
@@ -83,9 +87,9 @@ const SubtleLink = Link.extend`
 
 const GoButton = Button.extend`
   display: inline-block;
-  padding: 12px 16px;
+  padding: 12px 20px;
   border-radius: 5px;
   background: #2b51ad;
-  color: #f5f7fa;
+  color: #f5f7f9;
   line-height: 24px;
 `;

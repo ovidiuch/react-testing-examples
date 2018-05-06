@@ -65,7 +65,7 @@ const Container = styled.div`
   padding: 0 12px;
   box-sizing: border-box;
   background: #fff;
-  box-shadow: 0 2px 0px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 0px 0px rgba(32, 35, 42, 0.15);
   color: #20232a;
   overflow: hidden;
   z-index: 1;

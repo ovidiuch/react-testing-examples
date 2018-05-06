@@ -149,7 +149,7 @@ const TopSpace = styled.div`
 `;
 
 const Content = styled.div`
-  background: #f5f7fa;
+  background: #f5f7f9;
   color: #20232a;
 `;
 

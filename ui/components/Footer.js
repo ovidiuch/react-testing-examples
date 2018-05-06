@@ -32,7 +32,7 @@ export function Footer() {
             </SubtleLink>
           </ListItem>
         </LinksList>
-        <Paragraph>Take care!</Paragraph>
+        <Paragraph>Happy testing!</Paragraph>
       </CenterText>
     </Container>
   );

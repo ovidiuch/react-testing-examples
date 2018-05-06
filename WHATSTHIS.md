@@ -4,7 +4,7 @@ Writing and presenting these tests took a lot of work. I hope it will make your 
 
 ### Working tests
 
-The test examples run in [CircleCI](https://circleci.com/gh/skidding/react-testing-examples) and this searchable library is generated from independent test files [available on GitHub](https://github.com/skidding/react-testing-examples). This is convenient and cool!
+The test examples run in [CircleCI](https://circleci.com/gh/skidding/react-testing-examples) and this searchable library is generated from README and test files [available on GitHub](https://github.com/skidding/react-testing-examples). This is convenient and cool!
 
 ### Opinionated tests
 

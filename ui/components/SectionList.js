@@ -129,6 +129,7 @@ const Container = CenterText.extend`
 const CustomList = List.extend`
   margin: 0;
   padding-top: 8px;
+  padding-left: 24px;
 `;
 
 const CustomListItem = ListItem.extend`
