@@ -1,5 +1,5 @@
 let inlineImportOpts = {
-  extensions: ['.svg']
+  extensions: ['.png', '.svg']
 };
 
 module.exports = {

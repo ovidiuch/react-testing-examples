@@ -25,7 +25,6 @@ export const Button = styled.button`
   border: 0;
   background: none;
   color: #20232a;
-  font-weight: 500;
   cursor: pointer;
   outline: none;
 `;

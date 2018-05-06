@@ -27,7 +27,7 @@
   * [x] Add file actions to copy and open code in GH
   * [x] Create About modal
   * [x] Footer
-  * [ ] Design no results screen
+  * [x] Design no results screen
   * [ ] Mobile header
   * [x] Tweak colors
 * [x] Load test title & description from README pages
@@ -37,6 +37,7 @@
     * [x] Cosmos vs non-Cosmos
   * [x] Test READMEs
 * [ ] Create build script
+  * [ ] Point to latest commit SHA
 * [ ] PUBLISH
 * [ ] Create fixtures for UI components
 * [ ] Config Playground for tests

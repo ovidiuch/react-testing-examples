@@ -49,7 +49,6 @@ const SelectContainer = styled.div`
   background-position: calc(100% - 5px) 6px;
   background-repeat: no-repeat;
   line-height: 24px;
-  font-weight: 500;
   white-space: nowrap;
 
   :hover {
@@ -67,7 +66,6 @@ const Select = styled.select`
   border-radius: 0;
   background: transparent;
   line-height: 24px;
-  font-weight: 500;
   white-space: nowrap;
   cursor: pointer;
   appearance: none;

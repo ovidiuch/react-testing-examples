@@ -3,6 +3,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { shouldSearch } from '../search';
+import svgInfo from '../svg/info.svg';
+import pngThinkin from '../img/thinkin.png';
 import { FuzzyHighlighter } from './shared/FuzzyHighlighter';
 import { CenterText, Paragraph, Link, List, ListItem } from './shared/styles';
 import { ToggleShow } from './shared/ToggleShow';
@@ -81,12 +83,16 @@ export class SectionList extends Component<Props, State> {
     if (!sections.length) {
       return (
         <>
+          <ThinkinFace />
           <ContactParagraph>
-            WIP Contact{' '}
-            <Link target="_blank" href="https://ovidiu.ch/">
-              Ovidiu
-            </Link>{' '}
-            if you need help testing React components.
+            <span className="icon" />
+            <span className="text">
+              Contact{' '}
+              <Link target="_blank" href="https://ovidiu.ch/">
+                Ovidiu
+              </Link>{' '}
+              if you need help testing React components
+            </span>
           </ContactParagraph>
         </>
       );
@@ -138,9 +144,8 @@ const CustomListItem = ListItem.extend`
 
 const SearchHeader = styled.p`
   margin: 0;
-  padding: 0 24px;
-  line-height: 36px;
-  white-space: nowrap;
+  padding: 6px 24px;
+  line-height: 24px;
 `;
 
 const ClearSearchBtn = styled.span`
@@ -148,9 +153,53 @@ const ClearSearchBtn = styled.span`
 
   a {
     color: #20232a;
+    white-space: nowrap;
+  }
+`;
+
+const ThinkinFace = styled.div`
+  margin: 32px auto;
+  width: 140px;
+  height: 140px;
+  background: #20232a url(${pngThinkin}) no-repeat center center;
+  background-size: 140px 140px;
+  background-blend-mode: luminosity;
+  opacity: 0;
+  filter: blur(16px);
+  animation: fadeIn 1s forwards;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      filter: blur(16px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+    }
   }
 `;
 
 const ContactParagraph = Paragraph.extend`
-  color: #888e9c;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 24px 0;
+
+  .icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
+    background: url(${svgInfo});
+    background-size: 20px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+
+  .text {
+    color: rgba(32, 35, 42, 0.7);
+  }
 `;
