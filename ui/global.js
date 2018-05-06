@@ -12,9 +12,6 @@ injectGlobal`
     color: #888e9c;
     font-family: -apple-system, BlinkMacSystemFont, Ubuntu, 'Helvetica Neue', Helvetica, sans-serif;
     font-size: 16px;
-    font-smooth: always;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 
   body.with-modal {

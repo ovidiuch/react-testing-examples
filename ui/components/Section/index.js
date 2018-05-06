@@ -64,6 +64,8 @@ function LinkableSection({ id, children }: LinkableSectionProps) {
 
 const SectionContainer = styled.div`
   margin-top: 48px;
+  background: #f5f7f9;
+  color: #20232a;
 `;
 
 // XXX: Hack for #links to jump to content under sticky header
