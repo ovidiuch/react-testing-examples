@@ -19,4 +19,10 @@ export function GithubLink() {
 
 const GithubIconLink = IconButton.withComponent('a').extend`
   margin-left: 12px;
+
+  @media (max-width: 359px) {
+    .label {
+      display: none;
+    }
+  }
 `;

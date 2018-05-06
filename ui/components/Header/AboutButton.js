@@ -19,4 +19,9 @@ export function AboutButton({ onClick }: Props) {
 
 const AboutIconButton = IconButton.extend`
   margin-left: 12px;
+
+  @media (max-width: 399px) {
+    .label {
+      display: none;
+    }
 `;

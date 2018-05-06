@@ -103,6 +103,7 @@ const Container = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
+  min-width: 320px;
   height: 80px;
   padding: 0 12px;
   box-sizing: border-box;
@@ -191,6 +192,7 @@ const MobileShowFilters = Button.extend`
   right: 0;
   width: 48px;
   height: 48px;
+  background: rgba(255, 255, 255, 0.9);
   background-image: url(${svgSettings});
   background-size: 32px;
   background-position: center center;
