@@ -55,7 +55,7 @@ const Overlay = styled.div`
   right: 0;
   z-index: 2;
   padding: 32px 12px;
-  background: rgb(221, 224, 232, 0.9);
+  background: rgba(221, 224, 232, 0.9);
   overflow-x: hidden;
   overflow-y: auto;
 `;

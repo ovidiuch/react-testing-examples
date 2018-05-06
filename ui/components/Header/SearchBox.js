@@ -63,6 +63,6 @@ const SearchInput = styled.input`
   outline: none;
 
   ::-webkit-input-placeholder {
-    color: rgb(32, 35, 42, 0.5);
+    color: rgba(32, 35, 42, 0.5);
   }
 `;

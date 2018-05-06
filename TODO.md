@@ -13,7 +13,7 @@
 * [x] Config CircleCI
 * [x] Colocate Cosmos proxies with tests
 * [x] Add Flow
-* [ ] Create UI
+* [x] Create UI
   * [x] Syntax highlight (with line highlight)
   * [x] Sticky header
   * [x] Highlight and create fixtures for all tests
