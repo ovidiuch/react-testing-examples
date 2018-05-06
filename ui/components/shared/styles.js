@@ -50,6 +50,25 @@ export const Paragraph = styled.p`
   line-height: 24px;
 `;
 
+export const Blockquote = styled.blockquote`
+  margin: 0 0 16px 0;
+  padding: 0 0 0 16px;
+  border-left: 4px solid #dde0e8;
+
+  p {
+    color: rgba(32, 35, 42, 0.7);
+  }
+`;
+
+export const InlineCode = styled.code`
+  padding: 3px 6px;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+  font-size: 14px;
+  background-color: rgba(221, 224, 232, 0.7);
+  border-radius: 3px;
+`;
+
 export const List = styled.ul`
   margin: 8px 0 16px 0;
   padding-left: 48px;

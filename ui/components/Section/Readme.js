@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Paragraph } from '../shared/styles';
+import { Paragraph, Link, Blockquote, InlineCode } from '../shared/styles';
 import { FuzzyHighlighter } from '../shared/FuzzyHighlighter';
 import { TitleLink } from './TitleLink';
 
@@ -30,7 +30,10 @@ export class Readme extends Component<Props> {
                 />
               </TitleLink>
             ),
-            p: Paragraph
+            p: Paragraph,
+            blockquote: Blockquote,
+            inlineCode: InlineCode,
+            a: props => <Link target="_blank" {...props} />
           }}
         />
       </Container>

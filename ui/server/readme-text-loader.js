@@ -28,7 +28,7 @@ function getBody(nodes) {
   return traverse.reduce(
     nodes,
     (ps, node) => {
-      return node.type === 'paragraph' ? [...ps, getParagraphText(node)] : ps;
+      return isParagraphNode(node) ? [...ps, getParagraphText(node)] : ps;
     },
     []
   );
@@ -44,6 +44,10 @@ function getParagraphText(node) {
 
 const TEXT_NODES = ['text', 'inlineCode'];
 
+function isParagraphNode(node) {
+  return node && node.type === 'paragraph';
+}
+
 function isTextNode(node) {
-  return TEXT_NODES.indexOf(node.type) !== -1;
+  return node && TEXT_NODES.indexOf(node.type) !== -1;
 }
