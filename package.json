@@ -51,6 +51,7 @@
     "redux": "^4.0.0",
     "remark-parse": "^5.0.0",
     "style-loader": "^0.21.0",
+    "traverse": "^0.6.6",
     "unified": "^6.2.0",
     "webpack": "^4.6.0",
     "xhr-mock": "^2.3.2"

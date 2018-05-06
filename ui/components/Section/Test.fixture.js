@@ -9,7 +9,10 @@ export default createFixture({
   props: {
     test: {
       name: 'redux',
-      info: require('../../../4-redux/README.md'),
+      readme: {
+        text: require('!../../server/readme-text-loader!../../../4-redux/README.md'),
+        markup: require('../../../4-redux/README.md').default
+      },
       files: {
         components: require('!raw-loader!../../../4-redux/components'),
         enzyme: {

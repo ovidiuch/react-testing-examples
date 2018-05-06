@@ -2,45 +2,48 @@
 
 import { match, score } from 'fuzzaldrin-plus';
 
-import type { TInfo, TSection } from './types';
+import type { TReadmeText, TSection } from './types';
 
 export function shouldSearch(searchText: string) {
   return searchText.length > 2;
 }
 
-export function matchInfo({ title, description }: TInfo, searchText: string) {
+export function matchReadmeText(
+  { title, body }: TReadmeText,
+  searchText: string
+) {
   let searchTextNorm = normalizeTxt(searchText);
 
   return (
     match(title, searchText).length > 0 ||
-    description.some(p => normalizeTxt(p).indexOf(searchTextNorm) !== -1)
+    body.some(p => normalizeTxt(p).indexOf(searchTextNorm) !== -1)
   );
 }
 
 export function sortSections(sections: Array<TSection>, searchText: string) {
   let sorted: Array<TSection> = [...sections]
-    .sort((a, b) => sortByDesc(b, searchText) - sortByDesc(a, searchText))
-    .sort((a, b) => sortByTitle(b, searchText) - sortByTitle(a, searchText));
+    .sort((a, b) => scoreByBody(b, searchText) - scoreByBody(a, searchText))
+    .sort((a, b) => scoreByTitle(b, searchText) - scoreByTitle(a, searchText));
 
   return sorted;
 }
 
-function normalizeTxt(txt: string) {
+function normalizeTxt(txt: string): string {
   return txt.toLowerCase().replace(/\s/g, '');
 }
 
-function sortByTitle(section: TSection, searchText: string) {
-  return sortBy(section, ({ title }) => score(title, searchText));
+function scoreByTitle(section: TSection, searchText: string): number {
+  return scoreBy(section, ({ title }) => score(title, searchText));
 }
 
-function sortByDesc(section: TSection, searchText: string) {
-  return sortBy(section, ({ description }) =>
-    Math.max(0, ...description.map(p => score(p, searchText)))
+function scoreByBody(section: TSection, searchText: string): number {
+  return scoreBy(section, ({ body }) =>
+    Math.max(0, ...body.map(p => score(p, searchText)))
   );
 }
 
-function sortBy(section: TSection, cb: (info: TInfo) => number) {
-  const { info } = section.type === 'setup' ? section.setup : section.test;
+function scoreBy(section: TSection, cb: (info: TReadmeText) => number): number {
+  const { readme } = section.type === 'setup' ? section.setup : section.test;
 
-  return cb(info);
+  return cb(readme.text);
 }

@@ -1,26 +1,34 @@
 // @flow
 
+import type { ComponentType } from 'react';
+
 type RawFile = string;
 
 export type TTestFilter = 'enzyme' | 'cosmos';
 
-export type TInfo = {
+export type TReadmeText = {
   title: string,
-  description: Array<string>
+  body: Array<string>
+};
+
+export type TReadme = {
+  text: TReadmeText,
+  markup: ComponentType<*>
 };
 
 export type TSetup = {
   name: string,
-  info: TInfo,
+  readme: TReadme,
   files: {
     jest: RawFile,
     enzyme: RawFile
   }
 };
 
+// TODO: Rename files to code
 export type TTest = {
   name: string,
-  info: TInfo,
+  readme: TReadme,
   files: {
     components: RawFile,
     enzyme: {

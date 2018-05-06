@@ -1,12 +1,10 @@
 // @flow
 
 import React, { Component } from 'react';
-import { CenterText, Paragraph } from '../shared/styles';
-import { FuzzyHighlighter } from '../shared/FuzzyHighlighter';
+import { CenterText } from '../shared/styles';
 import { File } from '../File';
-import { SectionDescription } from './styles';
-import { TitleLink } from './TitleLink';
 import { LeftRight } from './LeftRight';
+import { Readme } from './Readme';
 
 import type { TTestFilter, TTest } from '../../types';
 
@@ -19,17 +17,12 @@ type Props = {
 export class Test extends Component<Props> {
   render() {
     const { test, testFilter, searchText } = this.props;
-    const { name, info: { title, description }, files: { components } } = test;
+    const { name, readme, files: { components } } = test;
 
     return (
       <>
         <CenterText>
-          <TitleLink link={name}>
-            <FuzzyHighlighter searchText={searchText} targetText={title} />
-          </TitleLink>
-          <SectionDescription>
-            {description.map((p, idx) => <Paragraph key={idx}>{p}</Paragraph>)}
-          </SectionDescription>
+          <Readme name={name} readme={readme} searchText={searchText} />
         </CenterText>
         <File
           name="components.js"

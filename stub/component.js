@@ -1,3 +1,3 @@
 /* @flow */
 
-module.exports = () => {};
+export default () => {};

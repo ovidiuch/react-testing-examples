@@ -95,8 +95,9 @@ export class SectionList extends Component<Props, State> {
     return (
       <CustomList>
         {sections.map(section => {
-          const { name, info: { title } } =
+          let { name, readme } =
             section.type === 'setup' ? section.setup : section.test;
+          let { title } = readme.text;
 
           return (
             <CustomListItem key={name}>

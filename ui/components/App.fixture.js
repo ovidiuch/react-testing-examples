@@ -9,11 +9,9 @@ export default createFixture({
     commitSha: '24c2bd39be7cb2a5e17a671e5535525e364f8aaa',
     setup: {
       name: 'setup',
-      info: {
-        title: 'Setup',
-        description: [
-          'A fixture is a JS object used to mock component input and external dependencies. The input can be props, children, state and context. With the help of proxies, fixtures can mock anything else a component depends on, from API responses to localStorage.'
-        ]
+      readme: {
+        text: require('!../server/readme-text-loader!../../SETUP.md'),
+        markup: require('../../SETUP.md').default
       },
       files: {
         jest: require('!raw-loader!../../jest.setup'),
@@ -23,7 +21,10 @@ export default createFixture({
     tests: [
       {
         name: '1-click-callback',
-        info: require('../../1-click-callback/README.md'),
+        readme: {
+          text: require('!../server/readme-text-loader!../../1-click-callback/README.md'),
+          markup: require('../../1-click-callback/README.md').default
+        },
         files: {
           components: require('!raw-loader!../../1-click-callback/components'),
           enzyme: {
@@ -37,7 +38,10 @@ export default createFixture({
       },
       {
         name: '2-render-text',
-        info: require('../../2-render-text/README.md'),
+        readme: {
+          text: require('!../server/readme-text-loader!../../2-render-text/README.md'),
+          markup: require('../../2-render-text/README.md').default
+        },
         files: {
           components: require('!raw-loader!../../2-render-text/components'),
           enzyme: {
@@ -51,7 +55,10 @@ export default createFixture({
       },
       {
         name: '3-local-state',
-        info: require('../../3-local-state/README.md'),
+        readme: {
+          text: require('!../server/readme-text-loader!../../3-local-state/README.md'),
+          markup: require('../../3-local-state/README.md').default
+        },
         files: {
           components: require('!raw-loader!../../3-local-state/components'),
           enzyme: {
@@ -65,7 +72,10 @@ export default createFixture({
       },
       {
         name: '4-redux',
-        info: require('../../4-redux/README.md'),
+        readme: {
+          text: require('!../server/readme-text-loader!../../4-redux/README.md'),
+          markup: require('../../4-redux/README.md').default
+        },
         files: {
           components: require('!raw-loader!../../4-redux/components'),
           enzyme: {
@@ -80,7 +90,10 @@ export default createFixture({
       },
       {
         name: '5-react-router',
-        info: require('../../5-react-router/README.md'),
+        readme: {
+          text: require('!../server/readme-text-loader!../../5-react-router/README.md'),
+          markup: require('../../5-react-router/README.md').default
+        },
         files: {
           components: require('!raw-loader!../../5-react-router/components'),
           enzyme: {
@@ -95,7 +108,10 @@ export default createFixture({
       },
       {
         name: '6-xhr',
-        info: require('../../6-xhr/README.md'),
+        readme: {
+          text: require('!../server/readme-text-loader!../../6-xhr/README.md'),
+          markup: require('../../6-xhr/README.md').default
+        },
         files: {
           components: require('!raw-loader!../../6-xhr/components'),
           enzyme: {
@@ -110,7 +126,10 @@ export default createFixture({
       },
       {
         name: '7-fetch',
-        info: require('../../7-fetch/README.md'),
+        readme: {
+          text: require('!../server/readme-text-loader!../../7-fetch/README.md'),
+          markup: require('../../7-fetch/README.md').default
+        },
         files: {
           components: require('!raw-loader!../../7-fetch/components'),
           enzyme: {
@@ -125,7 +144,10 @@ export default createFixture({
       },
       {
         name: '8-localstorage',
-        info: require('../../8-localstorage/README.md'),
+        readme: {
+          text: require('!../server/readme-text-loader!../../8-localstorage/README.md'),
+          markup: require('../../8-localstorage/README.md').default
+        },
         files: {
           components: require('!raw-loader!../../8-localstorage/components'),
           enzyme: {

@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { FileOptions, GitCommit } from '../contexts';
-import { shouldSearch, matchInfo, sortSections } from '../search';
+import { shouldSearch, matchReadmeText, sortSections } from '../search';
 import { Header } from './Header';
 import { AboutModal } from './AboutModal';
 import { SectionList } from './SectionList';
@@ -83,9 +83,11 @@ export class App extends Component<Props, State> {
     } = this.state;
 
     let isSearching = shouldSearch(searchText);
-    let showSetup = isSearching ? matchInfo(setup.info, searchText) : true;
+    let showSetup = isSearching
+      ? matchReadmeText(setup.readme.text, searchText)
+      : true;
     let matchingTests = isSearching
-      ? tests.filter(t => matchInfo(t.info, searchText))
+      ? tests.filter(t => matchReadmeText(t.readme.text, searchText))
       : tests;
 
     // Convert setup & matching tests to unified list of sections
