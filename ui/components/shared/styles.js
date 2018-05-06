@@ -22,6 +22,7 @@ export const Link = styled.a`
 `;
 
 export const Button = styled.button`
+  box-sizing: border-box;
   border: 0;
   background: none;
   color: #20232a;

@@ -51,7 +51,7 @@ const CheckboxLabel = styled.label`
   user-select: none;
 
   :last-child {
-    margin-right: 8px;
+    margin-right: 0;
   }
 
   input {

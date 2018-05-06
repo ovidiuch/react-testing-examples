@@ -28,7 +28,7 @@
   * [x] Create About modal
   * [x] Footer
   * [x] Design no results screen
-  * [ ] Mobile header
+  * [x] Adapt header design on mobile
   * [x] Tweak colors
 * [x] Load test title & description from README pages
 * [x] Write copy
