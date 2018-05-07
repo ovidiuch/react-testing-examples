@@ -4,7 +4,9 @@
     "test": "flow && yarn lint && jest",
     "test:watch": "jest --watch",
     "cosmos": "cosmos --config ui/cosmos.config",
-    "dev": "next dev ui"
+    "dev": "next dev ui",
+    "build": "next build ui",
+    "start": "next start ui"
   },
   "devDependencies": {
     "@babel/cli": "7.0.0-beta.42",
