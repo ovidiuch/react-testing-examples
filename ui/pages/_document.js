@@ -20,6 +20,7 @@ export default class MyDocument extends Document {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="theme-color" content="#20232a" />
           <title>React Testing Examples</title>
+          <link rel="icon" href="/static/favicon.ico" />
           {this.props.styleTags}
         </Head>
         <body>
