@@ -3,8 +3,8 @@
     "lint": "eslint '**/*.js'",
     "test": "flow && yarn lint && jest",
     "test:watch": "jest --watch",
-    "ui:cosmos": "cosmos --config ui/cosmos.config",
-    "dev": "next dev"
+    "cosmos": "cosmos --config ui/cosmos.config",
+    "dev": "next dev ui"
   },
   "devDependencies": {
     "@babel/cli": "7.0.0-beta.42",

@@ -6,8 +6,8 @@ module.exports = function(config, babelLoader) {
       use: [babelLoader, '@mdx-js/loader']
     },
     {
-      test: require.resolve('./ui/import-files'),
-      use: require.resolve('./ui/webpack-loaders/import-tests-loader')
+      test: require.resolve('./import-files'),
+      use: require.resolve('./webpack-loaders/import-tests-loader')
     }
   );
 

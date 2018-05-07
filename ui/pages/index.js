@@ -1,11 +1,11 @@
 // @flow
 
 import React from 'react';
-import { App } from '../ui/components/App';
-import { setup, tests } from '../ui/import-files';
+import { App } from '../components/App';
+import { setup, tests } from '../import-files';
 
 // TODO: Find a better place for this if there will be more than one page
-import '../ui/global';
+import '../global';
 
 // TODO: Read commit SHA (or point to master)
 export default () => (
