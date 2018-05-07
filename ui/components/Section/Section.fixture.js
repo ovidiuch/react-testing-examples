@@ -5,7 +5,7 @@ import { Section } from '.';
 import { tests } from '../../import-files';
 
 export default createFixture({
-  name: 'Redux Test',
+  name: 'Redux test',
   component: Section,
   props: {
     section: {

@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+import Router from 'next/router';
 import styled from 'styled-components';
 import { FileOptions, GitRef } from '../contexts';
 import { shouldSearch, matchReadmeText, sortSections } from '../search';
@@ -15,18 +16,22 @@ import type { TTestFilter, TSetup, TTest, TSection } from '../types';
 type Props = {
   gitRef: string,
   setup: TSetup,
-  tests: Array<TTest>
+  tests: Array<TTest>,
+  showAbout: boolean
 };
 
 type State = {
   testFilter: TTestFilter,
-  showAboutModal: boolean,
   showComments: boolean,
   showImports: boolean,
   searchText: string
 };
 
 export class App extends Component<Props, State> {
+  static defaultProps = {
+    showAbout: false
+  };
+
   state = {
     testFilter: 'cosmos',
     showAboutModal: false,
@@ -40,11 +45,11 @@ export class App extends Component<Props, State> {
   };
 
   handleOpenAboutModal = () => {
-    this.setState({ showAboutModal: true });
+    Router.push('/about');
   };
 
   handleCloseAboutModal = () => {
-    this.setState({ showAboutModal: false });
+    Router.push('/');
   };
 
   handleToggleComments = () => {
@@ -59,8 +64,13 @@ export class App extends Component<Props, State> {
     this.setState({ searchText });
   };
 
+  componentDidMount() {
+    setBodyScroll(this.props.showAbout);
+  }
+
   componentDidUpdate(prevProps: Props, prevState: State) {
-    const { showAboutModal, searchText } = this.state;
+    const { showAbout } = this.props;
+    const { searchText } = this.state;
 
     // Jump to top when changing search query, because results will change
     // anyway so previous scroll position will be irrelevant
@@ -68,19 +78,12 @@ export class App extends Component<Props, State> {
       global.window.scrollTo(0, 0);
     }
 
-    // Prevent double scroll when modal is open
-    global.document.body.className = showAboutModal ? 'with-modal' : '';
+    setBodyScroll(showAbout);
   }
 
   render() {
-    let { gitRef, setup, tests } = this.props;
-    let {
-      testFilter,
-      showAboutModal,
-      showComments,
-      showImports,
-      searchText
-    } = this.state;
+    let { gitRef, setup, tests, showAbout } = this.props;
+    let { testFilter, showComments, showImports, searchText } = this.state;
 
     let isSearching = shouldSearch(searchText);
     let showSetup = isSearching
@@ -130,9 +133,7 @@ export class App extends Component<Props, State> {
               ))}
             </ContentCenter>
             <Footer />
-            {showAboutModal && (
-              <AboutModal onClose={this.handleCloseAboutModal} />
-            )}
+            {showAbout && <AboutModal onClose={this.handleCloseAboutModal} />}
           </Content>
         </FileOptions.Provider>
       </GitRef.Provider>
@@ -142,6 +143,11 @@ export class App extends Component<Props, State> {
 
 function getSectionKey(section: TSection): string {
   return section.type === 'setup' ? section.setup.name : section.test.name;
+}
+
+function setBodyScroll(hasModal: boolean) {
+  // Prevent double scroll when modal is open
+  global.document.body.className = hasModal ? 'with-modal' : '';
 }
 
 const TopSpace = styled.div`

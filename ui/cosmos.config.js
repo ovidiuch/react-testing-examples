@@ -1,4 +1,4 @@
-const addLoaders = require('./webpack.extend');
+const { addLoaders } = require('./webpack.extend');
 
 module.exports = {
   globalImports: ['./global'],

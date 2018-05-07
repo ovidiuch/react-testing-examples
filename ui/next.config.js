@@ -1,7 +1,7 @@
-const addLoaders = require('./webpack.extend');
+const { addGlobalEntry, addLoaders } = require('./webpack.extend');
 
 module.exports = {
   webpack: (config, { defaultLoaders }) => {
-    return addLoaders(config, defaultLoaders.babel);
+    return addLoaders(addGlobalEntry(config), defaultLoaders.babel);
   }
 };
