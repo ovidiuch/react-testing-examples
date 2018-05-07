@@ -7,7 +7,7 @@ module.exports = function(config, babelLoader) {
     },
     {
       test: require.resolve('./ui/import-files'),
-      use: require.resolve('./ui/server/import-tests-loader')
+      use: require.resolve('./ui/webpack-loaders/import-tests-loader')
     }
   );
 

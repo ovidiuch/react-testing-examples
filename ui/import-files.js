@@ -3,7 +3,7 @@
 export const setup = {
   name: 'setup',
   readme: {
-    text: require('!./server/readme-text-loader!../SETUP.md'),
+    text: require('!./webpack-loaders/readme-text-loader!../SETUP.md'),
     markup: require('../SETUP.md').default
   },
   code: {

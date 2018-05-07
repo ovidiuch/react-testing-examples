@@ -1,4 +1,4 @@
-const addLoaders = require('./webpack.loaders');
+const addLoaders = require('./webpack.extend');
 
 module.exports = {
   webpack: (config, { defaultLoaders }) => {

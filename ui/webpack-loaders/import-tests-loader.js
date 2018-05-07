@@ -1,7 +1,7 @@
 let tests = `{
   name: '1-click-callback',
   readme: {
-    text: require('!./server/readme-text-loader!../1-click-callback/README.md'),
+    text: require('!./webpack-loaders/readme-text-loader!../1-click-callback/README.md'),
     markup: require('../1-click-callback/README.md').default
   },
   code: {
@@ -18,7 +18,7 @@ let tests = `{
 {
   name: '2-render-text',
   readme: {
-    text: require('!./server/readme-text-loader!../2-render-text/README.md'),
+    text: require('!./webpack-loaders/readme-text-loader!../2-render-text/README.md'),
     markup: require('../2-render-text/README.md').default
   },
   code: {
@@ -35,7 +35,7 @@ let tests = `{
 {
   name: '3-local-state',
   readme: {
-    text: require('!./server/readme-text-loader!../3-local-state/README.md'),
+    text: require('!./webpack-loaders/readme-text-loader!../3-local-state/README.md'),
     markup: require('../3-local-state/README.md').default
   },
   code: {
@@ -52,7 +52,7 @@ let tests = `{
 {
   name: '4-redux',
   readme: {
-    text: require('!./server/readme-text-loader!../4-redux/README.md'),
+    text: require('!./webpack-loaders/readme-text-loader!../4-redux/README.md'),
     markup: require('../4-redux/README.md').default
   },
   code: {
@@ -70,7 +70,7 @@ let tests = `{
 {
   name: '5-react-router',
   readme: {
-    text: require('!./server/readme-text-loader!../5-react-router/README.md'),
+    text: require('!./webpack-loaders/readme-text-loader!../5-react-router/README.md'),
     markup: require('../5-react-router/README.md').default
   },
   code: {
@@ -88,7 +88,7 @@ let tests = `{
 {
   name: '6-xhr',
   readme: {
-    text: require('!./server/readme-text-loader!../6-xhr/README.md'),
+    text: require('!./webpack-loaders/readme-text-loader!../6-xhr/README.md'),
     markup: require('../6-xhr/README.md').default
   },
   code: {
@@ -106,7 +106,7 @@ let tests = `{
 {
   name: '7-fetch',
   readme: {
-    text: require('!./server/readme-text-loader!../7-fetch/README.md'),
+    text: require('!./webpack-loaders/readme-text-loader!../7-fetch/README.md'),
     markup: require('../7-fetch/README.md').default
   },
   code: {
@@ -124,7 +124,7 @@ let tests = `{
 {
   name: '8-localstorage',
   readme: {
-    text: require('!./server/readme-text-loader!../8-localstorage/README.md'),
+    text: require('!./webpack-loaders/readme-text-loader!../8-localstorage/README.md'),
     markup: require('../8-localstorage/README.md').default
   },
   code: {
