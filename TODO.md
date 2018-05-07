@@ -36,7 +36,7 @@
     * [x] Opinionated test style (integration / abstract libs)
     * [x] Cosmos vs non-Cosmos
   * [x] Test READMEs
-* [ ] Create build script
+* [x] Create build script
   * [x] Add Next.js
     * [x] Reconcile Babel config between Next, Cosmos and Jest
     * [x] Reconcile webpack config between Next and Cosmos
