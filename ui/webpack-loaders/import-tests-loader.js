@@ -1,14 +1,13 @@
 const { existsSync } = require('fs');
 const { join } = require('path');
 const glob = require('glob');
+const { execSync } = require('child_process');
 
 module.exports = function parseReadme(source) {
   let tests = getTestDirs()
     .map(getTestObj)
     .join(',');
-
-  // TODO: Retrieve last commit sha https://stackoverflow.com/a/14135272/128816
-  let gitRef = 'master';
+  let gitRef = getLastCommit();
 
   return source
     .replace('tests = []', `tests = [${tests}]`)
@@ -57,4 +56,11 @@ function getFilePath(testName, filePath) {
 
 function getLoaderPath(filePath) {
   return join(__dirname, `../webpack-loaders/${filePath}`);
+}
+
+function getLastCommit() {
+  // Long live StackOverflow!
+  return execSync(`git log | head -n 1 | awk '{print $2}'`)
+    .toString()
+    .trim();
 }

@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { FileOptions, GitCommit } from '../contexts';
+import { FileOptions, GitRef } from '../contexts';
 import { shouldSearch, matchReadmeText, sortSections } from '../search';
 import { Header } from './Header';
 import { AboutModal } from './AboutModal';
@@ -13,7 +13,7 @@ import { Footer } from './Footer';
 import type { TTestFilter, TSetup, TTest, TSection } from '../types';
 
 type Props = {
-  commitSha: string,
+  gitRef: string,
   setup: TSetup,
   tests: Array<TTest>
 };
@@ -73,7 +73,7 @@ export class App extends Component<Props, State> {
   }
 
   render() {
-    let { commitSha, setup, tests } = this.props;
+    let { gitRef, setup, tests } = this.props;
     let {
       testFilter,
       showAboutModal,
@@ -101,7 +101,7 @@ export class App extends Component<Props, State> {
     }
 
     return (
-      <GitCommit.Provider value={commitSha}>
+      <GitRef.Provider value={gitRef}>
         <FileOptions.Provider value={{ showComments, showImports }}>
           <Content>
             <TopSpace id="top" />
@@ -135,7 +135,7 @@ export class App extends Component<Props, State> {
             )}
           </Content>
         </FileOptions.Provider>
-      </GitCommit.Provider>
+      </GitRef.Provider>
     );
   }
 }

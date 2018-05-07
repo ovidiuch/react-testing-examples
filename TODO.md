@@ -42,7 +42,7 @@
     * [x] Reconcile webpack config between Next and Cosmos
     * [x] Restructure files for more clarity
   * [x] Read tests from disk at compile time
-  * [ ] Point to latest commit SHA
+  * [x] Point to latest commit SHA
 * [ ] PUBLISH
 * [ ] Create fixtures for UI components
 * [ ] Config Playground for tests

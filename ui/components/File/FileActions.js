@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Clipboard from 'clipboard';
-import { GitCommit } from '../../contexts';
+import { GitRef } from '../../contexts';
 import svgClippy from '../../svg/clippy.svg';
 import svgLinkExternal from '../../svg/link-external.svg';
 import { Button } from '../shared/styles';
@@ -67,8 +67,8 @@ export class FileActions extends Component<Props, State> {
     const { copyStatus, copyTime } = this.state;
 
     return (
-      <GitCommit.Consumer>
-        {commitSha => (
+      <GitRef.Consumer>
+        {gitRef => (
           <Container>
             <CopyLink
               title="Copy code"
@@ -80,19 +80,19 @@ export class FileActions extends Component<Props, State> {
             <OpenFileLink
               target="_blank"
               title="Open in GitHub"
-              href={getFileUrl(commitSha, filePath)}
+              href={getFileUrl(gitRef, filePath)}
             />
           </Container>
         )}
-      </GitCommit.Consumer>
+      </GitRef.Consumer>
     );
   }
 }
 
 const PROJECT_ROOT_URL = 'https://github.com/skidding/react-testing-examples';
 
-function getFileUrl(gitCommit: string, filePath: string) {
-  return `${PROJECT_ROOT_URL}/blob/${gitCommit}/${filePath}`;
+function getFileUrl(gitRef: string, filePath: string) {
+  return `${PROJECT_ROOT_URL}/blob/${gitRef}/${filePath}`;
 }
 
 const Container = styled.div`
