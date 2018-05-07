@@ -15,7 +15,7 @@ module.exports = function parseReadme(source) {
 };
 
 function getTestDirs() {
-  // Hmm, maybe put tests in a dedicate dir...
+  // Hmm, maybe put tests in a dedicated dir...
   return glob.sync('./[0-9]*/').map(p => p.replace(/^\.\/(.+)\/$/, '$1'));
 }
 
