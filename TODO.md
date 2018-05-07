@@ -37,6 +37,11 @@
     * [x] Cosmos vs non-Cosmos
   * [x] Test READMEs
 * [ ] Create build script
+  * [ ] Add Next.js
+    * [ ] Reconcile Babel config between Next, Cosmos and Jest
+    * [ ] Reconcile webpack config between Next and Cosmos
+    * [ ] Move tests to own folder and ui to root
+  * [ ] Read tests from disk at compile time
   * [ ] Point to latest commit SHA
 * [ ] PUBLISH
 * [ ] Create fixtures for UI components
