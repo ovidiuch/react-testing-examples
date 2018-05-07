@@ -18,3 +18,6 @@ export const setup = {
 // XXX: Tests are populated at compile time via import-tests-loader, because
 // we're lazy and don't want to update this file whenever we add a test
 export const tests = [];
+
+// XXX: This is also replaced at compile time with the latest commit SHA
+export const gitRef = '';

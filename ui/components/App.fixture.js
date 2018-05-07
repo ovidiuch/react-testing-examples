@@ -2,12 +2,13 @@
 
 import { createFixture } from 'react-cosmos-flow/fixture';
 import { App } from './App';
-import { setup, tests } from '../import-files';
+import { setup, tests, gitRef } from '../import-files';
 
+// TODO: Rename "commitSha" to "gitRef"
 export default createFixture({
   component: App,
   props: {
-    commitSha: '24c2bd39be7cb2a5e17a671e5535525e364f8aaa',
+    commitSha: gitRef,
     setup,
     tests
   }

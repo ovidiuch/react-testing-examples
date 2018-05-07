@@ -41,7 +41,7 @@
     * [x] Reconcile Babel config between Next, Cosmos and Jest
     * [x] Reconcile webpack config between Next and Cosmos
     * [x] Restructure files for more clarity
-  * [ ] Read tests from disk at compile time
+  * [x] Read tests from disk at compile time
   * [ ] Point to latest commit SHA
 * [ ] PUBLISH
 * [ ] Create fixtures for UI components

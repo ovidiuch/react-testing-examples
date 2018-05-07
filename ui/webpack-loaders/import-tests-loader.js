@@ -1,148 +1,60 @@
-let tests = `{
-  name: '1-click-callback',
-  readme: {
-    text: require('!./webpack-loaders/readme-text-loader!../1-click-callback/README.md'),
-    markup: require('../1-click-callback/README.md').default
-  },
-  code: {
-    components: require('!raw-loader!../1-click-callback/components'),
-    enzyme: {
-      test: require('!raw-loader!../1-click-callback/enzyme.test')
-    },
-    cosmos: {
-      test: require('!raw-loader!../1-click-callback/cosmos.test'),
-      fixture: require('!raw-loader!../1-click-callback/fixture')
-    }
-  }
-},
-{
-  name: '2-render-text',
-  readme: {
-    text: require('!./webpack-loaders/readme-text-loader!../2-render-text/README.md'),
-    markup: require('../2-render-text/README.md').default
-  },
-  code: {
-    components: require('!raw-loader!../2-render-text/components'),
-    enzyme: {
-      test: require('!raw-loader!../2-render-text/enzyme.test')
-    },
-    cosmos: {
-      test: require('!raw-loader!../2-render-text/cosmos.test'),
-      fixture: require('!raw-loader!../2-render-text/fixture')
-    }
-  }
-},
-{
-  name: '3-local-state',
-  readme: {
-    text: require('!./webpack-loaders/readme-text-loader!../3-local-state/README.md'),
-    markup: require('../3-local-state/README.md').default
-  },
-  code: {
-    components: require('!raw-loader!../3-local-state/components'),
-    enzyme: {
-      test: require('!raw-loader!../3-local-state/enzyme.test')
-    },
-    cosmos: {
-      test: require('!raw-loader!../3-local-state/cosmos.test'),
-      fixture: require('!raw-loader!../3-local-state/fixture')
-    }
-  }
-},
-{
-  name: '4-redux',
-  readme: {
-    text: require('!./webpack-loaders/readme-text-loader!../4-redux/README.md'),
-    markup: require('../4-redux/README.md').default
-  },
-  code: {
-    components: require('!raw-loader!../4-redux/components'),
-    enzyme: {
-      test: require('!raw-loader!../4-redux/enzyme.test')
-    },
-    cosmos: {
-      test: require('!raw-loader!../4-redux/cosmos.test'),
-      fixture: require('!raw-loader!../4-redux/fixture'),
-      proxies: require('!raw-loader!../4-redux/cosmos.proxies')
-    }
-  }
-},
-{
-  name: '5-react-router',
-  readme: {
-    text: require('!./webpack-loaders/readme-text-loader!../5-react-router/README.md'),
-    markup: require('../5-react-router/README.md').default
-  },
-  code: {
-    components: require('!raw-loader!../5-react-router/components'),
-    enzyme: {
-      test: require('!raw-loader!../5-react-router/enzyme.test')
-    },
-    cosmos: {
-      test: require('!raw-loader!../5-react-router/cosmos.test'),
-      fixture: require('!raw-loader!../5-react-router/fixture'),
-      proxies: require('!raw-loader!../5-react-router/cosmos.proxies')
-    }
-  }
-},
-{
-  name: '6-xhr',
-  readme: {
-    text: require('!./webpack-loaders/readme-text-loader!../6-xhr/README.md'),
-    markup: require('../6-xhr/README.md').default
-  },
-  code: {
-    components: require('!raw-loader!../6-xhr/components'),
-    enzyme: {
-      test: require('!raw-loader!../6-xhr/enzyme.test')
-    },
-    cosmos: {
-      test: require('!raw-loader!../6-xhr/cosmos.test'),
-      fixture: require('!raw-loader!../6-xhr/fixture'),
-      proxies: require('!raw-loader!../6-xhr/cosmos.proxies')
-    }
-  }
-},
-{
-  name: '7-fetch',
-  readme: {
-    text: require('!./webpack-loaders/readme-text-loader!../7-fetch/README.md'),
-    markup: require('../7-fetch/README.md').default
-  },
-  code: {
-    components: require('!raw-loader!../7-fetch/components'),
-    enzyme: {
-      test: require('!raw-loader!../7-fetch/enzyme.test')
-    },
-    cosmos: {
-      test: require('!raw-loader!../7-fetch/cosmos.test'),
-      fixture: require('!raw-loader!../7-fetch/fixture'),
-      proxies: require('!raw-loader!../7-fetch/cosmos.proxies')
-    }
-  }
-},
-{
-  name: '8-localstorage',
-  readme: {
-    text: require('!./webpack-loaders/readme-text-loader!../8-localstorage/README.md'),
-    markup: require('../8-localstorage/README.md').default
-  },
-  code: {
-    components: require('!raw-loader!../8-localstorage/components'),
-    enzyme: {
-      test: require('!raw-loader!../8-localstorage/enzyme.test')
-    },
-    cosmos: {
-      test: require('!raw-loader!../8-localstorage/cosmos.test'),
-      fixture: require('!raw-loader!../8-localstorage/fixture'),
-      proxies: require('!raw-loader!../8-localstorage/cosmos.proxies')
-    }
-  }
-}`;
+const { existsSync } = require('fs');
+const { join } = require('path');
+const glob = require('glob');
 
-// TODO: Glob thru test folders
 module.exports = function parseReadme(source) {
-  // let tests = '[]';
+  let tests = getTestDirs()
+    .map(getTestObj)
+    .join(',');
 
-  return source.replace('tests = []', `tests = [${tests}]`);
+  // TODO: Retrieve last commit sha https://stackoverflow.com/a/14135272/128816
+  let gitRef = 'master';
+
+  return source
+    .replace('tests = []', `tests = [${tests}]`)
+    .replace(`gitRef = ''`, `gitRef = '${gitRef}'`);
 };
+
+function getTestDirs() {
+  // Hmm, maybe put tests in a dedicate dir...
+  return glob.sync('./[0-9]*/').map(p => p.replace(/^\.\/(.+)\/$/, '$1'));
+}
+
+function getTestObj(name) {
+  let readmeTextLoader = getLoaderPath('readme-text-loader');
+
+  return `{
+    name: '${name}',
+    readme: {
+      text: require('!${readmeTextLoader}!${getFilePath(name, '/README.md')}'),
+      markup: require('${getFilePath(name, '/README.md')}').default
+    },
+    code: {
+      components: require('!raw-loader!${getFilePath(name, '/components')}'),
+      enzyme: {
+        test: require('!raw-loader!${getFilePath(name, '/enzyme.test')}')
+      },
+      cosmos: {
+        test: require('!raw-loader!${getFilePath(name, '/cosmos.test')}'),
+        fixture: require('!raw-loader!${getFilePath(name, '/fixture')}'),
+        proxies: ${getProxiesReq(name)}
+      }
+    }
+  }`;
+}
+
+function getProxiesReq(testName) {
+  let proxiesPath = getFilePath(testName, 'cosmos.proxies.js');
+
+  return existsSync(proxiesPath)
+    ? `require('!raw-loader!${proxiesPath}')`
+    : 'undefined';
+}
+
+function getFilePath(testName, filePath) {
+  return join(__dirname, `../../${testName}/${filePath}`);
+}
+
+function getLoaderPath(filePath) {
+  return join(__dirname, `../webpack-loaders/${filePath}`);
+}
