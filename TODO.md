@@ -40,7 +40,7 @@
   * [ ] Add Next.js
     * [x] Reconcile Babel config between Next, Cosmos and Jest
     * [x] Reconcile webpack config between Next and Cosmos
-    * [ ] Move tests to own folder and ui to root
+    * [ ] Restructure files for more clarity
   * [ ] Read tests from disk at compile time
   * [ ] Point to latest commit SHA
 * [ ] PUBLISH
