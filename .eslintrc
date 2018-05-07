@@ -28,8 +28,10 @@
         "jest.setup.js",
         "jest.framework-setup.js",
         "cosmos.config.js",
+        "next.config.js",
+        "webpack.extend.js",
         "stub/*.js",
-        "ui/server/**/*.js"
+        "ui/webpack-loaders/**/*.js"
       ],
       "env": {
         "node": true
@@ -42,7 +44,7 @@
       }
     },
     {
-      "files": ["**/*.fixture.js"],
+      "files": ["ui/**/*.fixture.js", "ui/import-files.js"],
       "globals": {
         "require": true
       }

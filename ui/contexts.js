@@ -7,4 +7,4 @@ export const FileOptions = createContext({
   showImports: false
 });
 
-export const GitCommit = createContext('master');
+export const GitRef = createContext('master');

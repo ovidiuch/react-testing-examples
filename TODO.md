@@ -36,8 +36,13 @@
     * [x] Opinionated test style (integration / abstract libs)
     * [x] Cosmos vs non-Cosmos
   * [x] Test READMEs
-* [ ] Create build script
-  * [ ] Point to latest commit SHA
+* [x] Create build script
+  * [x] Add Next.js
+    * [x] Reconcile Babel config between Next, Cosmos and Jest
+    * [x] Reconcile webpack config between Next and Cosmos
+    * [x] Restructure files for more clarity
+  * [x] Read tests from disk at compile time
+  * [x] Point to latest commit SHA
 * [ ] PUBLISH
 * [ ] Create fixtures for UI components
 * [ ] Config Playground for tests
