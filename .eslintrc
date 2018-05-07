@@ -28,6 +28,8 @@
         "jest.setup.js",
         "jest.framework-setup.js",
         "cosmos.config.js",
+        "next.config.js",
+        "webpack.loaders.js",
         "stub/*.js",
         "ui/server/**/*.js"
       ],
