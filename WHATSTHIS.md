@@ -14,5 +14,7 @@ The test examples run in [CircleCI](https://circleci.com/gh/skidding/react-testi
 
 These examples should be useful even if you don't share the same opinions, and I welcome everyone to share ideas for growing this repository.
 
+But please be kind, notifications are scary!
+
 Love,<br/>
 [Ovidiu](https://twitter.com/skidding)
