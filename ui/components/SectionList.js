@@ -165,7 +165,7 @@ const ThinkinFace = styled.div`
   margin: 32px auto;
   width: 140px;
   height: 140px;
-  background: #20232a url(${pngThinkin}) no-repeat center center;
+  background: #f5f7f9 url(${pngThinkin}) no-repeat center center;
   background-size: 140px 140px;
   background-blend-mode: luminosity;
   opacity: 0;
