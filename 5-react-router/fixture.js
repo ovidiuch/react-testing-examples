@@ -1,5 +1,5 @@
 // highlight{6-7}
-import { UserWithRouter } from './components';
+import { UserWithRouter } from './component';
 
 export default {
   component: UserWithRouter,

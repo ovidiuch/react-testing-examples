@@ -29,7 +29,7 @@ function getTestObj(name) {
       markup: require('${getFilePath(name, '/README.md')}').default
     },
     code: {
-      components: require('!raw-loader!${getFilePath(name, '/components')}'),
+      component: require('!raw-loader!${getFilePath(name, '/component')}'),
       enzyme: {
         test: require('!raw-loader!${getFilePath(name, '/enzyme.test')}')
       },

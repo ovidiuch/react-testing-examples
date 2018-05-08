@@ -3,7 +3,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import until from 'async-until';
 import xhrMock from 'xhr-mock';
-import { ServerCounter } from './components';
+import { ServerCounter } from './component';
 
 let count = 5;
 let wrapper;

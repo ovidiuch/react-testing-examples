@@ -3,7 +3,7 @@ import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
-import { ReduxCounter } from './components';
+import { ReduxCounter } from './component';
 import { counterReducer } from './reducer';
 
 // Hoist vars to make them accessible in all test blocks

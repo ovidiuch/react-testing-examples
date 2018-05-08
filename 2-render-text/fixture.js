@@ -1,5 +1,5 @@
 // highlight{6-8}
-import { HelloMessage } from './components';
+import { HelloMessage } from './component';
 
 export default {
   component: HelloMessage,

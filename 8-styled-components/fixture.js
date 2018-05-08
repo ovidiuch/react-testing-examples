@@ -1,5 +1,5 @@
 // highlight{5-9,11-15}
-import { HelloMessage } from './components';
+import { HelloMessage } from './component';
 import { themeLight, themeDark } from './theme';
 
 const fixtureLight = {

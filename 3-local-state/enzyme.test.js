@@ -1,7 +1,7 @@
 // highlight{6-8,12-13}
 import React from 'react';
 import { mount } from 'enzyme';
-import { StatefulCounter } from './components';
+import { StatefulCounter } from './component';
 
 // Hoist vars to make them accessible in all test blocks
 let count = 5;

@@ -5,8 +5,8 @@ import fixtures from './fixture';
 
 let [fixtureLight, fixtureDark] = fixtures;
 
-// Mounting is immediate for this example, but it's best to always assume
-// mounting a fixture is async to not have to think about it case by case
+// Mounting is sync for this example, but it's best to always assume mounting
+// a fixture is async to not have to think about it on a case by case
 async function getClassName(fixture) {
   let { mount, getWrapper } = createContext({ proxies, fixture });
   await mount();

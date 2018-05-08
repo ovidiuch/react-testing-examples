@@ -3,7 +3,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { ThemeProvider } from 'styled-components';
 import { themeLight, themeDark } from './theme';
-import { HelloMessage } from './components';
+import { HelloMessage } from './component';
 
 function getClassName(theme) {
   let wrapper = mount(
