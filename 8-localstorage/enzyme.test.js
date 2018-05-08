@@ -1,7 +1,7 @@
 // highlight{6-18,20,23-27}
 import React from 'react';
 import { mount } from 'enzyme';
-import { PersistentForm } from './components';
+import { PersistentForm } from './component';
 
 class LocalStorageMock {
   constructor(store = {}) {

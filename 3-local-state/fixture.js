@@ -1,5 +1,5 @@
 // highlight{6-8}
-import { StatefulCounter } from './components';
+import { StatefulCounter } from './component';
 
 export default {
   component: StatefulCounter,

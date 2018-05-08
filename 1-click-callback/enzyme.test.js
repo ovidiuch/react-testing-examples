@@ -1,7 +1,7 @@
 // highlight{6-7,10-11}
 import React from 'react';
 import { mount } from 'enzyme';
-import { CustomButton } from './components';
+import { CustomButton } from './component';
 
 // Hoist vars to make them accessible in all test blocks
 let wrapper;

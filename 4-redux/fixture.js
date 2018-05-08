@@ -1,5 +1,5 @@
 // highlight{6-8}
-import { ReduxCounter } from './components';
+import { ReduxCounter } from './component';
 
 export default {
   component: ReduxCounter,

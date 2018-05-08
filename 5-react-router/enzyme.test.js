@@ -2,7 +2,7 @@
 import React from 'react';
 import { MemoryRouter, Route } from 'react-router';
 import { mount } from 'enzyme';
-import { UserWithRouter } from './components';
+import { UserWithRouter } from './component';
 
 let wrapper;
 

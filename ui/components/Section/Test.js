@@ -17,7 +17,7 @@ type Props = {
 export class Test extends Component<Props> {
   render() {
     const { test, testFilter, searchText } = this.props;
-    const { name, readme, code: { components } } = test;
+    const { name, readme, code: { component } } = test;
 
     return (
       <>
@@ -25,9 +25,9 @@ export class Test extends Component<Props> {
           <Readme name={name} readme={readme} searchText={searchText} />
         </CenterText>
         <File
-          name="components.js"
-          filePath={`${name}/components.js`}
-          code={components}
+          name="component.js"
+          filePath={`${name}/component.js`}
+          code={component}
           closed
         />
         {this.renderTestFiles(test, testFilter)}

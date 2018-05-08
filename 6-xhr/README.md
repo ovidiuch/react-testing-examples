@@ -1,6 +1,6 @@
 ## XHR requests
 
-The component reads and updates a counter from the server via HTTP requests. The requests are made using the `XMLHttpRequest` API.
+The component reads and updates a counter from the server via HTTP requests. The requests are made using the [XMLHttpRequest API](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest).
 
 We test that the component renders the `count` value from the mocked API response.
 

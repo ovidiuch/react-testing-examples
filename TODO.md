@@ -6,7 +6,7 @@
 * [x] Add "XHR" tests
 * [x] Add "Fetch" tests
 * [x] Add "LocalStorage" tests
-* [ ] Add "styled-components" tests
+* [x] Add "styled-components" tests
 * [ ] Add "Context" tests
 * [x] Colocate components with tests
 * [x] Add ESLint

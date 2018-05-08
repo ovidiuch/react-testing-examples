@@ -30,7 +30,7 @@ export type TTest = {
   name: string,
   readme: TReadme,
   code: {
-    components: string,
+    component: string,
     enzyme: {
       test: string
     },

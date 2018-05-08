@@ -1,7 +1,7 @@
 // highlight{6-8,11-12}
 import React from 'react';
 import { mount } from 'enzyme';
-import { HelloMessage } from './components';
+import { HelloMessage } from './component';
 
 // Hoist vars to make them accessible in all test blocks
 let name = 'Satoshi';
