@@ -1,6 +1,6 @@
 ## React Router load and change URL
 
-The component is connected to [React Router](https://github.com/ReactTraining/react-router). It renders a variable text containing a URL parameter, as well as a `Link` to another location.
+The component is connected to [React Router](https://reacttraining.com/react-router/). It renders a variable text containing a URL parameter, as well as a `Link` to another location.
 
 First we make sure the component renders a param from the initial URL. Then we check that upon clicking on the Link element, the URL param from the new location is rendered, which proves that the page has successfully routed.
 

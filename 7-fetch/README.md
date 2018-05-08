@@ -1,6 +1,6 @@
 ## Fetch requests
 
-The component reads and updates a counter from the server via HTTP requests. The requests are made using the `Fetch` API.
+The component reads and updates a counter from the server via HTTP requests. The requests are made using the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
 
 We test that the component renders the `count` value from the mocked API response.
 
