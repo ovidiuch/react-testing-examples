@@ -3,7 +3,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Prism from 'prismjs';
-import rangeParser from 'parse-numeric-range';
+import { getCleanCode, getHighlightLines } from './shared';
 
 type Props = {
   code: string,
@@ -11,19 +11,9 @@ type Props = {
   showImports: boolean
 };
 
-export function getCleanCodeAndHighlights(code) {
-  let highlightLines = getHighlightLines(code);
-  let cleanCode = code;
-
-  if (highlightLines.length > 0) {
-    cleanCode = getCodeWithoutHighlightComment(cleanCode);
-  }
-
-  return { highlightLines, cleanCode };
-}
-
 export function Code({ code, showComments, showImports }: Props) {
-  const { highlightLines, cleanCode } = getCleanCodeAndHighlights(code);
+  let cleanCode = getCleanCode(code);
+  let highlightLines = getHighlightLines(code);
 
   let lines = getLinesFromCode(
     cleanCode,
@@ -57,20 +47,6 @@ export function Code({ code, showComments, showImports }: Props) {
       </pre>
     </CodeHighlight>
   );
-}
-
-function getHighlightLines(code: string): Array<number> {
-  let res = code.match(/highlight\{(.+?)\}/);
-
-  return res ? rangeParser.parse(res[1]) : [];
-}
-
-function getCodeWithoutHighlightComment(code: string): string {
-  // XXX: `highlight{...}` comment must always be the first line
-  return code
-    .split('\n')
-    .slice(1)
-    .join('\n');
 }
 
 function getLinesFromCode(
