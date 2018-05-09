@@ -11,13 +11,19 @@ type Props = {
   showImports: boolean
 };
 
-export function Code({ code, showComments, showImports }: Props) {
+export function getCleanCodeAndHighlights(code) {
   let highlightLines = getHighlightLines(code);
   let cleanCode = code;
 
   if (highlightLines.length > 0) {
     cleanCode = getCodeWithoutHighlightComment(cleanCode);
   }
+
+  return { highlightLines, cleanCode };
+}
+
+export function Code({ code, showComments, showImports }: Props) {
+  const { highlightLines, cleanCode } = getCleanCodeAndHighlights(code);
 
   let lines = getLinesFromCode(
     cleanCode,
