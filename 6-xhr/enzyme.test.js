@@ -1,7 +1,8 @@
-// highlight{8-9,24-33}
+// highlight{9-10,25-39}
 import React from 'react';
 import { mount } from 'enzyme';
 import until from 'async-until';
+import delay from 'delay';
 import xhrMock from 'xhr-mock';
 import { ServerCounter } from './component';
 
@@ -24,7 +25,11 @@ beforeEach(() => {
   // Create fresh mocks for each test
   xhrMock.teardown();
   xhrMock.setup();
-  xhrMock.get('/count', (req, res) => res.status(200).body({ count }));
+  xhrMock.get('/count', async (req, res) => {
+    // Simulate 0.2s delay
+    await delay(200);
+    return res.status(200).body({ count });
+  });
   xhrMock.post('/count', (req, res) =>
     res.status(200).body({ count: ++count })
   );

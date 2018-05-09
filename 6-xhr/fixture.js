@@ -1,4 +1,5 @@
-// highlight{4,6-15,19}
+// highlight{5,7-20,24}
+import delay from 'delay';
 import { ServerCounter } from './component';
 
 let count = 5;
@@ -6,7 +7,11 @@ let count = 5;
 let mockGet = {
   url: '/count',
   method: 'GET',
-  response: (req, res) => res.status(200).body({ count })
+  response: async (req, res) => {
+    // Simulate 0.2s delay
+    await delay(200);
+    return res.status(200).body({ count });
+  }
 };
 let mockPost = {
   url: '/count',

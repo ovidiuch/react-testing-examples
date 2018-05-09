@@ -63,6 +63,7 @@
   },
   "dependencies": {
     "clipboard": "^2.0.1",
+    "delay": "^2.0.0",
     "fuzzaldrin-plus": "^0.6.0",
     "next": "^6.0.0",
     "parse-numeric-range": "^0.0.2",
