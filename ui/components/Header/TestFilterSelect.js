@@ -12,7 +12,7 @@ type Props = {
 };
 
 const LABELS = {
-  enzyme: 'Plain Enzyme',
+  enzyme: 'Enzyme',
   cosmos: 'Enzyme & Cosmos'
 };
 

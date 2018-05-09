@@ -33,7 +33,7 @@ export class App extends Component<Props, State> {
   };
 
   state = {
-    testFilter: 'cosmos',
+    testFilter: 'enzyme',
     showAboutModal: false,
     showComments: true,
     showImports: false,
