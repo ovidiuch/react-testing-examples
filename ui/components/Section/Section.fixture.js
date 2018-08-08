@@ -1,8 +1,8 @@
 // @flow
 
-import { createFixture } from 'react-cosmos-flow/fixture';
 import { Section } from '.';
 import { tests } from '../../import-files';
+import { createFixture } from 'react-cosmos';
 
 export default createFixture({
   name: 'Redux test',
