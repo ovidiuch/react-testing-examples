@@ -6950,9 +6950,9 @@ react-cosmos-xhr-proxy@^4.6.1:
     react-cosmos-shared "^4.6.1"
     xhr-mock "^2.4.0"
 
-react-cosmos@^4.7.0-1:
-  version "4.7.0-1"
-  resolved "https://registry.yarnpkg.com/react-cosmos/-/react-cosmos-4.7.0-1.tgz#6dd3cf8cfb9b0e6af2451dac11e108dd60347857"
+react-cosmos@^4.7.0-2:
+  version "4.7.0-2"
+  resolved "https://registry.yarnpkg.com/react-cosmos/-/react-cosmos-4.7.0-2.tgz#945cfb4e43438e9ad907996e2332692f0c4c8466"
   dependencies:
     chokidar "^2.0.4"
     express "^4.16.3"
