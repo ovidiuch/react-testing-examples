@@ -1,6 +1,6 @@
 // @flow
 
-import { createFixture } from 'react-cosmos-flow/fixture';
+import { createFixture } from 'react-cosmos';
 import { App } from './App';
 import { setup, tests, gitRef } from '../import-files';
 

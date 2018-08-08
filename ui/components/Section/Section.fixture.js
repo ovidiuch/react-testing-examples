@@ -1,6 +1,6 @@
 // @flow
 
-import { createFixture } from 'react-cosmos-flow/fixture';
+import { createFixture } from 'react-cosmos';
 import { Section } from '.';
 import { tests } from '../../import-files';
 
