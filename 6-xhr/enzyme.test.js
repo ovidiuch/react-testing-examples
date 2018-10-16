@@ -2,8 +2,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import until from 'async-until';
-import delay from 'delay';
 import { XhrMock } from '@react-mock/xhr';
+import { delayed } from './delayed';
 import { ServerCounter } from './component';
 
 let count = 5;
@@ -21,23 +21,17 @@ let simulateIncrement = async () => {
   await until(notSyncing);
 };
 
-const delayed = val =>
-  new Promise(async resolve => {
-    await delay(200);
-    resolve(val);
-  });
-
 beforeEach(() => {
   // Simulate GET delay
   const getRes = async (req, res) => delayed(res.status(200).body({ count }));
-  const postRes = (req, res) => res.status(200).body({ count: ++count });
+  const increment = (req, res) => res.status(200).body({ count: ++count });
 
   // Flush instances between tests to prevent leaking state
   wrapper = mount(
     <XhrMock
       mocks={[
         { url: '/count', method: 'GET', response: getRes },
-        { url: '/count', method: 'POST', response: postRes }
+        { url: '/count', method: 'POST', response: increment }
       ]}
     >
       <ServerCounter />

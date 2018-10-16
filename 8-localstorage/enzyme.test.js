@@ -1,4 +1,4 @@
-// highlight{6-18,20,23-27}
+// highlight{7,10-15}
 import React from 'react';
 import { mount } from 'enzyme';
 import { LocalStorageMock } from '@react-mock/localstorage';

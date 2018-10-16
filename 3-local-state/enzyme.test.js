@@ -1,4 +1,4 @@
-// highlight{6-8,12-13}
+// highlight{7-9,12-17}
 import React from 'react';
 import { mount } from 'enzyme';
 import { StateMock } from '@react-mock/state';
