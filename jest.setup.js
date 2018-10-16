@@ -1,5 +1,4 @@
-// https://reactjs.org/docs/javascript-environment-requirements.html
-global.requestAnimationFrame = cb => setTimeout(cb, 0);
+import Enzyme from 'enzyme';
+import React16Adapter from 'enzyme-adapter-react-16';
 
-// The rAF shim must be loaded before the Enzyme setup
-require('./enzyme.setup');
+Enzyme.configure({ adapter: new React16Adapter() });

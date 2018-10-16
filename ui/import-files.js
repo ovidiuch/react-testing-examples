@@ -10,8 +10,7 @@ export const setup = {
     jest: {
       config: require('!raw-loader!../jest.config'),
       setup: require('!raw-loader!../jest.setup')
-    },
-    enzyme: require('!raw-loader!../enzyme.setup')
+    }
   }
 };
 

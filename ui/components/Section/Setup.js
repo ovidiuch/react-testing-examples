@@ -18,7 +18,7 @@ export class Setup extends Component<Props> {
     const {
       name,
       readme,
-      code: { jest, enzyme }
+      code: { jest }
     } = setup;
 
     return (
@@ -32,13 +32,7 @@ export class Setup extends Component<Props> {
           code={jest.config}
           closed
         />
-        <File
-          name="jest.setup.js"
-          filePath="jest.setup.js"
-          code={jest.setup}
-          closed
-        />
-        <File name="enzyme.setup.js" filePath="enzyme.setup.js" code={enzyme} />
+        <File name="jest.setup.js" filePath="jest.setup.js" code={jest.setup} />
       </>
     );
   }
