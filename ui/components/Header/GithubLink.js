@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import styled from 'styled-components';
 import svgMarkGithub from '../../svg/mark-github.svg';
 import { IconButton } from './styles';
 
@@ -12,13 +13,17 @@ export function GithubLink() {
       href="https://github.com/skidding/react-testing-examples"
     >
       <span className="icon" />
-      <span className="label">Open Source</span>
+      <span className="label">GitHub</span>
     </GithubIconLink>
   );
 }
 
-const GithubIconLink = IconButton.withComponent('a').extend`
+const GithubIconLink = styled(IconButton.withComponent('a'))`
   margin-left: 12px;
+
+  :visited {
+    color: #20232a;
+  }
 
   @media (max-width: 359px) {
     .label {

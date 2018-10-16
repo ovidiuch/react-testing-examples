@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import styled from 'styled-components';
 import svgLink from '../../svg/link.svg';
 import { H2 } from '../shared/styles';
 
@@ -20,7 +21,7 @@ export function TitleLink({ link, children }: Props) {
   );
 }
 
-const Container = H2.extend`
+const Container = styled(H2)`
   a {
     position: absolute;
     width: 24px;

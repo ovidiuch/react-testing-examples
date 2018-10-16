@@ -76,7 +76,7 @@ export class FileActions extends Component<Props, State> {
               title="Copy code"
               status={copyStatus}
               time={copyTime}
-              innerRef={this.handleCopyBtnRef}
+              ref={this.handleCopyBtnRef}
               data-clipboard-text={cleanCode}
             />
             <OpenFileLink
@@ -102,7 +102,7 @@ const Container = styled.div`
   padding-top: 2px;
 `;
 
-const Action = Button.extend`
+const Action = styled(Button)`
   width: 32px;
   height: 32px;
   background-size: 16px;
@@ -117,7 +117,7 @@ const Action = Button.extend`
   }
 `;
 
-const CopyLink = Action.extend`
+const CopyLink = styled(Action)`
   background-image: url(${svgClippy});
   animation: flash${props => props.time} 3s;
 
@@ -131,7 +131,7 @@ const CopyLink = Action.extend`
   }
 `;
 
-const OpenFileLink = Action.withComponent('a').extend`
+const OpenFileLink = styled(Action.withComponent('a'))`
   background-image: url(${svgLinkExternal});
 `;
 

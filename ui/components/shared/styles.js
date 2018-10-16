@@ -8,7 +8,7 @@ export const Center = styled.div`
   box-sizing: border-box;
 `;
 
-export const CenterText = Center.extend`
+export const CenterText = styled(Center)`
   padding: 0 24px;
 `;
 

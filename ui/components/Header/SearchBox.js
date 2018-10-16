@@ -37,11 +37,11 @@ export class SearchBox extends Component<Props> {
     return (
       <WindowKeyListener onKeyDown={this.handleKeyDown}>
         <SearchInput
-          innerRef={node => {
+          ref={node => {
             this.searchInput = node;
           }}
           type="text"
-          placeholder="Press 's' key to search"
+          placeholder="press 's' to search"
           value={this.props.searchText}
           onChange={this.handleChange}
         />
@@ -52,7 +52,7 @@ export class SearchBox extends Component<Props> {
 
 const SearchInput = styled.input`
   box-sizing: border-box;
-  width: 200px;
+  width: 272px;
   height: 32px;
   padding: 4px 16px;
   border: 0;
@@ -62,7 +62,8 @@ const SearchInput = styled.input`
   line-height: 24px;
   outline: none;
 
-  ::-webkit-input-placeholder {
+  ::placeholder {
+    text-align: center;
     color: rgba(32, 35, 42, 0.5);
   }
 `;

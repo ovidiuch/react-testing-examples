@@ -1,6 +1,6 @@
 ## Dear friend,
 
-Writing and presenting these tests took a lot of work. I hope it will make your life easier!
+Presenting these tests took a lot of work. I hope they'll make your life easier!
 
 ### Working tests
 
@@ -16,5 +16,5 @@ These examples should be useful even if you don't share the same opinions, and I
 
 But please be kind, notifications are scary!
 
-Love,<br/>
+Best,<br/>
 [Ovidiu](https://twitter.com/skidding)

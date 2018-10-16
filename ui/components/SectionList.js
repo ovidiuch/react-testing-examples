@@ -128,17 +128,17 @@ export class SectionList extends Component<Props, State> {
   }
 }
 
-const Container = CenterText.extend`
+const Container = styled(CenterText)`
   margin-top: 16px;
 `;
 
-const CustomList = List.extend`
+const CustomList = styled(List)`
   margin: 0;
   padding-top: 8px;
   padding-left: 24px;
 `;
 
-const CustomListItem = ListItem.extend`
+const CustomListItem = styled(ListItem)`
   color: #888e9c;
 `;
 
@@ -184,7 +184,7 @@ const ThinkinFace = styled.div`
   }
 `;
 
-const ContactParagraph = Paragraph.extend`
+const ContactParagraph = styled(Paragraph)`
   display: flex;
   flex-direction: row;
   justify-content: center;

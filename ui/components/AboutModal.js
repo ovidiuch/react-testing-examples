@@ -60,7 +60,7 @@ const Overlay = styled.div`
   overflow-y: auto;
 `;
 
-const Content = CenterText.extend`
+const Content = styled(CenterText)`
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 3px 15px 0 rgba(32, 35, 42, 0.2);
@@ -80,12 +80,12 @@ const OpinionsList = styled.ol`
   padding-left: 36px;
 `;
 
-const SubtleLink = Link.extend`
+const SubtleLink = styled(Link)`
   color: #20232a;
   font-weight: 500;
 `;
 
-const GoButton = Button.extend`
+const GoButton = styled(Button)`
   display: inline-block;
   padding: 12px 20px;
   border-radius: 5px;
