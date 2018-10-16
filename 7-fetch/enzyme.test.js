@@ -1,8 +1,8 @@
-// highlight{8-9,22-36}
+// highlight{8-9,22-34}
 import React from 'react';
 import { mount } from 'enzyme';
 import until from 'async-until';
-import fetchMock from 'fetch-mock';
+import { FetchMock } from '@react-mock/fetch';
 import { ServerCounter } from './component';
 
 let count = 5;
@@ -19,21 +19,19 @@ let simulateIncrement = async () => {
 };
 
 beforeEach(() => {
-  // Create fresh mocks for each test
-  fetchMock.restore();
-  fetchMock.mock({
-    matcher: '/count',
-    method: 'GET',
-    response: { count }
-  });
-  fetchMock.mock({
-    matcher: '/count',
-    method: 'POST',
-    response: () => ({ count: ++count })
-  });
+  const increment = () => ({ count: ++count });
 
   // Flush instances between tests to prevent leaking state
-  wrapper = mount(<ServerCounter />);
+  wrapper = mount(
+    <FetchMock
+      mocks={[
+        { matcher: '/count', method: 'GET', response: { count } },
+        { matcher: '/count', method: 'POST', response: increment }
+      ]}
+    >
+      <ServerCounter />
+    </FetchMock>
+  );
 });
 
 it('renders initial count', async () => {

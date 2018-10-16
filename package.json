@@ -1,8 +1,8 @@
 {
   "scripts": {
     "lint": "eslint '**/*.js'",
-    "test": "flow && yarn lint && jest",
-    "test:watch": "jest --watch",
+    "test": "jest",
+    "test:watch": "yarn test --watch",
     "cosmos": "cosmos --config ui/cosmos.config",
     "dev": "next dev ui",
     "build": "next build ui && next export ui -o .export",
@@ -18,6 +18,10 @@
     "@babel/preset-react": "7.0.0",
     "@mdx-js/loader": "^0.15.5",
     "@mdx-js/mdx": "^0.15.5",
+    "@react-mock/fetch": "^0.3.0",
+    "@react-mock/localstorage": "^0.1.2",
+    "@react-mock/state": "^0.1.7",
+    "@react-mock/xhr": "^0.2.0",
     "async-until": "^1.2.2",
     "axios": "^0.18.0",
     "babel-core": "^7.0.0-bridge.0",
@@ -35,7 +39,6 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jest": "^21.25.0",
     "eslint-plugin-react": "^7.11.1",
-    "fetch-mock": "^7.0.7",
     "flow-bin": "^0.83.0",
     "flow-typed": "^2.5.1",
     "glob": "^7.1.3",
@@ -57,8 +60,7 @@
     "style-loader": "^0.23.1",
     "traverse": "^0.6.6",
     "unified": "^7.0.0",
-    "webpack": "^4.20.2",
-    "xhr-mock": "^2.4.1"
+    "webpack": "^4.20.2"
   },
   "dependencies": {
     "clipboard": "^2.0.1",

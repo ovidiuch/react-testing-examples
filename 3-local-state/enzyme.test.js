@@ -1,6 +1,7 @@
-// highlight{6-8,12-13}
+// highlight{7-9,12-17}
 import React from 'react';
 import { mount } from 'enzyme';
+import { StateMock } from '@react-mock/state';
 import { StatefulCounter } from './component';
 
 // Hoist vars to make them accessible in all test blocks
@@ -9,8 +10,11 @@ let wrapper;
 
 beforeEach(() => {
   // Flush instances between tests to prevent leaking state
-  wrapper = mount(<StatefulCounter />);
-  wrapper.setState({ count });
+  wrapper = mount(
+    <StateMock state={{ count }}>
+      <StatefulCounter />
+    </StateMock>
+  );
 });
 
 it('renders initial count', () => {

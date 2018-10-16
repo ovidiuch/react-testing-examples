@@ -42,7 +42,7 @@ export class TestFilterSelect extends Component<Props> {
 
 const SelectContainer = styled.div`
   position: relative;
-  padding-right: 20px;
+  padding-right: 22px;
   height: 24px;
   background: url(${svgChevronDown});
   background-size: 10px;

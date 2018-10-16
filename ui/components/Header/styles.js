@@ -20,7 +20,7 @@ export const IconButton = styled(Button)`
   }
 
   .label {
-    padding-left: 2px;
+    padding-left: 4px;
     white-space: nowrap;
   }
 

@@ -151,7 +151,7 @@ function setBodyScroll(hasModal: boolean) {
 }
 
 const TopSpace = styled.div`
-  height: 80px;
+  height: 104px;
 `;
 
 const Content = styled.div`

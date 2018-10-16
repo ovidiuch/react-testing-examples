@@ -1,30 +1,18 @@
-// highlight{6-18,20,23-27}
+// highlight{7,10-15}
 import React from 'react';
 import { mount } from 'enzyme';
+import { LocalStorageMock } from '@react-mock/localstorage';
 import { PersistentForm } from './component';
-
-class LocalStorageMock {
-  constructor(store = {}) {
-    this.store = { ...store };
-  }
-
-  getItem(key) {
-    return this.store[key] || null;
-  }
-
-  setItem(key, value) {
-    this.store[key] = value.toString();
-  }
-}
 
 let wrapper;
 
 beforeEach(() => {
-  // Create fresh mocks for each test
-  global.localStorage = new LocalStorageMock({ name: 'Trent' });
-
   // Flush instances between tests to prevent leaking state
-  wrapper = mount(<PersistentForm />);
+  wrapper = mount(
+    <LocalStorageMock items={{ name: 'Trent' }}>
+      <PersistentForm />
+    </LocalStorageMock>
+  );
 });
 
 it('renders cached name', async () => {
