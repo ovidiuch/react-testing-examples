@@ -47,7 +47,7 @@ export const H3 = styled.h3`
 
 export const Paragraph = styled.p`
   margin: 0 0 16px 0;
-  line-height: 24px;
+  line-height: 26px;
 `;
 
 export const Blockquote = styled.blockquote`

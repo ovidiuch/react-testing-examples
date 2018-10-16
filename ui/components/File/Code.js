@@ -101,7 +101,7 @@ function getLinesWithMarkup(codeMarkup, lines) {
   return lines.map((line, idx) => ({
     ...line,
     markup: line.highlighted
-      ? `<span class="highlight-code-line">${markupLines[idx]}\n</span>`
+      ? `<span class="highlight-code-line">${markupLines[idx]}</span>`
       : markupLines[idx]
   }));
 }
@@ -147,7 +147,7 @@ const CodeHighlight = styled.div`
     height: auto !important;
     margin: 0;
     font-size: 14px;
-    line-height: 20px;
+    line-height: 24px;
     white-space: pre-wrap;
     word-break: break-word;
   }
