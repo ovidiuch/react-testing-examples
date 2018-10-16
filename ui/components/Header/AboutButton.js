@@ -19,7 +19,7 @@ export function AboutButton({ onClick }: Props) {
 }
 
 const AboutIconButton = styled(IconButton)`
-  margin-left: 12px;
+  margin-left: 24px;
 
   @media (max-width: 399px) {
     .label {

@@ -104,8 +104,8 @@ const Container = styled.div`
   top: 0;
   width: 100%;
   min-width: 320px;
-  height: 80px;
-  padding: 0 12px;
+  height: 96px;
+  padding: 8px 12px 4px 12px;
   box-sizing: border-box;
   background: #fff;
   box-shadow: 0 2px 0px 0px rgba(32, 35, 42, 0.15);
@@ -129,11 +129,15 @@ const Left = styled.div`
     position: absolute;
     top: 0;
     left: 0;
+    color: rgb(32, 35, 42);
     line-height: 48px;
-    font-size: 28px;
-    font-weight: 600;
-    opacity: 0.9;
+    font-size: 26px;
+    font-weight: 700;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     white-space: nowrap;
+    opacity: 0.8;
 
     a {
       color: #20232a;
