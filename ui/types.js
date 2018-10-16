@@ -21,8 +21,7 @@ export type TSetup = {
     jest: {
       config: string,
       setup: string
-    },
-    enzyme: string
+    }
   }
 };
 
