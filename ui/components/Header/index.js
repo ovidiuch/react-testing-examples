@@ -114,7 +114,7 @@ const Container = styled.div`
   z-index: 1;
 `;
 
-const Inner = Center.extend`
+const Inner = styled(Center)`
   position: relative;
   height: 100%;
 `;
@@ -185,7 +185,7 @@ const Right = styled.div`
   }
 `;
 
-const MobileShowFilters = Button.extend`
+const MobileShowFilters = styled(Button)`
   display: none;
   position: absolute;
   top: 0;
@@ -204,7 +204,7 @@ const MobileShowFilters = Button.extend`
   }
 `;
 
-const MobileHideFilters = Button.extend`
+const MobileHideFilters = styled(Button)`
   display: none;
   position: absolute;
   top: 0;

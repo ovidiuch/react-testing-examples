@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { FileOptions } from '../../contexts';
 import { Center } from '../shared/styles';
 import { ToggleShow } from '../shared/ToggleShow';
@@ -68,6 +69,6 @@ export class File extends Component<Props, State> {
   }
 }
 
-const Container = Center.extend`
+const Container = styled(Center)`
   margin-bottom: 16px;
 `;

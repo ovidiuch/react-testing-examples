@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import styled from 'styled-components';
 import svgQuestion from '../../svg/question.svg';
 import { IconButton } from './styles';
 
@@ -17,7 +18,7 @@ export function AboutButton({ onClick }: Props) {
   );
 }
 
-const AboutIconButton = IconButton.extend`
+const AboutIconButton = styled(IconButton)`
   margin-left: 12px;
 
   @media (max-width: 399px) {

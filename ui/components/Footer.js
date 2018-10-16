@@ -45,10 +45,10 @@ const Container = styled.div`
   overflow: hidden;
 `;
 
-const SubtleLink = Link.extend`
+const SubtleLink = styled(Link)`
   color: #dde0e8;
 `;
 
-const LinksList = List.extend`
+const LinksList = styled(List)`
   margin-bottom: 32px;
 `;

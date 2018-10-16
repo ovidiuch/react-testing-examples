@@ -38,7 +38,7 @@ function Checkbox({ name, checked, onToggle }: CheckboxProps) {
   return (
     <CheckboxLabel>
       <input type="checkbox" checked={checked} onChange={onToggle} />
-      {name}
+      show {name}
     </CheckboxLabel>
   );
 }

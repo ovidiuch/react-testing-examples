@@ -1,8 +1,9 @@
 // @flow
 
+import styled from 'styled-components';
 import { Button } from '../shared/styles';
 
-export const IconButton = Button.extend`
+export const IconButton = styled(Button)`
   display: flex;
   height: 24px;
   line-height: 24px;

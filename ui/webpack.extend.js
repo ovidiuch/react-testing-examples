@@ -1,6 +1,6 @@
 // XXX: Kids, don't try this at home, but it seems this is an entry that is
 // loaded on both server and client
-const UNIVERSAL_ENTRY = 'bundles/pages/_app.js';
+const UNIVERSAL_ENTRY = 'static/development/pages/_app.js';
 
 module.exports = {
   addGlobalEntry(config) {
