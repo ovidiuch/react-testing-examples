@@ -3,7 +3,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import until from 'async-until';
 import delay from 'delay';
-import xhrMock from 'xhr-mock';
+import { XhrMock } from '@react-mock/xhr';
 import { ServerCounter } from './component';
 
 let count = 5;
@@ -21,21 +21,28 @@ let simulateIncrement = async () => {
   await until(notSyncing);
 };
 
-beforeEach(() => {
-  // Create fresh mocks for each test
-  xhrMock.teardown();
-  xhrMock.setup();
-  xhrMock.get('/count', async (req, res) => {
-    // Simulate 0.2s delay
+const delayed = val =>
+  new Promise(async resolve => {
     await delay(200);
-    return res.status(200).body({ count });
+    resolve(val);
   });
-  xhrMock.post('/count', (req, res) =>
-    res.status(200).body({ count: ++count })
-  );
+
+beforeEach(() => {
+  // Simulate GET delay
+  const getRes = async (req, res) => delayed(res.status(200).body({ count }));
+  const postRes = (req, res) => res.status(200).body({ count: ++count });
 
   // Flush instances between tests to prevent leaking state
-  wrapper = mount(<ServerCounter />);
+  wrapper = mount(
+    <XhrMock
+      mocks={[
+        { url: '/count', method: 'GET', response: getRes },
+        { url: '/count', method: 'POST', response: postRes }
+      ]}
+    >
+      <ServerCounter />
+    </XhrMock>
+  );
 });
 
 it('renders initial count', async () => {
