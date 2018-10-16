@@ -1,17 +1,14 @@
-// highlight{6-8,11-12}
+// highlight{6-7,10-11}
 import React from 'react';
 import { mount } from 'enzyme';
 import { HelloMessage } from './component';
 
-// Hoist vars to make them accessible in all test blocks
-let name = 'Satoshi';
-let wrapper;
-
-beforeEach(() => {
-  // Flush instances between tests to prevent leaking state
-  wrapper = mount(<HelloMessage name={name} />);
-});
+// Hoist helper functions (but not vars) to reuse between test cases
+const getWrapper = ({ name }) => mount(<HelloMessage name={name} />);
 
 it('renders personalized greeting', () => {
-  expect(wrapper.text()).toContain(`Hello ${name}`);
+  // Render new instance in every test to prevent leaking state
+  const wrapper = getWrapper({ name: 'Satoshi' });
+
+  expect(wrapper.text()).toMatch(`Hello Satoshi`);
 });

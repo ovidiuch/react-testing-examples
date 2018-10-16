@@ -22,6 +22,7 @@
     "@react-mock/localstorage": "^0.1.2",
     "@react-mock/state": "^0.1.7",
     "@react-mock/xhr": "^0.2.0",
+    "@skidding/async-retry": "^1.0.2",
     "async-until": "^1.2.2",
     "axios": "^0.18.0",
     "babel-core": "^7.0.0-bridge.0",
