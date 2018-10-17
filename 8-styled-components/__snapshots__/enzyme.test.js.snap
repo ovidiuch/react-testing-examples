@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders "dark" theme 1`] = `
+<span
+  className="component__HelloMessage-nxtc05-0 eGaOhj"
+>
+  Hello world!
+</span>
+`;
+
+exports[`renders "light" theme 1`] = `
+<span
+  className="component__HelloMessage-nxtc05-0 doKCJn"
+>
+  Hello world!
+</span>
+`;
