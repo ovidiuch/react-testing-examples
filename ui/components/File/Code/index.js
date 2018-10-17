@@ -17,22 +17,22 @@ export function Code({ code, showComments, showImports }: Props) {
 
   return (
     <Container>
-      <Highlights>
+      <LineHighlights>
         <StyledCode>
           {visibleLines.map(line => (
-            <HlLine highlight={line.isHighlighted}>{line.rawCode}</HlLine>
+            <LineHighlight highlight={line.isHighlighted}>
+              {line.rawCode}
+            </LineHighlight>
           ))}
         </StyledCode>
-      </Highlights>
-      {true && (
-        <ColoredCode>
-          <PrismStyledCode
-            dangerouslySetInnerHTML={{
-              __html: visibleLines.map(l => l.coloredCode).join('\n')
-            }}
-          />
-        </ColoredCode>
-      )}
+      </LineHighlights>
+      <ColoredCode>
+        <PrismStyledCode
+          dangerouslySetInnerHTML={{
+            __html: visibleLines.map(l => l.coloredCode).join('\n')
+          }}
+        />
+      </ColoredCode>
     </Container>
   );
 }
@@ -41,7 +41,7 @@ const Container = styled.div`
   position: relative;
 `;
 
-const Highlights = styled.pre`
+const LineHighlights = styled.pre`
   background: #282c34;
   border-radius: 10px;
   margin: 0;
@@ -50,7 +50,7 @@ const Highlights = styled.pre`
   color: transparent;
 `;
 
-const HlLine = styled.div`
+const LineHighlight = styled.div`
   min-height: 24px; /* Required for empty lines to take space */
   padding: 0 24px;
   background: ${props => (props.highlight ? '#14161a' : 'transparent')};
