@@ -3,7 +3,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Prism from 'prismjs';
-import { getCleanCode, getHighlightLines } from './shared';
+import { parseCode } from './shared';
 
 type Props = {
   code: string,
@@ -12,8 +12,7 @@ type Props = {
 };
 
 export function Code({ code, showComments, showImports }: Props) {
-  let cleanCode = getCleanCode(code);
-  let highlightLines = getHighlightLines(code);
+  const { highlightLines, cleanCode } = parseCode(code);
 
   let lines = getLinesFromCode(
     cleanCode,
@@ -25,7 +24,8 @@ export function Code({ code, showComments, showImports }: Props) {
   // Generate syntax highlighting using Prism
   let codeMarkup = Prism.highlight(
     lines.map(l => l.code).join('\n'),
-    Prism.languages.jsx
+    Prism.languages.jsx,
+    'jsx'
   );
 
   // Apply line highlighting based on previous line.highlighted annotations
@@ -101,7 +101,7 @@ function getLinesWithMarkup(codeMarkup, lines) {
   return lines.map((line, idx) => ({
     ...line,
     markup: line.highlighted
-      ? `<span class="highlight-code-line">${markupLines[idx]}</span>`
+      ? `<span class="highlight-code-line">${markupLines[idx]}\n</span>`
       : markupLines[idx]
   }));
 }

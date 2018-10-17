@@ -7,7 +7,7 @@ import { GitRef } from '../../contexts';
 import svgClippy from '../../svg/clippy.svg';
 import svgLinkExternal from '../../svg/link-external.svg';
 import { Button } from '../shared/styles';
-import { getCleanCode } from './shared';
+import { parseCode } from './shared';
 
 const { now } = Date;
 
@@ -66,7 +66,7 @@ export class FileActions extends Component<Props, State> {
   render() {
     const { filePath, code } = this.props;
     const { copyStatus, copyTime } = this.state;
-    const cleanCode = getCleanCode(code);
+    const { cleanCode } = parseCode(code);
 
     return (
       <GitRef.Consumer>
