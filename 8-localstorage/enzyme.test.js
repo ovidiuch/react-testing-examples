@@ -1,35 +1,43 @@
-// highlight{7,10-15}
+// highlight{10-12}
 import React from 'react';
 import { mount } from 'enzyme';
 import { LocalStorageMock } from '@react-mock/localstorage';
 import { PersistentForm } from './component';
 
-let wrapper;
-
-beforeEach(() => {
-  // Flush instances between tests to prevent leaking state
-  wrapper = mount(
-    <LocalStorageMock items={{ name: 'Trent' }}>
+// Hoist helper functions (but not vars) to reuse between test cases
+const getWrapper = ({ name }) =>
+  mount(
+    <LocalStorageMock items={{ name }}>
       <PersistentForm />
     </LocalStorageMock>
   );
-});
 
-it('renders cached name', async () => {
-  expect(wrapper.text()).toContain(`Welcome, Trent`);
+const submitForm = ({ wrapper, name }) => {
+  wrapper.find('input').instance().value = name;
+  wrapper.find('button').simulate('submit');
+};
+
+it('renders cached name', () => {
+  // Render new instance in every test to prevent leaking state
+  const wrapper = getWrapper({ name: 'Trent' });
+
+  expect(wrapper.text()).toMatch('Welcome, Trent');
 });
 
 describe('on update', () => {
-  beforeEach(() => {
-    wrapper.find('input').instance().value = 'Trevor';
-    wrapper.find('button').simulate('submit');
+  it('renders updated name', () => {
+    // Render new instance in every test to prevent leaking state
+    const wrapper = getWrapper({ name: 'Trent' });
+    submitForm({ wrapper, name: 'Trevor' });
+
+    expect(wrapper.text()).toMatch(`Welcome, Trevor`);
   });
 
-  it('renders updated name', async () => {
-    expect(wrapper.text()).toContain(`Welcome, Trevor`);
-  });
+  it('updates LocalStorage cache', () => {
+    // Render new instance in every test to prevent leaking state
+    const wrapper = getWrapper({ name: 'Trent' });
+    submitForm({ wrapper, name: 'Trevor' });
 
-  it('caches updated name', async () => {
     expect(localStorage.getItem('name')).toBe('Trevor');
   });
 });
