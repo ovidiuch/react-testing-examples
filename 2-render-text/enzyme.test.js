@@ -1,4 +1,4 @@
-// highlight{6-7,10-11}
+// highlight{7,13}
 import React from 'react';
 import { mount } from 'enzyme';
 import { HelloMessage } from './component';

@@ -1,4 +1,4 @@
-// highlight{17-24,36-37,47-48}
+// highlight{17-24,28-30,39-43,50-54}
 import React from 'react';
 import { mount } from 'enzyme';
 import until from 'async-until';
@@ -12,7 +12,7 @@ const getRes = count => async (req, res) => res.status(200).body({ count });
 const postRes = count => (req, res) =>
   res.status(200).body({ count: count + 1 });
 
-const getWraper = ({ count }) =>
+const getWrapper = ({ count }) =>
   mount(
     <XhrMock
       mocks={[
@@ -34,7 +34,7 @@ const isReady = wrapper => () => {
 
 it('renders initial count', async () => {
   // Render new instance in every test to prevent leaking state
-  const wrapper = getWraper({ count: 5 });
+  const wrapper = getWrapper({ count: 5 });
 
   // It takes time for the counter to appear because
   // the GET request has a slight delay
@@ -45,7 +45,7 @@ it('renders initial count', async () => {
 
 it('increments count', async () => {
   // Render new instance in every test to prevent leaking state
-  const wrapper = getWraper({ count: 5 });
+  const wrapper = getWrapper({ count: 5 });
 
   // It takes time for the button to appear because
   // the GET request has a slight delay

@@ -1,4 +1,4 @@
-// highlight{7-15,18-19,25-26}
+// highlight{10-14,31-33}
 import React from 'react';
 import { MemoryRouter, Route } from 'react-router';
 import { mount } from 'enzyme';

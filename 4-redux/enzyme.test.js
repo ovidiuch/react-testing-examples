@@ -1,4 +1,4 @@
-// highlight{9-15,18-19,25-26}
+// highlight{12-14}
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
