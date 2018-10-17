@@ -1,4 +1,4 @@
-// highlight{8-9,22-34}
+// highlight{8-9,24-34}
 import React from 'react';
 import { mount } from 'enzyme';
 import until from 'async-until';

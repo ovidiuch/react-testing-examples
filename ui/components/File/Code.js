@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import { escape } from 'lodash';
 import styled from 'styled-components';
 import Prism from 'prismjs';
 import { parseCode } from './shared';
@@ -22,11 +23,7 @@ export function Code({ code, showComments, showImports }: Props) {
   );
 
   // Generate syntax highlighting using Prism
-  const codeMarkup = Prism.highlight(
-    lines.map(l => l.code).join('\n'),
-    Prism.languages.jsx,
-    'jsx'
-  );
+  const codeMarkup = Prism.highlight(cleanCode, Prism.languages.jsx, 'jsx');
 
   // Apply line highlighting based on previous line.highlighted annotations
   const linesWithMarkup = getLinesWithMarkup(codeMarkup, lines);
@@ -34,18 +31,39 @@ export function Code({ code, showComments, showImports }: Props) {
   // Only hide lines after lines have been highlighted (to not mess with the
   // line numbers)
   const linesVisible = linesWithMarkup.filter((l, idx) => !lines[idx].hidden);
-  const visibleMarkup = joinMarkupLines(linesVisible);
+  // const visibleMarkup = joinMarkupLines(linesVisible);
+  // const visibleMarkup = joinMarkupLines(linesVisible);
 
   return (
-    <CodeHighlight>
-      <pre className="code-jsx">
-        <code
-          dangerouslySetInnerHTML={{
-            __html: visibleMarkup
-          }}
-        />
-      </pre>
-    </CodeHighlight>
+    <Container>
+      <Background>
+        <pre>
+          <code
+            dangerouslySetInnerHTML={{
+              __html: joinMarkupLines(
+                linesVisible.map(l => ({
+                  ...l,
+                  code: l.highlighted
+                    ? `<span class="highlight-code-line">${escape(
+                        l.code
+                      )}\n</span>`
+                    : escape(l.code)
+                }))
+              )
+            }}
+          />
+        </pre>
+      </Background>
+      <CodeHighlight>
+        <pre className="code-jsx">
+          <code
+            dangerouslySetInnerHTML={{
+              __html: linesVisible.map(l => l.markup).join('\n')
+            }}
+          />
+        </pre>
+      </CodeHighlight>
+    </Container>
   );
 }
 
@@ -100,10 +118,14 @@ function getLinesWithMarkup(codeMarkup, lines) {
 
   return lines.map((line, idx) => ({
     ...line,
-    markup: line.highlighted
-      ? `<span class="highlight-code-line">${markupLines[idx]}\n</span>`
-      : markupLines[idx]
+    markup: markupLines[idx]
   }));
+  // return lines.map((line, idx) => ({
+  //   ...line,
+  //   markup: line.highlighted
+  //     ? `<span class="highlight-code-line">${markupLines[idx]}\n</span>`
+  //     : markupLines[idx]
+  // }));
 }
 
 function joinMarkupLines(lines) {
@@ -116,17 +138,58 @@ function joinMarkupLines(lines) {
   // as they need to be display: block and full-width.
   lines.forEach((line, idx) => {
     markup += line.highlighted
-      ? line.markup
-      : `${line.markup}${idx === lastIdx ? '' : '\n'}`;
+      ? line.code
+      : `${line.code}${idx === lastIdx ? '' : '\n'}`;
   });
 
   return markup;
 }
 
+const Container = styled.div`
+  position: relative;
+`;
+
+const Background = styled.div`
+  background: #282c34;
+
+  border-radius: 10px;
+  padding: 16px 24px;
+  overflow: auto;
+  color: transparent;
+
+  pre,
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace !important;
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  pre {
+    height: auto !important;
+    margin: 0;
+    font-size: 14px;
+    line-height: 24px;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .highlight-code-line {
+    background-color: #14161a;
+    display: block;
+    margin: 0 calc(-24px);
+    padding: 0 calc(24px);
+  }
+`;
+
 // Styles copied from
 // https://github.com/reactjs/reactjs.org/blob/942e83ef396199f499830792b1c61a9c6c990f29/src/prism-styles.js
 const CodeHighlight = styled.div`
-  background: #282c34;
+  position: absolute;
+  top: 0;
+
+  background: transparent;
   color: #ffffff;
   border-radius: 10px;
   padding: 16px 24px;
@@ -150,13 +213,6 @@ const CodeHighlight = styled.div`
     line-height: 24px;
     white-space: pre-wrap;
     word-break: break-word;
-  }
-
-  .highlight-code-line {
-    background-color: #14161a;
-    display: block;
-    margin: -0.125rem calc(-24px);
-    padding: 0.125rem calc(24px);
   }
 
   .token.attr-name {

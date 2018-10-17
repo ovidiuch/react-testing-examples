@@ -28,5 +28,17 @@ export default [
       testFilter: 'cosmos',
       searchText: 'Redux'
     }
+  }),
+  createFixture({
+    name: 'Fetch test',
+    component: Section,
+    props: {
+      section: {
+        type: 'test',
+        test: tests[6]
+      },
+      testFilter: 'enzyme',
+      searchText: ''
+    }
   })
 ];

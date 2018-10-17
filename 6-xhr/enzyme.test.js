@@ -1,52 +1,61 @@
-// highlight{9-10,25-39}
+// highlight{17-24,36-37,47-48}
 import React from 'react';
 import { mount } from 'enzyme';
 import until from 'async-until';
+import retry from '@skidding/async-retry';
 import { XhrMock } from '@react-mock/xhr';
-import { delayed } from './delayed';
 import { ServerCounter } from './component';
 
-let count = 5;
-let wrapper;
+// Hoist helper functions (but not vars) to reuse between test cases
+const getRes = count => async (req, res) => res.status(200).body({ count });
 
-let notSyncing = () => {
-  // Enzyme wrapper is not updated automatically since v3
-  // https://github.com/airbnb/enzyme/issues/1163
-  wrapper.update();
-  return !wrapper.text().match('Syncing...');
-};
+const postRes = count => (req, res) =>
+  res.status(200).body({ count: count + 1 });
 
-let simulateIncrement = async () => {
-  wrapper.find('button').simulate('click');
-  await until(notSyncing);
-};
-
-beforeEach(() => {
-  // Simulate GET delay
-  const getRes = async (req, res) => delayed(res.status(200).body({ count }));
-  const increment = (req, res) => res.status(200).body({ count: ++count });
-
-  // Flush instances between tests to prevent leaking state
-  wrapper = mount(
+const getWraper = ({ count }) =>
+  mount(
     <XhrMock
       mocks={[
-        { url: '/count', method: 'GET', response: getRes },
-        { url: '/count', method: 'POST', response: increment }
+        { url: '/count', method: 'GET', response: getRes(count) },
+        { url: '/count', method: 'POST', response: postRes(count) }
       ]}
     >
       <ServerCounter />
     </XhrMock>
   );
-});
+
+const isReady = wrapper => () => {
+  // Enzyme wrapper is not updated automatically since v3
+  // https://github.com/airbnb/enzyme/issues/1163
+  wrapper.update();
+
+  return !wrapper.text().match('Syncing...');
+};
 
 it('renders initial count', async () => {
-  await until(notSyncing);
-  expect(wrapper.text()).toContain(`Clicked 5 times`);
+  // Render new instance in every test to prevent leaking state
+  const wrapper = getWraper({ count: 5 });
+
+  // It takes time for the counter to appear because
+  // the GET request has a slight delay
+  await retry(() => {
+    expect(wrapper.text()).toContain(`Clicked 5 times`);
+  });
 });
 
-it('renders incremented count', async () => {
-  await until(notSyncing);
-  await simulateIncrement();
-  await simulateIncrement();
-  expect(wrapper.text()).toContain(`Clicked 7 times`);
+it('increments count', async () => {
+  // Render new instance in every test to prevent leaking state
+  const wrapper = getWraper({ count: 5 });
+
+  // It takes time for the button to appear because
+  // the GET request has a slight delay
+  await until(isReady(wrapper));
+
+  wrapper.find('button').simulate('click');
+
+  // The counter doesn't update immediately because
+  // the POST request is asynchronous
+  await retry(() => {
+    expect(wrapper.text()).toContain(`Clicked 6 times`);
+  });
 });
