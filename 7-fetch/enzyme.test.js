@@ -1,47 +1,56 @@
-// highlight{8-9,24-34}
+// highlight{12-19,23-25,34-37,45-49}
 import React from 'react';
 import { mount } from 'enzyme';
 import until from 'async-until';
+import retry from '@skidding/async-retry';
 import { FetchMock } from '@react-mock/fetch';
 import { ServerCounter } from './component';
 
-let count = 5;
-let wrapper;
-
-let notSyncing = () => {
-  wrapper.update();
-  return !wrapper.text().match('Syncing...');
-};
-
-let simulateIncrement = async () => {
-  wrapper.find('button').simulate('click');
-  await until(notSyncing);
-};
-
-beforeEach(() => {
-  const increment = () => ({ count: ++count });
-
-  // Flush instances between tests to prevent leaking state
-  wrapper = mount(
+// Hoist helper functions (but not vars) to reuse between test cases
+const getWrapper = ({ count }) =>
+  mount(
     <FetchMock
       mocks={[
         { matcher: '/count', method: 'GET', response: { count } },
-        { matcher: '/count', method: 'POST', response: increment }
+        { matcher: '/count', method: 'POST', response: { count: count + 1 } }
       ]}
     >
       <ServerCounter />
     </FetchMock>
   );
-});
+
+const isReady = wrapper => () => {
+  // Enzyme wrapper is not updated automatically since v3
+  // https://github.com/airbnb/enzyme/issues/1163
+  wrapper.update();
+
+  return !wrapper.text().match('Syncing...');
+};
 
 it('renders initial count', async () => {
-  await until(notSyncing);
-  expect(wrapper.text()).toContain(`Clicked 5 times`);
+  // Render new instance in every test to prevent leaking state
+  const wrapper = getWrapper({ count: 5 });
+
+  // It takes time for the counter to appear because
+  // the GET request has a slight delay
+  await retry(() => {
+    expect(wrapper.text()).toContain(`Clicked 5 times`);
+  });
 });
 
-it('renders incremented count', async () => {
-  await until(notSyncing);
-  await simulateIncrement();
-  await simulateIncrement();
-  expect(wrapper.text()).toContain(`Clicked 7 times`);
+it('increments count', async () => {
+  // Render new instance in every test to prevent leaking state
+  const wrapper = getWrapper({ count: 5 });
+
+  // It takes time for the button to appear because
+  // the GET request has a slight delay
+  await until(isReady(wrapper));
+
+  wrapper.find('button').simulate('click');
+
+  // The counter doesn't update immediately because
+  // the POST request is asynchronous
+  await retry(() => {
+    expect(wrapper.text()).toContain(`Clicked 6 times`);
+  });
 });
