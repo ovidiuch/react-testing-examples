@@ -19,8 +19,8 @@ export function Code({ code, showComments, showImports }: Props) {
     <Container>
       <LineHighlights>
         <StyledCode>
-          {visibleLines.map(line => (
-            <LineHighlight highlight={line.isHighlighted}>
+          {visibleLines.map((line, idx) => (
+            <LineHighlight key={idx} highlight={line.isHighlighted}>
               {line.rawCode}
             </LineHighlight>
           ))}
