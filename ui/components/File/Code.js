@@ -14,7 +14,7 @@ type Props = {
 export function Code({ code, showComments, showImports }: Props) {
   const { highlightLines, cleanCode } = parseCode(code);
 
-  let lines = getLinesFromCode(
+  const lines = getLinesFromCode(
     cleanCode,
     highlightLines,
     showComments,
@@ -22,19 +22,19 @@ export function Code({ code, showComments, showImports }: Props) {
   );
 
   // Generate syntax highlighting using Prism
-  let codeMarkup = Prism.highlight(
+  const codeMarkup = Prism.highlight(
     lines.map(l => l.code).join('\n'),
     Prism.languages.jsx,
     'jsx'
   );
 
   // Apply line highlighting based on previous line.highlighted annotations
-  let linesWithMarkup = getLinesWithMarkup(codeMarkup, lines);
+  const linesWithMarkup = getLinesWithMarkup(codeMarkup, lines);
 
   // Only hide lines after lines have been highlighted (to not mess with the
   // line numbers)
-  let linesVisible = linesWithMarkup.filter((l, idx) => !lines[idx].hidden);
-  let visibleMarkup = joinMarkupLines(linesVisible);
+  const linesVisible = linesWithMarkup.filter((l, idx) => !lines[idx].hidden);
+  const visibleMarkup = joinMarkupLines(linesVisible);
 
   return (
     <CodeHighlight>
@@ -110,7 +110,7 @@ function joinMarkupLines(lines) {
   // Code inspired from Gatsby codebase
   // https://github.com/gatsbyjs/gatsby/blob/3b647d707cb6e35be6e963c309ef12f9b8e11fc3/packages/gatsby-remark-prismjs/src/highlight-code.js#L23-L48
   let markup = '';
-  let lastIdx = lines.length - 1;
+  const lastIdx = lines.length - 1;
 
   // Don't add back the new line character after highlighted lines
   // as they need to be display: block and full-width.
