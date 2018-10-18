@@ -19,7 +19,12 @@ export type TSetup = {
   readme: TReadme,
   code: {
     jest: {
-      config: string,
+      config: string
+    },
+    enzyme: {
+      setup: string
+    },
+    rtl: {
       setup: string
     }
   }

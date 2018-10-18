@@ -11,7 +11,9 @@ export class PersistentForm extends Component {
     });
   }
 
-  changeName = () => {
+  changeName = e => {
+    e.preventDefault();
+
     const name = this.refs.nameField.value;
 
     this.setState({ name }, () => {
@@ -26,7 +28,8 @@ export class PersistentForm extends Component {
       <>
         <p>Welcome, {name}!</p>
         <form onSubmit={this.changeName}>
-          <input type="text" ref="nameField" />
+          <label htmlFor="name-field">Name</label>
+          <input id="name-field" type="text" ref="nameField" />
           <button type="submit">Change name</button>
         </form>
       </>

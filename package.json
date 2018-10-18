@@ -38,13 +38,14 @@
     "eslint-plugin-babel": "^5.2.1",
     "eslint-plugin-flowtype": "^3.0.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jest": "^21.25.0",
+    "eslint-plugin-jest": "^21.25.1",
     "eslint-plugin-react": "^7.11.1",
     "flow-bin": "^0.83.0",
     "flow-typed": "^2.5.1",
     "glob": "^7.1.3",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^23.6.0",
+    "jest-dom": "^2.1.0",
     "prettier": "^1.14.3",
     "raw-loader": "^0.5.1",
     "react-cosmos": "^4.7.0-16",
@@ -58,12 +59,13 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-test-renderer": "^16.5.2",
+    "react-testing-library": "^5.2.0",
     "redux": "^4.0.1",
     "remark-parse": "^5.0.0",
     "style-loader": "^0.23.1",
     "traverse": "^0.6.6",
     "unified": "^7.0.0",
-    "webpack": "^4.20.2"
+    "webpack": "^4.21.0"
   },
   "dependencies": {
     "clipboard": "^2.0.1",
@@ -75,6 +77,6 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-show": "2.0.4",
-    "styled-components": "^4.0.0"
+    "styled-components": "^4.0.2"
   }
 }

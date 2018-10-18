@@ -1,3 +1,4 @@
 module.exports = {
-  setupFiles: ['./jest.setup.js']
+  setupFiles: ['./enzyme.setup.js'],
+  setupTestFrameworkScriptFile: './rtl.setup.js'
 };
