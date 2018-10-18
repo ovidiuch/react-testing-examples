@@ -38,7 +38,7 @@
     "eslint-plugin-babel": "^5.2.1",
     "eslint-plugin-flowtype": "^3.0.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jest": "^21.25.0",
+    "eslint-plugin-jest": "^21.25.1",
     "eslint-plugin-react": "^7.11.1",
     "flow-bin": "^0.83.0",
     "flow-typed": "^2.5.1",
@@ -65,7 +65,7 @@
     "style-loader": "^0.23.1",
     "traverse": "^0.6.6",
     "unified": "^7.0.0",
-    "webpack": "^4.20.2"
+    "webpack": "^4.21.0"
   },
   "dependencies": {
     "clipboard": "^2.0.1",
@@ -77,6 +77,6 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-show": "2.0.4",
-    "styled-components": "^4.0.0"
+    "styled-components": "^4.0.2"
   }
 }
