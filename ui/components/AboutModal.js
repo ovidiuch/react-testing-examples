@@ -10,6 +10,8 @@ type Props = {
   onClose: () => mixed
 };
 
+// TODO: Link projects used to write tests
+// TODO: Link projects used to create website
 export class AboutModal extends Component<Props> {
   handleContentClick = (e: SyntheticEvent<HTMLElement>) => {
     e.stopPropagation();
