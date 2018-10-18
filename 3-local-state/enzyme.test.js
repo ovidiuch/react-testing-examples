@@ -16,7 +16,7 @@ it('renders initial count', () => {
   // Render new instance in every test to prevent leaking state
   const wrapper = getWrapper({ count: 5 });
 
-  expect(wrapper.text()).toMatch(`Clicked 5 times`);
+  expect(wrapper.text()).toMatch('Clicked 5 times');
 });
 
 it('increments count', () => {
@@ -24,5 +24,5 @@ it('increments count', () => {
   const wrapper = getWrapper({ count: 5 });
 
   wrapper.find('button').simulate('click');
-  expect(wrapper.text()).toMatch(`Clicked 6 times`);
+  expect(wrapper.text()).toMatch('Clicked 6 times');
 });

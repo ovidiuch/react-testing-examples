@@ -30,7 +30,7 @@ describe('on update', () => {
     const wrapper = getWrapper({ name: 'Trent' });
     submitForm({ wrapper, name: 'Trevor' });
 
-    expect(wrapper.text()).toMatch(`Welcome, Trevor`);
+    expect(wrapper.text()).toMatch('Welcome, Trevor');
   });
 
   it('updates LocalStorage cache', () => {
