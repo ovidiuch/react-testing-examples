@@ -3,14 +3,16 @@
 > Started on Oct 16, 2018
 
 - [x] Use react-mock in tests
-  - [ ] Remove Cosmos fixture tests (superseded by react-mock)
 - [x] Remove hoisted vars and before/after cases
 - [x] Refactor code preview component
-- [ ] Try react-testing-library
+- [x] Try react-testing-library
+- [ ] Split tests between RTL and Enzyme
+  - [ ] Remove Cosmos fixture tests (superseded by react-mock)
 - [ ] Update project description
 - [ ] Visual facelift
   - [x] Header
   - [ ] Footer
+    - [ ] Links to tech used
 
 ## First version
 
