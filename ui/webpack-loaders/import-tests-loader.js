@@ -1,4 +1,3 @@
-const { existsSync } = require('fs');
 const { join } = require('path');
 const glob = require('glob');
 const { execSync } = require('child_process');
@@ -41,22 +40,9 @@ function getTestObj(name) {
       component: require('!raw-loader!${getFilePath(name, '/component')}'),
       enzyme: {
         test: require('!raw-loader!${getFilePath(name, '/enzyme.test')}')
-      },
-      cosmos: {
-        test: require('!raw-loader!${getFilePath(name, '/cosmos.test')}'),
-        fixture: require('!raw-loader!${getFilePath(name, '/fixture')}'),
-        proxies: ${getProxiesReq(name)}
       }
     }
   }`;
-}
-
-function getProxiesReq(testName) {
-  let proxiesPath = getFilePath(testName, 'cosmos.proxies.js');
-
-  return existsSync(proxiesPath)
-    ? `require('!raw-loader!${proxiesPath}')`
-    : 'undefined';
 }
 
 function getFilePath(testName, filePath) {

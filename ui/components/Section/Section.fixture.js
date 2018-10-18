@@ -18,18 +18,6 @@ export default [
     }
   }),
   createFixture({
-    name: 'Redux test',
-    component: Section,
-    props: {
-      section: {
-        type: 'test',
-        test: tests[4]
-      },
-      testFilter: 'cosmos',
-      searchText: 'Redux'
-    }
-  }),
-  createFixture({
     name: 'Fetch test',
     component: Section,
     props: {

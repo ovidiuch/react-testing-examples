@@ -10,6 +10,7 @@ type Props = {
   right: Node
 };
 
+// XXX: Nobody uses me anymore? I might as well disappear!
 export class LeftRight extends Component<Props> {
   render() {
     const { left, right } = this.props;

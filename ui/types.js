@@ -2,7 +2,8 @@
 
 import type { ComponentType } from 'react';
 
-export type TTestFilter = 'enzyme' | 'cosmos';
+// TODO: 'jest-rtl' | 'jest-enzyme'
+export type TTestFilter = 'enzyme';
 
 export type TReadmeText = {
   title: string,
@@ -37,11 +38,6 @@ export type TTest = {
     component: string,
     enzyme: {
       test: string
-    },
-    cosmos: {
-      test: string,
-      fixture: string,
-      proxies?: string
     }
   }
 };

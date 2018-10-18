@@ -11,18 +11,24 @@ type Props = {
   onChange: (testFilter: TTestFilter) => mixed
 };
 
+// TODO
+// const LABELS = {
+//   'jest-enzyme': 'Jest & Enzyme',
+//   'jest-rtl': 'Jest & RTL',
+// };
 const LABELS = {
-  enzyme: 'Enzyme',
-  cosmos: 'Enzyme & Cosmos'
+  enzyme: 'Enzyme'
 };
 
 export class TestFilterSelect extends Component<Props> {
   handleChange = (e: SyntheticInputEvent<HTMLSelectElement>) => {
     let { value } = e.currentTarget;
 
-    if (value === 'enzyme' || value === 'cosmos') {
+    if (value === 'enzyme') {
       this.props.onChange(value);
     }
+
+    // TODO: Throw otherwise
   };
 
   render() {
@@ -33,7 +39,6 @@ export class TestFilterSelect extends Component<Props> {
         {LABELS[testFilter]}
         <Select value={this.props.testFilter} onChange={this.handleChange}>
           <option value="enzyme">{LABELS.enzyme}</option>
-          <option value="cosmos">{LABELS.cosmos}</option>
         </Select>
       </SelectContainer>
     );

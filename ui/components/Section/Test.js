@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import { CenterText } from '../shared/styles';
 import { File } from '../File';
-import { LeftRight } from './LeftRight';
 import { Readme } from './Readme';
 
 import type { TTestFilter, TTest } from '../../types';
@@ -17,7 +16,11 @@ type Props = {
 export class Test extends Component<Props> {
   render() {
     const { test, testFilter, searchText } = this.props;
-    const { name, readme, code: { component } } = test;
+    const {
+      name,
+      readme,
+      code: { component }
+    } = test;
 
     return (
       <>
@@ -37,7 +40,7 @@ export class Test extends Component<Props> {
 
   renderTestFiles(test: TTest, testFilter: TTestFilter) {
     let { name, code } = test;
-    let { enzyme, cosmos } = code;
+    let { enzyme } = code;
 
     switch (testFilter) {
       case 'enzyme':
@@ -48,35 +51,7 @@ export class Test extends Component<Props> {
             code={enzyme.test}
           />
         );
-      case 'cosmos':
-        return (
-          <LeftRight
-            left={
-              <>
-                <File
-                  name="fixture.js"
-                  filePath={`${name}/fixture.js`}
-                  code={cosmos.fixture}
-                />
-                {cosmos.proxies && (
-                  <File
-                    name="proxies.js"
-                    filePath={`${name}/cosmos.proxies.js`}
-                    code={cosmos.proxies}
-                    closed
-                  />
-                )}
-              </>
-            }
-            right={
-              <File
-                name="test.js"
-                filePath={`${name}/cosmos.test.js`}
-                code={cosmos.test}
-              />
-            }
-          />
-        );
+
       default:
         throw new Error(`Invalid testFilter '${testFilter}'`);
     }
