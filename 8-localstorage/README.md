@@ -4,4 +4,4 @@ The component reads and updates the user name from [LocalStorage](https://develo
 
 Then we type a new name into an input, submit the form, and test that the submitted value has been updated in LocalStorage.
 
-> We use [`@react-mock/localstorage`](https://github.com/skidding/react-mock#localstorage) to mock the cached data.
+> We use [`@react-mock/localstorage`](https://github.com/skidding/react-mock/tree/master/packages/localstorage) to mock the cached data.

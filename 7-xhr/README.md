@@ -8,4 +8,4 @@ Then we click on the increment button, which makes a POST request to increment t
 
 > These tests are **async** because server requests don't resolve immediately. We wait for the loading message to disappear before interacting with our component.
 
-> We use [`@react-mock/xhr`](https://github.com/skidding/react-mock#xhr-requests) to mock the server requests and [`async-retry`](https://github.com/skidding/async-retry) for assertions that take some time to come true.
+> We use [`@react-mock/xhr`](https://github.com/skidding/react-mock/tree/master/packages/xhr) to mock the server requests and [`async-retry`](https://github.com/skidding/async-retry) for assertions that take some time to come true.
