@@ -1,24 +1,28 @@
 // @flow
+
 import rangeParser from 'parse-numeric-range';
 
-export function getCleanCode(code: string) {
-  let highlightLines = getHighlightLines(code);
+type ParsedCode = {
+  lineNumsToHighlight: number[],
+  cleanCode: string
+};
 
-  return highlightLines.length > 0
-    ? getCodeWithoutHighlightComment(code)
-    : code;
+export function parseCode(code: string): ParsedCode {
+  // The highlight line numbers comments is (optionally) found in the first
+  // line of a code sample. The comment like this: highlight{2-3,12-13}
+  const lineNumsToHighlight = getHighlightLines(code);
+  const cleanCode =
+    lineNumsToHighlight.length > 0 ? stripFirstLine(code) : code;
+
+  return { lineNumsToHighlight, cleanCode };
 }
 
-export function getHighlightLines(code: string): Array<number> {
-  let res = code.match(/highlight\{(.+?)\}/);
+function getHighlightLines(code) {
+  const res = code.match(/highlight\{(.+?)\}/);
 
   return res ? rangeParser.parse(res[1]) : [];
 }
 
-function getCodeWithoutHighlightComment(code: string): string {
-  // XXX: `highlight{...}` comment must always be the first line
-  return code
-    .split('\n')
-    .slice(1)
-    .join('\n');
+function stripFirstLine(code) {
+  return code.replace(/^.+?\n/, '');
 }

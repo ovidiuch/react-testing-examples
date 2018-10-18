@@ -1,23 +1,28 @@
-// highlight{9-13}
+// highlight{11-13}
 import React from 'react';
-import { mount } from 'enzyme';
+import { create as mount } from 'react-test-renderer';
 import { ThemeProvider } from 'styled-components';
 import { themeLight, themeDark } from './theme';
 import { HelloMessage } from './component';
 
-function getClassName(theme) {
-  let wrapper = mount(
+// Hoist helper functions (but not vars) to reuse between test cases
+const getWrapper = ({ theme }) =>
+  mount(
     <ThemeProvider theme={theme}>
       <HelloMessage>Hello world!</HelloMessage>
     </ThemeProvider>
   );
 
-  return wrapper
-    .find(HelloMessage)
-    .find('span')
-    .prop('className');
-}
+it('renders "light" theme', () => {
+  // Render new instance in every test to prevent leaking state
+  const wrapper = getWrapper({ theme: themeLight });
 
-it('changes styles with theme', () => {
-  expect(getClassName(themeLight)).not.toEqual(getClassName(themeDark));
+  expect(wrapper.toJSON()).toMatchSnapshot();
+});
+
+it('renders "dark" theme', () => {
+  // Render new instance in every test to prevent leaking state
+  const wrapper = getWrapper({ theme: themeDark });
+
+  expect(wrapper.toJSON()).toMatchSnapshot();
 });

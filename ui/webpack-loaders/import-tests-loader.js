@@ -4,19 +4,28 @@ const glob = require('glob');
 const { execSync } = require('child_process');
 
 module.exports = function parseReadme(source) {
-  let tests = getTestDirs()
+  let tests = getTestDirsNames()
     .map(getTestObj)
     .join(',');
   let gitRef = getLastCommit();
+
+  // Re-build webpack bundle on test file changes
+  getTestDirs().forEach(testDir => {
+    this.addContextDependency(join(__dirname, `../../${testDir}`));
+  });
 
   return source
     .replace('tests = []', `tests = [${tests}]`)
     .replace(`gitRef = ''`, `gitRef = '${gitRef}'`);
 };
 
+function getTestDirsNames() {
+  return getTestDirs().map(p => p.replace(/^\.\/(.+)\/$/, '$1'));
+}
+
 function getTestDirs() {
   // Hmm, maybe put tests in a dedicated dir...
-  return glob.sync('./[0-9]*/').map(p => p.replace(/^\.\/(.+)\/$/, '$1'));
+  return glob.sync('./[0-9]*/');
 }
 
 function getTestObj(name) {
