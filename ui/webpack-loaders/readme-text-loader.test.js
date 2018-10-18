@@ -1,7 +1,10 @@
 import fs from 'fs';
 import loader from './readme-text-loader';
 
-let readme = fs.readFileSync('./5-react-router/README.md', 'utf8');
+let readme = fs.readFileSync(
+  './tests/jest-enzyme/5-react-router/README.md',
+  'utf8'
+);
 let output = loader(readme);
 let json = JSON.parse(output.replace(/module.exports = {(.+)}/, '{$1}'));
 

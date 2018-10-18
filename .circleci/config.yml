@@ -38,4 +38,4 @@ jobs:
       - run: yarn flow
 
       # Test code
-      - run: yarn test --maxWorkers=2
+      - run: yarn test:ci

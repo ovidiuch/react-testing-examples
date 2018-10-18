@@ -1,8 +1,16 @@
+const testSharedAlias = {
+  root: ['./tests'],
+  alias: {
+    shared: './tests/shared'
+  }
+};
+
 module.exports = {
   presets: ['next/babel', '@babel/preset-flow'],
   plugins: [
     ['babel-plugin-inline-import-data-uri', { extensions: ['.png', '.svg'] }],
-    ['styled-components', { ssr: true, displayName: true, preprocess: false }]
+    ['styled-components', { ssr: true, displayName: true, preprocess: false }],
+    ['module-resolver', testSharedAlias]
   ],
   env: {
     test: {

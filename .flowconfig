@@ -8,10 +8,10 @@ flow-typed
 [lints]
 
 [options]
-module.name_mapper='^!raw-loader!.+$' -> '<PROJECT_ROOT>/stub/raw.js'
-module.name_mapper='^!.+\/readme-text-loader!.+$' -> '<PROJECT_ROOT>/stub/readme-text.js'
-module.name_mapper='^.+\/README\.md$' -> '<PROJECT_ROOT>/stub/component.js'
-module.name_mapper='^.+\/SETUP\.md$' -> '<PROJECT_ROOT>/stub/component.js'
-module.name_mapper='^.+\/WHATSTHIS\.md$' -> '<PROJECT_ROOT>/stub/component.js'
+module.name_mapper='^!raw-loader!.+$' -> '<PROJECT_ROOT>/.stubs/raw.js'
+module.name_mapper='^!.+\/readme-text-loader!.+$' -> '<PROJECT_ROOT>/.stubs/readme-text.js'
+module.name_mapper='^.+\/README\.md$' -> '<PROJECT_ROOT>/.stubs/component.js'
+module.name_mapper='^.+\/SETUP\.md$' -> '<PROJECT_ROOT>/.stubs/component.js'
+module.name_mapper='^.+\/WHATSTHIS\.md$' -> '<PROJECT_ROOT>/.stubs/component.js'
 
 [strict]
