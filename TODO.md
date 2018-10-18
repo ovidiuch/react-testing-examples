@@ -1,3 +1,21 @@
+## Second version
+
+> Started on Oct 16, 2018
+
+- [x] Use react-mock in tests
+  - [ ] Remove Cosmos fixture tests (superseded by react-mock)
+- [x] Remove hoisted vars and before/after cases
+- [x] Refactor code preview component
+- [ ] Try react-testing-library
+- [ ] Update project description
+- [ ] Visual facelift
+  - [x] Header
+  - [ ] Footer
+
+## First version
+
+> Started on Apr 24, 2018
+
 - [x] Add "Click callback" tests
 - [x] Add "Render text" tests
 - [x] Add "Local state" tests
