@@ -1,4 +1,5 @@
 // @flow
+/* eslint-env browser */
 
 import React, { Component } from 'react';
 import Router from 'next/router';
@@ -75,7 +76,7 @@ export class App extends Component<Props, State> {
     // Jump to top when changing search query, because results will change
     // anyway so previous scroll position will be irrelevant
     if (searchText && searchText !== prevState.searchText) {
-      global.window.scrollTo(0, 0);
+      window.scrollTo(0, 0);
     }
 
     setBodyScroll(showAbout);
@@ -147,7 +148,9 @@ function getSectionKey(section: TSection): string {
 
 function setBodyScroll(hasModal: boolean) {
   // Prevent double scroll when modal is open
-  global.document.body.className = hasModal ? 'with-modal' : '';
+  if (document.body) {
+    document.body.className = hasModal ? 'with-modal' : '';
+  }
 }
 
 const TopSpace = styled.div`

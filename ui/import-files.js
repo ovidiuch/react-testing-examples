@@ -1,4 +1,5 @@
 // @flow
+/* eslint-env commonjs */
 
 export const setup = {
   name: 'setup',

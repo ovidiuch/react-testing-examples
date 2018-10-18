@@ -16,11 +16,6 @@
       "babel-module": {}
     }
   },
-  "globals": {
-    "fetch": true,
-    "localStorage": true,
-    "global": true
-  },
   "rules": {
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error"
@@ -30,11 +25,9 @@
       "files": [
         "babel.config.js",
         "jest.config.js",
-        "jest.framework-setup.js",
         "cosmos.config.js",
         "next.config.js",
         "webpack.extend.js",
-        "stub/*.js",
         "ui/webpack-loaders/**/*.js"
       ],
       "env": {
@@ -48,9 +41,9 @@
       }
     },
     {
-      "files": ["ui/**/*.fixture.js", "ui/import-files.js"],
-      "globals": {
-        "require": true
+      "files": ["**/8-localstorage/test.js"],
+      "env": {
+        "browser": true
       }
     }
   ]

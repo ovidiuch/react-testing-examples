@@ -1,4 +1,5 @@
 // @flow
+/* eslint-env browser */
 
 import { Component } from 'react';
 
@@ -11,11 +12,11 @@ type Props = {
 
 export class WindowKeyListener extends Component<Props> {
   componentDidMount() {
-    global.addEventListener('keydown', this.handleKeyDown);
+    window.addEventListener('keydown', this.handleKeyDown);
   }
 
   componentWillUnmount() {
-    global.removeEventListener('keydown', this.handleKeyDown);
+    window.removeEventListener('keydown', this.handleKeyDown);
   }
 
   handleKeyDown = (e: SyntheticKeyboardEvent<HTMLElement>) => {
