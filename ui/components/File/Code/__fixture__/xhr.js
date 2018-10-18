@@ -8,7 +8,7 @@ export default [
   createFixture({
     component: Code,
     props: {
-      code: tests[4].code.enzyme.test,
+      code: tests[6].code.enzyme.test,
       showComments: true,
       showImports: false
     }

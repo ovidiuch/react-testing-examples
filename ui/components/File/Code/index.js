@@ -39,6 +39,7 @@ export function Code({ code, showComments, showImports }: Props) {
 
 const Container = styled.div`
   position: relative;
+  overflow: auto;
 `;
 
 const LineHighlights = styled.pre`
