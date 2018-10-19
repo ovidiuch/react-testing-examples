@@ -7,7 +7,8 @@
 - [x] Refactor code preview component
 - [x] Try react-testing-library
 - [ ] Split tests between RTL and Enzyme
-  - [ ] Remove Cosmos fixture tests (superseded by react-mock)
+  - [x] Remove Cosmos fixture tests (superseded by react-mock)
+  - [ ] Add URL for each test type
 - [ ] Update project description
 - [ ] Visual facelift
   - [x] Header
