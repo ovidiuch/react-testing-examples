@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { shouldSearch } from '../../search';
 import svgInfo from '../../svg/info.svg';
-import pngThinkin from '../../img/thinkin.png';
 import { FuzzyHighlighter } from '../shared/FuzzyHighlighter';
 import {
   CenterText,
@@ -14,6 +13,7 @@ import {
   InternalLink,
   ListItem
 } from '../shared/styles';
+import thinkin from './img/thinkin.png';
 import { ToggleShow } from './ToggleShow';
 import { ToggleButton } from './ToggleButton';
 
@@ -177,7 +177,7 @@ const ThinkinFace = styled.div`
   margin: 32px auto;
   width: 140px;
   height: 140px;
-  background: #f5f7f9 url(${pngThinkin}) no-repeat center center;
+  background: #f5f7f9 url(${thinkin}) no-repeat center center;
   background-size: 140px 140px;
   background-blend-mode: luminosity;
   opacity: 0;
