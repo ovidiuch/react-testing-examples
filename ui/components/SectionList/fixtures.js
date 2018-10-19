@@ -1,8 +1,8 @@
 // @flow
 
 import { createFixture } from 'react-cosmos';
-import { SectionList } from './SectionList';
-import { testKinds } from '../import-files';
+import { SectionList } from '.';
+import { testKinds } from '../../import-files';
 
 export default [
   createFixture({
