@@ -20,7 +20,7 @@ export class Readme extends Component<Props> {
 
     return (
       <Container>
-        <readme.markup
+        <readme.component
           components={{
             h2: ({ children }) => (
               <TitleLink link={name}>

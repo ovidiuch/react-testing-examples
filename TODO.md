@@ -6,13 +6,20 @@
 - [x] Remove hoisted vars and before/after cases
 - [x] Refactor code preview component
 - [x] Try react-testing-library
-- [ ] Split tests between RTL and Enzyme
-  - [ ] Remove Cosmos fixture tests (superseded by react-mock)
+- [x] Split tests between RTL and Enzyme
+  - [x] Remove Cosmos fixture tests (superseded by react-mock)
+  - [ ] Add URL for each test kind
+  - [ ] Add URL for each test
+  - [ ] Refactor styled-components test
 - [ ] Update project description
 - [ ] Visual facelift
   - [x] Header
+  - [x] Remove file visibility toggling
+  - [ ] Add labels to file actions
   - [ ] Footer
     - [ ] Links to tech used
+  - [ ] Update responsive breakpoints
+- [ ] Optimize search perf
 
 ## First version
 

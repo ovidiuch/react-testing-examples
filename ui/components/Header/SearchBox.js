@@ -1,4 +1,5 @@
 // @flow
+/* eslint-env browser */
 
 import React, { Component } from 'react';
 import styled from 'styled-components';
@@ -22,7 +23,7 @@ export class SearchBox extends Component<Props> {
       return;
     }
 
-    const isFocused = searchInput === global.document.activeElement;
+    const isFocused = searchInput === document.activeElement;
     if (e.keyCode === KEY_S && !isFocused) {
       // Prevent entering `s` in the search field along with focusing
       e.preventDefault();

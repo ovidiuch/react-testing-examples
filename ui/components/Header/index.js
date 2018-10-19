@@ -5,17 +5,17 @@ import styled from 'styled-components';
 import svgSettings from '../../svg/settings.svg';
 import svgChevronLeft from '../../svg/chevron-left.svg';
 import { Center, Button } from '../shared/styles';
-import { TestFilterSelect } from './TestFilterSelect';
+import { TestKindSelect } from './TestKindSelect';
 import { GithubLink } from './GithubLink';
 import { AboutButton } from './AboutButton';
 import { SearchBox } from './SearchBox';
 import { CommentsCheckbox, ImportsCheckbox } from './Checkbox';
 
-import type { TTestFilter } from '../../types';
+import type { TTestKindId } from '../../types';
 
 type Props = {
-  testFilter: TTestFilter,
-  setTestFilter: (testFilter: TTestFilter) => mixed,
+  selTestKindId: TTestKindId,
+  setSelTestKindId: (selTestKindId: TTestKindId) => mixed,
   openAboutModal: () => mixed,
   toggleComments: () => mixed,
   toggleImports: () => mixed,
@@ -42,8 +42,8 @@ export class Header extends Component<Props, State> {
 
   render() {
     let {
-      testFilter,
-      setTestFilter,
+      selTestKindId,
+      setSelTestKindId,
       openAboutModal,
       toggleComments,
       toggleImports,
@@ -62,9 +62,9 @@ export class Header extends Component<Props, State> {
               </a>
             </h1>
             <div className="actions">
-              <TestFilterSelect
-                testFilter={testFilter}
-                onChange={setTestFilter}
+              <TestKindSelect
+                selTestKindId={selTestKindId}
+                onChange={setSelTestKindId}
               />
               <GithubLink />
               <AboutButton onClick={openAboutModal} />

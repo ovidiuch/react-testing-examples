@@ -2,14 +2,14 @@
 
 import { match, score } from 'fuzzaldrin-plus';
 
-import type { TReadmeText, TSection } from './types';
+import type { TReadmeMeta, TSection } from './types';
 
 export function shouldSearch(searchText: string) {
   return searchText.length > 2;
 }
 
 export function matchReadmeText(
-  { title, body }: TReadmeText,
+  { title, body }: TReadmeMeta,
   searchText: string
 ) {
   let searchTextNorm = normalizeTxt(searchText);
@@ -20,7 +20,7 @@ export function matchReadmeText(
   );
 }
 
-export function sortSections(sections: Array<TSection>, searchText: string) {
+export function sortSections(sections: TSection[], searchText: string) {
   let sorted: Array<TSection> = [...sections]
     .sort((a, b) => scoreByBody(b, searchText) - scoreByBody(a, searchText))
     .sort((a, b) => scoreByTitle(b, searchText) - scoreByTitle(a, searchText));
@@ -33,17 +33,13 @@ function normalizeTxt(txt: string): string {
 }
 
 function scoreByTitle(section: TSection, searchText: string): number {
-  return scoreBy(section, ({ title }) => score(title, searchText));
+  const { title } = section.readme.meta;
+
+  return score(title, searchText);
 }
 
 function scoreByBody(section: TSection, searchText: string): number {
-  return scoreBy(section, ({ body }) =>
-    Math.max(0, ...body.map(p => score(p, searchText)))
-  );
-}
+  const { body } = section.readme.meta;
 
-function scoreBy(section: TSection, cb: (info: TReadmeText) => number): number {
-  const { readme } = section.type === 'setup' ? section.setup : section.test;
-
-  return cb(readme.text);
+  return Math.max(0, ...body.map(p => score(p, searchText)));
 }

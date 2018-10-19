@@ -21,6 +21,11 @@ export const Link = styled.a`
   }
 `;
 
+export const InternalLink = styled(Link)`
+  color: #20232a;
+  font-weight: 500;
+`;
+
 export const Button = styled.button`
   box-sizing: border-box;
   border: 0;
@@ -75,7 +80,7 @@ export const List = styled.ul`
 `;
 
 export const ListItem = styled.li`
-  line-height: 24px;
+  line-height: 30px;
   margin: 4px 0;
 
   :first-child {

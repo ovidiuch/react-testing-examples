@@ -69,12 +69,14 @@ function isLineHighlighted({ lineIndex, lineNumsToHighlight }) {
 function isLineHidden({ code, showComments, showImports }) {
   return (
     (!showComments && isCommentLine(code)) ||
-    (!showImports && isImportLine(code))
+    (!showImports && isNoSideEffectsImportLine(code))
   );
 }
 
-function isImportLine(code) {
-  return Boolean(code.match(/^import /));
+function isNoSideEffectsImportLine(code) {
+  // NOTE: Imported modules without imports are omitted
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#Import_a_module_for_its_side_effects_only
+  return Boolean(code.match(/^import [^']+/));
 }
 
 function isCommentLine(code) {

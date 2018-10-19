@@ -2,26 +2,39 @@
 
 import { createFixture } from 'react-cosmos';
 import { App } from './App';
-import { setup, tests, gitRef } from '../import-files';
+import { testKinds, gitRef } from '../import-files';
 
 export default [
   createFixture({
-    name: 'index',
+    name: 'react-testing-library',
     component: App,
     props: {
       gitRef,
-      setup,
-      tests,
+      testKinds,
       showAbout: false
+    },
+    state: {
+      selTestKindId: 'jest-rtl'
     }
   }),
   createFixture({
-    name: 'about',
+    name: 'Enzyme',
     component: App,
     props: {
       gitRef,
-      setup,
-      tests,
+      testKinds,
+      showAbout: false
+    },
+    state: {
+      selTestKindId: 'jest-enzyme'
+    }
+  }),
+  createFixture({
+    name: 'About',
+    component: App,
+    props: {
+      gitRef,
+      testKinds,
       showAbout: true
     }
   })

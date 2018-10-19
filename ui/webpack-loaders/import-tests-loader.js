@@ -1,66 +1,106 @@
-const { existsSync } = require('fs');
 const { join } = require('path');
 const glob = require('glob');
 const { execSync } = require('child_process');
 
+const TESTS_PATH = join(__dirname, `../../tests`);
+
 module.exports = function parseReadme(source) {
-  let tests = getTestDirsNames()
-    .map(getTestObj)
-    .join(',');
-  let gitRef = getLastCommit();
+  const testKindsStr = getTestKindIds().map(testKindId =>
+    getTestKindStr(testKindId)
+  );
+
+  const gitRef = getLastCommit();
 
   // Re-build webpack bundle on test file changes
-  getTestDirs().forEach(testDir => {
-    this.addContextDependency(join(__dirname, `../../${testDir}`));
-  });
+  this.addContextDependency(TESTS_PATH);
 
   return source
-    .replace('tests = []', `tests = [${tests}]`)
-    .replace(`gitRef = ''`, `gitRef = '${gitRef}'`);
+    .replace(
+      'testKinds: TTestKinds = {}',
+      `testKinds: TTestKinds = {
+  ${testKindsStr.join(`,\n `)}
+}`
+    )
+    .replace(`gitRef: string = ''`, `gitRef = '${gitRef}'`);
 };
 
-function getTestDirsNames() {
-  return getTestDirs().map(p => p.replace(/^\.\/(.+)\/$/, '$1'));
-}
-
-function getTestDirs() {
-  // Hmm, maybe put tests in a dedicated dir...
-  return glob.sync('./[0-9]*/');
-}
-
-function getTestObj(name) {
-  let readmeTextLoader = getLoaderPath('readme-text-loader');
-
-  return `{
-    name: '${name}',
-    readme: {
-      text: require('!${readmeTextLoader}!${getFilePath(name, '/README.md')}'),
-      markup: require('${getFilePath(name, '/README.md')}').default
-    },
-    code: {
-      component: require('!raw-loader!${getFilePath(name, '/component')}'),
-      enzyme: {
-        test: require('!raw-loader!${getFilePath(name, '/enzyme.test')}')
-      },
-      cosmos: {
-        test: require('!raw-loader!${getFilePath(name, '/cosmos.test')}'),
-        fixture: require('!raw-loader!${getFilePath(name, '/fixture')}'),
-        proxies: ${getProxiesReq(name)}
-      }
-    }
+function getTestKindStr(testKindId) {
+  return `'${testKindId}': {
+    setup: ${getSetupStr(testKindId)},
+    tests: [${getTestNames(testKindId)
+      .map(testName => getTestStr(testKindId, testName))
+      .join(`, `)}]
   }`;
 }
 
-function getProxiesReq(testName) {
-  let proxiesPath = getFilePath(testName, 'cosmos.proxies.js');
+function getSetupStr(testKindId) {
+  const testTypePath = join(TESTS_PATH, testKindId);
+  const readmePath = join(testTypePath, 'README.md');
 
-  return existsSync(proxiesPath)
-    ? `require('!raw-loader!${proxiesPath}')`
-    : 'undefined';
+  return getSectionStr({
+    name: 'setup',
+    readmePath,
+    files: glob
+      .sync(`*.js`, { cwd: testTypePath })
+      .map(p => join(testTypePath, p))
+  });
 }
 
-function getFilePath(testName, filePath) {
-  return join(__dirname, `../../${testName}/${filePath}`);
+function getTestStr(testKindId, testName) {
+  const readmePath = getTestFilePath(testKindId, testName, 'README.md');
+  const testPath = getTestFilePath(testKindId, testName, 'test.js');
+
+  return getSectionStr({
+    name: testName,
+    readmePath,
+    files: [testPath]
+  });
+}
+
+function getSectionStr({ name, readmePath, files }) {
+  return `{
+      name: '${name}',
+      readme: ${getReadmeStr({ readmePath })},
+      files: {
+        ${files.map(filePath => getFileStr({ filePath })).join(`,\n        `)}
+      }
+    }`;
+}
+
+function getReadmeStr({ readmePath }) {
+  const readmeTextLoader = getLoaderPath('readme-text-loader');
+
+  return `{
+        meta: require('!${readmeTextLoader}!${readmePath}'),
+        component: require('${readmePath}').default
+      }`;
+}
+
+function getFileStr({ filePath }) {
+  const fileName = filePath.split('/').pop();
+
+  return `'${fileName}': require('!raw-loader!${filePath}')`;
+}
+
+function getTestNames(testKindId) {
+  return getDirNames(join(TESTS_PATH, testKindId));
+}
+
+function getTestKindIds() {
+  return getDirNames(TESTS_PATH).filter(t => t !== 'shared');
+}
+
+function getDirNames(dirPath) {
+  return (
+    glob
+      .sync(`*/`, { cwd: dirPath })
+      // Remove trailing slash
+      .map(t => t.replace(/\/$/, ''))
+  );
+}
+
+function getTestFilePath(testKindId, testName, filePath) {
+  return join(TESTS_PATH, testKindId, testName, filePath);
 }
 
 function getLoaderPath(filePath) {
