@@ -38,7 +38,7 @@ function getSetupStr(testKindId) {
   const readmePath = join(testTypePath, 'README.md');
 
   return getSectionStr({
-    name: '0-setup',
+    name: 'setup',
     readmePath,
     files: glob
       .sync(`*.js`, { cwd: testTypePath })
