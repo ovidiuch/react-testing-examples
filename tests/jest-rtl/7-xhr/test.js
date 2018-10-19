@@ -1,4 +1,4 @@
-// highlight{15-22,29-31,38-41}
+// highlight{15-22,38-41}
 import React from 'react';
 import { render, fireEvent, waitForElement } from 'react-testing-library';
 import { XhrMock } from '@react-mock/xhr';
