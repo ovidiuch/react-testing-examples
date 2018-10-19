@@ -8,7 +8,8 @@
 - [x] Try react-testing-library
 - [x] Split tests between RTL and Enzyme
   - [x] Remove Cosmos fixture tests (superseded by react-mock)
-  - [ ] Add URL for each test type
+  - [ ] Add URL for each test kind
+  - [ ] Add URL for each test
   - [ ] Refactor styled-components test
 - [ ] Update project description
 - [ ] Visual facelift

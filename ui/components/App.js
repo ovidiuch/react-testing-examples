@@ -14,7 +14,7 @@ import { Footer } from './Footer';
 
 import type { TTestKindId, TTestKinds } from '../types';
 
-const DEFAULT_TEST_KIND_ID = 'jest-enzyme';
+const DEFAULT_TEST_KIND_ID = 'jest-rtl';
 
 type Props = {
   gitRef: string,
