@@ -2,49 +2,38 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { Setup } from './Setup';
-import { Test } from './Test';
+import { CenterText } from '../shared/styles';
+import { File } from '../File';
+import { Readme } from './Readme';
 
 import type { Node } from 'react';
-import type { TTestFilter, TSetup, TTest, TSection } from '../../types';
+import type { TTestKindId, TSection } from '../../types';
 
 type Props = {
+  testKindId: TTestKindId,
   section: TSection,
-  testFilter: TTestFilter,
   searchText: string
 };
 
-export function Section({ section, testFilter, searchText }: Props) {
+export function Section({ testKindId, section, searchText }: Props) {
+  const { name, readme, files } = section;
+
   return (
     <SectionContainer>
-      {section.type === 'setup'
-        ? renderSetup(section.setup, testFilter, searchText)
-        : renderTest(section.test, testFilter, searchText)}
+      <LinkableSection id={name}>
+        <CenterText>
+          <Readme name={name} readme={readme} searchText={searchText} />
+        </CenterText>
+        {Object.keys(files).map(filePath => (
+          <File
+            key={filePath}
+            name={filePath}
+            filePath={`${testKindId}/${name}/${filePath}`}
+            code={files[filePath]}
+          />
+        ))}
+      </LinkableSection>
     </SectionContainer>
-  );
-}
-
-function renderSetup(
-  setup: TSetup,
-  testFilter: TTestFilter,
-  searchText: string
-) {
-  const { name } = setup;
-
-  return (
-    <LinkableSection id={name}>
-      <Setup setup={setup} testFilter={testFilter} searchText={searchText} />
-    </LinkableSection>
-  );
-}
-
-function renderTest(test: TTest, testFilter: TTestFilter, searchText: string) {
-  const { name } = test;
-
-  return (
-    <LinkableSection id={name}>
-      <Test test={test} testFilter={testFilter} searchText={searchText} />
-    </LinkableSection>
   );
 }
 

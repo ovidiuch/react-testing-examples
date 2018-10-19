@@ -2,13 +2,13 @@
 
 import { createFixture } from 'react-cosmos';
 import { Code } from '..';
-import { tests } from '../../../../import-files';
+import { testKinds } from '../../../../import-files';
 
 export default [
   createFixture({
     component: Code,
     props: {
-      code: tests[6].code.enzyme.test,
+      code: testKinds['jest-enzyme'].tests[6].files['test.js'],
       showComments: true,
       showImports: false
     }

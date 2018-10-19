@@ -14,6 +14,7 @@
   - [x] Header
   - [ ] Footer
     - [ ] Links to tech used
+- [ ] Optimize search perf
 
 ## First version
 

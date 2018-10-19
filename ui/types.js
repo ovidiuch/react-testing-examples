@@ -2,52 +2,29 @@
 
 import type { ComponentType } from 'react';
 
-// TODO: 'jest-rtl' | 'jest-enzyme'
-export type TTestFilter = 'enzyme';
+export type TTestKindId = string;
 
-export type TReadmeText = {
+export type TReadmeMeta = {
   title: string,
   body: Array<string>
 };
 
 export type TReadme = {
-  text: TReadmeText,
-  markup: ComponentType<*>
+  meta: TReadmeMeta,
+  component: ComponentType<*>
 };
 
-export type TSetup = {
+export type TSection = {
   name: string,
   readme: TReadme,
-  code: {
-    jest: {
-      config: string
-    },
-    enzyme: {
-      setup: string
-    },
-    rtl: {
-      setup: string
-    }
-  }
+  files: { [string]: string }
 };
 
-export type TTest = {
-  name: string,
-  readme: TReadme,
-  code: {
-    component: string,
-    enzyme: {
-      test: string
-    }
-  }
+export type TTestKind = {
+  setup: TSection,
+  tests: TSection[]
 };
 
-export type TSection =
-  | {
-      type: 'setup',
-      setup: TSetup
-    }
-  | {
-      type: 'test',
-      test: TTest
-    };
+export type TTestKinds = {
+  [id: TTestKindId]: TTestKind
+};

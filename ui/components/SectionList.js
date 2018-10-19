@@ -13,7 +13,7 @@ import { ToggleButton } from './shared/ToggleButton';
 import type { TSection } from '../types';
 
 type Props = {
-  sections: Array<TSection>,
+  sections: TSection[],
   searchText: string,
   changeSearch: (searchText: string) => mixed
 };
@@ -63,7 +63,7 @@ export class SectionList extends Component<Props, State> {
     );
   }
 
-  renderSearchTitle(sections: Array<TSection>, searchText: string) {
+  renderSearchTitle(sections: TSection[], searchText: string) {
     if (!sections.length) {
       return (
         <SearchHeader>
@@ -79,7 +79,7 @@ export class SectionList extends Component<Props, State> {
     );
   }
 
-  renderContent(sections: Array<TSection>, searchText: string) {
+  renderContent(sections: TSection[], searchText: string) {
     if (!sections.length) {
       return (
         <>
@@ -101,9 +101,8 @@ export class SectionList extends Component<Props, State> {
     return (
       <CustomList>
         {sections.map(section => {
-          let { name, readme } =
-            section.type === 'setup' ? section.setup : section.test;
-          let { title } = readme.text;
+          let { name, readme } = section;
+          const { title } = readme.meta;
 
           return (
             <CustomListItem key={name}>
@@ -120,9 +119,11 @@ export class SectionList extends Component<Props, State> {
   renderClearSearchBtn() {
     return (
       <ClearSearchBtn>
-        (<a href="/" onClick={this.handleClearSearch}>
+        (
+        <a href="/" onClick={this.handleClearSearch}>
           clear search
-        </a>)
+        </a>
+        )
       </ClearSearchBtn>
     );
   }

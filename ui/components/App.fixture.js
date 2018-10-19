@@ -2,7 +2,7 @@
 
 import { createFixture } from 'react-cosmos';
 import { App } from './App';
-import { setup, tests, gitRef } from '../import-files';
+import { testKinds, gitRef } from '../import-files';
 
 export default [
   createFixture({
@@ -10,8 +10,7 @@ export default [
     component: App,
     props: {
       gitRef,
-      setup,
-      tests,
+      testKinds,
       showAbout: false
     }
   }),
@@ -20,8 +19,7 @@ export default [
     component: App,
     props: {
       gitRef,
-      setup,
-      tests,
+      testKinds,
       showAbout: true
     }
   })

@@ -11,11 +11,11 @@ import { AboutButton } from './AboutButton';
 import { SearchBox } from './SearchBox';
 import { CommentsCheckbox, ImportsCheckbox } from './Checkbox';
 
-import type { TTestFilter } from '../../types';
+import type { TTestKindId } from '../../types';
 
 type Props = {
-  testFilter: TTestFilter,
-  setTestFilter: (testFilter: TTestFilter) => mixed,
+  testFilter: TTestKindId,
+  setTestFilter: (testFilter: TTestKindId) => mixed,
   openAboutModal: () => mixed,
   toggleComments: () => mixed,
   toggleImports: () => mixed,

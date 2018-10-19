@@ -4,31 +4,25 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import svgChevronDown from '../../svg/triangle-down.svg';
 
-import type { TTestFilter } from '../../types';
+import type { TTestKindId } from '../../types';
 
 type Props = {
-  testFilter: TTestFilter,
-  onChange: (testFilter: TTestFilter) => mixed
+  testFilter: TTestKindId,
+  onChange: (testFilter: TTestKindId) => mixed
 };
 
-// TODO
-// const LABELS = {
-//   'jest-enzyme': 'Jest & Enzyme',
-//   'jest-rtl': 'Jest & RTL',
-// };
+// TODO: Load test kinds dynamically (and replace hardcoded values)
 const LABELS = {
-  enzyme: 'Enzyme'
+  'jest-enzyme': 'Jest & Enzyme',
+  'jest-rtl': 'Jest & RTL'
 };
 
 export class TestFilterSelect extends Component<Props> {
   handleChange = (e: SyntheticInputEvent<HTMLSelectElement>) => {
-    let { value } = e.currentTarget;
+    const { onChange } = this.props;
+    const { value } = e.currentTarget;
 
-    if (value === 'enzyme') {
-      this.props.onChange(value);
-    }
-
-    // TODO: Throw otherwise
+    onChange(value);
   };
 
   render() {
@@ -38,7 +32,11 @@ export class TestFilterSelect extends Component<Props> {
       <SelectContainer>
         {LABELS[testFilter]}
         <Select value={this.props.testFilter} onChange={this.handleChange}>
-          <option value="enzyme">{LABELS.enzyme}</option>
+          {Object.keys(LABELS).map(testKindId => (
+            <option key={testKindId} value={testKindId}>
+              {LABELS[testKindId]}
+            </option>
+          ))}
         </Select>
       </SelectContainer>
     );

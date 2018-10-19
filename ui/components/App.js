@@ -12,17 +12,18 @@ import { SectionList } from './SectionList';
 import { Section } from './Section';
 import { Footer } from './Footer';
 
-import type { TTestFilter, TSetup, TTest, TSection } from '../types';
+import type { TTestKindId, TTestKinds } from '../types';
+
+const DEFAULT_TEST_KIND_ID = 'jest-enzyme';
 
 type Props = {
   gitRef: string,
-  setup: TSetup,
-  tests: Array<TTest>,
+  testKinds: TTestKinds,
   showAbout: boolean
 };
 
 type State = {
-  testFilter: TTestFilter,
+  testFilter: TTestKindId,
   showComments: boolean,
   showImports: boolean,
   searchText: string
@@ -34,14 +35,14 @@ export class App extends Component<Props, State> {
   };
 
   state = {
-    testFilter: 'enzyme',
+    testFilter: DEFAULT_TEST_KIND_ID,
     showAboutModal: false,
     showComments: true,
     showImports: false,
     searchText: ''
   };
 
-  handleSetTestFilter = (testFilter: TTestFilter) => {
+  handleSetTestFilter = (testFilter: TTestKindId) => {
     this.setState({ testFilter });
   };
 
@@ -83,22 +84,22 @@ export class App extends Component<Props, State> {
   }
 
   render() {
-    let { gitRef, setup, tests, showAbout } = this.props;
-    let { testFilter, showComments, showImports, searchText } = this.state;
+    const { gitRef, testKinds, showAbout } = this.props;
+    const { testFilter, showComments, showImports, searchText } = this.state;
+    const testKind = testKinds[testFilter];
 
-    let isSearching = shouldSearch(searchText);
-    let showSetup = isSearching
-      ? matchReadmeText(setup.readme.text, searchText)
+    const { setup, tests } = testKind;
+    const isSearching = shouldSearch(searchText);
+    const showSetup = isSearching
+      ? matchReadmeText(setup.readme.meta, searchText)
       : true;
-    let matchingTests = isSearching
-      ? tests.filter(t => matchReadmeText(t.readme.text, searchText))
+    const matchingTests = isSearching
+      ? tests.filter(t => matchReadmeText(t.readme.meta, searchText))
       : tests;
 
-    // Convert setup & matching tests to unified list of sections
-    let testSections = matchingTests.map(test => ({ type: 'test', test }));
-    let sections = showSetup
-      ? [{ type: 'setup', setup }, ...testSections]
-      : testSections;
+    // Tests are ordererd based on a match score when searching. But we want
+    // the setup to always be first regardless of the test score.
+    let sections = showSetup ? [setup, ...matchingTests] : tests;
 
     if (isSearching) {
       sections = sortSections(sections, searchText);
@@ -126,7 +127,8 @@ export class App extends Component<Props, State> {
               />
               {sections.map(section => (
                 <Section
-                  key={getSectionKey(section)}
+                  key={section.name}
+                  testKindId={testFilter}
                   section={section}
                   testFilter={testFilter}
                   searchText={searchText}
@@ -140,10 +142,6 @@ export class App extends Component<Props, State> {
       </GitRef.Provider>
     );
   }
-}
-
-function getSectionKey(section: TSection): string {
-  return section.type === 'setup' ? section.setup.name : section.test.name;
 }
 
 function setBodyScroll(hasModal: boolean) {

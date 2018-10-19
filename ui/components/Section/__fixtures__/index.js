@@ -1,19 +1,16 @@
 // @flow
 
 import { createFixture } from 'react-cosmos';
-import { Section } from '.';
-import { tests } from '../../import-files';
+import { Section } from '..';
+import { testKinds } from '../../../import-files';
 
 export default [
   createFixture({
     name: 'Local component state',
     component: Section,
     props: {
-      section: {
-        type: 'test',
-        test: tests[2]
-      },
-      testFilter: 'enzyme',
+      testKindId: 'jest-enzyme',
+      section: testKinds['jest-enzyme'].tests[2],
       searchText: ''
     }
   }),
@@ -21,11 +18,8 @@ export default [
     name: 'Fetch test',
     component: Section,
     props: {
-      section: {
-        type: 'test',
-        test: tests[6]
-      },
-      testFilter: 'enzyme',
+      testKindId: 'jest-enzyme',
+      section: testKinds['jest-enzyme'].tests[6],
       searchText: ''
     }
   })
