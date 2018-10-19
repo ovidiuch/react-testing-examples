@@ -1,4 +1,4 @@
-// highlight{12-19,23-25,34-37,45-49}
+// highlight{10-17,24-26,33-36}
 import React from 'react';
 import { render, fireEvent, waitForElement } from 'react-testing-library';
 import { FetchMock } from '@react-mock/fetch';

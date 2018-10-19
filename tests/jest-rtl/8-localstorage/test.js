@@ -1,6 +1,6 @@
 // highlight{10-12}
 import React from 'react';
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent, waitForElement } from 'react-testing-library';
 import { LocalStorageMock } from '@react-mock/localstorage';
 import { PersistentForm } from 'shared/components/PersistentForm';
 
@@ -17,20 +17,20 @@ const submitForm = ({ getByLabelText, getByText }, { name }) => {
   fireEvent.click(getByText('Change name'));
 };
 
-it('renders cached name', () => {
+it('renders cached name', async () => {
   // Render new instance in every test to prevent leaking state
   const { getByText } = getWrapper({ name: 'Trent' });
 
-  expect(getByText('Welcome, Trent!')).toBeTruthy();
+  await waitForElement(() => getByText('Welcome, Trent!'));
 });
 
 describe('on update', () => {
-  it('renders updated name', () => {
+  it('renders updated name', async () => {
     // Render new instance in every test to prevent leaking state
     const wrapper = getWrapper({ name: 'Trent' });
     submitForm(wrapper, { name: 'Trevor' });
 
-    expect(wrapper.getByText('Welcome, Trevor!')).toBeTruthy();
+    await waitForElement(() => wrapper.getByText('Welcome, Trevor!'));
   });
 
   it('updates LocalStorage cache', () => {

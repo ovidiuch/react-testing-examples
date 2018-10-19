@@ -1,6 +1,6 @@
 // highlight{10-12}
 import React from 'react';
-import { render, fireEvent } from 'react-testing-library';
+import { render, waitForElement, fireEvent } from 'react-testing-library';
 import { StateMock } from '@react-mock/state';
 import { StatefulCounter } from 'shared/components/StatefulCounter';
 
@@ -12,17 +12,17 @@ const getWrapper = ({ count }) =>
     </StateMock>
   );
 
-it('renders initial count', () => {
+it('renders initial count', async () => {
   // Render new instance in every test to prevent leaking state
   const { getByText } = getWrapper({ count: 5 });
 
-  expect(getByText('Clicked 5 times')).toBeTruthy();
+  await waitForElement(() => getByText('Clicked 5 times'));
 });
 
-it('increments count', () => {
+it('increments count', async () => {
   // Render new instance in every test to prevent leaking state
   const { getByText } = getWrapper({ count: 5 });
 
   fireEvent.click(getByText('+1'));
-  expect(getByText('Clicked 6 times')).toBeTruthy();
+  await waitForElement(() => getByText('Clicked 6 times'));
 });

@@ -2,7 +2,7 @@
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { render, fireEvent } from 'react-testing-library';
+import { render, waitForElement, fireEvent } from 'react-testing-library';
 import { ReduxCounter } from 'shared/components/ReduxCounter';
 import { counterReducer } from './reducer';
 
@@ -14,17 +14,17 @@ const getWrapper = ({ count }) =>
     </Provider>
   );
 
-it('renders initial count', () => {
+it('renders initial count', async () => {
   // Render new instance in every test to prevent leaking state
   const { getByText } = getWrapper({ count: 5 });
 
-  expect(getByText('Clicked 5 times')).toBeTruthy();
+  await waitForElement(() => getByText('Clicked 5 times'));
 });
 
-it('increments count', () => {
+it('increments count', async () => {
   // Render new instance in every test to prevent leaking state
   const { getByText } = getWrapper({ count: 5 });
 
   fireEvent.click(getByText('+1'));
-  expect(getByText('Clicked 6 times')).toBeTruthy();
+  await waitForElement(() => getByText('Clicked 6 times'));
 });

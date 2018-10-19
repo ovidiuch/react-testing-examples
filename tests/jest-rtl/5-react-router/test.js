@@ -1,7 +1,7 @@
 // highlight{10-14,31-33}
 import React from 'react';
 import { MemoryRouter, Route } from 'react-router';
-import { render, fireEvent } from 'react-testing-library';
+import { render, waitForElement, fireEvent } from 'react-testing-library';
 import { UserWithRouter } from 'shared/components/UserWithRouter';
 
 // Hoist helper functions (but not vars) to reuse between test cases
@@ -14,17 +14,17 @@ const getWrapper = ({ userId }) =>
     </MemoryRouter>
   );
 
-it('renders initial user id', () => {
+it('renders initial user id', async () => {
   // Render new instance in every test to prevent leaking state
   const { getByText } = getWrapper({ userId: 5 });
 
-  expect(getByText('User #5')).toBeTruthy();
+  await waitForElement(() => getByText('User #5'));
 });
 
-it('renders next user id', () => {
+it('renders next user id', async () => {
   // Render new instance in every test to prevent leaking state
   const { getByText } = getWrapper({ userId: 5 });
 
   fireEvent.click(getByText('Next user'));
-  expect(getByText('User #6')).toBeTruthy();
+  await waitForElement(() => getByText('User #6'));
 });

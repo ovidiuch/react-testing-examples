@@ -1,4 +1,4 @@
-// highlight{7,13-14}
+// highlight{7,14-15}
 import React from 'react';
 import { render, fireEvent } from 'react-testing-library';
 import { Button } from 'shared/components/Button';
