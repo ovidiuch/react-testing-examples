@@ -23,7 +23,7 @@ type Props = {
 };
 
 type State = {
-  testFilter: TTestKindId,
+  selTestKindId: TTestKindId,
   showComments: boolean,
   showImports: boolean,
   searchText: string
@@ -35,15 +35,15 @@ export class App extends Component<Props, State> {
   };
 
   state = {
-    testFilter: DEFAULT_TEST_KIND_ID,
+    selTestKindId: DEFAULT_TEST_KIND_ID,
     showAboutModal: false,
     showComments: true,
     showImports: false,
     searchText: ''
   };
 
-  handleSetTestFilter = (testFilter: TTestKindId) => {
-    this.setState({ testFilter });
+  handleSetSelTestKindId = (selTestKindId: TTestKindId) => {
+    this.setState({ selTestKindId });
   };
 
   handleOpenAboutModal = () => {
@@ -85,8 +85,8 @@ export class App extends Component<Props, State> {
 
   render() {
     const { gitRef, testKinds, showAbout } = this.props;
-    const { testFilter, showComments, showImports, searchText } = this.state;
-    const testKind = testKinds[testFilter];
+    const { selTestKindId, showComments, showImports, searchText } = this.state;
+    const testKind = testKinds[selTestKindId];
 
     const { setup, tests } = testKind;
     const isSearching = shouldSearch(searchText);
@@ -111,8 +111,8 @@ export class App extends Component<Props, State> {
           <Content>
             <TopSpace id="top" />
             <Header
-              testFilter={testFilter}
-              setTestFilter={this.handleSetTestFilter}
+              selTestKindId={selTestKindId}
+              setSelTestKindId={this.handleSetSelTestKindId}
               openAboutModal={this.handleOpenAboutModal}
               toggleComments={this.handleToggleComments}
               toggleImports={this.handleToggleImports}
@@ -128,9 +128,8 @@ export class App extends Component<Props, State> {
               {sections.map(section => (
                 <Section
                   key={section.name}
-                  testKindId={testFilter}
+                  testKindId={selTestKindId}
                   section={section}
-                  testFilter={testFilter}
                   searchText={searchText}
                 />
               ))}

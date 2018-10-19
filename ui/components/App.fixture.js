@@ -14,7 +14,7 @@ export default [
       showAbout: false
     },
     state: {
-      testFilter: 'jest-rtl'
+      selTestKindId: 'jest-rtl'
     }
   }),
   createFixture({
@@ -26,7 +26,7 @@ export default [
       showAbout: false
     },
     state: {
-      testFilter: 'jest-enzyme'
+      selTestKindId: 'jest-enzyme'
     }
   }),
   createFixture({
