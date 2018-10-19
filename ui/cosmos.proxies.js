@@ -1,27 +1,24 @@
 import React from 'react';
-import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import { GlobalStyle } from './global-style';
 
 function GlobalStyleProxy({ nextProxy, ...otherProps }) {
   const { value: NextProxy, next } = nextProxy;
+  const { fixture } = otherProps;
 
   return (
     <>
       <GlobalStyle />
-      <LightBg>
-        <NextProxy {...otherProps} nextProxy={next()} />
-      </LightBg>
+      {fixture.bgColor && <CustomBg bgColor={fixture.bgColor} />}
+      <NextProxy {...otherProps} nextProxy={next()} />
     </>
   );
 }
 
-const LightBg = styled.div`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #f5f7f9;
+const CustomBg = createGlobalStyle`
+  html, body {
+    background: ${props => props.bgColor};
+  }
 `;
 
 export default [GlobalStyleProxy];

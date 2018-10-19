@@ -2,15 +2,22 @@
 
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { shouldSearch } from '../search';
-import svgInfo from '../svg/info.svg';
-import pngThinkin from '../img/thinkin.png';
-import { FuzzyHighlighter } from './shared/FuzzyHighlighter';
-import { CenterText, Paragraph, Link, List, ListItem } from './shared/styles';
-import { ToggleShow } from './shared/ToggleShow';
-import { ToggleButton } from './shared/ToggleButton';
+import { shouldSearch } from '../../search';
+import svgInfo from '../../svg/info.svg';
+import pngThinkin from '../../img/thinkin.png';
+import { FuzzyHighlighter } from '../shared/FuzzyHighlighter';
+import {
+  CenterText,
+  Paragraph,
+  Link,
+  List,
+  InternalLink,
+  ListItem
+} from '../shared/styles';
+import { ToggleShow } from './ToggleShow';
+import { ToggleButton } from './ToggleButton';
 
-import type { TSection } from '../types';
+import type { TSection } from '../../types';
 
 type Props = {
   sections: TSection[],
@@ -53,7 +60,11 @@ export class SectionList extends Component<Props, State> {
       <Container>
         <ToggleShow
           header={({ show, onToggle }) => (
-            <ToggleButton label="Jump to" isOpen={show} onClick={onToggle} />
+            <ToggleButton
+              label="Show all tests"
+              isOpen={show}
+              onClick={onToggle}
+            />
           )}
           content={this.renderContent(sections, searchText)}
           show={isOpen}
@@ -106,9 +117,9 @@ export class SectionList extends Component<Props, State> {
 
           return (
             <CustomListItem key={name}>
-              <Link href={`#${name}`}>
+              <InternalLink href={`#${name}`}>
                 <FuzzyHighlighter searchText={searchText} targetText={title} />
-              </Link>
+              </InternalLink>
             </CustomListItem>
           );
         })}
@@ -130,12 +141,12 @@ export class SectionList extends Component<Props, State> {
 }
 
 const Container = styled(CenterText)`
-  margin-top: 16px;
+  margin-top: 8px;
 `;
 
 const CustomList = styled(List)`
   margin: 0;
-  padding-top: 8px;
+  padding-top: 0;
   padding-left: 24px;
 `;
 

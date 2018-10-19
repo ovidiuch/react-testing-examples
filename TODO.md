@@ -13,8 +13,11 @@
 - [ ] Update project description
 - [ ] Visual facelift
   - [x] Header
+  - [x] Remove file visibility toggling
+  - [ ] Add labels to file actions
   - [ ] Footer
     - [ ] Links to tech used
+  - [ ] Update responsive breakpoints
 - [ ] Optimize search perf
 
 ## First version

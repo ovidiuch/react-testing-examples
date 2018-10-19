@@ -25,21 +25,23 @@ export function ToggleButton({ label, actions, isOpen, onClick }: Props) {
 
 const Container = styled.div`
   display: flex;
-  padding: 0 24px;
-  height: 36px;
-  line-height: 36px;
-  background: ${props => (props.isOpen ? 'transparent' : '#dde0e8')};
+  padding: 0 0;
+  height: 40px;
+  line-height: 40px;
   border-radius: 10px;
   user-select: none;
   transition: background 0.3s;
+  text-transform: uppercase;
 
   .label {
-    font-weight: 500;
+    font-weight: 700;
   }
 
   .button {
     flex-grow: 1;
     cursor: pointer;
+    opacity: ${props => (props.isOpen ? 0.6 : 0.8)};
+    transition: opacity 0.3s;
 
     :hover .label {
       text-decoration: underline;

@@ -99,7 +99,7 @@ export class App extends Component<Props, State> {
 
     // Tests are ordererd based on a match score when searching. But we want
     // the setup to always be first regardless of the test score.
-    let sections = showSetup ? [setup, ...matchingTests] : tests;
+    let sections = showSetup ? [setup, ...matchingTests] : matchingTests;
 
     if (isSearching) {
       sections = sortSections(sections, searchText);
@@ -151,7 +151,7 @@ function setBodyScroll(hasModal: boolean) {
 }
 
 const TopSpace = styled.div`
-  height: 104px;
+  height: 96px;
 `;
 
 const Content = styled.div`
