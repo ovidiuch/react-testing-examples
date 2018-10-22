@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import Router from 'next/router';
 import styled from 'styled-components';
 import svgChevronDown from '../../svg/triangle-down.svg';
-import { getTestKindLabels } from '../../shared/testKinds';
+import { TEST_KIND_LABELS } from '../../shared/testKinds';
 
 import type { TTestKindId } from '../../types';
 
@@ -20,16 +20,15 @@ export class TestKindSelect extends Component<Props> {
   };
 
   render() {
-    const labels = getTestKindLabels();
     const { value } = this.props;
 
     return (
       <SelectContainer>
-        {labels[value]}
+        {TEST_KIND_LABELS[value]}
         <Select value={this.props.value} onChange={this.handleChange}>
-          {Object.keys(labels).map(testKindId => (
+          {Object.keys(TEST_KIND_LABELS).map(testKindId => (
             <option key={testKindId} value={testKindId}>
-              {labels[testKindId]}
+              {TEST_KIND_LABELS[testKindId]}
             </option>
           ))}
         </Select>

@@ -5,7 +5,7 @@ import Head from 'next/head';
 import { App } from '../components/App';
 import { gitRef } from '../import-files';
 import { getSectionByName } from '../shared/section';
-import { getTestKind, getTestKindLabels } from '../shared/testKinds';
+import { TEST_KIND_LABELS, getTestKind } from '../shared/testKinds';
 
 import type { TTestKindId } from '../types';
 
@@ -63,7 +63,7 @@ function getSectionPageTitle(testKind, sectionName) {
 }
 
 function getTestKindPageTitle(testKind) {
-  const testKindLabel = getTestKindLabels()[testKind.id];
+  const testKindLabel = TEST_KIND_LABELS[testKind.id];
 
   return `${testKindLabel} — React Testing Examples`;
 }
