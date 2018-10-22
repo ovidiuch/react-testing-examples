@@ -20,10 +20,7 @@ export function GithubLink() {
 
 const GithubIconLink = styled(IconButton.withComponent('a'))`
   margin-left: 24px;
-
-  :visited {
-    color: #20232a;
-  }
+  font-weight: 400;
 
   @media (max-width: 359px) {
     .label {

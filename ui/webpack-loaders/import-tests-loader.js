@@ -26,6 +26,7 @@ module.exports = function parseReadme(source) {
 
 function getTestKindStr(testKindId) {
   return `'${testKindId}': {
+    id: '${testKindId}',
     setup: ${getSetupStr(testKindId)},
     tests: [${getTestNames(testKindId)
       .map(testName => getTestStr(testKindId, testName))

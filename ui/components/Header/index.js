@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import svgSettings from '../../svg/settings.svg';
 import svgChevronLeft from '../../svg/chevron-left.svg';
 import { Center, Button } from '../shared/styles';
+import { SectionLink } from '../shared/SectionLink';
 import { TestKindSelect } from './TestKindSelect';
 import { GithubLink } from './GithubLink';
 import { AboutButton } from './AboutButton';
@@ -14,9 +15,7 @@ import { CommentsCheckbox, ImportsCheckbox } from './Checkbox';
 import type { TTestKindId } from '../../types';
 
 type Props = {
-  selTestKindId: TTestKindId,
-  setSelTestKindId: (selTestKindId: TTestKindId) => mixed,
-  openAboutModal: () => mixed,
+  testKindId: TTestKindId,
   toggleComments: () => mixed,
   toggleImports: () => mixed,
   searchText: string,
@@ -41,33 +40,28 @@ export class Header extends Component<Props, State> {
   };
 
   render() {
-    let {
-      selTestKindId,
-      setSelTestKindId,
-      openAboutModal,
+    const {
+      testKindId,
       toggleComments,
       toggleImports,
       searchText,
       changeSearch
     } = this.props;
-    let { mobileShowFilters } = this.state;
+    const { mobileShowFilters } = this.state;
 
     return (
       <Container>
         <Inner>
           <Left>
             <h1>
-              <a href="#top" onClick={() => changeSearch('')}>
-                React Testing Examples
-              </a>
+              <SectionLink testKindId={testKindId}>
+                <a onClick={() => changeSearch('')}>React Testing Examples</a>
+              </SectionLink>
             </h1>
             <div className="actions">
-              <TestKindSelect
-                selTestKindId={selTestKindId}
-                onChange={setSelTestKindId}
-              />
+              <TestKindSelect value={testKindId} />
               <GithubLink />
-              <AboutButton onClick={openAboutModal} />
+              <AboutButton />
             </div>
           </Left>
           <MobileShowFilters
@@ -140,6 +134,7 @@ const Left = styled.div`
     opacity: 0.8;
 
     a {
+      font-weight: inherit;
       color: #20232a;
       text-decoration: none;
     }

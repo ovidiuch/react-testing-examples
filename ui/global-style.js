@@ -25,4 +25,14 @@ export const GlobalStyle = createGlobalStyle`
     font-family: -apple-system, BlinkMacSystemFont, Ubuntu, 'Helvetica Neue', Helvetica, sans-serif;
     font-size: 16px;
   }
+
+  a {
+    color: #3058b5;
+    font-weight: 500;
+    text-decoration: none;
+
+    :hover {
+      text-decoration: underline;
+    }
+  }
 `;

@@ -18,7 +18,7 @@ export class SearchBox extends Component<Props> {
   };
 
   handleKeyDown = (e: SyntheticKeyboardEvent<HTMLElement>) => {
-    let { searchInput } = this;
+    const { searchInput } = this;
     if (!searchInput) {
       return;
     }

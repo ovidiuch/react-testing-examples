@@ -5,11 +5,13 @@ import { GlobalStyle } from '../global-style';
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
-    if (!Component.getInitialProps) {
-      return {};
+    let pageProps = {};
+
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx);
     }
 
-    return Component.getInitialProps(ctx);
+    return { pageProps };
   }
 
   render() {

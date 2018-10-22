@@ -4,23 +4,20 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { shouldSearch } from '../../search';
 import svgInfo from '../../svg/info.svg';
+import { SectionLink } from '../shared/SectionLink';
 import { FuzzyHighlighter } from '../shared/FuzzyHighlighter';
-import {
-  CenterText,
-  Paragraph,
-  Link,
-  List,
-  InternalLink,
-  ListItem
-} from '../shared/styles';
+import { hasSectionChanged } from '../../shared/section';
+import { CenterText, Paragraph, List, ListItem } from '../shared/styles';
 import thinkin from './img/thinkin.png';
 import { ToggleShow } from './ToggleShow';
 import { ToggleButton } from './ToggleButton';
 
-import type { TSection } from '../../types';
+import type { TTestKindId, TSection } from '../../types';
 
 type Props = {
   sections: TSection[],
+  testKindId: TTestKindId,
+  sectionName: ?string,
   searchText: string,
   changeSearch: (searchText: string) => mixed
 };
@@ -34,6 +31,14 @@ export class SectionList extends Component<Props, State> {
     isOpen: false
   };
 
+  componentDidUpdate(prevProps: Props) {
+    if (this.state.isOpen && hasSectionChanged(this.props, prevProps)) {
+      this.setState({
+        isOpen: false
+      });
+    }
+  }
+
   handleToggleList = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
@@ -44,14 +49,14 @@ export class SectionList extends Component<Props, State> {
   };
 
   render() {
-    let { sections, searchText } = this.props;
-    let { isOpen } = this.state;
+    const { searchText } = this.props;
+    const { isOpen } = this.state;
 
     if (shouldSearch(searchText)) {
       return (
         <Container>
-          {this.renderSearchTitle(sections, searchText)}
-          {this.renderContent(sections, searchText)}
+          {this.renderSearchTitle()}
+          {this.renderContent()}
         </Container>
       );
     }
@@ -61,12 +66,12 @@ export class SectionList extends Component<Props, State> {
         <ToggleShow
           header={({ show, onToggle }) => (
             <ToggleButton
-              label="Show all tests"
+              label="All examples"
               isOpen={show}
               onClick={onToggle}
             />
           )}
-          content={this.renderContent(sections, searchText)}
+          content={this.renderContent()}
           show={isOpen}
           onToggle={this.handleToggleList}
         />
@@ -74,7 +79,9 @@ export class SectionList extends Component<Props, State> {
     );
   }
 
-  renderSearchTitle(sections: TSection[], searchText: string) {
+  renderSearchTitle() {
+    const { sections, searchText } = this.props;
+
     if (!sections.length) {
       return (
         <SearchHeader>
@@ -90,7 +97,9 @@ export class SectionList extends Component<Props, State> {
     );
   }
 
-  renderContent(sections: TSection[], searchText: string) {
+  renderContent() {
+    const { sections, testKindId, sectionName, searchText } = this.props;
+
     if (!sections.length) {
       return (
         <>
@@ -99,9 +108,9 @@ export class SectionList extends Component<Props, State> {
             <span className="icon" />
             <span className="text">
               Contact{' '}
-              <Link target="_blank" href="https://ovidiu.ch/">
+              <a target="_blank" href="https://ovidiu.ch/">
                 Ovidiu
-              </Link>{' '}
+              </a>{' '}
               if you need help testing React components
             </span>
           </ContactParagraph>
@@ -112,15 +121,22 @@ export class SectionList extends Component<Props, State> {
     return (
       <CustomList>
         {sections.map(section => {
-          let { name, readme } = section;
+          const { name, readme } = section;
           const { title } = readme.meta;
+          const hlText = (
+            <FuzzyHighlighter searchText={searchText} targetText={title} />
+          );
 
           return (
-            <CustomListItem key={name}>
-              <InternalLink href={`#${name}`}>
-                <FuzzyHighlighter searchText={searchText} targetText={title} />
-              </InternalLink>
-            </CustomListItem>
+            <ListItem key={name}>
+              {sectionName === name ? (
+                <SelectedItem>{hlText}</SelectedItem>
+              ) : (
+                <SectionLink testKindId={testKindId} sectionName={name}>
+                  <a>{hlText}</a>
+                </SectionLink>
+              )}
+            </ListItem>
           );
         })}
       </CustomList>
@@ -150,13 +166,14 @@ const CustomList = styled(List)`
   padding-left: 24px;
 `;
 
-const CustomListItem = styled(ListItem)`
+const SelectedItem = styled.span`
   color: #888e9c;
+  font-weight: 500;
 `;
 
 const SearchHeader = styled.p`
   margin: 0;
-  padding: 6px 24px;
+  padding: 8px 0;
   line-height: 24px;
 `;
 

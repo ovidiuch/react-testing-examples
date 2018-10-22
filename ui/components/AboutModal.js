@@ -1,14 +1,14 @@
 // @flow
 
 import React, { Component } from 'react';
+import Router from 'next/router';
+import Link from 'next/link';
 import styled from 'styled-components';
 import WhatsThis from '../../WHATSTHIS.md';
-import { CenterText, H2, H3, Button, Paragraph, Link } from './shared/styles';
+import { CenterText, H2, H3, Button, Paragraph } from './shared/styles';
 import { WindowKeyListener, KEY_ESC } from './shared/WindowKeyListener';
 
-type Props = {
-  onClose: () => mixed
-};
+type Props = {};
 
 // TODO: Link projects used to write tests
 // TODO: Link projects used to create website
@@ -19,16 +19,14 @@ export class AboutModal extends Component<Props> {
 
   handleKeyDown = (e: SyntheticKeyboardEvent<HTMLElement>) => {
     if (e.keyCode === KEY_ESC) {
-      this.props.onClose();
+      goHome();
     }
   };
 
   render() {
-    let { onClose } = this.props;
-
     return (
       <WindowKeyListener onKeyDown={this.handleKeyDown}>
-        <Overlay onClick={onClose}>
+        <Overlay onClick={goHome}>
           <Content onClick={this.handleContentClick}>
             <WhatsThis
               components={{
@@ -40,13 +38,19 @@ export class AboutModal extends Component<Props> {
               }}
             />
             <ButtonContainer>
-              <GoButton onClick={onClose}>Show me some tests</GoButton>
+              <Link prefetch href="/">
+                <GoButton>Show me some tests</GoButton>
+              </Link>
             </ButtonContainer>
           </Content>
         </Overlay>
       </WindowKeyListener>
     );
   }
+}
+
+function goHome() {
+  Router.push('/');
 }
 
 const Overlay = styled.div`
@@ -82,7 +86,7 @@ const OpinionsList = styled.ol`
   padding-left: 36px;
 `;
 
-const SubtleLink = styled(Link)`
+const SubtleLink = styled.a`
   color: #20232a;
   font-weight: 500;
 `;

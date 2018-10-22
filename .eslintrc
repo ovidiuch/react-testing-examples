@@ -28,10 +28,14 @@
         "cosmos.config.js",
         "next.config.js",
         "webpack.extend.js",
-        "ui/webpack-loaders/**/*.js"
+        "ui/webpack-loaders/**/*.js",
+        "ui/server/**/*.js"
       ],
       "env": {
         "node": true
+      },
+      "rules": {
+        "no-console": "off"
       }
     },
     {

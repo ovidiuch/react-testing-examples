@@ -9,8 +9,8 @@
 - [x] Split tests between RTL and Enzyme
   - [x] Remove Cosmos fixture tests (superseded by react-mock)
   - [x] Refactor styled-components test
-  - [ ] Add URL for each test kind
-  - [ ] Add URL for each test
+  - [x] Add URL for each test kind
+  - [x] Add URL for each test
 - [ ] Update project description
 - [ ] Visual facelift
   - [x] Header
@@ -20,6 +20,7 @@
     - [ ] Links to tech used
   - [ ] Update responsive breakpoints
 - [ ] Optimize search perf
+- [ ] Replace file system sorting
 
 ## First version
 
