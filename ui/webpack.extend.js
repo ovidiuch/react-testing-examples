@@ -4,8 +4,8 @@ const UNIVERSAL_ENTRY = 'static/development/pages/_app.js';
 
 module.exports = {
   addGlobalEntry(config) {
-    let origEntry = config.entry;
-    let entry = async () => {
+    const origEntry = config.entry;
+    const entry = async () => {
       const entries = await origEntry();
 
       if (!entries[UNIVERSAL_ENTRY]) {
@@ -28,14 +28,14 @@ module.exports = {
   },
 
   addLoaders: function(config, babelLoader) {
-    let { module } = config;
-    let { rules } = module;
+    const { module } = config;
+    const { rules } = module;
 
-    let mdxRule = {
+    const mdxRule = {
       test: /(README|SETUP|WHATSTHIS).md$/,
       use: [babelLoader, '@mdx-js/loader']
     };
-    let importFilesRule = {
+    const importFilesRule = {
       test: require.resolve('./import-files'),
       use: require.resolve('./webpack-loaders/import-tests-loader')
     };

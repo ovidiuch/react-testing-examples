@@ -12,7 +12,7 @@ export function matchReadmeText(
   { title, body }: TReadmeMeta,
   searchText: string
 ) {
-  let searchTextNorm = normalizeTxt(searchText);
+  const searchTextNorm = normalizeTxt(searchText);
 
   return (
     match(title, searchText).length > 0 ||
@@ -21,7 +21,7 @@ export function matchReadmeText(
 }
 
 export function sortSections(sections: TSection[], searchText: string) {
-  let sorted: Array<TSection> = [...sections]
+  const sorted: Array<TSection> = [...sections]
     .sort((a, b) => scoreByBody(b, searchText) - scoreByBody(a, searchText))
     .sort((a, b) => scoreByTitle(b, searchText) - scoreByTitle(a, searchText));
 

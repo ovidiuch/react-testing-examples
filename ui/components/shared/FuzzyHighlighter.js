@@ -15,12 +15,12 @@ export function FuzzyHighlighter({ searchText, targetText }: Props) {
     return targetText;
   }
 
-  let fuzzyMatch = match(targetText, searchText);
+  const fuzzyMatch = match(targetText, searchText);
   if (fuzzyMatch.length === 0) {
     return targetText;
   }
 
-  let chars = [];
+  const chars = [];
   fuzzyMatch.forEach((hlIndex, index) => {
     // If the first character isn't highlighted, push the initial
     // unhighlighted characters
@@ -29,12 +29,12 @@ export function FuzzyHighlighter({ searchText, targetText }: Props) {
     }
 
     // Push the highlighted character
-    let hlChar = targetText.slice(hlIndex, hlIndex + 1);
+    const hlChar = targetText.slice(hlIndex, hlIndex + 1);
     chars.push(<Mark key={index}>{hlChar}</Mark>);
 
     // If the next character isn't highlighted,
     // push the subsequent unhighlighted characters
-    let nextHlIndex = fuzzyMatch[index + 1];
+    const nextHlIndex = fuzzyMatch[index + 1];
     if (nextHlIndex !== hlIndex + 1) {
       chars.push(targetText.slice(hlIndex + 1, nextHlIndex));
     }

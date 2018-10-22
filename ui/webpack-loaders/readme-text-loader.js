@@ -3,11 +3,11 @@ const remark = require('remark-parse');
 const traverse = require('traverse');
 
 module.exports = function parseReadme(source) {
-  let tree = unified()
+  const tree = unified()
     .use(remark)
     .parse(source);
 
-  let info = {
+  const info = {
     title: getTitle(tree.children),
     body: getBody(tree.children)
   };
@@ -16,7 +16,7 @@ module.exports = function parseReadme(source) {
 };
 
 function getTitle(nodes) {
-  let node = nodes.find(n => n.type === 'heading' && n.depth === 2);
+  const node = nodes.find(n => n.type === 'heading' && n.depth === 2);
   if (!node || !node.children[0]) {
     return '';
   }
