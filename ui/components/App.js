@@ -2,7 +2,6 @@
 /* eslint-env browser */
 
 import React, { Component } from 'react';
-import Router from 'next/router';
 import styled from 'styled-components';
 import { FileOptions, GitRef } from '../contexts';
 import { shouldSearch, matchReadmeText, sortSections } from '../search';
@@ -38,10 +37,6 @@ export class App extends Component<Props, State> {
     showComments: true,
     showImports: false,
     searchText: ''
-  };
-
-  handleCloseAboutModal = () => {
-    Router.push('/');
   };
 
   handleToggleComments = () => {
@@ -128,7 +123,7 @@ export class App extends Component<Props, State> {
               )}
             </ContentCenter>
             <Footer />
-            {showAbout && <AboutModal onClose={this.handleCloseAboutModal} />}
+            {showAbout && <AboutModal />}
           </Content>
         </FileOptions.Provider>
       </GitRef.Provider>
