@@ -51,19 +51,23 @@ function getPageTitle(testKindId, sectionName) {
   const testKind = getTestKind(testKindId);
 
   return sectionName
-    ? getSectionTitle(testKind, sectionName)
-    : getTestKindTitle(testKind);
+    ? getSectionPageTitle(testKind, sectionName)
+    : getTestKindPageTitle(testKind);
 }
 
-function getSectionTitle(testKind, sectionName) {
+function getSectionPageTitle(testKind, sectionName) {
   const { setup, tests } = testKind;
   const section = getSectionByName([setup, ...tests], sectionName);
 
-  return `${section.readme.meta.title} — ${getTestKindTitle(testKind)}`;
+  return `${getSectionTitle(section)} — ${getTestKindPageTitle(testKind)}`;
 }
 
-function getTestKindTitle(testKind) {
+function getTestKindPageTitle(testKind) {
   const testKindLabel = getTestKindLabels()[testKind.id];
 
   return `${testKindLabel} — React Testing Examples`;
+}
+
+function getSectionTitle(section) {
+  return section.readme.meta.title;
 }
