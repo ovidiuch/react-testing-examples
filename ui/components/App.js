@@ -42,10 +42,6 @@ export class App extends Component<Props, State> {
     Router.push(`/${testKindId}`);
   };
 
-  handleOpenAboutModal = () => {
-    Router.push('/about');
-  };
-
   handleCloseAboutModal = () => {
     Router.push('/');
   };
@@ -108,7 +104,6 @@ export class App extends Component<Props, State> {
             <Header
               selTestKindId={testKind.id}
               openTestKind={this.handleOpenTestKind}
-              openAboutPage={this.handleOpenAboutModal}
               toggleComments={this.handleToggleComments}
               toggleImports={this.handleToggleImports}
               searchText={searchText}

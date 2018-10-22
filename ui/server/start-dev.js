@@ -28,6 +28,10 @@ export async function startNextApp(
 
   await nextApp.prepare();
 
+  app.get('/about', (req: express$Request, res: express$Response) => {
+    return nextApp.render(req, res, '/about');
+  });
+
   app.get('/:testKindId', (req: express$Request, res: express$Response) => {
     return nextApp.render(req, res, '/index', {
       testKindId: req.params.testKindId

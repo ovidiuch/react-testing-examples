@@ -1,24 +1,23 @@
 // @flow
 
 import React from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
 import svgQuestion from '../../svg/question.svg';
 import { IconButton } from './styles';
 
-type Props = {
-  onClick: () => mixed
-};
-
-export function AboutButton({ onClick }: Props) {
+export function AboutButton() {
   return (
-    <AboutIconButton icon={svgQuestion} onClick={onClick}>
-      <span className="icon" />
-      <span className="label">About</span>
-    </AboutIconButton>
+    <Link prefetch href="/about">
+      <AboutIconLink href="/about" icon={svgQuestion}>
+        <span className="icon" />
+        <span className="label">About</span>
+      </AboutIconLink>
+    </Link>
   );
 }
 
-const AboutIconButton = styled(IconButton)`
+const AboutIconLink = styled(IconButton.withComponent('a'))`
   margin-left: 16px;
 
   @media (max-width: 399px) {

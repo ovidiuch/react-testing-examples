@@ -16,7 +16,6 @@ import type { TTestKindId } from '../../types';
 type Props = {
   selTestKindId: TTestKindId,
   openTestKind: (testKindId: TTestKindId) => mixed,
-  openAboutPage: () => mixed,
   toggleComments: () => mixed,
   toggleImports: () => mixed,
   searchText: string,
@@ -44,7 +43,6 @@ export class Header extends Component<Props, State> {
     const {
       selTestKindId,
       openTestKind,
-      openAboutPage,
       toggleComments,
       toggleImports,
       searchText,
@@ -64,7 +62,7 @@ export class Header extends Component<Props, State> {
             <div className="actions">
               <TestKindSelect value={selTestKindId} onChange={openTestKind} />
               <GithubLink />
-              <AboutButton onClick={openAboutPage} />
+              <AboutButton />
             </div>
           </Left>
           <MobileShowFilters

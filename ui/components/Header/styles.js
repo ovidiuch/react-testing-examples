@@ -29,4 +29,8 @@ export const IconButton = styled(Button)`
       text-decoration: underline;
     }
   }
+
+  :visited {
+    color: #20232a;
+  }
 `;
