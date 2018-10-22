@@ -31,17 +31,11 @@ export default class Page extends Component<Props> {
 
   render() {
     const { testKindId, sectionName } = this.props;
-    const testKind = getTestKind(testKindId);
-    const testKindLabel = getTestKindLabels()[testKind.id];
-    const testKindTitle = `${testKindLabel} — React Testing Examples`;
-    const title = sectionName
-      ? `${getSectionTitle(testKind, sectionName)} — ${testKindTitle}`
-      : testKindTitle;
 
     return (
       <>
         <Head>
-          <title>{title}</title>
+          <title>{getPageTitle(testKindId, sectionName)}</title>
         </Head>
         <App
           gitRef={gitRef}
@@ -53,9 +47,23 @@ export default class Page extends Component<Props> {
   }
 }
 
+function getPageTitle(testKindId, sectionName) {
+  const testKind = getTestKind(testKindId);
+
+  return sectionName
+    ? getSectionTitle(testKind, sectionName)
+    : getTestKindTitle(testKind);
+}
+
 function getSectionTitle(testKind, sectionName) {
   const { setup, tests } = testKind;
   const section = getSectionByName([setup, ...tests], sectionName);
 
-  return section.readme.meta.title;
+  return `${section.readme.meta.title} — ${getTestKindTitle(testKind)}`;
+}
+
+function getTestKindTitle(testKind) {
+  const testKindLabel = getTestKindLabels()[testKind.id];
+
+  return `${testKindLabel} — React Testing Examples`;
 }
