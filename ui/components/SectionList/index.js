@@ -61,7 +61,7 @@ export class SectionList extends Component<Props, State> {
         <ToggleShow
           header={({ show, onToggle }) => (
             <ToggleButton
-              label="Show all examples"
+              label="All examples"
               isOpen={show}
               onClick={onToggle}
             />
