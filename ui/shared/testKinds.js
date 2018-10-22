@@ -9,7 +9,7 @@ const TEST_KIND_LABELS = {
   'jest-rtl': 'react-testing-library'
 };
 
-const DEFAULT_TEST_KIND_ID = 'jest-rtl';
+export const DEFAULT_TEST_KIND_ID = 'jest-rtl';
 
 export function getTestKind(testKindId?: TTestKindId) {
   return testKinds[testKindId || DEFAULT_TEST_KIND_ID];

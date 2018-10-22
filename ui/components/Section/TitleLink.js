@@ -3,19 +3,24 @@
 import React from 'react';
 import styled from 'styled-components';
 import svgLink from '../../svg/link.svg';
+import { SectionLink } from '../shared/SectionLink';
 import { H2 } from '../shared/styles';
 
 import type { Node } from 'react';
+import type { TTestKindId } from '../../types';
 
 type Props = {
-  link: string,
-  children: Node
+  children: Node,
+  testKindId: TTestKindId,
+  sectionName: string
 };
 
-export function TitleLink({ link, children }: Props) {
+export function TitleLink({ children, testKindId, sectionName }: Props) {
   return (
     <Container>
-      <a href={`#${link}`} aria-hidden="true" />
+      <SectionLink testKindId={testKindId} sectionName={sectionName}>
+        <a aria-hidden="true" />
+      </SectionLink>
       {children}
     </Container>
   );

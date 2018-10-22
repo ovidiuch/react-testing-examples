@@ -22,7 +22,12 @@ export function Section({ testKindId, section, searchText }: Props) {
     <SectionContainer>
       <LinkableSection id={name}>
         <CenterText>
-          <Readme name={name} readme={readme} searchText={searchText} />
+          <Readme
+            testKindId={testKindId}
+            sectionName={name}
+            readme={readme}
+            searchText={searchText}
+          />
         </CenterText>
         {Object.keys(files).map(filePath => (
           <File

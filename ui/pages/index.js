@@ -9,24 +9,27 @@ import { getTestKind, getTestKindLabel } from '../shared/testKinds';
 import type { TTestKindId } from '../types';
 
 type Query = {
-  testKindId: TTestKindId
+  testKindId: TTestKindId,
+  sectionName?: string
 };
 
 type Props = {
-  testKindId: TTestKindId
+  testKindId: TTestKindId,
+  sectionName?: string
 };
 
 export default class Page extends Component<Props> {
   static async getInitialProps({ query }: { query: Query }): Promise<Props> {
-    const { testKindId } = query;
+    const { testKindId, sectionName } = query;
 
     return {
-      testKindId
+      testKindId,
+      sectionName
     };
   }
 
   render() {
-    const { testKindId } = this.props;
+    const { testKindId, sectionName } = this.props;
 
     return (
       <>
@@ -36,7 +39,7 @@ export default class Page extends Component<Props> {
         <App
           gitRef={gitRef}
           testKind={getTestKind(testKindId)}
-          selTestKindId={testKindId}
+          sectionName={sectionName}
         />
       </>
     );

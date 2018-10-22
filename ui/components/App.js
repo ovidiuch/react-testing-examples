@@ -12,11 +12,12 @@ import { SectionList } from './SectionList';
 import { Section } from './Section';
 import { Footer } from './Footer';
 
-import type { TTestKindId, TTestKind } from '../types';
+import type { TTestKind, TSection } from '../types';
 
 type Props = {
   gitRef: string,
   testKind: TTestKind,
+  sectionName?: string,
   showAbout: boolean
 };
 
@@ -36,10 +37,6 @@ export class App extends Component<Props, State> {
     showComments: true,
     showImports: false,
     searchText: ''
-  };
-
-  handleOpenTestKind = (testKindId: TTestKindId) => {
-    Router.push(`/${testKindId}`);
   };
 
   handleCloseAboutModal = () => {
@@ -76,25 +73,12 @@ export class App extends Component<Props, State> {
   }
 
   render() {
-    const { gitRef, testKind, showAbout } = this.props;
+    const { gitRef, testKind, sectionName, showAbout } = this.props;
     const { showComments, showImports, searchText } = this.state;
 
     const { setup, tests } = testKind;
     const isSearching = shouldSearch(searchText);
-    const showSetup = isSearching
-      ? matchReadmeText(setup.readme.meta, searchText)
-      : true;
-    const matchingTests = isSearching
-      ? tests.filter(t => matchReadmeText(t.readme.meta, searchText))
-      : tests;
-
-    // Tests are ordererd based on a match score when searching. But we want
-    // the setup to always be first regardless of the test score.
-    let sections = showSetup ? [setup, ...matchingTests] : matchingTests;
-
-    if (isSearching) {
-      sections = sortSections(sections, searchText);
-    }
+    const sections = [setup, ...tests];
 
     return (
       <GitRef.Provider value={gitRef}>
@@ -102,27 +86,35 @@ export class App extends Component<Props, State> {
           <Content>
             <TopSpace id="top" />
             <Header
-              selTestKindId={testKind.id}
-              openTestKind={this.handleOpenTestKind}
+              testKindId={testKind.id}
               toggleComments={this.handleToggleComments}
               toggleImports={this.handleToggleImports}
               searchText={searchText}
               changeSearch={this.handleSearchChange}
             />
             <ContentCenter>
-              <SectionList
-                sections={sections}
-                searchText={searchText}
-                changeSearch={this.handleSearchChange}
-              />
-              {sections.map(section => (
-                <Section
-                  key={section.name}
-                  testKindId={testKind.id}
-                  section={section}
-                  searchText={searchText}
-                />
-              ))}
+              {isSearching ? (
+                this.renderSearchContent(sections)
+              ) : (
+                <>
+                  <SectionList
+                    sections={sections}
+                    testKindId={testKind.id}
+                    sectionName={sectionName}
+                    searchText={searchText}
+                    changeSearch={this.handleSearchChange}
+                  />
+                  {sectionName
+                    ? getSectionEl({
+                        section: getSectionByName(sections, sectionName),
+                        testKind,
+                        searchText
+                      })
+                    : sections.map(section =>
+                        getSectionEl({ section, testKind, searchText })
+                      )}
+                </>
+              )}
             </ContentCenter>
             <Footer />
             {showAbout && <AboutModal onClose={this.handleCloseAboutModal} />}
@@ -131,6 +123,54 @@ export class App extends Component<Props, State> {
       </GitRef.Provider>
     );
   }
+
+  renderSearchContent(sections: TSection[]) {
+    const { testKind } = this.props;
+    const { searchText } = this.state;
+
+    const matchingSections = sortSections(
+      sections.filter(
+        s => matchReadmeText(s.readme.meta, searchText),
+        searchText
+      ),
+      searchText
+    );
+
+    return (
+      <>
+        <SectionList
+          testKindId={testKind.id}
+          sections={matchingSections}
+          searchText={searchText}
+          changeSearch={this.handleSearchChange}
+        />
+        {matchingSections.map(section =>
+          getSectionEl({ section, testKind, searchText })
+        )}
+      </>
+    );
+  }
+}
+
+function getSectionEl({ section, testKind, searchText }) {
+  return (
+    <Section
+      key={section.name}
+      testKindId={testKind.id}
+      section={section}
+      searchText={searchText}
+    />
+  );
+}
+
+function getSectionByName(sections: TSection[], sectionName): TSection {
+  const section = sections.find(s => s.name === sectionName);
+
+  if (!section) {
+    throw new Error(`Not found section with name "${sectionName}"`);
+  }
+
+  return section;
 }
 
 function setBodyScroll(hasModal: boolean) {
@@ -152,7 +192,7 @@ const Content = styled.div`
 const ContentCenter = styled.div`
   margin: 0 auto;
   box-sizing: border-box;
-  padding: 2px 12px 0 12px;
+  padding: 2px 12px 32px 12px;
   min-width: 320px;
   max-width: 1476px;
   overflow: hidden;

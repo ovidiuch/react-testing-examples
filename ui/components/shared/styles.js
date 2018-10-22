@@ -12,20 +12,6 @@ export const CenterText = styled(Center)`
   padding: 0 24px;
 `;
 
-export const Link = styled.a`
-  color: #3058b5;
-  text-decoration: none;
-
-  :hover {
-    text-decoration: underline;
-  }
-`;
-
-export const InternalLink = styled(Link)`
-  color: #20232a;
-  font-weight: 500;
-`;
-
 export const Button = styled.button`
   box-sizing: border-box;
   border: 0;

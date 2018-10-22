@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+import Router from 'next/router';
 import styled from 'styled-components';
 import svgChevronDown from '../../svg/triangle-down.svg';
 import { getTestKindLabels } from '../../shared/testKinds';
@@ -8,16 +9,14 @@ import { getTestKindLabels } from '../../shared/testKinds';
 import type { TTestKindId } from '../../types';
 
 type Props = {
-  value: TTestKindId,
-  onChange: (value: TTestKindId) => mixed
+  value: TTestKindId
 };
 
 export class TestKindSelect extends Component<Props> {
   handleChange = (e: SyntheticInputEvent<HTMLSelectElement>) => {
-    const { onChange } = this.props;
     const { value } = e.currentTarget;
 
-    onChange(value);
+    Router.push(`/index?testKindId=${value}`, `/${value}`);
   };
 
   render() {
@@ -41,11 +40,11 @@ export class TestKindSelect extends Component<Props> {
 
 const SelectContainer = styled.div`
   position: relative;
-  padding-right: 22px;
+  padding-right: 16px;
   height: 24px;
   background: url(${svgChevronDown});
   background-size: 10px;
-  background-position: calc(100% - 5px) 6px;
+  background-position: calc(100%) 6px;
   background-repeat: no-repeat;
   line-height: 24px;
   white-space: nowrap;

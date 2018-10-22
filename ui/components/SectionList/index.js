@@ -4,23 +4,19 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { shouldSearch } from '../../search';
 import svgInfo from '../../svg/info.svg';
+import { SectionLink } from '../shared/SectionLink';
 import { FuzzyHighlighter } from '../shared/FuzzyHighlighter';
-import {
-  CenterText,
-  Paragraph,
-  Link,
-  List,
-  InternalLink,
-  ListItem
-} from '../shared/styles';
+import { CenterText, Paragraph, List, ListItem } from '../shared/styles';
 import thinkin from './img/thinkin.png';
 import { ToggleShow } from './ToggleShow';
 import { ToggleButton } from './ToggleButton';
 
-import type { TSection } from '../../types';
+import type { TTestKindId, TSection } from '../../types';
 
 type Props = {
   sections: TSection[],
+  testKindId: TTestKindId,
+  sectionName?: string,
   searchText: string,
   changeSearch: (searchText: string) => mixed
 };
@@ -34,6 +30,14 @@ export class SectionList extends Component<Props, State> {
     isOpen: false
   };
 
+  componentDidUpdate(prevProps: Props) {
+    if (this.state.isOpen && hasSectionChanged(this.props, prevProps)) {
+      this.setState({
+        isOpen: false
+      });
+    }
+  }
+
   handleToggleList = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
@@ -44,14 +48,14 @@ export class SectionList extends Component<Props, State> {
   };
 
   render() {
-    let { sections, searchText } = this.props;
+    let { searchText } = this.props;
     let { isOpen } = this.state;
 
     if (shouldSearch(searchText)) {
       return (
         <Container>
-          {this.renderSearchTitle(sections, searchText)}
-          {this.renderContent(sections, searchText)}
+          {this.renderSearchTitle()}
+          {this.renderContent()}
         </Container>
       );
     }
@@ -66,7 +70,7 @@ export class SectionList extends Component<Props, State> {
               onClick={onToggle}
             />
           )}
-          content={this.renderContent(sections, searchText)}
+          content={this.renderContent()}
           show={isOpen}
           onToggle={this.handleToggleList}
         />
@@ -74,7 +78,9 @@ export class SectionList extends Component<Props, State> {
     );
   }
 
-  renderSearchTitle(sections: TSection[], searchText: string) {
+  renderSearchTitle() {
+    const { sections, searchText } = this.props;
+
     if (!sections.length) {
       return (
         <SearchHeader>
@@ -90,7 +96,9 @@ export class SectionList extends Component<Props, State> {
     );
   }
 
-  renderContent(sections: TSection[], searchText: string) {
+  renderContent() {
+    const { testKindId, sections, searchText } = this.props;
+
     if (!sections.length) {
       return (
         <>
@@ -99,9 +107,9 @@ export class SectionList extends Component<Props, State> {
             <span className="icon" />
             <span className="text">
               Contact{' '}
-              <Link target="_blank" href="https://ovidiu.ch/">
+              <a target="_blank" href="https://ovidiu.ch/">
                 Ovidiu
-              </Link>{' '}
+              </a>{' '}
               if you need help testing React components
             </span>
           </ContactParagraph>
@@ -117,9 +125,14 @@ export class SectionList extends Component<Props, State> {
 
           return (
             <CustomListItem key={name}>
-              <InternalLink href={`#${name}`}>
-                <FuzzyHighlighter searchText={searchText} targetText={title} />
-              </InternalLink>
+              <SectionLink testKindId={testKindId} sectionName={name}>
+                <a>
+                  <FuzzyHighlighter
+                    searchText={searchText}
+                    targetText={title}
+                  />
+                </a>
+              </SectionLink>
             </CustomListItem>
           );
         })}
@@ -138,6 +151,13 @@ export class SectionList extends Component<Props, State> {
       </ClearSearchBtn>
     );
   }
+}
+
+function hasSectionChanged(props, prevProps) {
+  return (
+    props.testKindId !== prevProps.testKindId ||
+    props.sectionName !== prevProps.sectionName
+  );
 }
 
 const Container = styled(CenterText)`

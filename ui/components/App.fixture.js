@@ -17,11 +17,33 @@ export default [
     state: {}
   }),
   createFixture({
+    name: 'react-testing-library Fetch',
+    component: App,
+    props: {
+      gitRef,
+      testKind: getTestKind('jest-rtl'),
+      sectionName: '6-fetch',
+      showAbout: false
+    },
+    state: {}
+  }),
+  createFixture({
     name: 'Enzyme',
     component: App,
     props: {
       gitRef,
       testKind: getTestKind('jest-enzyme'),
+      showAbout: false
+    },
+    state: {}
+  }),
+  createFixture({
+    name: 'Enzyme setup',
+    component: App,
+    props: {
+      gitRef,
+      testKind: getTestKind('jest-enzyme'),
+      sectionName: 'setup',
       showAbout: false
     },
     state: {}

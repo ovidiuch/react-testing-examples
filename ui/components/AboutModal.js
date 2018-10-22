@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import WhatsThis from '../../WHATSTHIS.md';
-import { CenterText, H2, H3, Button, Paragraph, Link } from './shared/styles';
+import { CenterText, H2, H3, Button, Paragraph } from './shared/styles';
 import { WindowKeyListener, KEY_ESC } from './shared/WindowKeyListener';
 
 type Props = {
@@ -82,7 +82,7 @@ const OpinionsList = styled.ol`
   padding-left: 36px;
 `;
 
-const SubtleLink = styled(Link)`
+const SubtleLink = styled.a`
   color: #20232a;
   font-weight: 500;
 `;

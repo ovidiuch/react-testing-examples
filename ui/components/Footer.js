@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { CenterText, Paragraph, Link, List, ListItem } from './shared/styles';
+import { CenterText, Paragraph, List, ListItem } from './shared/styles';
 
 export function Footer() {
   return (
@@ -45,7 +45,7 @@ const Container = styled.div`
   overflow: hidden;
 `;
 
-const SubtleLink = styled(Link)`
+const SubtleLink = styled.a`
   color: #dde0e8;
 `;
 

@@ -19,6 +19,7 @@ export function AboutButton() {
 
 const AboutIconLink = styled(IconButton.withComponent('a'))`
   margin-left: 16px;
+  font-weight: 400;
 
   @media (max-width: 399px) {
     .label {

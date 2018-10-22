@@ -32,6 +32,18 @@ export async function startNextApp(
     return nextApp.render(req, res, '/about');
   });
 
+  app.get(
+    '/:testKindId/:sectionName',
+    (req: express$Request, res: express$Response) => {
+      const { testKindId, sectionName } = req.params;
+
+      return nextApp.render(req, res, '/index', {
+        testKindId,
+        sectionName
+      });
+    }
+  );
+
   app.get('/:testKindId', (req: express$Request, res: express$Response) => {
     return nextApp.render(req, res, '/index', {
       testKindId: req.params.testKindId
