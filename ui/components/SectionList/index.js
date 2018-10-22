@@ -6,6 +6,7 @@ import { shouldSearch } from '../../search';
 import svgInfo from '../../svg/info.svg';
 import { SectionLink } from '../shared/SectionLink';
 import { FuzzyHighlighter } from '../shared/FuzzyHighlighter';
+import { hasSectionChanged } from '../shared/sectionChange';
 import { CenterText, Paragraph, List, ListItem } from '../shared/styles';
 import thinkin from './img/thinkin.png';
 import { ToggleShow } from './ToggleShow';
@@ -151,13 +152,6 @@ export class SectionList extends Component<Props, State> {
       </ClearSearchBtn>
     );
   }
-}
-
-function hasSectionChanged(props, prevProps) {
-  return (
-    props.testKindId !== prevProps.testKindId ||
-    props.sectionName !== prevProps.sectionName
-  );
 }
 
 const Container = styled(CenterText)`

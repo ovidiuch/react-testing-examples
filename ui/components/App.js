@@ -6,6 +6,7 @@ import Router from 'next/router';
 import styled from 'styled-components';
 import { FileOptions, GitRef } from '../contexts';
 import { shouldSearch, matchReadmeText, sortSections } from '../search';
+import { hasSectionChanged } from './shared/sectionChange';
 import { Header } from './Header';
 import { AboutModal } from './AboutModal';
 import { SectionList } from './SectionList';
@@ -63,13 +64,23 @@ export class App extends Component<Props, State> {
     const { showAbout } = this.props;
     const { searchText } = this.state;
 
+    if (
+      searchText &&
+      hasSectionChanged(getSectionProps(this.props), getSectionProps(prevProps))
+    ) {
+      this.setState({
+        searchText: ''
+      });
+    }
     // Jump to top when changing search query, because results will change
     // anyway so previous scroll position will be irrelevant
-    if (searchText && searchText !== prevState.searchText) {
+    else if (searchText && searchText !== prevState.searchText) {
       window.scrollTo(0, 0);
     }
 
-    setBodyScroll(showAbout);
+    if (showAbout !== prevProps.showAbout) {
+      setBodyScroll(showAbout);
+    }
   }
 
   render() {
@@ -171,6 +182,13 @@ function getSectionByName(sections: TSection[], sectionName): TSection {
   }
 
   return section;
+}
+
+function getSectionProps({ testKind, sectionName }) {
+  return {
+    testKindId: testKind.id,
+    sectionName
+  };
 }
 
 function setBodyScroll(hasModal: boolean) {
