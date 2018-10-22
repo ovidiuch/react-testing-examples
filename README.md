@@ -2,7 +2,7 @@
 
 [<img src="https://img.shields.io/circleci/project/github/skidding/react-testing-examples/master.svg" alt="CircleCI" />](https://circleci.com/gh/skidding/react-testing-examples)
 
-Searchable library of testing examples for React components
+Searchable library of React testing examples
 
 - [Browse the tests](https://react-testing-examples.com)
 - [Read about the project](https://react-testing-examples.com/about)
