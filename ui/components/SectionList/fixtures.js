@@ -9,8 +9,9 @@ export default [
     name: 'open',
     component: SectionList,
     props: {
-      testKindId: 'jest-enzyme',
       sections: testKinds['jest-enzyme'].tests,
+      testKindId: 'jest-enzyme',
+      sectionName: undefined,
       searchText: '',
       changeSearch: () => {}
     },
@@ -23,8 +24,9 @@ export default [
     name: 'closed',
     component: SectionList,
     props: {
-      testKindId: 'jest-enzyme',
       sections: testKinds['jest-enzyme'].tests,
+      testKindId: 'jest-enzyme',
+      sectionName: undefined,
       searchText: '',
       changeSearch: () => {}
     },

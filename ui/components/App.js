@@ -136,7 +136,7 @@ export class App extends Component<Props, State> {
   }
 
   renderSearchContent(sections: TSection[]) {
-    const { testKind } = this.props;
+    const { testKind, sectionName } = this.props;
     const { searchText } = this.state;
 
     const matchingSections = sortSections(
@@ -150,8 +150,9 @@ export class App extends Component<Props, State> {
     return (
       <>
         <SectionList
-          testKindId={testKind.id}
           sections={matchingSections}
+          testKindId={testKind.id}
+          sectionName={sectionName}
           searchText={searchText}
           changeSearch={this.handleSearchChange}
         />

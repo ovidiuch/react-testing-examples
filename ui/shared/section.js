@@ -4,7 +4,7 @@ import type { TTestKindId, TSection } from '../types';
 
 type Props = {
   testKindId: TTestKindId,
-  sectionName?: string
+  sectionName: ?string
 };
 
 export function hasSectionChanged(props: Props, prevProps: Props) {

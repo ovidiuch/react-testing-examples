@@ -17,7 +17,7 @@ import type { TTestKindId, TSection } from '../../types';
 type Props = {
   sections: TSection[],
   testKindId: TTestKindId,
-  sectionName?: string,
+  sectionName: ?string,
   searchText: string,
   changeSearch: (searchText: string) => mixed
 };
@@ -49,8 +49,8 @@ export class SectionList extends Component<Props, State> {
   };
 
   render() {
-    let { searchText } = this.props;
-    let { isOpen } = this.state;
+    const { searchText } = this.props;
+    const { isOpen } = this.state;
 
     if (shouldSearch(searchText)) {
       return (
@@ -98,7 +98,7 @@ export class SectionList extends Component<Props, State> {
   }
 
   renderContent() {
-    const { testKindId, sections, searchText } = this.props;
+    const { sections, testKindId, sectionName, searchText } = this.props;
 
     if (!sections.length) {
       return (
@@ -121,20 +121,22 @@ export class SectionList extends Component<Props, State> {
     return (
       <CustomList>
         {sections.map(section => {
-          let { name, readme } = section;
+          const { name, readme } = section;
           const { title } = readme.meta;
+          const hlText = (
+            <FuzzyHighlighter searchText={searchText} targetText={title} />
+          );
 
           return (
-            <CustomListItem key={name}>
-              <SectionLink testKindId={testKindId} sectionName={name}>
-                <a>
-                  <FuzzyHighlighter
-                    searchText={searchText}
-                    targetText={title}
-                  />
-                </a>
-              </SectionLink>
-            </CustomListItem>
+            <ListItem key={name}>
+              {sectionName === name ? (
+                <SelectedItem>{hlText}</SelectedItem>
+              ) : (
+                <SectionLink testKindId={testKindId} sectionName={name}>
+                  <a>{hlText}</a>
+                </SectionLink>
+              )}
+            </ListItem>
           );
         })}
       </CustomList>
@@ -164,8 +166,9 @@ const CustomList = styled(List)`
   padding-left: 24px;
 `;
 
-const CustomListItem = styled(ListItem)`
+const SelectedItem = styled.span`
   color: #888e9c;
+  font-weight: 500;
 `;
 
 const SearchHeader = styled.p`
