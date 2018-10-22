@@ -12,18 +12,15 @@ import { SectionList } from './SectionList';
 import { Section } from './Section';
 import { Footer } from './Footer';
 
-import type { TTestKindId, TTestKinds } from '../types';
-
-const DEFAULT_TEST_KIND_ID = 'jest-rtl';
+import type { TTestKindId, TTestKind } from '../types';
 
 type Props = {
   gitRef: string,
-  testKinds: TTestKinds,
+  testKind: TTestKind,
   showAbout: boolean
 };
 
 type State = {
-  selTestKindId: TTestKindId,
   showComments: boolean,
   showImports: boolean,
   searchText: string
@@ -35,15 +32,14 @@ export class App extends Component<Props, State> {
   };
 
   state = {
-    selTestKindId: DEFAULT_TEST_KIND_ID,
     showAboutModal: false,
     showComments: true,
     showImports: false,
     searchText: ''
   };
 
-  handleSetSelTestKindId = (selTestKindId: TTestKindId) => {
-    this.setState({ selTestKindId });
+  handleOpenTestKind = (testKindId: TTestKindId) => {
+    Router.push(`/${testKindId}`);
   };
 
   handleOpenAboutModal = () => {
@@ -84,9 +80,8 @@ export class App extends Component<Props, State> {
   }
 
   render() {
-    const { gitRef, testKinds, showAbout } = this.props;
-    const { selTestKindId, showComments, showImports, searchText } = this.state;
-    const testKind = testKinds[selTestKindId];
+    const { gitRef, testKind, showAbout } = this.props;
+    const { showComments, showImports, searchText } = this.state;
 
     const { setup, tests } = testKind;
     const isSearching = shouldSearch(searchText);
@@ -111,9 +106,9 @@ export class App extends Component<Props, State> {
           <Content>
             <TopSpace id="top" />
             <Header
-              selTestKindId={selTestKindId}
-              setSelTestKindId={this.handleSetSelTestKindId}
-              openAboutModal={this.handleOpenAboutModal}
+              selTestKindId={testKind.id}
+              openTestKind={this.handleOpenTestKind}
+              openAboutPage={this.handleOpenAboutModal}
               toggleComments={this.handleToggleComments}
               toggleImports={this.handleToggleImports}
               searchText={searchText}
@@ -128,7 +123,7 @@ export class App extends Component<Props, State> {
               {sections.map(section => (
                 <Section
                   key={section.name}
-                  testKindId={selTestKindId}
+                  testKindId={testKind.id}
                   section={section}
                   searchText={searchText}
                 />

@@ -10,13 +10,14 @@
     "test": "yarn test:jest-enzyme && yarn test:jest-rtl && yarn test:ui",
     "test:ci": "yarn test:jest-enzyme --maxWorkers=2 && yarn test:jest-rtl --maxWorkers=2 && yarn test:ui --maxWorkers=2",
     "cosmos": "cosmos --config ui/cosmos.config",
-    "dev": "next dev ui",
+    "dev": "yarn babel-node ui/server/start-dev.js",
     "build": "next build ui && next export ui -o .export",
     "upload": "cd .export && now --name rte && cd -"
   },
   "devDependencies": {
     "@babel/cli": "7.1.2",
     "@babel/core": "7.1.2",
+    "@babel/node": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "7.1.0",
     "@babel/plugin-proposal-object-rest-spread": "7.0.0",
     "@babel/preset-env": "7.1.0",
@@ -48,6 +49,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jest": "^21.25.1",
     "eslint-plugin-react": "^7.11.1",
+    "express": "^4.16.4",
     "flow-bin": "^0.83.0",
     "flow-typed": "^2.5.1",
     "glob": "^7.1.3",

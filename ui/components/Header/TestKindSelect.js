@@ -3,18 +3,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import svgChevronDown from '../../svg/triangle-down.svg';
+import { getTestKindLabels } from '../../shared/testKinds';
 
 import type { TTestKindId } from '../../types';
 
 type Props = {
-  selTestKindId: TTestKindId,
-  onChange: (selTestKindId: TTestKindId) => mixed
-};
-
-// TODO: Load test kinds dynamically (and replace hardcoded values)
-const LABELS = {
-  'jest-enzyme': 'Enzyme',
-  'jest-rtl': 'react-testing-library'
+  value: TTestKindId,
+  onChange: (value: TTestKindId) => mixed
 };
 
 export class TestKindSelect extends Component<Props> {
@@ -26,15 +21,16 @@ export class TestKindSelect extends Component<Props> {
   };
 
   render() {
-    const { selTestKindId } = this.props;
+    const labels = getTestKindLabels();
+    const { value } = this.props;
 
     return (
       <SelectContainer>
-        {LABELS[selTestKindId]}
-        <Select value={this.props.selTestKindId} onChange={this.handleChange}>
-          {Object.keys(LABELS).map(testKindId => (
+        {labels[value]}
+        <Select value={this.props.value} onChange={this.handleChange}>
+          {Object.keys(labels).map(testKindId => (
             <option key={testKindId} value={testKindId}>
-              {LABELS[testKindId]}
+              {labels[testKindId]}
             </option>
           ))}
         </Select>

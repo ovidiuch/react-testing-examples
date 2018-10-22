@@ -2,7 +2,8 @@
 
 import { createFixture } from 'react-cosmos';
 import { App } from './App';
-import { testKinds, gitRef } from '../import-files';
+import { gitRef } from '../import-files';
+import { getTestKind } from '../shared/testKinds';
 
 export default [
   createFixture({
@@ -10,31 +11,27 @@ export default [
     component: App,
     props: {
       gitRef,
-      testKinds,
+      testKind: getTestKind('jest-rtl'),
       showAbout: false
     },
-    state: {
-      selTestKindId: 'jest-rtl'
-    }
+    state: {}
   }),
   createFixture({
     name: 'Enzyme',
     component: App,
     props: {
       gitRef,
-      testKinds,
+      testKind: getTestKind('jest-enzyme'),
       showAbout: false
     },
-    state: {
-      selTestKindId: 'jest-enzyme'
-    }
+    state: {}
   }),
   createFixture({
     name: 'About',
     component: App,
     props: {
       gitRef,
-      testKinds,
+      testKind: getTestKind('jest-rtl'),
       showAbout: true
     }
   })

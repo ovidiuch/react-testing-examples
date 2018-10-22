@@ -15,8 +15,8 @@ import type { TTestKindId } from '../../types';
 
 type Props = {
   selTestKindId: TTestKindId,
-  setSelTestKindId: (selTestKindId: TTestKindId) => mixed,
-  openAboutModal: () => mixed,
+  openTestKind: (testKindId: TTestKindId) => mixed,
+  openAboutPage: () => mixed,
   toggleComments: () => mixed,
   toggleImports: () => mixed,
   searchText: string,
@@ -41,16 +41,16 @@ export class Header extends Component<Props, State> {
   };
 
   render() {
-    let {
+    const {
       selTestKindId,
-      setSelTestKindId,
-      openAboutModal,
+      openTestKind,
+      openAboutPage,
       toggleComments,
       toggleImports,
       searchText,
       changeSearch
     } = this.props;
-    let { mobileShowFilters } = this.state;
+    const { mobileShowFilters } = this.state;
 
     return (
       <Container>
@@ -62,12 +62,9 @@ export class Header extends Component<Props, State> {
               </a>
             </h1>
             <div className="actions">
-              <TestKindSelect
-                selTestKindId={selTestKindId}
-                onChange={setSelTestKindId}
-              />
+              <TestKindSelect value={selTestKindId} onChange={openTestKind} />
               <GithubLink />
-              <AboutButton onClick={openAboutModal} />
+              <AboutButton onClick={openAboutPage} />
             </div>
           </Left>
           <MobileShowFilters
