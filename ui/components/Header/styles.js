@@ -6,6 +6,7 @@ import { Button } from '../shared/styles';
 export const IconButton = styled(Button)`
   display: flex;
   height: 24px;
+  color: #20232a;
   line-height: 24px;
   text-decoration: none;
 
@@ -28,9 +29,5 @@ export const IconButton = styled(Button)`
     .label {
       text-decoration: underline;
     }
-  }
-
-  :visited {
-    color: #20232a;
   }
 `;
