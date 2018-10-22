@@ -1,6 +1,6 @@
 // @flow
 
-import type { TTestKindId, TSection } from '../../types';
+import type { TTestKindId, TSection } from '../types';
 
 type Props = {
   testKindId: TTestKindId,
