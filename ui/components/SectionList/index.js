@@ -183,10 +183,6 @@ const ClearSearchBtn = styled.span`
   a {
     color: #20232a;
     white-space: nowrap;
-
-    :hover {
-      text-decoration: none;
-    }
   }
 `;
 
