@@ -34,5 +34,20 @@ export default [
       isOpen: false
     },
     bgColor: '#f5f7f9'
+  }),
+  createFixture({
+    name: 'search',
+    component: SectionList,
+    props: {
+      sections: testKinds['jest-enzyme'].tests,
+      testKindId: 'jest-enzyme',
+      sectionName: undefined,
+      searchText: 'state',
+      changeSearch: () => {}
+    },
+    state: {
+      isOpen: false
+    },
+    bgColor: '#f5f7f9'
   })
 ];

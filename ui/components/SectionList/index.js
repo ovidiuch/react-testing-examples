@@ -173,7 +173,7 @@ const SelectedItem = styled.span`
 
 const SearchHeader = styled.p`
   margin: 0;
-  padding: 6px 24px;
+  padding: 8px 0;
   line-height: 24px;
 `;
 
