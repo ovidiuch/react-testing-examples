@@ -6,7 +6,7 @@ import { shouldSearch } from '../../search';
 import svgInfo from '../../svg/info.svg';
 import { SectionLink } from '../shared/SectionLink';
 import { FuzzyHighlighter } from '../shared/FuzzyHighlighter';
-import { hasSectionChanged } from '../shared/sectionChange';
+import { hasSectionChanged } from '../../shared/section';
 import { CenterText, Paragraph, List, ListItem } from '../shared/styles';
 import thinkin from './img/thinkin.png';
 import { ToggleShow } from './ToggleShow';

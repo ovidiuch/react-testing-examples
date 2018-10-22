@@ -6,7 +6,7 @@ import Router from 'next/router';
 import styled from 'styled-components';
 import { FileOptions, GitRef } from '../contexts';
 import { shouldSearch, matchReadmeText, sortSections } from '../search';
-import { hasSectionChanged } from './shared/sectionChange';
+import { hasSectionChanged, getSectionByName } from '../shared/section';
 import { Header } from './Header';
 import { AboutModal } from './AboutModal';
 import { SectionList } from './SectionList';
@@ -172,16 +172,6 @@ function getSectionEl({ section, testKind, searchText }) {
       searchText={searchText}
     />
   );
-}
-
-function getSectionByName(sections: TSection[], sectionName): TSection {
-  const section = sections.find(s => s.name === sectionName);
-
-  if (!section) {
-    throw new Error(`Not found section with name "${sectionName}"`);
-  }
-
-  return section;
 }
 
 function getSectionProps({ testKind, sectionName }) {

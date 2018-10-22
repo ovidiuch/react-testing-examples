@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 import Head from 'next/head';
 import { App } from '../components/App';
 import { gitRef } from '../import-files';
-import { getTestKind, getTestKindLabel } from '../shared/testKinds';
+import { getSectionByName } from '../shared/section';
+import { getTestKind, getTestKindLabels } from '../shared/testKinds';
 
 import type { TTestKindId } from '../types';
 
@@ -30,11 +31,17 @@ export default class Page extends Component<Props> {
 
   render() {
     const { testKindId, sectionName } = this.props;
+    const testKind = getTestKind(testKindId);
+    const testKindLabel = getTestKindLabels()[testKind.id];
+    const testKindTitle = `${testKindLabel} — React Testing Examples`;
+    const title = sectionName
+      ? `${getSectionTitle(testKind, sectionName)} — ${testKindTitle}`
+      : testKindTitle;
 
     return (
       <>
         <Head>
-          <title>{getTestKindLabel(testKindId)} - React Testing Examples</title>
+          <title>{title}</title>
         </Head>
         <App
           gitRef={gitRef}
@@ -44,4 +51,11 @@ export default class Page extends Component<Props> {
       </>
     );
   }
+}
+
+function getSectionTitle(testKind, sectionName) {
+  const { setup, tests } = testKind;
+  const section = getSectionByName([setup, ...tests], sectionName);
+
+  return section.readme.meta.title;
 }

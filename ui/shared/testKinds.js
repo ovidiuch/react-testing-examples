@@ -15,10 +15,6 @@ export function getTestKind(testKindId?: TTestKindId) {
   return testKinds[testKindId || DEFAULT_TEST_KIND_ID];
 }
 
-export function getTestKindLabel(testKindId?: TTestKindId) {
-  return TEST_KIND_LABELS[testKindId || DEFAULT_TEST_KIND_ID];
-}
-
 export function getTestKindLabels() {
   return TEST_KIND_LABELS;
 }
