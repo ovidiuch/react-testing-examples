@@ -19,7 +19,7 @@ export function GithubLink() {
 }
 
 const GithubIconLink = styled(IconButton.withComponent('a'))`
-  margin-left: 24px;
+  margin-left: 16px;
 
   :visited {
     color: #20232a;
