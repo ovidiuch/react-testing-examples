@@ -32,7 +32,7 @@ module.exports = {
     const { rules } = module;
 
     const mdxRule = {
-      test: /(README|SETUP|WHATSTHIS).md$/,
+      test: /(README|SETUP|WHATSTHIS|CREDITS).md$/,
       use: [babelLoader, '@mdx-js/loader']
     };
     const importFilesRule = {

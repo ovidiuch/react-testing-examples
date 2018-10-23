@@ -13,5 +13,6 @@ module.name_mapper='^!.+\/readme-text-loader!.+$' -> '<PROJECT_ROOT>/.stubs/read
 module.name_mapper='^.+\/README\.md$' -> '<PROJECT_ROOT>/.stubs/component.js'
 module.name_mapper='^.+\/SETUP\.md$' -> '<PROJECT_ROOT>/.stubs/component.js'
 module.name_mapper='^.+\/WHATSTHIS\.md$' -> '<PROJECT_ROOT>/.stubs/component.js'
+module.name_mapper='^.+\/CREDITS\.md$' -> '<PROJECT_ROOT>/.stubs/component.js'
 
 [strict]
