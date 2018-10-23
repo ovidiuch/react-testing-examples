@@ -6,6 +6,7 @@ import { Button } from '../shared/styles';
 export const IconButton = styled(Button)`
   display: flex;
   height: 24px;
+  font-weight: 400;
   color: #20232a;
   line-height: 24px;
   text-decoration: none;

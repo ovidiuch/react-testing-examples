@@ -72,14 +72,17 @@ export class FileActions extends Component<Props, State> {
       <GitRef.Consumer>
         {gitRef => (
           <Container>
-            <CopyLink
+            <CopyAction
+              icon={svgClippy}
               title="Copy code"
               status={copyStatus}
               time={copyTime}
               ref={this.handleCopyBtnRef}
               data-clipboard-text={cleanCode}
             />
-            <OpenFileLink
+            <Action
+              as="a"
+              icon={svgLinkExternal}
               target="_blank"
               title="Open in GitHub"
               href={getFileUrl(gitRef, filePath)}
@@ -94,21 +97,22 @@ export class FileActions extends Component<Props, State> {
 const PROJECT_ROOT_URL = 'https://github.com/skidding/react-testing-examples';
 
 function getFileUrl(gitRef: string, filePath: string) {
-  return `${PROJECT_ROOT_URL}/blob/${gitRef}/${filePath}`;
+  return `${PROJECT_ROOT_URL}/blob/${gitRef}/tests/${filePath}`;
 }
 
 const Container = styled.div`
   display: flex;
-  padding-top: 2px;
 `;
 
 const Action = styled(Button)`
-  width: 32px;
-  height: 32px;
-  background-size: 16px;
-  background-position: 8px 6px;
+  width: 36px;
+  height: 36px;
+  padding: 0 8px;
+  background: url(${props => props.icon});
+  background-size: 20px;
+  background-position: center 6px;
   background-repeat: no-repeat;
-  border-radius: 2px;
+  border-radius: 3px;
   opacity: 0.5;
   transition: opacity 0.3s;
 
@@ -117,8 +121,7 @@ const Action = styled(Button)`
   }
 `;
 
-const CopyLink = styled(Action)`
-  background-image: url(${svgClippy});
+const CopyAction = styled(Action)`
   animation: flash${props => props.time} 3s;
 
   @keyframes flash${props => props.time} {
@@ -129,10 +132,6 @@ const CopyLink = styled(Action)`
       background-color: transparent;
     }
   }
-`;
-
-const OpenFileLink = styled(Action.withComponent('a'))`
-  background-image: url(${svgLinkExternal});
 `;
 
 function getCopyBgColorByStatus(status: CopyStatus) {
