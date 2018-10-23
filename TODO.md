@@ -21,8 +21,8 @@
     - [x] Links to tech used
   - [x] Update responsive breakpoints
 - [x] Replace file system sorting
+- [x] Make Next.js components load in Cosmos
 - [ ] Optimize search perf
-- [ ] Make Next.js components work in Cosmos
 
 ## First version
 
