@@ -11,14 +11,15 @@
   - [x] Refactor styled-components test
   - [x] Add URL for each test kind
   - [x] Add URL for each test
-- [ ] Update project description
-- [ ] Visual facelift
+- [x] Update project description
+  - [x] Update README
+- [x] Visual facelift
   - [x] Header
   - [x] Remove file visibility toggling
   - [x] Tweak file actions
-  - [ ] Footer
-    - [ ] Links to tech used
-  - [ ] Update responsive breakpoints
+  - [x] Footer
+    - [x] Links to tech used
+  - [x] Update responsive breakpoints
 - [ ] Optimize search perf
 - [ ] Replace file system sorting
 

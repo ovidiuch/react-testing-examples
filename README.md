@@ -4,7 +4,8 @@
 
 Searchable library of React testing examples
 
-- [Browse the tests](https://react-testing-examples.com)
+- **[Open the library](https://react-testing-examples.com)**
 - [Read about the project](https://react-testing-examples.com/about)
+- [Browse test files](tests)
 
 [<img alt="Screenshot of React Testing Examples" src="screenshot.png" />](https://react-testing-examples.com)

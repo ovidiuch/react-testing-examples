@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { FileOptions, GitRef } from '../contexts';
 import { shouldSearch, matchReadmeText, sortSections } from '../search';
 import { hasSectionChanged, getSectionByName } from '../shared/section';
+import { MOBILE_BREAKPOINT } from './shared/styles';
 import { Header } from './Header';
 import { AboutModal } from './AboutModal';
 import { SectionList } from './SectionList';
@@ -186,6 +187,10 @@ function setBodyScroll(hasModal: boolean) {
 
 const TopSpace = styled.div`
   height: 96px;
+
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    height: 80px;
+  }
 `;
 
 const Content = styled.div`

@@ -2,6 +2,8 @@
 
 import styled from 'styled-components';
 
+export const MOBILE_BREAKPOINT = 666;
+
 export const Center = styled.div`
   margin: 0 auto;
   max-width: 720px;
@@ -38,7 +40,7 @@ export const H3 = styled.h3`
 
 export const Paragraph = styled.p`
   margin: 0 0 16px 0;
-  line-height: 26px;
+  line-height: 28px;
 `;
 
 export const Blockquote = styled.blockquote`
