@@ -15,7 +15,7 @@
 - [ ] Visual facelift
   - [x] Header
   - [x] Remove file visibility toggling
-  - [ ] Add labels to file actions
+  - [x] Tweak file actions
   - [ ] Footer
     - [ ] Links to tech used
   - [ ] Update responsive breakpoints
