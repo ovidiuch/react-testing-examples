@@ -1,6 +1,7 @@
 const { join } = require('path');
 const glob = require('glob');
 const { execSync } = require('child_process');
+const { getTestKindIds, getTestNames } = require('../server/testFiles');
 
 const TESTS_PATH = join(__dirname, `../../tests`);
 
@@ -82,23 +83,6 @@ function getFileStr({ filePath }) {
   const fileName = filePath.split('/').pop();
 
   return `'${fileName}': require('!raw-loader!${filePath}')`;
-}
-
-function getTestNames(testKindId) {
-  return getDirNames(join(TESTS_PATH, testKindId));
-}
-
-function getTestKindIds() {
-  return getDirNames(TESTS_PATH).filter(t => t !== 'shared');
-}
-
-function getDirNames(dirPath) {
-  return (
-    glob
-      .sync(`*/`, { cwd: dirPath })
-      // Remove trailing slash
-      .map(t => t.replace(/\/$/, ''))
-  );
 }
 
 function getSetupPath(testKindId, filePath) {
