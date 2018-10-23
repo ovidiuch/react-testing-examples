@@ -198,11 +198,11 @@ const MobileShowFilters = styled(Button)`
   position: absolute;
   top: 0;
   right: 0;
-  width: 48px;
+  width: 40px;
   height: 48px;
   background: rgba(255, 255, 255, 0.9);
   background-image: url(${svgSettings});
-  background-size: 32px;
+  background-size: 28px;
   background-position: center center;
   background-repeat: no-repeat;
   opacity: 0.9;
