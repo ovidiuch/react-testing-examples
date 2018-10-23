@@ -12,7 +12,7 @@
   - [x] Add URL for each test kind
   - [x] Add URL for each test
 - [x] Update project description
-  - [ ] Update README
+  - [x] Update README
 - [ ] Visual facelift
   - [x] Header
   - [x] Remove file visibility toggling
