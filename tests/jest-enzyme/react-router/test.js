@@ -18,7 +18,7 @@ it('renders initial user id', () => {
   // Render new instance in every test to prevent leaking state
   const wrapper = getWrapper({ userId: 5 });
 
-  expect(wrapper.text()).toMatch('User #5');
+  expect(wrapper.text()).toMatch(/user #5/i);
 });
 
 it('renders next user id', () => {
@@ -32,5 +32,5 @@ it('renders next user id', () => {
     // https://github.com/airbnb/enzyme/issues/516
     .simulate('click', { button: 0 });
 
-  expect(wrapper.text()).toMatch('User #6');
+  expect(wrapper.text()).toMatch(/user #6/i);
 });

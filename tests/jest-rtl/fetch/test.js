@@ -5,7 +5,7 @@ import { FetchMock } from '@react-mock/fetch';
 import { ServerCounter } from 'shared/components/ServerFetchCounter';
 
 // Hoist helper functions (but not vars) to reuse between test cases
-const getWrapper = ({ count }) =>
+const renderComponent = ({ count }) =>
   render(
     <FetchMock
       mocks={[
@@ -19,16 +19,16 @@ const getWrapper = ({ count }) =>
 
 it('renders initial count', async () => {
   // Render new instance in every test to prevent leaking state
-  const { getByText } = getWrapper({ count: 5 });
+  const { getByText } = renderComponent({ count: 5 });
 
   // It takes time for the counter to appear because
   // the GET request has a slight delay
-  await waitForElement(() => getByText('Clicked 5 times'));
+  await waitForElement(() => getByText(/clicked 5 times/i));
 });
 
 it('increments count', async () => {
   // Render new instance in every test to prevent leaking state
-  const { getByText } = getWrapper({ count: 5 });
+  const { getByText } = renderComponent({ count: 5 });
 
   // It takes time for the button to appear because
   // the GET request has a slight delay
@@ -37,5 +37,5 @@ it('increments count', async () => {
 
   // The counter doesn't update immediately because
   // the POST request is asynchronous
-  await waitForElement(() => getByText('Clicked 6 times'));
+  await waitForElement(() => getByText(/clicked 6 times/i));
 });

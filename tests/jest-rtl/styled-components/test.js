@@ -6,7 +6,7 @@ import { themeLight } from 'shared/theme';
 import { HelloMessageStyled } from 'shared/components/HelloMessageStyled';
 
 // Hoist helper functions (but not vars) to reuse between test cases
-const getWrapper = ({ theme, name }) =>
+const renderComponent = ({ theme, name }) =>
   render(
     <ThemeProvider theme={theme}>
       <HelloMessageStyled name={name} />
@@ -15,7 +15,7 @@ const getWrapper = ({ theme, name }) =>
 
 it('renders greeting', async () => {
   // Render new instance in every test to prevent leaking state
-  const { getByText } = getWrapper({ theme: themeLight, name: 'Maggie' });
+  const { getByText } = renderComponent({ theme: themeLight, name: 'Maggie' });
 
-  await waitForElement(() => getByText('Hello Maggie'));
+  await waitForElement(() => getByText(/hello Maggie/i));
 });

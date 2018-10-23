@@ -21,7 +21,7 @@ it('renders cached name', () => {
   // Render new instance in every test to prevent leaking state
   const wrapper = getWrapper({ name: 'Trent' });
 
-  expect(wrapper.text()).toMatch('Welcome, Trent');
+  expect(wrapper.text()).toMatch(/welcome, Trent/i);
 });
 
 describe('on update', () => {
@@ -30,7 +30,7 @@ describe('on update', () => {
     const wrapper = getWrapper({ name: 'Trent' });
     submitForm({ wrapper, name: 'Trevor' });
 
-    expect(wrapper.text()).toMatch('Welcome, Trevor');
+    expect(wrapper.text()).toMatch(/welcome, Trevor/i);
   });
 
   it('updates LocalStorage cache', () => {
