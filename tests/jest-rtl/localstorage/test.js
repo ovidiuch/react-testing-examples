@@ -5,21 +5,21 @@ import { LocalStorageMock } from '@react-mock/localstorage';
 import { PersistentForm } from 'shared/components/PersistentForm';
 
 // Hoist helper functions (but not vars) to reuse between test cases
-const getWrapper = ({ name }) =>
+const renderComponent = ({ name }) =>
   render(
     <LocalStorageMock items={{ name }}>
       <PersistentForm />
     </LocalStorageMock>
   );
 
-const submitForm = ({ getByLabelText, getByText }, { name }) => {
+const submitForm = ({ getByText, getByLabelText }, { name }) => {
   fireEvent.change(getByLabelText('Name'), { target: { value: name } });
   fireEvent.click(getByText('Change name'));
 };
 
 it('renders cached name', async () => {
   // Render new instance in every test to prevent leaking state
-  const { getByText } = getWrapper({ name: 'Trent' });
+  const { getByText } = renderComponent({ name: 'Trent' });
 
   await waitForElement(() => getByText(/welcome, Trent/i));
 });
@@ -27,16 +27,16 @@ it('renders cached name', async () => {
 describe('on update', () => {
   it('renders updated name', async () => {
     // Render new instance in every test to prevent leaking state
-    const wrapper = getWrapper({ name: 'Trent' });
-    submitForm(wrapper, { name: 'Trevor' });
+    const utils = renderComponent({ name: 'Trent' });
+    submitForm(utils, { name: 'Trevor' });
 
-    await waitForElement(() => wrapper.getByText(/welcome, Trevor/i));
+    await waitForElement(() => utils.getByText(/welcome, Trevor/i));
   });
 
   it('updates LocalStorage cache', () => {
     // Render new instance in every test to prevent leaking state
-    const wrapper = getWrapper({ name: 'Trent' });
-    submitForm(wrapper, { name: 'Trevor' });
+    const utils = renderComponent({ name: 'Trent' });
+    submitForm(utils, { name: 'Trevor' });
 
     expect(localStorage.getItem('name')).toBe('Trevor');
   });

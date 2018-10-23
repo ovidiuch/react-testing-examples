@@ -5,7 +5,7 @@ import { render, waitForElement, fireEvent } from 'react-testing-library';
 import { UserWithRouter } from 'shared/components/UserWithRouter';
 
 // Hoist helper functions (but not vars) to reuse between test cases
-const getWrapper = ({ userId }) =>
+const renderComponent = ({ userId }) =>
   render(
     <MemoryRouter initialEntries={[`/users/${userId}`]}>
       <Route path="/users/:userId">
@@ -16,14 +16,14 @@ const getWrapper = ({ userId }) =>
 
 it('renders initial user id', async () => {
   // Render new instance in every test to prevent leaking state
-  const { getByText } = getWrapper({ userId: 5 });
+  const { getByText } = renderComponent({ userId: 5 });
 
   await waitForElement(() => getByText(/user #5/i));
 });
 
 it('renders next user id', async () => {
   // Render new instance in every test to prevent leaking state
-  const { getByText } = getWrapper({ userId: 5 });
+  const { getByText } = renderComponent({ userId: 5 });
 
   fireEvent.click(getByText('Next user'));
   await waitForElement(() => getByText(/user #6/i));

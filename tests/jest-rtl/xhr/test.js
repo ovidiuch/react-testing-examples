@@ -10,7 +10,7 @@ const getRes = count => async (req, res) => res.status(200).body({ count });
 const postRes = count => (req, res) =>
   res.status(200).body({ count: count + 1 });
 
-const getWrapper = ({ count }) =>
+const renderComponent = ({ count }) =>
   render(
     <XhrMock
       mocks={[
@@ -24,7 +24,7 @@ const getWrapper = ({ count }) =>
 
 it('renders initial count', async () => {
   // Render new instance in every test to prevent leaking state
-  const { getByText } = getWrapper({ count: 5 });
+  const { getByText } = renderComponent({ count: 5 });
 
   // It takes time for the counter to appear because
   // the GET request has a slight delay
@@ -33,7 +33,7 @@ it('renders initial count', async () => {
 
 it('increments count', async () => {
   // Render new instance in every test to prevent leaking state
-  const { getByText } = getWrapper({ count: 5 });
+  const { getByText } = renderComponent({ count: 5 });
 
   // It takes time for the button to appear because
   // the GET request has a slight delay
