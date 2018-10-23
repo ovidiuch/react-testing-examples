@@ -7,18 +7,19 @@ import { IconButton } from './styles';
 
 export function GithubLink() {
   return (
-    <GithubIconLink
+    <GitHubIconButton
+      as="a"
       icon={svgMarkGithub}
       target="_blank"
       href="https://github.com/skidding/react-testing-examples"
     >
       <span className="icon" />
       <span className="label">GitHub</span>
-    </GithubIconLink>
+    </GitHubIconButton>
   );
 }
 
-const GithubIconLink = styled(IconButton.withComponent('a'))`
+const GitHubIconButton = styled(IconButton)`
   margin-left: 24px;
 
   @media (max-width: 359px) {

@@ -9,15 +9,15 @@ import { IconButton } from './styles';
 export function AboutButton() {
   return (
     <Link prefetch href="/about">
-      <AboutIconLink href="/about" icon={svgQuestion}>
+      <AboutIconButton as="a" href="/about" icon={svgQuestion}>
         <span className="icon" />
         <span className="label">About</span>
-      </AboutIconLink>
+      </AboutIconButton>
     </Link>
   );
 }
 
-const AboutIconLink = styled(IconButton.withComponent('a'))`
+const AboutIconButton = styled(IconButton)`
   margin-left: 16px;
 
   @media (max-width: 399px) {
