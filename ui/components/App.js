@@ -3,6 +3,7 @@
 
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { sortBy } from 'lodash';
 import { FileOptions, GitRef } from '../contexts';
 import { shouldSearch, matchReadmeText, sortSections } from '../search';
 import { hasSectionChanged, getSectionByName } from '../shared/section';
@@ -83,9 +84,8 @@ export class App extends Component<Props, State> {
     const { gitRef, testKind, sectionName, showAbout } = this.props;
     const { showComments, showImports, searchText } = this.state;
 
-    const { setup, tests } = testKind;
     const isSearching = shouldSearch(searchText);
-    const sections = [setup, ...tests];
+    const sections = [testKind.setup, ...getSortedTests(testKind)];
 
     return (
       <GitRef.Provider value={gitRef}>
@@ -158,6 +158,17 @@ export class App extends Component<Props, State> {
       </>
     );
   }
+}
+
+function getSortedTests(testKind) {
+  const { tests, order } = testKind;
+
+  return sortBy(tests, test => {
+    const idx = order.indexOf(test.name);
+
+    // Show tests without an explicit position last
+    return idx === -1 ? Infinity : idx;
+  });
 }
 
 function getSectionEl({ section, testKind, searchText }) {

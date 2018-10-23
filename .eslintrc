@@ -45,7 +45,7 @@
       }
     },
     {
-      "files": ["**/8-localstorage/test.js"],
+      "files": ["**/localstorage/test.js"],
       "env": {
         "browser": true
       }

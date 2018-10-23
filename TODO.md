@@ -20,8 +20,9 @@
   - [x] Footer
     - [x] Links to tech used
   - [x] Update responsive breakpoints
+- [x] Replace file system sorting
 - [ ] Optimize search perf
-- [ ] Replace file system sorting
+- [ ] Make Next.js components work in Cosmos
 
 ## First version
 

@@ -22,6 +22,7 @@ export type TSection = {
 
 export type TTestKind = {
   id: TTestKindId,
+  order: string[],
   setup: TSection,
   tests: TSection[]
 };
