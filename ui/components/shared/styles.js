@@ -2,6 +2,8 @@
 
 import styled from 'styled-components';
 
+export const MOBILE_BREAKPOINT = 666;
+
 export const Center = styled.div`
   margin: 0 auto;
   max-width: 720px;

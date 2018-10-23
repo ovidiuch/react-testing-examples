@@ -13,13 +13,13 @@
   - [x] Add URL for each test
 - [x] Update project description
   - [x] Update README
-- [ ] Visual facelift
+- [x] Visual facelift
   - [x] Header
   - [x] Remove file visibility toggling
   - [x] Tweak file actions
   - [x] Footer
     - [x] Links to tech used
-  - [ ] Update responsive breakpoints
+  - [x] Update responsive breakpoints
 - [ ] Optimize search perf
 - [ ] Replace file system sorting
 

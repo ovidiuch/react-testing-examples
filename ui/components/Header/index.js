@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import svgSettings from '../../svg/settings.svg';
 import svgChevronLeft from '../../svg/chevron-left.svg';
-import { Center, Button } from '../shared/styles';
+import { MOBILE_BREAKPOINT, Center, Button } from '../shared/styles';
 import { SectionLink } from '../shared/SectionLink';
 import { TestKindSelect } from './TestKindSelect';
 import { GithubLink } from './GithubLink';
@@ -91,8 +91,6 @@ export class Header extends Component<Props, State> {
   }
 }
 
-const MOBILE_BREAKPOINT = 619;
-
 const Container = styled.div`
   position: fixed;
   top: 0;
@@ -106,6 +104,11 @@ const Container = styled.div`
   color: #20232a;
   overflow: hidden;
   z-index: 1;
+
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    height: 80px;
+    padding: 0 12px;
+  }
 `;
 
 const Inner = styled(Center)`
@@ -147,6 +150,12 @@ const Left = styled.div`
     left: 0;
     height: 24px;
     line-height: 24px;
+  }
+
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    h1 {
+      font-size: 22px;
+    }
   }
 `;
 
