@@ -10,5 +10,5 @@ it('renders personalized greeting', async () => {
   // Render new instance in every test to prevent leaking state
   const { getByText } = getWrapper({ name: 'Satoshi' });
 
-  await waitForElement(() => getByText('Hello Satoshi'));
+  await waitForElement(() => getByText(/hello Satoshi/i));
 });

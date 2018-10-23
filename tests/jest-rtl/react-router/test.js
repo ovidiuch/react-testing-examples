@@ -18,7 +18,7 @@ it('renders initial user id', async () => {
   // Render new instance in every test to prevent leaking state
   const { getByText } = getWrapper({ userId: 5 });
 
-  await waitForElement(() => getByText('User #5'));
+  await waitForElement(() => getByText(/user #5/i));
 });
 
 it('renders next user id', async () => {
@@ -26,5 +26,5 @@ it('renders next user id', async () => {
   const { getByText } = getWrapper({ userId: 5 });
 
   fireEvent.click(getByText('Next user'));
-  await waitForElement(() => getByText('User #6'));
+  await waitForElement(() => getByText(/user #6/i));
 });

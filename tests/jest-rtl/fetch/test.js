@@ -23,7 +23,7 @@ it('renders initial count', async () => {
 
   // It takes time for the counter to appear because
   // the GET request has a slight delay
-  await waitForElement(() => getByText('Clicked 5 times'));
+  await waitForElement(() => getByText(/clicked 5 times/i));
 });
 
 it('increments count', async () => {
@@ -37,5 +37,5 @@ it('increments count', async () => {
 
   // The counter doesn't update immediately because
   // the POST request is asynchronous
-  await waitForElement(() => getByText('Clicked 6 times'));
+  await waitForElement(() => getByText(/clicked 6 times/i));
 });

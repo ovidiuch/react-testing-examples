@@ -24,7 +24,7 @@ const isReady = wrapper => () => {
   // https://github.com/airbnb/enzyme/issues/1163
   wrapper.update();
 
-  return !wrapper.text().match('Syncing...');
+  return !wrapper.text().match(/syncing.../i);
 };
 
 it('renders initial count', async () => {
@@ -34,7 +34,7 @@ it('renders initial count', async () => {
   // It takes time for the counter to appear because
   // the GET request has a slight delay
   await retry(() => {
-    expect(wrapper.text()).toMatch('Clicked 5 times');
+    expect(wrapper.text()).toMatch(/clicked 5 times/i);
   });
 });
 
@@ -51,6 +51,6 @@ it('increments count', async () => {
   // The counter doesn't update immediately because
   // the POST request is asynchronous
   await retry(() => {
-    expect(wrapper.text()).toMatch('Clicked 6 times');
+    expect(wrapper.text()).toMatch(/clicked 6 times/i);
   });
 });

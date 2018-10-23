@@ -21,7 +21,7 @@ it('renders cached name', async () => {
   // Render new instance in every test to prevent leaking state
   const { getByText } = getWrapper({ name: 'Trent' });
 
-  await waitForElement(() => getByText('Welcome, Trent!'));
+  await waitForElement(() => getByText(/welcome, Trent/i));
 });
 
 describe('on update', () => {
@@ -30,7 +30,7 @@ describe('on update', () => {
     const wrapper = getWrapper({ name: 'Trent' });
     submitForm(wrapper, { name: 'Trevor' });
 
-    await waitForElement(() => wrapper.getByText('Welcome, Trevor!'));
+    await waitForElement(() => wrapper.getByText(/welcome, Trevor/i));
   });
 
   it('updates LocalStorage cache', () => {

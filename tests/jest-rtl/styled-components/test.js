@@ -17,5 +17,5 @@ it('renders greeting', async () => {
   // Render new instance in every test to prevent leaking state
   const { getByText } = getWrapper({ theme: themeLight, name: 'Maggie' });
 
-  await waitForElement(() => getByText('Hello Maggie'));
+  await waitForElement(() => getByText(/hello Maggie/i));
 });

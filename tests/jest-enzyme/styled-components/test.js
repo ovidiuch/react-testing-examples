@@ -17,5 +17,5 @@ it('renders greeting', () => {
   // Render new instance in every test to prevent leaking state
   const wrapper = getWrapper({ theme: themeLight, name: 'Maggie' });
 
-  expect(wrapper.text()).toMatch('Hello Maggie');
+  expect(wrapper.text()).toMatch(/hello Maggie/i);
 });
