@@ -7,5 +7,5 @@ it('renders personalized greeting', () => {
   // Render new instance in every test to prevent leaking state
   const wrapper = mount(<HelloMessage name="Satoshi" />);
 
-  expect(wrapper.text()).toMatch(/Hello Satoshi/i);
+  expect(wrapper.text()).toMatch(/hello Satoshi/i);
 });
