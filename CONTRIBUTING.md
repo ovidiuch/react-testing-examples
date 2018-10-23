@@ -9,6 +9,8 @@ Here are the required steps for adding a _foobar_ example in the `jest-enzyme` c
 - Put test(s) in `tests/jest-enzyme/foobar/test.js`
 - Put description in `tests/jest-enzyme/foobar/README.md`
 
+Get inspired from existing examples.
+
 ### How to add a test collection (ie. a new toolchain)
 
 > This one's a big deal so you want to start a conversation before jumping into it.
