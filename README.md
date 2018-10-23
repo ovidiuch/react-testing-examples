@@ -8,4 +8,4 @@ Searchable library of React testing examples
 - [Read about the project](https://react-testing-examples.com/about)
 - [Browse test files](tests)
 
-[<img alt="Screenshot of React Testing Examples" src="screenshot.png" />](https://react-testing-examples.com)
+[<img alt="Screenshot of React Testing Examples" src="screenshot2.png" />](https://react-testing-examples.com)
