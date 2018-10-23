@@ -1,6 +1,6 @@
 // XXX: Kids, don't try this at home, but it seems this is an entry that is
 // loaded on both server and client
-const UNIVERSAL_ENTRY = 'static/development/pages/_app.js';
+const UNIVERSAL_APP_ENTRY_MATCH = 'static/.+?/pages/_app.js';
 
 module.exports = {
   addGlobalEntry(config) {
@@ -8,16 +8,16 @@ module.exports = {
     const entry = async () => {
       const entries = await origEntry();
 
-      if (!entries[UNIVERSAL_ENTRY]) {
+      const entryNames = Object.keys(entries);
+      const appEntry = entryNames.find(e => e.match(UNIVERSAL_APP_ENTRY_MATCH));
+
+      if (!appEntry) {
         return entries;
       }
 
       return {
         ...entries,
-        [UNIVERSAL_ENTRY]: [
-          require.resolve('./global'),
-          ...entries[UNIVERSAL_ENTRY]
-        ]
+        [appEntry]: [require.resolve('./global'), ...entries[appEntry]]
       };
     };
 
