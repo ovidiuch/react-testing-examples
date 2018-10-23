@@ -4,7 +4,7 @@ import fs from 'fs';
 import loader from './readme-text-loader';
 
 const readme = fs.readFileSync(
-  './tests/jest-enzyme/5-react-router/README.md',
+  './tests/jest-enzyme/react-router/README.md',
   'utf8'
 );
 const output = loader(readme);

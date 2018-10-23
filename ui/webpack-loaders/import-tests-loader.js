@@ -27,6 +27,7 @@ module.exports = function parseReadme(source) {
 function getTestKindStr(testKindId) {
   return `'${testKindId}': {
     id: '${testKindId}',
+    order: require('${getOrderPath(testKindId)}').default,
     setup: ${getSetupStr(testKindId)},
     tests: [${getTestNames(testKindId)
       .map(testName => getTestStr(testKindId, testName))
@@ -35,15 +36,15 @@ function getTestKindStr(testKindId) {
 }
 
 function getSetupStr(testKindId) {
-  const testTypePath = join(TESTS_PATH, testKindId);
-  const readmePath = join(testTypePath, 'README.md');
+  const readmePath = getSetupPath(testKindId, 'README.md');
 
   return getSectionStr({
     name: 'setup',
     readmePath,
     files: glob
-      .sync(`*.js`, { cwd: testTypePath })
-      .map(p => join(testTypePath, p))
+      .sync(`*.js`, { cwd: getTestKindRootPath(testKindId) })
+      .filter(p => ['order.js'].indexOf(p) === -1)
+      .map(p => getSetupPath(testKindId, p))
   });
 }
 
@@ -100,8 +101,20 @@ function getDirNames(dirPath) {
   );
 }
 
+function getSetupPath(testKindId, filePath) {
+  return join(getTestKindRootPath(testKindId), filePath);
+}
+
 function getTestFilePath(testKindId, testName, filePath) {
-  return join(TESTS_PATH, testKindId, testName, filePath);
+  return join(getTestKindRootPath(testKindId), testName, filePath);
+}
+
+function getOrderPath(testKindId) {
+  return join(getTestKindRootPath(testKindId), 'order.js');
+}
+
+function getTestKindRootPath(testKindId) {
+  return join(TESTS_PATH, testKindId);
 }
 
 function getLoaderPath(filePath) {

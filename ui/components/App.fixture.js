@@ -22,7 +22,7 @@ export default [
     props: {
       gitRef,
       testKind: getTestKind('jest-rtl'),
-      sectionName: '6-fetch',
+      sectionName: 'fetch',
       showAbout: false
     },
     state: {}
