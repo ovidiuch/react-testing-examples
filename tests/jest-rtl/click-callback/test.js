@@ -8,6 +8,6 @@ it('calls "onClick" prop on button click', () => {
   const onClick = jest.fn();
   const { getByText } = render(<Button onClick={onClick} />);
 
-  fireEvent.click(getByText('Click me nao'));
+  fireEvent.click(getByText(/click me nao/i));
   expect(onClick).toHaveBeenCalled();
 });

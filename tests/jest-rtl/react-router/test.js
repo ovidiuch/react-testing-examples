@@ -25,6 +25,6 @@ it('renders next user id', async () => {
   // Render new instance in every test to prevent leaking state
   const { getByText } = renderComponent({ userId: 5 });
 
-  fireEvent.click(getByText('Next user'));
+  fireEvent.click(getByText(/next user/i));
   await waitForElement(() => getByText(/user #6/i));
 });

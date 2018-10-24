@@ -14,7 +14,7 @@ const renderComponent = ({ name }) =>
 
 const submitForm = ({ getByText, getByLabelText }, { name }) => {
   fireEvent.change(getByLabelText('Name'), { target: { value: name } });
-  fireEvent.click(getByText('Change name'));
+  fireEvent.click(getByText(/change name/i));
 };
 
 it('renders cached name', async () => {
