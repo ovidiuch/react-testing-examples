@@ -107,7 +107,7 @@ const Container = styled.div`
 
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
     height: 80px;
-    padding: 0 12px;
+    padding: 2px 12px 0 12px;
   }
 `;
 
