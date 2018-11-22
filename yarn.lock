@@ -325,6 +325,16 @@
     "@babel/helper-replace-supers" "^7.1.0"
     "@babel/plugin-syntax-class-properties" "^7.0.0"
 
+"@babel/plugin-proposal-decorators@^7.1.6":
+  version "7.1.6"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-decorators/-/plugin-proposal-decorators-7.1.6.tgz#460c31edbd01953efe45d491583b3ec31661d689"
+  integrity sha512-U42f8KhUbtlhUDyV/wK4Rq/wWh8vWyttYABckG/v0vVnMPvayOewZC/83CbVdmyP+UhEqI368FEQ7hHMfhBpQA==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+    "@babel/helper-replace-supers" "^7.1.0"
+    "@babel/helper-split-export-declaration" "^7.0.0"
+    "@babel/plugin-syntax-decorators" "^7.1.0"
+
 "@babel/plugin-proposal-json-strings@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-json-strings/-/plugin-proposal-json-strings-7.0.0.tgz#3b4d7b5cf51e1f2e70f52351d28d44fc2970d01e"
@@ -369,6 +379,13 @@
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-class-properties/-/plugin-syntax-class-properties-7.0.0.tgz#e051af5d300cbfbcec4a7476e37a803489881634"
   integrity sha512-cR12g0Qzn4sgkjrbrzWy2GE7m9vMl/sFkqZ3gIpAQdrvPDnLM8180i+ANDFIXfjHo9aqp0ccJlQ0QNZcFUbf9w==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+
+"@babel/plugin-syntax-decorators@^7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-decorators/-/plugin-syntax-decorators-7.1.0.tgz#2fa7c1a7905a299c9853ebcef340306675f9cbdc"
+  integrity sha512-uQvRSbgQ0nQg3jsmIixXXDCgSpkBolJ9X7NYThMKCcjvE8dN2uWJUzTUNNAeuKOjARTd+wUQV0ztXpgunZYKzQ==
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
 
@@ -883,6 +900,25 @@
     esutils "^2.0.2"
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
+
+"@bigtest/convergence@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@bigtest/convergence/-/convergence-1.1.1.tgz#b314d8b1edc392d3e8780f99499a9a03aa528d54"
+  integrity sha512-zorukvQJ7JxD5Jqy3ChzhCJzlD45bZudBASbgJvY5ffw5Hu+/9Ia/+8KlU1/XRWm32O2P5SBB2soHoFtGi1eGQ==
+
+"@bigtest/interactor@^0.9.1":
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/@bigtest/interactor/-/interactor-0.9.1.tgz#2cc9f6e962d6dc42503af08a1e6ba38ca2129347"
+  integrity sha512-0LXkU8tH/H0UxQgdZAFkst3FuT4eWVfp0V2WmNrurhldXV9bgEgA5Tnvo9DKJ+0mz56UIkuhzTPOIBMed3w3rg==
+  dependencies:
+    "@bigtest/convergence" "^1.1.1"
+
+"@bigtest/react@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@bigtest/react/-/react-0.1.2.tgz#52b1c0ac7d3bbded421f1407e0e8a589c5261951"
+  integrity sha512-hAgpHGumryJX93Z8sudWtaaqKJM0SSfFLFZOvSKXDOP1iIqcd2rsVCFpKqk9fjr9mTaA6sZ1OWToh7Hy6wEqJA==
+  dependencies:
+    history "^4.7.2"
 
 "@emotion/is-prop-valid@^0.6.8":
   version "0.6.8"
