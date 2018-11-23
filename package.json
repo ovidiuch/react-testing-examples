@@ -10,7 +10,7 @@
     "test:ui": "yarn jest --config ui/jest.config.js",
     "test:ui:watch": "yarn test:ui --watch",
     "test": "yarn test:jest-enzyme && yarn test:jest-rtl && yarn test:ui",
-    "test:ci": "yarn test:jest-enzyme --maxWorkers=2 && yarn test:jest-rtl --maxWorkers=2 && yarn test:ui --maxWorkers=2",
+    "test:ci": "yarn test:jest-enzyme --maxWorkers=2 && yarn test:jest-rtl --maxWorkers=2 && yarn test:jest-interactor --maxWorkers=2 && yarn test:ui --maxWorkers=2",
     "cosmos": "cosmos --config ui/cosmos.config",
     "dev": "yarn babel-node ui/server/start-dev.js",
     "build": "next build ui && next export ui -o .export",
