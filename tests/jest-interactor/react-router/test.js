@@ -1,4 +1,4 @@
-// highlight{10-14,31-33}
+// highlight{18-21,23,27,29,34,36}
 import React from 'react';
 import { MemoryRouter, Route } from 'react-router';
 import { mount } from '@bigtest/react';

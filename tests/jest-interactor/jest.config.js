@@ -1,3 +1,1 @@
-module.exports = {
-  setupTestFrameworkScriptFile: ''
-};
+module.exports = {};

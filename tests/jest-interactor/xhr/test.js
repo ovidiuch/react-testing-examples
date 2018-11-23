@@ -1,8 +1,7 @@
-// highlight{15-22,38-41}
+// highlight{26,30,34-36,41,47-49}
 import React from 'react';
 import { mount } from '@bigtest/react';
-import { render, fireEvent, waitForElement } from 'react-testing-library';
-import { interactor, text, clickable } from '@bigtest/interactor';
+import Counter from '../counter-interactor';
 import { XhrMock } from '@react-mock/xhr';
 import { ServerCounter } from 'shared/components/ServerXhrCounter';
 
@@ -24,13 +23,7 @@ const renderComponent = ({ count }) =>
     </XhrMock>
   ));
 
-@interactor
-class XhrCounter {
-  clickedText = text();
-  increment = clickable('button');
-}
-
-let counter = new XhrCounter();
+let counter = new Counter();
 
 it('renders initial count', async () => {
   // Render new instance in every test to prevent leaking state

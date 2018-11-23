@@ -1,8 +1,8 @@
-// highlight{10-12}
+// highlight{16,20,22-24,29,31-33}
 import React from 'react';
 import { mount } from '@bigtest/react';
+import Counter from '../counter-interactor';
 import { StateMock } from '@react-mock/state';
-import { interactor, text, clickable } from '@bigtest/interactor';
 import { StatefulCounter } from 'shared/components/StatefulCounter';
 
 // Hoist helper functions (but not vars) to reuse between test cases
@@ -13,13 +13,7 @@ const renderComponent = ({ count }) =>
     </StateMock>
   ));
 
-@interactor
-class StateCounter {
-  clickedText = text();
-  increment = clickable('button');
-}
-
-let counter = new StateCounter();
+let counter = new Counter();
 
 it('renders initial count', async () => {
   // Render new instance in every test to prevent leaking state

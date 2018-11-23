@@ -1,9 +1,9 @@
-// highlight{10-17,33-36}
+// highlight{21,25,29-31,36,40-42}
 import React from 'react';
 import { mount } from '@bigtest/react';
+import Counter from '../counter-interactor';
 import { FetchMock } from '@react-mock/fetch';
 import { ServerCounter } from 'shared/components/ServerFetchCounter';
-import { interactor, text, clickable } from '@bigtest/interactor';
 
 // Hoist helper functions (but not vars) to reuse between test cases
 const renderComponent = ({ count }) =>
@@ -18,13 +18,7 @@ const renderComponent = ({ count }) =>
     </FetchMock>
   ));
 
-@interactor
-class FetchCounter {
-  clickedText = text();
-  increment = clickable('button');
-}
-
-let counter = new FetchCounter();
+let counter = new Counter();
 
 it('renders initial count', async () => {
   // Render new instance in every test to prevent leaking state

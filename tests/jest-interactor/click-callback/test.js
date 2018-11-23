@@ -1,4 +1,4 @@
-// highlight{9,11}
+// highlight{12,17,19-22}
 import React from 'react';
 import { Button } from 'shared/components/Button';
 import { interactor } from '@bigtest/interactor';
@@ -9,7 +9,7 @@ class ButtonInteractor {
   // Add custom interactions
 }
 
-const button = new ButtonInteractor('button');
+let button = new ButtonInteractor('button');
 
 it('calls "onClick" prop on button click', async () => {
   // Render new instance in every test to prevent leaking state
