@@ -1,4 +1,4 @@
-// highlight{18-21,23,27,29,34,36}
+// highlight{19-23,25,29,31,36,39}
 import React from 'react';
 import { MemoryRouter, Route } from 'react-router';
 import { mount } from '@bigtest/react';
@@ -15,8 +15,10 @@ const renderComponent = ({ userId }) =>
     </MemoryRouter>
   ));
 
+// Create custom interactor for interacting with this page
 @interactor
 class UserPage {
+  // click the next user link
   next = clickable('a');
 }
 
@@ -33,5 +35,6 @@ it('renders next user id', async () => {
   // Render new instance in every test to prevent leaking state
   await renderComponent({ userId: 5 });
 
+  // click the next link and assert the page route changed
   await page.next().when(() => expect(page.text).toContain('User #6'));
 });

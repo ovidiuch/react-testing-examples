@@ -1,4 +1,4 @@
-// highlight{26,30,34-36,41,47-49}
+// highlight{27,31,35-37,42,50-52}
 import React from 'react';
 import { mount } from '@bigtest/react';
 import Counter from '../counter-interactor';
@@ -23,6 +23,7 @@ const renderComponent = ({ count }) =>
     </XhrMock>
   ));
 
+// reuse the custom interactor for the same type of component
 let counter = new Counter();
 
 it('renders initial count', async () => {
@@ -44,6 +45,8 @@ it('increments count', async () => {
   // the GET request has a slight delay
   // The counter doesn't update immediately because
   // the POST request is asynchronous
+  // Interactions from interactor are chainable,
+  // we can increment and then assert in the same chain.
   await counter
     .increment()
     .when(() => expect(counter.clickedText).toContain('Clicked 6 times'));

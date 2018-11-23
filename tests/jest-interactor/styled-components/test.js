@@ -1,4 +1,4 @@
-// highlight{22,26,28-30}
+// highlight{17,21,23-25}
 import React from 'react';
 import { mount } from '@bigtest/react';
 import { themeLight } from 'shared/theme';

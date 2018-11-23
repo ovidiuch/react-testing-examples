@@ -1,4 +1,4 @@
-// highlight{12,16,18}
+// highlight{7,11,13}
 import React from 'react';
 import { mount } from '@bigtest/react';
 import Interactor from '@bigtest/interactor';

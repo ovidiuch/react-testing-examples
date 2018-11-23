@@ -1,4 +1,4 @@
-// highlight{18,22,24-26,31,33-35}
+// highlight{19,23,25-27,32,36-38}
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -15,6 +15,7 @@ const renderComponent = ({ count }) =>
     </Provider>
   ));
 
+// reuse the custom interactor for the same type of component
 let counter = new Counter();
 
 it('renders initial count', async () => {
@@ -30,6 +31,8 @@ it('increments count', async () => {
   // Render new instance in every test to prevent leaking state
   await renderComponent({ count: 5 });
 
+  // Interactions from interactor are chainable,
+  // we can increment and then assert in the same chain.
   await counter
     .increment()
     .when(() => expect(counter.text).toContain('Clicked 6 times'));

@@ -1,4 +1,4 @@
-// highlight{21,25,29-31,36,40-42}
+// highlight{22,26,30-32,37,43-45}
 import React from 'react';
 import { mount } from '@bigtest/react';
 import Counter from '../counter-interactor';
@@ -18,6 +18,7 @@ const renderComponent = ({ count }) =>
     </FetchMock>
   ));
 
+// reuse the custom interactor for the same type of component
 let counter = new Counter();
 
 it('renders initial count', async () => {
@@ -36,7 +37,9 @@ it('increments count', async () => {
   await renderComponent({ count: 5 });
 
   // It takes time for the button to appear because
-  // the GET request has a slight delay
+  // the GET request has a slight delay.
+  // Interactions from interactor are chainable,
+  // we can increment and then assert in the same chain.
   await counter
     .increment()
     .when(() => expect(counter.clickedText).toContain('Clicked 6 times'));

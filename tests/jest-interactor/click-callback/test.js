@@ -1,4 +1,4 @@
-// highlight{12,17,19-22}
+// highlight{7,13,18-21}
 import React from 'react';
 import { Button } from 'shared/components/Button';
 import Interactor from '@bigtest/interactor';
@@ -9,8 +9,12 @@ let button = new Interactor('button');
 it('calls "onClick" prop on button click', async () => {
   // Render new instance in every test to prevent leaking state
   const onClick = jest.fn();
+  // Mount the component in the DOM
   await mount(() => <Button onClick={onClick} />);
 
+  // Use interactor `when` to assert the change has happened
+  // this will loop until `true` & fails if it isn't true by
+  // the timeout (2s by default)
   button.when(() => {
     expect(button.text).toEqual('Click me nao');
     expect(onClick).toHaveBeenCalled();
