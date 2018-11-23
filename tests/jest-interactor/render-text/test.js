@@ -1,15 +1,10 @@
 // highlight{12,16,18}
 import React from 'react';
 import { mount } from '@bigtest/react';
-import { interactor } from '@bigtest/interactor';
+import Interactor from '@bigtest/interactor';
 import { HelloMessage } from 'shared/components/HelloMessage';
 
-@interactor
-class HelloInteractor {
-  // Custom interactions
-}
-
-let message = new HelloInteractor();
+let message = new Interactor();
 
 it('renders personalized greeting', async () => {
   // Render new instance in every test to prevent leaking state

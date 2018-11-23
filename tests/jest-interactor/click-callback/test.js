@@ -1,15 +1,10 @@
 // highlight{12,17,19-22}
 import React from 'react';
 import { Button } from 'shared/components/Button';
-import { interactor } from '@bigtest/interactor';
+import Interactor from '@bigtest/interactor';
 import { mount } from '@bigtest/react';
 
-@interactor
-class ButtonInteractor {
-  // Add custom interactions
-}
-
-let button = new ButtonInteractor('button');
+let button = new Interactor('button');
 
 it('calls "onClick" prop on button click', async () => {
   // Render new instance in every test to prevent leaking state

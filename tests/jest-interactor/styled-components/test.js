@@ -2,7 +2,7 @@
 import React from 'react';
 import { mount } from '@bigtest/react';
 import { themeLight } from 'shared/theme';
-import { interactor } from '@bigtest/interactor';
+import Interactor from '@bigtest/interactor';
 import { ThemeProvider } from 'styled-components';
 import { HelloMessageStyled } from 'shared/components/HelloMessageStyled';
 
@@ -14,12 +14,7 @@ const renderComponent = ({ theme, name }) =>
     </ThemeProvider>
   ));
 
-@interactor
-class HelloMessageInteractor {
-  // Custom interactions
-}
-
-const helloMessage = new HelloMessageInteractor('span');
+const helloMessage = new Interactor('span');
 
 it('renders greeting', async () => {
   // Render new instance in every test to prevent leaking state
