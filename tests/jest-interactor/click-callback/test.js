@@ -1,4 +1,4 @@
-// highlight{7,13,18-21}
+// highlight{11,16-18}
 import React from 'react';
 import { Button } from 'shared/components/Button';
 import Interactor from '@bigtest/interactor';
