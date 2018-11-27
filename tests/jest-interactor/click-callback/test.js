@@ -4,8 +4,6 @@ import { Button } from 'shared/components/Button';
 import Interactor from '@bigtest/interactor';
 import { mount } from '@bigtest/react';
 
-let button = new Interactor('button');
-
 it('calls "onClick" prop on button click', async () => {
   // Render new instance in every test to prevent leaking state
   const onClick = jest.fn();
@@ -15,8 +13,7 @@ it('calls "onClick" prop on button click', async () => {
   // Use interactor `when` to assert the change has happened
   // this will loop until `true` & fails if it isn't true by
   // the timeout (2s by default)
-  button.when(() => {
-    expect(button.text).toEqual('Click me nao');
+  await new Interactor('button').click().when(() => {
     expect(onClick).toHaveBeenCalled();
   });
 });
