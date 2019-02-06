@@ -1,3 +1,3 @@
 module.exports = {
-  setupTestFrameworkScriptFile: './rtl.setup.js'
+  setupFilesAfterEnv: ['./rtl.setup.js']
 };
