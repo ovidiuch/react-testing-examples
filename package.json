@@ -14,7 +14,7 @@
     "cosmos": "cosmos --config ui/cosmos.config",
     "dev": "yarn babel-node ui/server/start-dev.js",
     "build": "next build ui && next export ui -o .export",
-    "upload": "cd .export && now --name rte && cd -"
+    "upload": "cd .export && now --name rte --public && cd -"
   },
   "devDependencies": {
     "@babel/cli": "7.1.2",
