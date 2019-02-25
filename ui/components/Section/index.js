@@ -31,12 +31,18 @@ export function Section({ testKindId, section, searchText }: Props) {
         <File
           key={filePath}
           name={filePath}
-          filePath={`${testKindId}/${name}/${filePath}`}
+          filePath={getFilePath(testKindId, name, filePath)}
           code={files[filePath]}
         />
       ))}
     </SectionContainer>
   );
+}
+
+function getFilePath(testKindId, sectionName, filePath) {
+  return sectionName === 'setup'
+    ? `${testKindId}/${filePath}`
+    : `${testKindId}/${sectionName}/${filePath}`;
 }
 
 const SectionContainer = styled.div`
