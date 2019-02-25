@@ -11,7 +11,8 @@ module.exports = {
     ['babel-plugin-inline-import-data-uri', { extensions: ['.png', '.svg'] }],
     ['styled-components', { ssr: true, displayName: true, preprocess: false }],
     ['module-resolver', testSharedAlias],
-    ["@babel/plugin-proposal-decorators", { decoratorsBeforeExport: true }]
+    ['@babel/plugin-proposal-class-properties'],
+    ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }]
   ],
   env: {
     test: {
