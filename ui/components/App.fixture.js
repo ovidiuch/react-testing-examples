@@ -1,6 +1,6 @@
 // @flow
 
-import { createFixture } from 'react-cosmos';
+import { createFixture } from 'react-cosmos-classic';
 import { App } from './App';
 import { gitRef } from '../import-files';
 import { getTestKind } from '../shared/testKinds';

@@ -1,6 +1,6 @@
 // @flow
 
-import { createFixture } from 'react-cosmos';
+import { createFixture } from 'react-cosmos-classic';
 import { SectionList } from '.';
 import { testKinds } from '../../import-files';
 
