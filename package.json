@@ -88,7 +88,7 @@
     "fuzzaldrin-plus": "^0.6.0",
     "next": "^7.0.2",
     "parse-numeric-range": "^0.0.2",
-    "prismjs": "^1.15.0",
+    "prismjs": "^1.21.0",
     "query-string": "^6.2.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
