@@ -14,15 +14,15 @@ const renderComponent = ({ count }) =>
 
 it('renders initial count', async () => {
   // Render new instance in every test to prevent leaking state
-  const { findByText } = renderComponent({ count: 5 });
+  const { getByText } = renderComponent({ count: 5 });
 
-  expect(await findByText(/clicked 5 times/i))
+  await waitForElement(() => getByText(/clicked 5 times/i));
 });
 
 it('increments count', async () => {
   // Render new instance in every test to prevent leaking state
-  const { findByText } = renderComponent({ count: 5 });
+  const { getByText } = renderComponent({ count: 5 });
 
   fireEvent.click(getByText('+1'));
-  expect(await findByText(/clicked 6 times/i))
+  await waitForElement(() => getByText(/clicked 6 times/i));
 });
